@@ -65,15 +65,15 @@ window.onload = () => {
           } 
           else {
             document.body.removeAttribute("data-profile");
-            var card = byId("post").content.firstElementChild;
-            var json = await ajax("https://api-anon.herokuapp.com/v1/posts/read");
-            var posts = JSON.parse(json);
-            console.log({ posts });
-            var clone = card.cloneNode(true);
-            var media = clone.find(".media");
-            var html = mvc.c.posts.read(posts.rows);
-            console.log(byId("feed"), { html });
-            byId("feed").innerHTML = html;
+            //var card = byId("post").content.firstElementChild;
+            //var json = await ajax("https://api-anon.herokuapp.com/v1/posts/read");
+            //var posts = JSON.parse(json);
+            //console.log({ posts });
+            //var clone = card.cloneNode(true);
+            //var media = clone.find(".media");
+            //var html = mvc.c.posts.read(posts.rows);
+            //console.log(byId("feed"), { html });
+            //byId("feed").innerHTML = html;
             resolve(state);
           }
         });
