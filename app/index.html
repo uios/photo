@@ -79,8 +79,8 @@
             <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="/cdn/png/spriiing.png"></picture>
             <section>
               <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
-              <ico>
-                <n class="empty-state gg-user"></n>
+              <ico class="empty-state">
+                <n class="gg-user"></n>
               </ico>
             </section>
           </box>
@@ -135,9 +135,19 @@
                         <text><span>369</span> likes</text>
                       </section>
                     </box>
-                    <box class="color-000 padding-x-10px">
+                    <box class="color-000 margin-bottom-5px padding-x-10px">
                       <section>
                         <text><b>username</b> Lorem ipsum dolor sit amet</text>
+                      </section>
+                    </box>
+                    <box class="color-8e font-size-14px margin-bottom-10px padding-x-10px">
+                      <section>
+                        <text>View all 999 comments</text>
+                      </section>
+                    </box>
+                    <box class="color-8e font-size-10px padding-x-10px">
+                      <section>
+                        <text>June 25, 2022</text>
                       </section>
                     </box>
                     <box class="border-top-1px-solid border-color-eee color-000 margin-top-10px" data-height="50px" data-width="100%">
@@ -151,79 +161,161 @@
                   </section>
                 </card>
               </section>
-            </block>
-            <block class="width-320px tablet-width-320pc" data-display="flex" data-sxga-margin-right="0" data-sxga-flex-direction="column-reverse" data-sxga-width="100%" data-width="320px">
-              <card class="direction-column flex">
-                <section class="width-100pc" data-min-width="xga">
-                  <box class="width-100pc">
-                    <picture class="aspect-ratio-1x1 bg-lightgray border-radius-10px"><img></picture>
-                  </box>
-                </section>
-              </card>
-              <card data-position="fixed" data-sxga-position="relative">
-                <wrap class="direction-column flex max-width-100pc xga-width-100pc pills-10px scroll-x width-320px" data-flex="1" data-right="(100% - 960px)/2" data-white-space="nowrap" data-xga-flex-wrap="wrap" data-xga-flex-direction="row" data-xga-width="100%">
-                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
-                    <span class="flex" data-href="/shop/apple/">
-                      <box class="cell">
-                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain"></picture>
-                      </box>
-                      <box>apple</box>
-                    </span>
-                    <box class="align-center cell flex justify-center margin-left">
-                      <div class="gg-heart"></div>
+            </block>        
+            <block class="margin-left-30px width-320px" data-display="flex">
+              <section data-position="fixed" data-sxga-position="relative" data-width="320px">
+                <card class="margin-bottom-10px">
+                  <section class="direction-row" data-display="flex">
+                    <box class="border-radius-50pc bg-black fg-white inline-flex height-50px width-50px">
+                      <section class="direction-column">
+                        <picture class="absolute absolute-full border-radius-50pc"></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-x-20px margin-y-auto">
+                      <section class="direction-column">
+                        <text class="bolder font-size-14px" data-display="block">username</text>
+                        <text class="color-8e font-size-12px" data-display="block">Followed by <span>username</span></text>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-left">
+                      <section>
+                        <text class="bolder fg-b font-size-12px line-height-30px" data-display="block">Follow</text>
+                      </section>
                     </box>
                   </section>
-                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
-                    <span class="flex" data-href="/shop/nike/">
-                      <box class="cell">
-                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain"></picture>
-                      </box>
-                      <box class="line-height-50px">nike</box>
-                    </span>
-                    <box class="align-center cell flex justify-center margin-left">
-                      <div class="gg-heart"></div>
+                </card>
+                <card>
+                  <section class="direction-row" data-display="flex">
+                    <box class="bolder color-8e font-size-14px padding-y-10px">
+                      <section>
+                        <text>Suggestions For You</text>
+                      </section>
                     </box>
                   </section>
-                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
-                    <span class="flex" data-href="/shop/poloralphlauren/">
-                      <box class="cell">
-                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain"></picture>
-                      </box>
-                      <box class="line-height-50px">poloralphlauren</box>
-                    </span>
-                    <box class="align-center cell flex justify-center margin-left">
-                      <div class="gg-heart"></div>
+                </card>
+                <card class="padding-y-10px">
+                  <section class="direction-row" data-display="flex">
+                    <box class="border-radius-50pc bg-black fg-white inline-flex height-30px width-30px">
+                      <section class="direction-column">
+                        <picture class="absolute absolute-full border-radius-50pc"></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-x-10px">
+                      <section class="direction-column">
+                        <text class="bolder font-size-14px" data-display="block">username</text>
+                        <text class="color-8e font-size-12px" data-display="block">Followed by <span>username</span></text>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-left">
+                      <section>
+                        <text class="bolder fg-b font-size-12px line-height-30px" data-display="block">Follow</text>
+                      </section>
                     </box>
                   </section>
-                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
-                    <span class="flex" data-href="/shop/gucci/">
-                      <box class="cell">
-                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain"></picture>
-                      </box>
-                      <box class="line-height-50px">gucci</box>
-                    </span>
-                    <box class="align-center cell flex justify-center margin-left">
-                      <div class="gg-heart"></div>
+                </card>
+                <card class="padding-y-10px">
+                  <section class="direction-row" data-display="flex">
+                    <box class="border-radius-50pc bg-black fg-white inline-flex height-30px width-30px">
+                      <section class="direction-column">
+                        <picture class="absolute absolute-full border-radius-50pc"></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-x-10px">
+                      <section class="direction-column">
+                        <text class="bolder font-size-14px" data-display="block">username</text>
+                        <text class="color-8e font-size-12px" data-display="block">Followed by <span>username</span></text>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-left">
+                      <section>
+                        <text class="bolder fg-b font-size-12px line-height-30px" data-display="block">Follow</text>
+                      </section>
                     </box>
                   </section>
-                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
-                    <span class="flex" data-href="/shop/marvel/">
-                      <box class="cell">
-                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain"></picture>
-                      </box>
-                      <box class="line-height-50px">marvel</box>
-                    </span>
-                    <box class="align-center cell flex justify-center margin-left">
-                      <div class="gg-heart"></div>
+                </card>
+                <card class="padding-y-10px">
+                  <section class="direction-row" data-display="flex">
+                    <box class="border-radius-50pc bg-black fg-white inline-flex height-30px width-30px">
+                      <section class="direction-column">
+                        <picture class="absolute absolute-full border-radius-50pc"></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-x-10px">
+                      <section class="direction-column">
+                        <text class="bolder font-size-14px" data-display="block">username</text>
+                        <text class="color-8e font-size-12px" data-display="block">Followed by <span>username</span></text>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-left">
+                      <section>
+                        <text class="bolder fg-b font-size-12px line-height-30px" data-display="block">Follow</text>
+                      </section>
                     </box>
                   </section>
-                </Wrap>
-              </card>
+                </card>
+                <card class="padding-y-10px">
+                  <section class="direction-row" data-display="flex">
+                    <box class="border-radius-50pc bg-black fg-white inline-flex height-30px width-30px">
+                      <section class="direction-column">
+                        <picture class="absolute absolute-full border-radius-50pc"></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-x-10px">
+                      <section class="direction-column">
+                        <text class="bolder font-size-14px" data-display="block">username</text>
+                        <text class="color-8e font-size-12px" data-display="block">Followed by <span>username</span></text>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-left">
+                      <section>
+                        <text class="bolder fg-b font-size-12px line-height-30px" data-display="block">Follow</text>
+                      </section>
+                    </box>
+                  </section>
+                </card>
+                <card class="padding-y-10px">
+                  <section class="direction-row" data-display="flex">
+                    <box class="border-radius-50pc bg-black fg-white inline-flex height-30px width-30px">
+                      <section class="direction-column">
+                        <picture class="absolute absolute-full border-radius-50pc"></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-x-10px">
+                      <section class="direction-column">
+                        <text class="bolder font-size-14px" data-display="block">username</text>
+                        <text class="color-8e font-size-12px" data-display="block">Followed by <span>username</span></text>
+                      </section>
+                    </box>
+                    <box class="inline-flex margin-left">
+                      <section>
+                        <text class="bolder fg-b font-size-12px line-height-30px" data-display="block">Follow</text>
+                      </section>
+                    </box>
+                  </section>
+                </card>
+              </section>
             </block>
           </section>
         </blocks>
       </page>
-
     </main>
 
     <footer class="fg-lightgray hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
