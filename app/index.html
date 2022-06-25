@@ -1,1 +1,245 @@
+<html>
+  
+  <head>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0'>
+    <meta http-equiv='Content-Type' content='text/html' ; charset='UTF-8'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-status-bar-style' content='#021025'>
+    <meta name="apple-mobile-web-app-title" content="Share">
+    <meta name="application-name" content="Share">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name='theme-color' content='#021025'>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/png/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/png/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/png/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/cdn/svg/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="https://cdn.endk.it/css/boiler.css">
+    <link rel="stylesheet" href="https://cdn.endk.it/css/theme.css">
+    <link rel="stylesheet" href="https://cdn.endk.it/css/modal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
+  </head>
 
+  <body>
+
+    <boot data-page="/" id="boot"></boot>
+
+    <header class="fg-lightgray margin-x-auto" data-position="fixed" data-right="0" data-width="100%" data-top="0" data-xga-max-width="100%" data-z-index="9">
+      <picture class="absolute absolute-full fade-top-to-bottom-black height-50px hide mobile-show width-100pc"></picture>
+      <section>
+        <card class="align-center bg-white border-radius-50px height-50px justify-center line-height-50px margin-auto margin-y-20px shadow mobile-bg-none mobile-fg-white mobile-shadow-none" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
+          <box class="cell align-center hide justify-center mobile-flex">
+            <section>
+              <ico>
+                <n></n>
+              </ico>
+            </section>
+          </box>
+          <box class="bolder margin-right mobile-margin-left padding-x-20px" data-href="/home/"><text>Share</text></box>
+          <box class="cell align-center flex justify-center mobile-hide" data-href="/">
+            <section>
+              <ico>
+                <n class="gg-home"></n>
+              </ico>
+            </section>
+          </box>
+          <box class="cell align-center flex justify-center" data-href="/chat/">
+            <section>
+              <ico>
+                <n class="gg-comment margin-bottom-5px"></n>
+              </ico>
+            </section>
+          </box>
+          <box class="cell align-center flex justify-center mobile-hide" data-href="/">
+            <section>
+              <ico>
+                <n class="gg-add-r"></n>
+              </ico>
+            </section>
+          </box>
+          <box class="cell align-center flex justify-center mobile-hide" data-href="/find/">
+            <section>
+              <ico>
+                <n class="gg-search"></n>
+              </ico>
+            </section>
+          </box>
+          <box class="cell align-center flex justify-center mobile-hide" data-href="/feed/activity/">
+            <section>
+              <ico>
+                <n class="gg-heart"></n>
+              </ico>
+            </section>
+          </box>
+          <box class="align-center cell flex justify-center mobile-hide" data-api="controller" data-method="users" data-resource="profile" id="avi">
+            <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="/cdn/png/spriiing.png"></picture>
+            <section>
+              <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
+              <ico>
+                <n class="empty-state gg-user"></n>
+              </ico>
+            </section>
+          </box>
+        </card>
+      </section>
+    </header>
+
+    <main>
+      <page class="page" data-page="/">
+        <blocks class="margin-left margin-right max-width-100pc padding-top-90px width-800px xga-padding-top-60px">
+          <section class="flex margin-bottom-100px" data-sxga-flex-direction="column-reverse" data-tablet-columns="1" data-width="100%">
+            <block class="fg-ddd margin-right-20px width-480px margin-auto max-width-100pc-20px" data-columns="1" data-flex="1" data-width="100%" id="feed">
+              <section>
+                <card class="border-radius-10px box-shadow-0-0-0-1px margin-bottom-20px" data-width="100%">
+                  <section class="direction-column">
+                    <box class="fg-black" data-height="50px" data-width="100%">
+                      <section>
+                        <picture data-height="50px" data-width="50px"><!--<img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" src>--></picture>
+                        <ico class="empty-state">
+                          <n class="gg-user"></n>
+                        </ico>
+                        <text class="bolder line-height-50px">username</text>
+                        <ico class="margin-left">
+                          <n class="gg-more-alt"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box data-width="100%">
+                      <section>
+                        <picture class="aspect-ratio-1x1 bg-lightgray box-shadow-1px" data-width="100%"></picture>
+                        <div class="aspect-ratio-1x1 bg-lightgray box-shadow-1px empty-state" data-width="100%"></div>
+                      </section>
+                    </box>
+                    <box class="fg-black" data-height="50px" data-width="100%">
+                      <section>
+                        <ico data-height="50px" data-width="50px">
+                          <n class="gg-heart"></n>
+                        </ico>
+                        <ico data-height="50px" data-width="50px">
+                          <n class="gg-comment"></n>
+                        </ico>
+                        <ico data-height="50px" data-width="50px">
+                          <n class="gg-share"></n>
+                        </ico>
+                        <ico class="margin-left" data-height="50px" data-width="50px">
+                          <n class="gg-bookmark"></n>
+                        </ico>
+                      </section>
+                    </box>
+                    <box class="border-top-1px-solid border-color-eee color-000" data-height="50px" data-width="100%">
+                      <section>
+                        <ico data-height="50px" data-width="50px">
+                          <n class="gg-smile"></n>
+                        </ico>
+                        <text class="bolder fg-b line-height-50px margin-left opacity-50pc padding-x-20px">Post</text>
+                      </section>
+                    </box>
+                  </section>
+                </card>
+              </section>
+            </block>
+            <block class="width-320px tablet-width-320pc" data-display="flex" data-sxga-margin-right="0" data-sxga-flex-direction="column-reverse" data-sxga-width="100%" data-width="320px">
+              <card class="direction-column flex">
+                <section class="width-100pc" data-min-width="xga">
+                  <box class="width-100pc">
+                    <picture class="aspect-ratio-1x1 bg-lightgray border-radius-10px"><img></picture>
+                  </box>
+                </section>
+              </card>
+              <card data-position="fixed" data-sxga-position="relative">
+                <wrap class="direction-column flex max-width-100pc xga-width-100pc pills-10px scroll-x width-320px" data-flex="1" data-right="(100% - 960px)/2" data-white-space="nowrap" data-xga-flex-wrap="wrap" data-xga-flex-direction="row" data-xga-width="100%">
+                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
+                    <span class="flex" data-href="/shop/apple/">
+                      <box class="cell">
+                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain" src="https://cdn.spriii.com/file/spriii/brand/logos/4.svg"></picture>
+                      </box>
+                      <box>apple</box>
+                    </span>
+                    <box class="align-center cell flex justify-center margin-left">
+                      <div class="gg-heart"></div>
+                    </box>
+                  </section>
+                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
+                    <span class="flex" data-href="/shop/nike/">
+                      <box class="cell">
+                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain" src="https://cdn.spriii.com/file/spriii/brand/logos/3.svg"></picture>
+                      </box>
+                      <box class="line-height-50px">nike</box>
+                    </span>
+                    <box class="align-center cell flex justify-center margin-left">
+                      <div class="gg-heart"></div>
+                    </box>
+                  </section>
+                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
+                    <span class="flex" data-href="/shop/poloralphlauren/">
+                      <box class="cell">
+                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain" src="https://cdn.spriii.com/file/spriii/brand/logos/2.svg"></picture>
+                      </box>
+                      <box class="line-height-50px">poloralphlauren</box>
+                    </span>
+                    <box class="align-center cell flex justify-center margin-left">
+                      <div class="gg-heart"></div>
+                    </box>
+                  </section>
+                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
+                    <span class="flex" data-href="/shop/gucci/">
+                      <box class="cell">
+                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain" src="https://cdn.spriii.com/file/spriii/brand/logos/40.svg"></picture>
+                      </box>
+                      <box class="line-height-50px">gucci</box>
+                    </span>
+                    <box class="align-center cell flex justify-center margin-left">
+                      <div class="gg-heart"></div>
+                    </box>
+                  </section>
+                  <section class="border-radius-50px flex line-height-50px margin-bottom-20px shadow">
+                    <span class="flex" data-href="/shop/marvel/">
+                      <box class="cell">
+                        <picture class="height-30px margin-10px width-30px"><img class="absolute absolute-full fit-contain" src="https://cdn.spriii.com/file/spriii/logo/marvel.svg"></picture>
+                      </box>
+                      <box class="line-height-50px">marvel</box>
+                    </span>
+                    <box class="align-center cell flex justify-center margin-left">
+                      <div class="gg-heart"></div>
+                    </box>
+                  </section>
+                </Wrap>
+              </card>
+            </block>
+          </section>
+        </blocks>
+      </page>
+
+    </main>
+
+    <footer class="fg-lightgray hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
+      <picture class="absolute absolute-full fade-bottom-to-top-black hide mobile-show" data-z-index="1"></picture>
+      <card class="align-center bg-white border-radius-50px justify-center margin-auto margin-y-20px shadow mobile-bg-none mobile-fg-white mobile-shadow-none mobile-width-100pc" data-display="flex" data-flex-direction="row" data-width="250px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="2">
+        <icon class="align-center flex justify-center" data-href="/live/">
+          <div class="gg-home"></div>
+        </icon>
+        <icon class="align-center flex justify-center" data-href="/feed/">
+          <div class="gg-search"></div>
+        </icon>
+        <icon class="align-center flex justify-center" data-href="/post/">
+          <div class="gg-add-r"></div>
+        </icon>
+        <icon class="align-center flex justify-center" data-href="/shop/">
+          <div class="gg-heart"></div>
+        </icon>
+        <box class="align-center cell flex justify-center" data-api="controller" data-method="users" data-resource="profile" id="avi-mobile">
+          <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="/cdn/png/spriiing.png"></picture>
+          <section>
+            <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
+            <ico>
+              <n class="empty-state gg-user"></n>
+            </ico>
+          </section>
+        </box>
+      </card>
+    </footer>
+
+  </body>
+  
+</html>
