@@ -22,7 +22,8 @@ function init() {
   };
 
   window.dom = {
-    body: document.body
+    body: document.body,
+    boot: byId('boot')
   };
 
   firebase.initializeApp(auth.config);
@@ -38,7 +39,7 @@ function init() {
       //localStorage.href.router();
       //localStorage.removeItem('href');
       //} else {
-      boot.dataset.page.router();
+      (dom.boot ? dom.boot.dataset.page : window.location.pathname).router();
       //}
     })
       .catch((error) => {
