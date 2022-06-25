@@ -60,6 +60,7 @@ window.onload = () => {
           var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
           var root = get[0];
           GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
+          console.log(path);
 
           if (root) {
           } 
