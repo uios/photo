@@ -74,7 +74,7 @@ window.onload = () => {
             //var html = mvc.c.posts.read(posts.rows);
             //console.log(byId("feed"), { html });
             //byId("feed").innerHTML = html;
-            resolve(state);
+            resolve(route);
           }
         });
       });
