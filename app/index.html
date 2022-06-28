@@ -66,7 +66,7 @@
               </ico>
             </section>
           </box>
-          <box class="cell align-center flex justify-center mobile-hide" data-href="/feed/activity/">
+          <box class="cell align-center flex justify-center mobile-hide" data-href="/activity/">
             <section>
               <ico>
                 <n class="gg-heart"></n>
@@ -86,8 +86,14 @@
       </section>
     </header>
 
+    <pages data-root="/chat/">
+      <page data-page="/chat/"></page>
+      <page data-page="/chat/with/"></page>
+      <page data-page='/chat/with/*/'></page>
+    </pages>
+
     <main>
-      <page class="page" data-page="/">
+      <page data-page="/">
         <blocks class="margin-left margin-right max-width-100pc padding-top-90px width-800px xga-padding-top-60px">
           <section class="flex margin-bottom-100px" data-sxga-flex-direction="column-reverse" data-width="100%">
             <block class="fg-ddd margin-right-20px width-480px margin-auto max-width-100pc-20px" data-columns="1" data-flex="1" data-width="100%" id="feed">
@@ -327,6 +333,12 @@
           </section>
         </blocks>
       </page>
+      <page data-page="/find/"></page>
+      <page data-page="/activity/"></page>
+      <pages data-root="/users/">
+        <page data-page="/users/"></page>
+        <page data-page='/users/*/'></page>
+      </pages>
     </main>
 
     <footer class="fg-lightgray hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
@@ -341,10 +353,10 @@
         <icon class="align-center flex justify-center" data-href="/post/">
           <div class="gg-add-r"></div>
         </icon>
-        <icon class="align-center flex justify-center" data-href="//">
+        <icon class="align-center flex justify-center" data-href="/activity/">
           <div class="gg-heart"></div>
         </icon>
-        <box class="align-center cell flex justify-center" data-api="controller" data-method="users" data-resource="profile" id="avi-mobile">
+        <box class="align-center cell flex justify-center" data-tap="mvc.c.users.profile()" id="avi-mobile">
           <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="/cdn/png/spriiing.png"></picture>
           <section>
             <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
