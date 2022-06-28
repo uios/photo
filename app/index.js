@@ -13,12 +13,14 @@ window.onload = () => {
 
 function init() {
 
-  console.log("Initializing...");
-
   eruda.init();
 
+  console.log("Initializing...");
+
   window.rout.ing = (href, GOT, n, m = GOT[n], root = GOT[0]) => {
-    return m.includes("#");
+    return m.includes("#") || (
+      root === 'users' && n === 1
+    );
   };
 
   window.dom = {
@@ -57,7 +59,7 @@ function init() {
 window.mvc ? null : (window.mvc = {});
 window.mvc.m
   ? null
-: (window.mvc.m = {
+: (window.mvc.m = model = {
   posts: {
     read: (posts) => {
       var html = ``;
@@ -127,15 +129,24 @@ window.mvc.m
 });
 window.mvc.v
   ? null
-: (window.mvc.v = function (route) {
+: (window.mvc.v = view = function (route) { console.log(route);
   return new Promise(async function (resolve, reject) {
     var path = route.path;
     var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
     var root = get[0];
     GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
-    console.log(path);
+    console.log(get,path);
 
     if (root) {
+      if(root === "find") {
+        if(get.length > 1) {
+        } else {
+          //var data = await ajax('https://codepen.io/anoniiimous/pen/LYdPjdy.html');
+          //var html = new DOMParser().parseFromString(data,'text/html').body.find('page').innerHTML;
+          //var page = rout.er();
+          //page.innerHTML = html;
+        }
+      }
       resolve(route);
     } 
     else {
@@ -152,4 +163,15 @@ window.mvc.v
       resolve(route);
     }
   });
+});
+window.mvc.c 
+  ? null
+: (window.mvc.c = controller = {
+  users: {
+    profile: () => {
+      var href = (auth.user() ? '/users/'+auth.user().uid+"/" : '/my/');
+      //alert(href);
+      href.router();
+    }
+  }
 });
