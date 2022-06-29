@@ -148,12 +148,15 @@ window.mvc.v
             var doc = new DOMParser().parseFromString(data,'text/html');
             var page = doc.body.find('page');
             var block = page.find('block');
+            var html = page.innerHTML;
+            vp.innerHTML = html;
+          }
+          else {
+            block = vp.find('block');
             block.classList.add('fg-lightgray');
             block.classList.add('margin-top-70px');
             block.classList.add('max-width-960px');
             block.classList.add('mobile-margin-bottom-50px');
-            var html = page.innerHTML;
-            vp.innerHTML = html;
           }
         }
       }
