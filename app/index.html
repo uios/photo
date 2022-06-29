@@ -38,7 +38,7 @@
       <picture class="absolute absolute-full fade-top-to-bottom-black height-50px hide mobile-show width-100pc"></picture>
       <section>
         <card class="align-center bg-white border-radius-50px height-50px justify-center line-height-50px margin-auto margin-y-20px shadow mobile-bg-none mobile-fg-white mobile-shadow-none" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
-          <box class="bolder margin-right padding-x-20px" data-href="/home/"><text>Share</text></box>
+          <box class="bolder margin-right padding-x-20px" data-href="/"><text>Share</text></box>
           <box class="cell align-center flex justify-center mobile-hide" data-href="/">
             <section>
               <ico>
@@ -75,7 +75,7 @@
             </section>
           </box>
           <box class="align-center cell flex justify-center mobile-hide" data-api="controller" data-method="users" data-resource="profile" id="avi">
-            <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="/cdn/png/spriiing.png"></picture>
+            <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
             <section>
               <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
               <ico class="empty-state">
@@ -100,9 +100,20 @@
     </pages>
 
     <pages data-root="/my/">
-      <page data-page="/my/"></page>
+      <page data-page="/my/">
+        <blocks>
+          <block>
+            <section></section>
+          </block>
+          <block>
+            <section></section>        
+          </block>
+        </blocks>
+      </page>
       <page data-page="/my/account/"></page>
     </pages>
+
+    <pages data-root="/post/"></pages>
 
     <main>
       <page data-page="/">
@@ -351,10 +362,7 @@
         <page data-page="/search/"></page>
         <page data-page='/search/*/'></page>
       </pages>
-      <pages data-root="/users/">
-        <page data-page="/users/"></page>
-        <page data-page='/users/*/'></page>
-      </pages>
+      <pages data-root="users"></pages>
     </main>
 
     <footer class="fg-lightgray hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
