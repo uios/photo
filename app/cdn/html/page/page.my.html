@@ -1,0 +1,42 @@
+<blocks class="height-100pc"><!--
+  --><block class="height-100pc noauth"><!--
+    --><box class="absolute hide left-0 top-0 width-50px uppercase z-index-3" data-href="/"><section><ico data-height="50px" data-width="50px"><n class="gg-close"></n></ico></section></box><!--
+    --><section class="padding-y-50px max-height-100pc--120px"><!--
+      --><card><!--
+        --><picture></picture><!--
+        --><form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="auth.account.login(event)"><!--
+          --><box class="border-radius-5px margin-bottom-10px shadow width-100pc"><section><input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text"></section></box><!--
+          --><box class="border-radius-5px margin-bottom-10px shadow width-100pc"><section class="direction-row flex"><input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password"><input class="height-36px invert ui-bg-key width-36px" type="submit"><ico class="bolder" data-height="36px" data-width="36px"><n data-before="?"></n></ico></section></box><!--
+          --><box class="border-radius-5px inline-flex margin-bottom-10px width-50pc"><section><ico class="absolute left-0 invert" data-height="36px" data-width="36px"><n class="ui-bg-google"></n></ico><text class="flex-1 line-height-36px text-align-center" data-tap="event.target.nextElementSibling.click()">Signin with Account</text><input type="submit"></section></box><!--
+          --><box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-50pc" data-tap='window.parent.location = "https://codepen.io/thebanon/pen/NWyxwmB"'><section><ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px"><n class="ui-bg-email"></n></ico><text class="flex-1 line-height-36px text-align-center">Signup with Email</text></section></box><!--                    
+          --><box class="border-radius-5px margin-bottom-10px shadow width-100pc"><section><ico class="absolute left-0 invert" data-height="36px" data-width="36px"><n class="ui-bg-google"></n></ico><text class="flex-1 line-height-36px text-align-center">Continue with Google</text></section></box><!--
+          --><box class="border-radius-5px margin-bottom-36px shadow width-100pc" data-tap="window.parent.location = 'https://codepen.io/thebanon/pen/jOZrKOo'"><section><ico class="absolute height-36px invert left-0 width-36px" data-height="36px" data-width="36px"><n class="ui-bg-incognito"></n></ico><text class="flex-1 line-height-36px text-align-center">Continue as Guest</text></section></box><!--
+        --></form><!--
+      --></card><!--
+    --></section><!--
+  --></block><!--
+  --><block class="height-100pc isauth"><!--
+    --><section class="padding-y-50px max-height-100pc--120px"><!--
+      --><card class="bg-whitesmoke border-radius-20px margin-x-auto width-300px"><!--
+        --><form class="aspect-ratio-1x1 relative" id="me" onsubmit="auth.account.update(event)"><!--
+          --><box class="absolute bottom-0 left-0 right-0 top-0" data-height="50%" data-width="50%"><section>
+          <picture class="aspect-ratio-1x1 bg-gray border-radius-50pc margin-x-auto" data-tap="event.target.nextElementSibling.click()"></picture>
+          <input accept="image/png, image/gif, image/jpeg" id="file-avi" type="file" onchange="
+          var picture = event.target.previousElementSibling;
+          on.change.file(event).then(result => {
+            var img = document.createElement('img');
+            img.src = result;
+            picture.innerHTML = img.outerHTML;
+          })">
+          </section></box><!--
+          --><box class="absolute top-0 right-0 width-50px uppercase z-index-3" data-tap="byId('file-avi').click()"><section><ico data-height="50px" data-width="50px"><n class="gg-image"></n></ico></section></box><!--
+          --><box class="absolute left-0 top--50px width-50px uppercase z-index-3" data-href="/"><section><ico data-height="50px" data-width="50px"><n class="gg-close"></n></ico></section></box><!--                  
+          --><box class="absolute top--50px right-0 width-50px uppercase z-index-3" data-tap="auth.account.close()"><section><ico data-height="50px" data-width="50px"><n data-before="&#x1F512"></n></ico></section></box><!--
+          --><box class="absolute bottom-10px left-0 right-0 top-50pc"><section><input class="font-size-18px line-height-50px text-align-center" placeholder="@username"></section></box><!--
+          --><box class="absolute left-0 bottom--50px width-50px uppercase z-index-3" data-href="/my/account/"><section><ico data-height="50px" data-width="50px"><n class="gg-options"></n></ico></section></box><!--
+          --><box class="absolute bottom--50px right-0 width-50px uppercase z-index-3" data-tap="event.target.closest('box').find('input').click()"><section><ico data-height="50px" data-width="50px"><n class="gg-software-upload"></n></ico><input type="submit"></section></box><!--
+        --></form><!--
+      --></card><!--
+    --></section><!--
+  --></block><!--
+--></blocks>
