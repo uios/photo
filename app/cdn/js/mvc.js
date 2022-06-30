@@ -128,14 +128,17 @@ window.mvc.v
           vp.innerHTML = pages.innerHTML;
         }
         if(get.length > 1) {
+          $('#tabs-profile > *').removeClass('color-000');
           if(get.length > 2) {
-            if(get[1] === "saved") {
-              
+            if(get[2] === "saved") {
+              byId('tab-user-profile-saved').classList.add('color-000');
             }
-            else if(get[1] === "tagged") {
-              
+            else if(get[2] === "tagged") {
+              byId('tab-user-profile-tagged').classList.add('color-000');
             }
-          } else {
+          } 
+          else {
+            byId('tab-user-profile').classList.add('color-000');
             //var html = page.innerHTML;
             //rout.er().innerHTML = html;
           }
