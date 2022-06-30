@@ -1,3 +1,18 @@
+window.is = {
+  json: (text) => {
+    return /^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
+      replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+      replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
+  },
+  local: href => href.contains(['127.0.0.1', 'about:', 'blob:', 'file:', 'localhost']),
+  mobile: () => {
+    return ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(
+      navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document
+    )
+  },
+  touch: () => { return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)); }
+}
+
 window.onload = () => {
 
   window.db.name = "database";
