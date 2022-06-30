@@ -95,11 +95,6 @@
       <page data-page='/chat/with/*/'></page>
     </pages>
 
-    <pages data-root="activity">
-      <page data-page="/activity/"></page>
-      <page data-page='/activity/alerts/'></page>
-    </pages>
-
     <pages data-root="/my/">
       <page data-page="/my/"></page>
       <page data-page="/my/account/"></page>
@@ -108,9 +103,15 @@
     <pages data-root="post"></pages>
 
     <main>
-      <page data-page="/"></page>
-      <page data-page="/find/"></page>
-      <page data-page="/activity/"></page>
+      <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>      
+      
+      <pages data-root="activity">
+        <page data-page="/activity/"></page>
+        <page data-page='/activity/alerts/'></page>
+      </pages>
+      
+      <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
+      
       <pages data-root="users"></pages>
     </main>
 
