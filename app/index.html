@@ -90,24 +90,24 @@
     </header>
 
     <pages data-root="/chat/">
-      <page data-page="/chat/"></page>
-      <page data-page="/chat/with/"></page>
-      <page data-page='/chat/with/*/'></page>
+      <page data-fetch="/cdn/html/page/page.chat.html" data-page="/chat/"></page>
+      <page data-fetch="/cdn/html/page/page.chat.with.html" data-page="/chat/with/"></page>
+      <page data-fetch="/cdn/html/page/page.chat.with.wildcard.html" data-page='/chat/with/*/'></page>
     </pages>
 
     <pages data-root="/my/">
-      <page data-page="/my/"></page>
-      <page data-page="/my/account/"></page>
+      <page data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
+      <page data-fetch="/cdn/html/page/page.my.account.html" data-page="/my/account/"></page>
     </pages>
 
-    <pages data-root="post"></pages>
+    <pages data-fetch="/cdn/html/pages/pages.post.html" data-root="post"></pages>
 
     <main>
       <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>      
       
       <pages data-root="activity">
-        <page data-page="/activity/"></page>
-        <page data-page='/activity/alerts/'></page>
+        <page data-fetch="/cdn/html/page/page.activity.html" data-page="/activity/"></page>
+        <page data-fetch="/cdn/html/page/page.activity.alerts.html" data-page='/activity/alerts/'></page>
       </pages>
       
       <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
