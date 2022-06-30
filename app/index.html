@@ -91,30 +91,30 @@
       </section>
     </header>
 
-    <pages data-root="/chat/">
+    <pages data-pages="chat" data-root="/chat/">
       <page data-fetch="/cdn/html/page/page.chat.html" data-page="/chat/"></page>
       <page data-fetch="/cdn/html/page/page.chat.with.html" data-page="/chat/with/"></page>
       <page data-fetch="/cdn/html/page/page.chat.with.wildcard.html" data-page='/chat/with/*/'></page>
     </pages>
 
-    <pages data-root="/my/">
+    <pages data-pages="my" data-root="/my/">
       <page data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
       <page data-fetch="/cdn/html/page/page.my.account.html" data-page="/my/account/"></page>
     </pages>
 
-    <pages data-fetch="/cdn/html/pages/pages.post.html" data-root="post"></pages>
+    <pages data-fetch="/cdn/html/pages/pages.post.html" data-pages="post" data-root="/post/"></pages>
 
     <main>
       <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>      
       
-      <pages data-root="activity">
+      <pages data-pages="activity" data-root="/activity/">
         <page data-fetch="/cdn/html/page/page.activity.html" data-page="/activity/"></page>
         <page data-fetch="/cdn/html/page/page.activity.alerts.html" data-page='/activity/alerts/'></page>
       </pages>
       
       <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
       
-      <pages data-fetch="/cdn/html/pages/pages.users.html" data-root="users"></pages>
+      <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="users" data-root="/users/"></pages>
     </main>
 
     <footer class="fg-lightgray hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
