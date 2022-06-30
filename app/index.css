@@ -1,3 +1,7 @@
+body {
+  background: white;
+}
+
 page:empty:before {
   content: attr(data-path);
   font-size: 16px;
