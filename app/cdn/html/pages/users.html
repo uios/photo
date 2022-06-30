@@ -1,0 +1,107 @@
+<wrap>
+  <blocks class="padding-top-70px width-100pc">
+    <block class="margin-x-auto width-960px padding-y-20px">
+      <section class="direction-row">
+        <card class="width-300px">
+          <section>
+            <box class="align-center cell flex justify-center margin-x-auto mobile-hide width-150px" data-api="controller" data-method="users" data-resource="profile" id="avi">
+              <picture class="aspect-ratio-1x1"><img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
+              <section>
+                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="pic"><img class="border-radius-50pc border-5px-solid border-color-fff" src="https://avatars.githubusercontent.com/u/91961816" style="height:132px;width:132px;"></picture>
+                <ico class="aspect-ratio-1x1 empty-state flex width-100pc-20px" data-height data-width>
+                  <n class="gg-user"></n>
+                </ico>
+              </section>
+            </box>
+          </section>
+        </card>
+        <card class="flex-1">
+          <section class="direction-column">
+            <box>
+              <section>
+                <text class="font-size-28px">anoniiimous</text>
+              </section>
+            </box>
+            <box class="font-size-16px margin-y-20px">
+              <section>
+                <text><b>3</b> posts</text>
+                <text class="margin-x-50px"><b>6</b> followers</text>
+                <text><b>9</b> following</text>                  
+              </section>
+            </box>
+            <box class="font-size-16px line-height-24px">
+              <section class="direction-column">
+                <text class="bolder">Anon ||| Mous</text>
+                <text class="color-8e">Web Developer</text>
+                <text>a certain set of skills<br>&#x2601;&#xFE0F; Web &#x1F3B5; Music &#x270F;&#xFE0F; Art<br>III™ 2022</text>
+              </section>
+            </box>
+          </section>
+        </card>
+      </section>
+    </block>
+    <block class="border-top-1px-solid border-color-dbdbdb color-8e margin-x-auto width-960px">
+      <section>
+        <card>
+          <section class="align-center bolder flex font-size-12px justify-center line-height-50px uppercase" id="tabs-profile">
+            <box class="padding-x-20px">
+              <section>
+                <ico>
+                  <n class="gg-view-grid"></n>
+                </ico>
+                <text>Posts</text>
+              </section>
+            </box>
+            <box class="padding-x-20px">
+              <section>
+                <ico>
+                  <n class="gg-bookmark"></n>
+                </ico>
+                <text>Saved</text>
+              </section>
+            </box>
+            <box class="padding-x-20px">
+              <section>
+                <ico>
+                  <n class="gg-tag"></n>
+                </ico>
+                <text>Tagged</text>
+              </section>
+            </box>
+          </section>
+        </card>
+      </section>
+    </block>
+  </blocks>
+</wrap>
+<page data-page="/users/*/">
+  <blocks>
+    <block class="margin-x-auto width-960px padding-y-20px">
+      <section data-columns="3">
+        <card class="bg-black">
+          <section>
+            <box class="width-100pc">
+              <section>
+                <picture class="aspect-ratio-1x1"><img data-src="https://images.pexels.com/photos/2049171/pexels-photo-2049171.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"></picture>
+              </section>
+            </box>
+            <box class="absolute bg-black-1-2 height-100pc hover width-100pc z-index-1">
+              <section class="align-center justify-center">
+                <span class="bolder margin-right-50px">
+                  <ico class="margin-right-5px" data-height data-width="25px"><n class="gg-heart"></n></ico>
+                  <text>38</text>
+                </span>
+                <span>
+                  <ico class="margin-right-5px" data-height data-width="25px"><n class="gg-comment"></n></ico>
+                  <text>83</text>
+                </span>
+              </section>
+            </box>
+          </section>
+        </card>
+      </section>
+    </block>
+  </blocks>
+</page>
+<page data-page="/users/*/saved/"></page>
+<page data-page="/users/*/tagged/"></page>
