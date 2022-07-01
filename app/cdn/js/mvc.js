@@ -119,6 +119,9 @@ window.mvc.v
           }
         }
       }
+      if(root === "post") {
+        dom.camera = byId('camera');
+      }
       if(root === "users") {
         var vp = dom.body.find('[data-root="users"]');
         if(vp.innerHTML === "") {
