@@ -1,30 +1,29 @@
-<wrap>
-  <blocks class="margin-auto padding-top-70px tablet-width-100pc width-100pc-40px">
-    <block class="border-top-1px-solid border-color-dbdbdb color-8e margin-x-auto max-width-100pc width-960px">
+  <picture class="absolute absolute-full bg-black-1-2" data-tap="rout.ed.close();"></picture>
+  <wrap class="bg-white border-radius-5px fg-lightgray height-240px max-width-100pc mobile-padding-x-0 padding-top-50px right-960px-0 shadow top-70px vga-height-100pc vga-margin-x-0 vga-top-0 vga-width-100pc xga-margin-x-20px xga-right-0 xga-top-50px width-480px" data-position="fixed">
+    <header class="absolute border-color-dbdbdb color-8e margin-x-auto max-width-100pc top-0 width-960px">
       <section>
         <card>
-          <section class="align-center bolder flex font-size-12px justify-center line-height-50px uppercase" id="tabs-profile">
-            <box class="padding-x-20px" data-href="/activity/" id="tab-activity">
-              <section>
+          <section class="align-center bolder flex font-size-12px justify-center line-height-50px" id="tabs-activity">
+            <box class="width-50pc" data-href="/activity/" id="tab-activity">
+              <section class="justify-center">
                 <ico>
                   <n class="gg-view-grid"></n>
                 </ico>
-                <text class="tablet-hide">Activity</text>
+                <text>Activity</text>
               </section>
             </box>
-            <box class="padding-x-20px" data-href="/activity/alerts/" id="tab-activity-alerts">
-              <section>
+            <box class="width-50pc" data-href="/activity/alerts/" id="tab-activity-alerts">
+              <section class="justify-center">
                 <ico>
                   <n class="gg-bookmark"></n>
                 </ico>
-                <text class="tablet-hide">Alerts</text>
+                <text>Alerts</text>
               </section>
             </box>
           </section>
         </card>
       </section>
-    </block>
-  </blocks>
-</wrap>
-<page data-page="/activity/"></page>
-<page data-page="/activity/alerts/"></page>
+    </header>
+    <page data-page="/activity/"></page>
+    <page data-page="/activity/alerts/"></page>
+  </wrap>
