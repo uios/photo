@@ -53,7 +53,8 @@ function init() {
 
   window.dom = {
     body: document.body,
-    boot: byId('boot')
+    boot: byId('boot'),
+    camera: byId('camera')
   };
 
   firebase.initializeApp(auth.config);
