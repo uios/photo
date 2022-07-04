@@ -73,44 +73,17 @@ window.mvc.m
 
 window.mvc.v
   ? null
-: (window.mvc.v = view = function(route) {
+: (window.mvc.v = view = function (route) { console.log(route);
   return new Promise(async function (resolve, reject) {
     var path = route.path;
     var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
     var root = get[0];
     GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
+    console.log(get,path);
 
     if (root) {
-      if(root === "activity") {
-        var data = await ajax('https://codepen.io/anoniiimous/pen/ExEjPjO.html');
-        var doc = new DOMParser().parseFromString(data,'text/html');
-        var pages = doc.body.find('page');
-        var vp = dom.body.find('[data-page="/'+root+'/"]');
-        if(vp.innerHTML === "") {
-          vp.innerHTML = pages.innerHTML;
-        }
-        if(get.length > 1) {
-          //$('#tabs-activity > *').removeClass('color-000');
-          if(get.length > 2) {
-          } 
-          else {
-            if(get[2] === "alerts") {
-              //byId('tab-activity-alerts').classList.add('color-000');
-            }
-          }
-        } 
-        else {
-          //byId('tab-activity').classList.add('color-000');          
-        }
-      }
       if(root === "chat") {
-        var data = await ajax('https://codepen.io/anoniiimous/pen/MWVwvjG.html');
-        var doc = new DOMParser().parseFromString(data,'text/html');
-        var pages = doc.body.find('pages');
         var vp = dom.body.find('[data-root="'+root+'"]');
-        if(vp.innerHTML === "") {
-          vp.innerHTML = pages.innerHTML;
-        }
         vp.dataset.zIndex = 3;
         vp.dataset.mobileZIndex = 9;
         
@@ -135,58 +108,48 @@ window.mvc.v
         if(get.length > 1) {
         } 
         else {
-          var data = await ajax('https://codepen.io/anoniiimous/pen/LYdPjdy.html');
-          var doc = new DOMParser().parseFromString(data,'text/html');
-          var page = doc.body.find('page');
-          var block = page.find('block');
-          block.classList.add('fg-lightgray');
-          block.classList.add('margin-top-70px');
-          block.classList.add('max-width-960px');
-          block.classList.add('mobile-margin-bottom-50px');
-          var html = page.innerHTML;
-          rout.er().innerHTML = html;
+          var vp = rout.er();
+          if(vp.innerHTML === "") {
+            var data = await ajax('/cdn/html/page/page.find.html');
+            var doc = new DOMParser().parseFromString(data,'text/html');
+            var page = doc.body.find('page');
+            var block = page.find('block');
+            var html = page.innerHTML;
+            vp.innerHTML = html;
+          }
+          else {
+            block = vp.find('block');
+            block.classList.add('fg-lightgray');
+            block.classList.add('margin-top-70px');
+            block.classList.add('max-width-960px');
+            block.classList.add('mobile-margin-bottom-50px');
+          }
         }
       }
       if(root === "my") {
         if(get.length > 1) {
         } 
         else {
-          var data = await ajax('https://codepen.io/anoniiimous/pen/NWyNdGp.html');
-          var doc = new DOMParser().parseFromString(data,'text/html');
-          var page = doc.body.find('page');
-          //page.find('block').classList.add('margin-y-50px');
-          var html = page.innerHTML;
-          rout.er().innerHTML = html;
+          var vp = rout.er();
+          if(vp.innerHTML === "") {
+            var data = await ajax('/cdn/html/page/page.my.html');
+            var doc = new DOMParser().parseFromString(data,'text/html');
+            var page = doc.body.find('page');
+            //page.find('block').classList.add('margin-y-50px');
+            var html = page.innerHTML;
+            vp.innerHTML = html;
+          }
         }
       }
       if(root === "post") {
-        var data = await ajax('https://codepen.io/anoniiimous/pen/KKowBzg.html');
-        var doc = new DOMParser().parseFromString(data,'text/html');
-        var pages = doc.body.find('pages');
-        var vp = dom.body.find('[data-root="'+root+'"]');
-        if(vp.innerHTML === "") {
-          vp.innerHTML = pages.innerHTML;
-        }
-        if(get.length > 1) {
-          //$('#tabs-activity > *').removeClass('color-000');
-          if(get.length > 2) {
-          } 
-          else {
-            if(get[2] === "alerts") {
-              //byId('tab-activity-alerts').classList.add('color-000');
-            }
-          }
-        } 
-        else {
-          //byId('tab-activity').classList.add('color-000');          
-        }
+        dom.camera = byId('camera');
       }
       if(root === "users") {
-        var data = await ajax('https://codepen.io/anoniiimous/pen/NWYPWab.html');
-        var doc = new DOMParser().parseFromString(data,'text/html');
-        var pages = doc.body.find('pages');
-        var vp = dom.body.find('[data-root="'+root+'"]');
+        var vp = dom.body.find('[data-root="users"]');
         if(vp.innerHTML === "") {
+          var data = await ajax('/cdn/html/pages/pages.users.html');
+          var doc = new DOMParser().parseFromString(data,'text/html');
+          var pages = doc.body.find('pages');
           vp.innerHTML = pages.innerHTML;
         }
         if(get.length > 1) {
