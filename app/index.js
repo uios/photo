@@ -46,9 +46,9 @@ function init() {
   console.log("Initializing...");
 
   window.rout.ing = (href, GOT, n, m = GOT[n], root = GOT[0]) => {
-    return m.includes("#") || (
-      root === 'users' && n === 1
-    );
+    return m.includes("#") || 
+      (root === 'chat' && n > 1) || 
+      (root === 'users' && n === 1);
   };
 
   window.dom = {
