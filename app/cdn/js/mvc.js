@@ -232,8 +232,53 @@ window.mvc.c
     skip: target => {
       var tabs = byId('post-tabs');
       var tab = tabs.find('[data-selected="true"]');
-      var href = "/post/"+tab.dataset.format+"/";
+      var format = tab.dataset.format;
+      var href = "/post/"+format+"/";
       href.router();
+    },
+    snap: target => {
+      var tabs = byId('post-tabs');
+      var tab = tabs.find('[data-selected="true"]');
+      var format = tab.dataset.format;
+      if(['audio','merch','pages','photo'].includes(format)) {
+        webcam.snap('photo');
+        controller.post.shot();
+      }
+      else if(['video'].includes(format)) {
+        webcam.record.er && webcam.record.er.state === "recording" ? webcam.record.ed() : webcam.record.ing();
+        controller.post.shot();
+      }
+    },
+    shot: () => {      
+      var post = byId('post');
+      var postEr = byId('post-er');
+      var postForm = byId('post-form');
+      var postFormat = byId('post-format');
+      var postFormatSubmit = byId('post-format-submit');
+      var postHeader = byId('post-header');
+      var postMedia = byId('post-media');
+      var postOptions = byId('post-options');
+      var camera = byId('camera');
+      var cameraBack = byId('camera-back');
+      var cameraDisable = byId('camera-disable');
+      var cameraFlip = byId('camera-flip');
+      var cameraNext = byId('camera-next');
+      var cameraPermissions = byId('camera-permissions');
+      var cameraVideo = camera.find('video');
+      
+      camera.className = "bg-e5e5e5 landscape-width-100vh margin-auto overflow-hidden padding-top-100pc portrait-width-100vw";
+      cameraBack.classList.remove('hide');
+      cameraDisable.classList.add('hide');
+      cameraNext.classList.remove('hide');
+      cameraFlip.classList.add('hide');
+      cameraPermissions.classList.add('hide');
+      cameraVideo.classList.add('hide');
+      postEr.className = "absolute absolute-full align-center flex justify-center";
+      postForm.className = "direction-row dw1000px-direction-column margin-auto max-width-100pc mobile-margin-0 mobile-max-width-100pc width-1280px";
+      postMedia.className = "";
+      postFormat.classList.add('hide');
+      postHeader.classList.add('hide');
+      postOptions.classList.add('hide');
     },
     type: target => {
       var elem = target.closest('[data-format]');
