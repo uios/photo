@@ -142,7 +142,45 @@ window.mvc.v
         }
       }
       if(root === "post") {
-        dom.camera = byId('camera');
+        dom.camera = byId('camera');        
+        var post = byId('post');
+        var postEr = byId('post-er');
+        var postForm = byId('post-form');
+        var postFormat = byId('post-format');
+        var postFormatSubmit = byId('post-format-submit');
+        var postHeader = byId('post-header');
+        var postMedia = byId('post-media');
+        var postOptions = byId('post-options');
+        var camera = byId('camera');
+        var cameraPermissions = byId('camera-permissions');
+        if(get.length > 1) {
+          if(get.length > 2) {
+          } 
+          else {
+            var format = get[1];
+            if(format === "photo") {
+              postEr.className = "dw1000px-padding-y-20px dw1000px-width-600px margin-x-auto max-width-100pc mobile-padding-top-0 width-50pc";
+              postForm.className = "direction-row dw1000px-direction-column dw1000px-margin-x-auto margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px";
+              postFormat.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-left-20px max-width-100pc mobile-max-width-100pc-20px mobile-padding-x-10px";
+              postFormatSubmit.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-y-20px max-width-100pc";
+              postHeader.className = "hide";
+              postMedia.className = "dw1000px-width-600px margin-x-auto max-width-100pc dw960px-padding-bottom-0";
+              postOptions.className = "hide";
+              camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-100pc";
+              cameraPermissions.className = "hide";
+            }
+          }
+        } 
+        else {
+          postEr.removeAttribute('class');
+          postForm.className = "direction-row margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px dw1000px-direction-column";
+          postFormat.className = "flex-1";
+          postHeader.className = "dw960px-width-480px margin-x-auto max-width-100pc";
+          postMedia.className = "dw960px-width-480px margin-x-auto max-width-100pc mobile-padding-0 padding-y-36px dw960px-padding-bottom-0";
+          postOptions.className = "dw960px-width-100pc width-50pc";
+          camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-50pc";
+          cameraPermissions.className = "absolute absolute-full height-120px margin-auto text-align-center webcam-hide width-200px";
+        }      
       }
       if(root === "users") {
         var vp = dom.body.find('[data-root="users"]');
