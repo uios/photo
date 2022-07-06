@@ -142,7 +142,6 @@ window.mvc.v
         }
       }
       if(root === "post") {
-        dom.camera = byId('camera');        
         var post = byId('post');
         var postEr = byId('post-er');
         var postForm = byId('post-form');
@@ -152,7 +151,13 @@ window.mvc.v
         var postMedia = byId('post-media');
         var postOptions = byId('post-options');
         var camera = byId('camera');
+        var cameraBack = byId('camera-back');
+        var cameraDisable = byId('camera-disable');
+        var cameraFlip = byId('camera-flip');
+        var cameraNext = byId('camera-next');
         var cameraPermissions = byId('camera-permissions');
+        var cameraPhoto = byId('camera-photo');
+        var cameraVideo = camera.find('video');
         if(get.length > 1) {
           if(get.length > 2) {
           } 
@@ -167,8 +172,13 @@ window.mvc.v
               postMedia.className = "dw1000px-width-600px margin-x-auto max-width-100pc dw960px-padding-bottom-0";
               postOptions.className = "hide";
               camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-100pc";
+              cameraDisable.classList.add('hide');
+              cameraFlip.classList.add('hide');
               cameraPermissions.className = "hide";
             }
+            //if(format === "edit") {
+              //controller.post.shot();
+            //}
           }
         } 
         else {
@@ -177,10 +187,16 @@ window.mvc.v
           postFormat.className = "flex-1";
           postHeader.className = "dw960px-width-480px margin-x-auto max-width-100pc";
           postMedia.className = "dw960px-width-480px margin-x-auto max-width-100pc mobile-padding-0 padding-y-36px dw960px-padding-bottom-0";
-          postOptions.className = "dw960px-width-100pc width-50pc";
+          postOptions.className = "dw960px-width-100pc dw960px-margin-top-20px dw1000px-margin-left-0 margin-left-20px mobile-margin-top-0 width-50pc";
           camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-50pc";
+          cameraDisable.classList.remove('hide');
+          cameraFlip.classList.remove('hide');
           cameraPermissions.className = "absolute absolute-full height-120px margin-auto text-align-center webcam-hide width-200px";
-        }      
+          cameraPhoto.find('img').removeAttribute('src');
+          cameraVideo.className = "absolute absolute-full webcam-show";
+        }
+        cameraBack.className = "bottom-0 fixed hide left-0";
+        cameraNext.className = "bottom-0 fixed hide right-0";   
       }
       if(root === "users") {
         var vp = dom.body.find('[data-root="users"]');
