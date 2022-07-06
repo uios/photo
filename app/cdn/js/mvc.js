@@ -177,8 +177,9 @@ window.mvc.v
               cameraPermissions.className = "hide";
             }
             //if(format === "edit") {
-              //controller.post.shot();
+            //controller.post.shot();
             //}
+            cameraVideo.classList.add('hide');
           }
         } 
         else {
@@ -193,10 +194,10 @@ window.mvc.v
           cameraFlip.classList.remove('hide');
           cameraPermissions.className = "absolute absolute-full height-120px margin-auto text-align-center webcam-hide width-200px";
           cameraPhoto.find('img').removeAttribute('src');
-          cameraVideo.className = "absolute absolute-full webcam-show";
+          cameraVideo.classList.remove('hide');   
         }
         cameraBack.className = "bottom-0 fixed hide left-0";
-        cameraNext.className = "bottom-0 fixed hide right-0";   
+        cameraNext.className = "bottom-0 fixed hide right-0";
       }
       if(root === "users") {
         var vp = dom.body.find('[data-root="users"]');
