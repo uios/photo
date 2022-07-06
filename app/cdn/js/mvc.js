@@ -228,6 +228,26 @@ window.mvc.v
 window.mvc.c 
   ? null
 : (window.mvc.c = controller = {
+  post: {
+    skip: target => {
+      var tabs = byId('post-tabs');
+      var tab = tabs.find('[data-selected="true"]');
+      var href = "/post/"+tab.dataset.format+"/";
+      href.router();
+    },
+    type: target => {
+      var elem = target.closest('[data-format]');
+      if(elem) {
+        var format = elem.dataset.format;
+        var index = elem.index();
+        var card = target.closest('card');
+        var line = card.firstElementChild;
+        line.dataset.transform = "translateX("+index+"00%)";
+        card.find('[data-selected]').removeAttribute('data-selected');
+        elem.dataset.selected = true;
+      }
+    }
+  },
   users: {
     profile: () => {
       var href = (auth.user() ? '/users/'+auth.user().uid+"/" : '/my/');
