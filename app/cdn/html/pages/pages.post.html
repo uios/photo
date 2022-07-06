@@ -40,9 +40,13 @@
           <card class="bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-50pc" id="camera">
             <section>
               <box class="aspect-ratio-1x1">
-                <video class="height-100pc webcam-show width-100pc" id="camera-video"></video>                 
+                <canvas class="hide" id="camera-canvas"></canvas>
+                <picture class="absolute absolute-full" id="camera-photo">
+                  <img class="absolute absolute-full">
+                </picture>
+                <video class="absolute absolute-full webcam-show" id="camera-video"></video>
               </box>
-              <box class="absolute color-fff webcam-show" data-api="webcam" data-method="control" data-resource="stop">
+              <box class="absolute color-fff webcam-show" data-api="webcam" data-method="control" data-resource="stop" id="camera-disable">
                 <section>
                   <picture class="height-36px invert width-36px">
                     <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/power.svg">                        
@@ -50,7 +54,7 @@
                   <text class="line-height-36px">Disable</text>
                 </section>                      
               </box>
-              <box class="absolute color-fff right-0 webcam-show">
+              <box class="absolute color-fff right-0 webcam-show" id="camera-flip">
                 <section>
                   <text class="line-height-36px">Flip</text>
                   <picture class="height-36px invert width-36px">
@@ -63,6 +67,22 @@
                   <text class="margin-bottom-20px">Allow access to your camera and microphone</text>
                   <text class="bg-2f80ec border-radius-5px color-fff line-height-36px" data-api="webcam" data-method="control" data-resource="play">Enable Webcam</text>
                 </section>
+              </box>           
+              <box class="bottom-0 hide fixed left-0" data-href="/post/" id="camera-back">
+                <section>
+                  <ico data-height="36px" data-width="36px">
+                    <n class="gg-chevron-left"></n>
+                  </ico>
+                  <text class="line-height-36px">Back</text>
+                </section>                      
+              </box>
+              <box class="bottom-0 hide fixed right-0" data-api="controller" data-method="post" data-resource="skip" id="camera-next">
+                <section>
+                  <text class="line-height-36px">Next</text>
+                  <ico data-height="36px" data-width="36px">
+                    <n class="gg-chevron-right"></n>
+                  </ico>
+                </section>                      
               </box>
             </section>
           </card>
@@ -87,7 +107,7 @@
                   </ico>
                 </section>                      
               </box>
-              <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-height="120px" data-mobile-top="calc(100vw + 50px)" data-width="120px">
+              <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-api="controller" data-height="120px" data-method="post" data-mobile-top="calc(100vw + 50px)" data-resource="snap" data-tap=" controller.post.snap(event.target)" data-width="120px" data-z-index="5">
                 <section>
                   <picture>
                     <img src="https://share.uios.computer/cdn/svg/shutter.svg">
