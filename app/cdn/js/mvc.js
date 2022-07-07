@@ -262,6 +262,8 @@ window.mvc.c
       if(elem) {
         var camera = byId('camera');
         var cameraAspect = byId('camera-aspect');
+        var cameraShutter = byId('camera-shutter');
+        var camcorderShutter = byId('camcorder-shutter');
         var optionsAspect = byId('post-options-aspect');
         var format = elem.dataset.format;
         var index = elem.index();
@@ -271,6 +273,9 @@ window.mvc.c
         card.find('[data-selected]').removeAttribute('data-selected');
         elem.dataset.selected = true;
         if(format === "video") {
+          cameraShutter.classList.add('hide');
+          camcorderShutter.classList.remove('hide');
+          
           //cameraAspect.classList.remove('aspect-ratio-1x1');
           //cameraAspect.classList.add('aspect-ratio-16x9');
                                      
@@ -278,6 +283,9 @@ window.mvc.c
           //optionsAspect.classList.add('aspect-ratio-16x9');
         } 
         else {
+          camcorderShutter.classList.add('hide');
+          cameraShutter.classList.remove('hide');
+          
           //cameraAspect.classList.remove('aspect-ratio-16x9');
           //cameraAspect.classList.add('aspect-ratio-1x1');
           
