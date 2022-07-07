@@ -6,6 +6,10 @@ auth.config = {
   appId: "1:47824486713:web:51f3a124b42b1080"
 };
 
+window.api = {
+  endpoint: "https://api.uios.computer"
+};
+
 window.is = {
   json: (text) => {
     return /^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
