@@ -1,3 +1,11 @@
+auth.config = {
+  apiKey: "AIzaSyBxGXe52WtXo_B5iKBo9BQZSfAwYFhLRO8",
+  authDomain: "uios-83649.firebaseapp.com",
+  projectId: "uios-83649",
+  messagingSenderId: "47824486713",
+  appId: "1:47824486713:web:51f3a124b42b1080"
+};
+
 window.is = {
   json: (text) => {
     return /^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
