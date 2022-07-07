@@ -205,6 +205,18 @@ window.mvc.v
 window.mvc.c 
   ? null
 : (window.mvc.c = controller = {
+  my: {
+    setup: event => {
+      auth.account.setup(event).then(d => {
+        console.log('setup.then',d);
+      }).catch(e => {
+        var message = e.message;
+        var error = message.error;
+        console.log('setup.catch',e);
+        alert(error);
+      });
+    }
+  },
   post: {
     skip: target => {
       var tabs = byId('post-tabs');
@@ -262,8 +274,6 @@ window.mvc.c
       if(elem) {
         var camera = byId('camera');
         var cameraAspect = byId('camera-aspect');
-        var cameraShutter = byId('camera-shutter');
-        var camcorderShutter = byId('camcorder-shutter');
         var optionsAspect = byId('post-options-aspect');
         var format = elem.dataset.format;
         var index = elem.index();
@@ -273,24 +283,18 @@ window.mvc.c
         card.find('[data-selected]').removeAttribute('data-selected');
         elem.dataset.selected = true;
         if(format === "video") {
-          cameraShutter.classList.add('hide');
-          camcorderShutter.classList.remove('hide');
-          
-          //cameraAspect.classList.remove('aspect-ratio-1x1');
-          //cameraAspect.classList.add('aspect-ratio-16x9');
+          cameraAspect.classList.remove('aspect-ratio-1x1');
+          cameraAspect.classList.add('aspect-ratio-16x9');
                                      
-          //optionsAspect.classList.remove('aspect-ratio-1x1');
-          //optionsAspect.classList.add('aspect-ratio-16x9');
+          optionsAspect.classList.remove('aspect-ratio-1x1');
+          optionsAspect.classList.add('aspect-ratio-16x9');
         } 
         else {
-          camcorderShutter.classList.add('hide');
-          cameraShutter.classList.remove('hide');
+          cameraAspect.classList.remove('aspect-ratio-16x9');
+          cameraAspect.classList.add('aspect-ratio-1x1');
           
-          //cameraAspect.classList.remove('aspect-ratio-16x9');
-          //cameraAspect.classList.add('aspect-ratio-1x1');
-          
-          //optionsAspect.classList.remove('aspect-ratio-16x9');
-          //optionsAspect.classList.add('aspect-ratio-1x1');
+          optionsAspect.classList.remove('aspect-ratio-16x9');
+          optionsAspect.classList.add('aspect-ratio-1x1');
         }
       }
     }
