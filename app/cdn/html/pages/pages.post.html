@@ -111,9 +111,13 @@
               </box>
               <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-api="controller" data-height="120px" data-method="post" data-mobile-top="calc(100vw + 50px)" data-resource="snap" data-tap=" controller.post.snap(event.target)" data-width="120px" data-z-index="5">
                 <section>
-                  <picture>
+                  <picture id="camera-shutter">
                     <img src="https://share.uios.computer/cdn/svg/shutter.svg">
                   </picture>
+                  <ico class="absolute absolute-full hide" data-height="100%" data-width="100%" id="camcorder-shutter">
+                    <n class="absolute border-2px-solid border-color-000 border-radius-50pc dark-border-color-fff" data-height="calc(100% - 4px)" data-width="calc(100% - 4px)"></n>
+                    <n class="absolute bg-black dark-bg-fff border-radius-50pc" data-height="calc(100% - 8px)" data-width="calc(100% - 8px)"></n>
+                  </ico>
                 </section>                      
               </box>
               <box class="absolute bottom-0 mobile-fixed" data-tap="rout.ed.close()">
