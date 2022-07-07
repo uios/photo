@@ -146,7 +146,7 @@ window.mvc.v
           postEr.removeAttribute('class');
           postForm.className = "direction-row margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px dw1000px-direction-column";
           postFormat.className = "flex-1";
-          postHeader.className = "dw960px-width-480px margin-x-auto max-width-100pc";
+          postHeader.className = "dw960px-margin-x-auto dw960px-width-480px margin-right max-width-100pc width-320px";
           postMedia.className = "dw960px-width-480px margin-x-auto max-width-100pc mobile-padding-0 padding-y-36px dw960px-padding-bottom-0";
           postOptions.className = "dw960px-width-100pc dw960px-margin-top-20px dw1000px-margin-left-0 margin-left-20px mobile-margin-top-0 width-50pc";
           camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-50pc";
