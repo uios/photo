@@ -83,11 +83,13 @@ window.mvc.v
         var post = byId('post');
         var postEr = byId('post-er');
         var postForm = byId('post-form');
-        var postFormat = byId('post-format');
-        var postFormatSubmit = byId('post-format-submit');
+        //var postFormat = byId('post-photo');
+        //var postFormatSubmit = byId('post-photo-submit');
         var postHeader = byId('post-header');
         var postMedia = byId('post-media');
-        var postOptions = byId('post-options');
+        var postOptions = byId('post-options');            
+        var postFormat = byId('post-format');
+
         var camera = byId('camera');
         var cameraBack = byId('camera-back');
         var cameraDisable = byId('camera-disable');
@@ -96,16 +98,36 @@ window.mvc.v
         var cameraPermissions = byId('camera-permissions');
         var cameraPhoto = byId('camera-photo');
         var cameraVideo = camera.find('video');
+
         if(get.length > 1) {
           if(get.length > 2) {
           } 
           else {
             var format = get[1];
             if(format === "photo") {
+              var postPhoto = byId('post-photo');
+              var postPhotoSubmit = byId('post-photo-submit');
+
               postEr.className = "dw1000px-padding-y-20px dw1000px-width-600px margin-x-auto max-width-100pc mobile-padding-top-0 width-50pc";
               postForm.className = "direction-row dw1000px-direction-column dw1000px-margin-x-auto margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px";
               postFormat.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-left-20px max-width-100pc mobile-max-width-100pc-20px mobile-padding-x-10px";
-              postFormatSubmit.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-y-20px max-width-100pc";
+              postPhotoSubmit.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-y-20px max-width-100pc";
+              postHeader.className = "hide";
+              postMedia.className = "dw1000px-width-600px margin-x-auto max-width-100pc dw960px-padding-bottom-0";
+              postOptions.className = "hide";
+              camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-100pc";
+              cameraDisable.classList.add('hide');
+              cameraFlip.classList.add('hide');
+              cameraPermissions.className = "hide";
+            }
+            if(format === "video") {            
+              var postVideo = byId('post-video');
+              var postVideoSubmit = byId('post-video-submit');
+
+              postEr.className = "dw1000px-padding-y-20px dw1000px-width-600px margin-x-auto max-width-100pc mobile-padding-top-0 width-50pc";
+              postForm.className = "direction-row dw1000px-direction-column dw1000px-margin-x-auto margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px";
+              postFormat.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-left-20px max-width-100pc mobile-max-width-100pc-20px mobile-padding-x-10px";
+              postVideoSubmit.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-y-20px max-width-100pc";
               postHeader.className = "hide";
               postMedia.className = "dw1000px-width-600px margin-x-auto max-width-100pc dw960px-padding-bottom-0";
               postOptions.className = "hide";
