@@ -300,6 +300,9 @@ window.mvc.c
     type: target => {
       var elem = target.closest('[data-format]');
       if(elem) {
+        var camera = byId('camera');
+        var cameraAspect = byId('camera-aspect');
+        var optionsAspect = byId('post-options-aspect');
         var format = elem.dataset.format;
         var index = elem.index();
         var card = target.closest('card');
@@ -307,6 +310,20 @@ window.mvc.c
         line.dataset.transform = "translateX("+index+"00%)";
         card.find('[data-selected]').removeAttribute('data-selected');
         elem.dataset.selected = true;
+        if(format === "video") {
+          cameraAspect.classList.remove('aspect-ratio-1x1');
+          cameraAspect.classList.add('aspect-ratio-16x9');
+                                     
+          optionsAspect.classList.remove('aspect-ratio-1x1');
+          optionsAspect.classList.add('aspect-ratio-16x9');
+        } 
+        else {
+          cameraAspect.classList.remove('aspect-ratio-16x9');
+          cameraAspect.classList.add('aspect-ratio-1x1');
+          
+          optionsAspect.classList.remove('aspect-ratio-16x9');
+          optionsAspect.classList.add('aspect-ratio-1x1');
+        }
       }
     }
   },
