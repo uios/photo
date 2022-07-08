@@ -208,6 +208,16 @@ window.mvc.c
   my: {
     setup: event => {
       auth.account.setup(event).then(d => {
+        console.log('my.setup then',{d});
+        var email = d.email;
+        var password = d.password;
+        auth.account.signin(email, password)
+          .then(e => {
+            '/'.router();
+          })
+          .catch(e => {
+            console.log('my.setup signin catch',{e})
+          });
         console.log('setup.then',d);
       }).catch(e => {
         var message = e.message;
