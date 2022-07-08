@@ -53,7 +53,7 @@ window.onpopstate = (event) => {
 
 function init() {
   
-  //eruda.init();
+  eruda.init();
 
   console.log("Initializing...");
 
@@ -92,7 +92,6 @@ function init() {
   });
 
   dom.body.dataset.theme = "meridiem";
-  dom.body.onclick = (event) => on.touch.tap(event, "tap");
 
   touch.events = {
     dbltap: on.touch.dbltap,
