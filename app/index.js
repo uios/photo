@@ -94,6 +94,17 @@ function init() {
   dom.body.dataset.theme = "meridiem";
   dom.body.onclick = (event) => on.touch.tap(event, "tap");
 
+  touch.events = {
+    dbltap: on.touch.dbltap,
+    drag: on.touch.drag,
+    press: on.touch.press,
+    tap: on.touch.tap
+  };
+  dom.body.addEventListener("touchstart",touch.handler,{passive:true});
+  dom.body.addEventListener("touchmove",touch.handler,{passive:true});
+  dom.body.addEventListener("touchcancel",touch.handler,false);
+  dom.body.addEventListener("touchend",touch.handler,false);
+
   console.log("Initialized");
   
 }
