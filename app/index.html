@@ -38,11 +38,11 @@
 
   <body class="bg-white">
     
-    <header class="fg-lightgray margin-x-auto" data-position="fixed" data-right="0" data-width="100%" data-top="0" data-xga-max-width="100%" data-z-index="5">
+    <header class="fg-lightgray margin-x-auto" data-position="fixed" data-width="100%" data-top="0" data-z-index="5">
       <picture class="absolute absolute-full fade-top-to-bottom-black height-50px hide mobile-show width-100pc"></picture>
       <section>
-        <card class="align-center bg-white border-radius-50px height-50px justify-center line-height-50px margin-auto margin-y-20px shadow mobile-bg-none mobile-fg-white mobile-shadow-none" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
-          <box class="bolder margin-right padding-x-20px" data-href="/">
+        <card class="align-center bg-white border-radius-50px height-50px justify-center line-height-50px margin-auto margin-y-20px shadow mobile-bg-none mobile-fg-white mobile-padding-x-0 mobile-shadow-none vga-padding-x-10px xga-border-radius-0 xga-padding-x-20px" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
+          <box class="bolder margin-right mobile-padding-x-10px padding-x-20px vga-padding-x-10px xga-padding-x-0" data-href="/">
             <section>
               <text>Share</text>
             </section>
@@ -82,7 +82,7 @@
               </ico>
             </section>
           </box>
-          <box class="align-center cell flex justify-center mobile-hide" data-press="'/my/'.router();" data-tap="mvc.c.users.profile()" id="avi">
+          <box class="align-center cell flex justify-center mobile-hide" id="avi" data-press="'/my/'.router()" data-tap="controller.users.profile()">
             <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
             <section>
               <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
@@ -114,7 +114,7 @@
       <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
     </main>
 
-    <footer class="fg-lightgray hide mobile-show" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
+    <footer class="fg-lightgray hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
       <picture class="absolute absolute-full fade-bottom-to-top-black hide mobile-show" data-z-index="1"></picture>
       <card class="align-center bg-white border-radius-50px justify-center margin-auto margin-y-20px shadow mobile-bg-none mobile-fg-white mobile-shadow-none mobile-width-100pc" data-display="flex" data-flex-direction="row" data-width="250px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="2">
         <icon class="align-center flex justify-center" data-href="/">
@@ -129,7 +129,7 @@
         <icon class="align-center flex justify-center" data-href="/activity/">
           <div class="gg-heart"></div>
         </icon>
-        <box class="align-center cell flex justify-center" data-press="'/my/'.router();" data-tap="mvc.c.users.profile()" id="avi-mobile">
+        <box class="align-center cell flex justify-center" data-press="'/my/'.router()" data-tap="controller.users.profile()" id="avi-mobile">
           <picture class="absolute absolute-full isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain margin-5px spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
           <section>
             <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
