@@ -82,7 +82,7 @@ function init() {
       //localStorage.href.router();
       //localStorage.removeItem('href');
       //} else {
-      (dom.boot ? dom.boot.dataset.page : window.location.pathname).router();
+      //(dom.boot ? dom.boot.dataset.page : window.location.pathname).router();
       //}
     })
       .catch((error) => {
