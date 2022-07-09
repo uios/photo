@@ -104,6 +104,8 @@ function init() {
   dom.body.addEventListener("touchcancel",touch.handler,false);
   dom.body.addEventListener("touchend",touch.handler,false);
 
+  window.location.pathname.router();
+
   console.log("Initialized");
   
 }
