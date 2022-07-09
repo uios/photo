@@ -208,7 +208,6 @@ window.mvc.c
   my: {
     login: event => {
       event.preventDefault();
-      alert('my.login');
       auth.account.login(event)
         .then(e => '/'.router())
         .catch(e => {
