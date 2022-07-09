@@ -206,6 +206,10 @@ window.mvc.c
   ? null
 : (window.mvc.c = controller = {
   my: {
+    login: event => {
+      event.preventDefault();
+      alert('my.login');
+    },
     setup: event => {
       auth.account.setup(event).then(d => {
         console.log('my.setup then',{d});
