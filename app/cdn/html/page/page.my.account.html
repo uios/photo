@@ -3,7 +3,7 @@
     <section class="padding-y-50px max-height-100pc--120px">
       <card>
         <picture></picture>
-        <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="controller.my.setup(event)">
+        <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="controller.my.setup(event)" id="my-setup">
           <box class="width-100pc">
             <section class="direction-row flex-wrap-unset">
               <span class="border-radius-5px inline-flex shadow">
@@ -28,11 +28,12 @@
               <input class="height-36px hide invert ui-bg-key width-36px" type="submit">
             </section>
           </box>
-          <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc">
+          <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc" data-submit="my-setup">
             <section>
               <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
                 <n class="ui-bg-email"></n>
-              </ico><text class="flex-1 line-height-36px text-align-center">Create Account</text>
+              </ico>
+              <text class="flex-1 line-height-36px text-align-center">Create Account</text>
             </section>
           </box>
           <box class="border-radius-5px fg-black inline-flex shadow width-100pc" data-href="/my/">
