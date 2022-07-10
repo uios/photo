@@ -3,8 +3,14 @@ window.mvc ? null : (window.mvc = {});
 window.mvc.m
   ? null
 : (window.mvc.m = model = {
-  posts: {
-    read: json => {
+  error: {
+    code: (e,v) => {
+      var code = e.code;
+      if(code === 404) {
+        var elem = document.createElement('error');
+        elem.innerHTML = byId('error-'+code).content.firstElementChild.outerHTML;
+        v.insertAdjacentHTML('afterbegin', elem.outerHTML);
+      }
     }
   }
 });
@@ -161,16 +167,24 @@ window.mvc.v
       }
       if(root === "users") {
         if(get.length > 1) {
-          var json = JSON.parse(await ajax(api.endpoint+'/v1/users/'+get[1]));
-          //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
+          ajax(api.endpoint+'/v1/users/'+get[1])
+            .then(user => {
+              if(user) {
+                var json = JSON.parse(user);
+                //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
 
-          var username = get[1] = json.user.username;
+                var username = get[1] = json.user.username;
 
-          byId('users-user-username').textContent = username;
+                byId('users-user-username').textContent = username;
 
-          route = rout.e(rout.ed.url(get));
+                route = rout.e(rout.ed.url(get));
 
-          //console.log('mvc.v users user route',{route,paths});
+                //console.log('mvc.v users user route',{route,paths});
+              }
+            }).catch((e) => {
+              console.log('mvc.v users user /v1/users/:user catch',{e});
+              model.error.code(e,dom.body.find('pages[data-root="'+root+'"]'));
+            });
 
           $('#tabs-profile > *').removeClass('color-000');
           if(get.length > 2) {
@@ -186,9 +200,8 @@ window.mvc.v
             //var html = page.innerHTML;
             //rout.er().innerHTML = html;
           }
-
-          resolve(route);
-        }
+        }              
+        resolve(route);
       }
       resolve(route);
     } 
