@@ -62,7 +62,7 @@ window.onpopstate = (event) => {
 
 function init() {
   
-  eruda.init();
+  //eruda.init();
 
   console.log("Initializing...");
 
