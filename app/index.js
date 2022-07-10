@@ -25,8 +25,15 @@ window.is = {
   touch: () => { return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)); }
 }
 
-window.onload = () => {
+window.onload = async() => {
 
+  window.dom = {
+    body: document.body,
+    boot: byId('boot')
+  };
+  
+  dom.body.dataset.load = "ing";
+  
   window.db.name = "database";
   window.db.schema = {};
   window.db.version = 0;
@@ -35,6 +42,8 @@ window.onload = () => {
     .open(window.db.name, window.db.version, window.db.schema)
     .then((e) => init())
   : init();
+  
+  console.log('window.onload',{window.dom});
   
 }
 
@@ -63,17 +72,10 @@ function init() {
       (root === 'users' && n === 1);
   };
 
-  window.dom = {
-    body: document.body,
-    boot: byId('boot'),
-    camera: byId('camera')
-  };
-
   firebase.initializeApp(auth.config);
-  firebase.auth().onAuthStateChanged(user => auth.change(user));
 
   dom.body.dataset.theme = "meridiem";
-
+  
   touch.events = {
     dbltap: on.touch.dbltap,
     drag: on.touch.drag,
@@ -85,7 +87,13 @@ function init() {
   dom.body.addEventListener("touchcancel",touch.handler,false);
   dom.body.addEventListener("touchend",touch.handler,false);
 
-  window.location.pathname.router();
+  '/my/'.router().then(e => {
+    firebase.auth().onAuthStateChanged(user => {
+      auth.change(user).then(e => {
+        dom.body.dataset.load = "ed";
+      })
+    });
+  });
 
   console.log("Initialized");
   
