@@ -47,6 +47,7 @@ window.mvc.v
         else {              
           byId('convos').dataset.zIndex = 2;
         }
+        resolve(route);
       }
       if(root === "find") {
         if(get.length > 1) {
@@ -69,6 +70,7 @@ window.mvc.v
             block.classList.add('mobile-margin-bottom-50px');
           }
         }
+        resolve(route);
       }
       if(root === "my") {
         if(get.length > 1) {
@@ -84,6 +86,7 @@ window.mvc.v
             vp.innerHTML = html;
           }
         }
+        resolve(route);
       }
       if(root === "post") {
         var post = byId('post');
@@ -164,26 +167,29 @@ window.mvc.v
         }
         cameraBack.className = "bottom-0 fixed hide left-0";
         cameraNext.className = "bottom-0 fixed hide right-0";
+        resolve(route);
       }
       if(root === "users") {
         if(get.length > 1) {
+          var v = dom.body.find('pages[data-root="'+root+'"]');
           ajax(api.endpoint+'/v1/users/'+get[1])
             .then(user => {
-              if(user) {
-                var json = JSON.parse(user);
-                //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
+              var error = v.find('error');
+              error ? error.remove() : null;
 
-                var username = get[1] = json.user.username;
+              var json = JSON.parse(user);
+              //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
 
-                byId('users-user-username').textContent = username;
+              var username = get[1] = json.user.username;
 
-                route = rout.e(rout.ed.url(get));
+              byId('users-user-username').textContent = username;
 
-                //console.log('mvc.v users user route',{route,paths});
-              }
+              route = rout.e(rout.ed.url(get));
+
+              //console.log('mvc.v users user route',{route,paths});
             }).catch((e) => {
               console.log('mvc.v users user /v1/users/:user catch',{e});
-              model.error.code(e,dom.body.find('pages[data-root="'+root+'"]'));
+              model.error.code(e,v);
             });
 
           $('#tabs-profile > *').removeClass('color-000');
@@ -203,7 +209,6 @@ window.mvc.v
         }              
         resolve(route);
       }
-      resolve(route);
     } 
     else {
       document.body.removeAttribute("data-profile");
