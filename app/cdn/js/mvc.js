@@ -186,28 +186,30 @@ window.mvc.v
 
               route = rout.e(rout.ed.url(get));
 
-              //console.log('mvc.v users user route',{route,paths});
-            }).catch((e) => {
+              console.log('mvc.v users user route',{route,paths});
+
+              $('#tabs-profile > *').removeClass('color-000');
+              if(get.length > 2) {
+                if(get[2] === "saved") {
+                  byId('tab-user-profile-saved').classList.add('color-000');
+                }
+                else if(get[2] === "tagged") {
+                  byId('tab-user-profile-tagged').classList.add('color-000');
+                }
+              } 
+              else {
+                byId('tab-user-profile').classList.add('color-000');
+                //var html = page.innerHTML;
+                //rout.er().innerHTML = html;
+              }
+
+              resolve(route);
+            })
+            .catch((e) => {
               console.log('mvc.v users user /v1/users/:user catch',{e});
               model.error.code(e,v);
             });
-
-          $('#tabs-profile > *').removeClass('color-000');
-          if(get.length > 2) {
-            if(get[2] === "saved") {
-              byId('tab-user-profile-saved').classList.add('color-000');
-            }
-            else if(get[2] === "tagged") {
-              byId('tab-user-profile-tagged').classList.add('color-000');
-            }
-          } 
-          else {
-            byId('tab-user-profile').classList.add('color-000');
-            //var html = page.innerHTML;
-            //rout.er().innerHTML = html;
-          }
-        }              
-        resolve(route);
+        }
       }
     } 
     else {
