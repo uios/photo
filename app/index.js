@@ -70,25 +70,7 @@ function init() {
   };
 
   firebase.initializeApp(auth.config);
-  firebase.auth().onAuthStateChanged((user) => {
-    console.log("auth");
-    auth
-      .change(user)
-      .then((data) => {
-        var user = data.user;
-        console.log('firebase.onAuthStateChanged then', {data,user});
-        if(user) {
-          dom.body.dataset.uid = user.uid;
-        }
-        else {
-          dom.body.removeAttribute('data-uid');
-        }
-      })
-      .catch((error) => {
-        console.log('firebase.onAuthStateChanged catch', { error });
-        alert("There was an authentication error with your account.");
-      });
-  });
+  firebase.auth().onAuthStateChanged(user => auth.change(user));
 
   dom.body.dataset.theme = "meridiem";
 
