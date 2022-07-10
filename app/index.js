@@ -43,7 +43,7 @@ window.onload = async() => {
     .then((e) => init())
   : init();
   
-  console.log('window.onload',{window.dom});
+  console.log('window.onload',{dom});
   
 }
 
