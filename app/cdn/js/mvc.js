@@ -160,14 +160,14 @@ window.mvc.v
         cameraNext.className = "bottom-0 fixed hide right-0";
       }
       if(root === "users") {
-        var vp = dom.body.find('[data-root="users"]');
-        if(vp.innerHTML === "") {
-          var data = await ajax('/cdn/html/pages/pages.users.html');
-          var doc = new DOMParser().parseFromString(data,'text/html');
-          var pages = doc.body.find('pages');
-          vp.innerHTML = pages.innerHTML;
-        }
         if(get.length > 1) {
+          var json = JSON.parse(await ajax(api.endpoint+'/v1/users/'+get[1]));
+          console.log('mvc.v users user /v1/users/'+get[1],{json});
+
+          var username = json.user.username;
+
+          byId('users-user-username').textContent = username;
+
           $('#tabs-profile > *').removeClass('color-000');
           if(get.length > 2) {
             if(get[2] === "saved") {
