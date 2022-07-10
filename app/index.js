@@ -87,7 +87,7 @@ function init() {
   dom.body.addEventListener("touchcancel",touch.handler,false);
   dom.body.addEventListener("touchend",touch.handler,false);
 
-  (dom.boot.dataset.page ? dom.boot.dataset.page : window.location.pathname).router().then(e => {
+  (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router().then(e => {
     firebase.auth().onAuthStateChanged(user => {
       auth.change(user).then(e => {
         dom.body.dataset.load = "ed";
