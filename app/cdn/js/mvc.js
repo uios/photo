@@ -162,11 +162,15 @@ window.mvc.v
       if(root === "users") {
         if(get.length > 1) {
           var json = JSON.parse(await ajax(api.endpoint+'/v1/users/'+get[1]));
-          console.log('mvc.v users user /v1/users/'+get[1],{json});
+          //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
 
-          var username = json.user.username;
+          var username = get[1] = json.user.username;
 
           byId('users-user-username').textContent = username;
+
+          route = rout.e(rout.ed.url(get));
+
+          //console.log('mvc.v users user route',{route,paths});
 
           $('#tabs-profile > *').removeClass('color-000');
           if(get.length > 2) {
@@ -182,6 +186,8 @@ window.mvc.v
             //var html = page.innerHTML;
             //rout.er().innerHTML = html;
           }
+
+          resolve(paths);
         }
       }
       resolve(route);
