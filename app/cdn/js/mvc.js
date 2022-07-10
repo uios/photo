@@ -4,11 +4,11 @@ window.mvc.m
   ? null
 : (window.mvc.m = model = {
   error: {
-    code: (e,v) => {
+    code: async(e,v) => {
       var code = e.code;
       if(code === 404) {
         var elem = document.createElement('error');
-        elem.innerHTML = byId('error-'+code).content.firstElementChild.outerHTML;
+        elem.innerHTML = await ajax('/cdn/html/error/error.404.html');
         v.insertAdjacentHTML('afterbegin', elem.outerHTML);
       }
     }
