@@ -187,7 +187,7 @@ window.mvc.v
             //rout.er().innerHTML = html;
           }
 
-          resolve(paths);
+          resolve(route);
         }
       }
       resolve(route);
