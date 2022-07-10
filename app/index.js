@@ -75,20 +75,19 @@ function init() {
     auth
       .change(user)
       .then((data) => {
-      //console.log({data});
-      //alert(123);
-      //var user = data.user;
-      //if(localStorage.href) {
-      //localStorage.href.router();
-      //localStorage.removeItem('href');
-      //} else {
-      //(dom.boot ? dom.boot.dataset.page : window.location.pathname).router();
-      //}
-    })
+        var user = data.user;
+        console.log('firebase.onAuthStateChanged then', {data,user});
+        if(user) {
+          dom.body.dataset.uid = user.uid;
+        }
+        else {
+          dom.body.removeAttribute('data-uid');
+        }
+      })
       .catch((error) => {
-      alert("There was an error verifying your user.");
-      console.log({ error });
-    });
+        console.log('firebase.onAuthStateChanged catch', { error });
+        alert("There was an authentication error with your account.");
+      });
   });
 
   dom.body.dataset.theme = "meridiem";
