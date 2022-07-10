@@ -11,3 +11,63 @@ page:empty:before {
   justify-content: center;
   align-items: center;
 }
+
+/* LOADING */
+body[data-load="ing"] {
+  background: black;
+}
+body > boot:first-child {
+  width: 0;
+  height: 0;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  position: fixed; /* background: #2a2a2a; */
+  z-index: 12345678901;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  display: -webkit-flex;
+}
+body[data-load="ing"] .boot:before {
+  content: "";
+  display: block;
+  position: fixed;
+  z-index: 1234567890;
+  width: 100%;
+  height: 100%;
+}
+body[data-load="ing"] .boot:after {
+  content: "";
+  display: block;
+  z-index: 1234567890;
+  width: 100px;
+  height: 100px; /* background-image:url(/cdn/svg/rgb.svg); */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+body[data-load="ing"] {
+  position: fixed;
+}
+body[data-load="ing"] > * {
+  opacity: 1;
+  transition: 0.3s opacity;
+}
+body[data-load="ing"] > :not(.boot) {
+  opacity: 0;
+}
+body:not([data-load="ing"]) .boot {
+  display: none;
+}
+/* LOADING */
