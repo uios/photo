@@ -13,9 +13,6 @@ page:empty:before {
 }
 
 /* LOADING */
-body[data-load="ing"] {
-  background: black;
-}
 body > boot:first-child {
   width: 0;
   height: 0;
