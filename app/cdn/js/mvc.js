@@ -76,15 +76,6 @@ window.mvc.v
         if(get.length > 1) {
         } 
         else {
-          var vp = rout.er();
-          if(vp.innerHTML === "") {
-            var data = await ajax('/cdn/html/page/page.my.html');
-            var doc = new DOMParser().parseFromString(data,'text/html');
-            var page = doc.body.find('page');
-            //page.find('block').classList.add('margin-y-50px');
-            var html = page.innerHTML;
-            vp.innerHTML = html;
-          }
         }
         resolve(route);
       }
