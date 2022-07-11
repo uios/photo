@@ -209,6 +209,7 @@ window.mvc.v
             .catch((e) => {
               console.log('mvc.v users user /v1/users/:user catch',{e});
               model.error.code(e,v);
+              resolve(route);
             });
         }
       }
