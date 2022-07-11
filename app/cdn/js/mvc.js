@@ -175,9 +175,15 @@ window.mvc.v
               var json = JSON.parse(user);
               //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
 
+              var uid = json.user.uid;
               var username = get[1] = json.user.username;
 
-              byId('users-user-username').textContent = username;
+              //var avi = document.createElement('img');
+              var avatar = "https://cdn.uios.computer/file/share-uios/"+uid+"/avi.png";
+              //avi.onerror = e => model.error.image(avi);
+              var avi = byId('users-user-avatar').firstElementChild;
+              avi.src = avatar;
+              //byId('users-user-username').textContent = username;
 
               route = rout.e(rout.ed.url(get));
 
