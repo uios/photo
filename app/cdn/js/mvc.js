@@ -11,6 +11,10 @@ window.mvc.m
         elem.innerHTML = await ajax('/cdn/html/error/error.404.html');
         v.insertAdjacentHTML('afterbegin', elem.outerHTML);
       }
+    },
+    image: e => {
+      console.log('model.error.image',e);
+      e.remove();
     }
   }
 });
