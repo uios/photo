@@ -12,7 +12,9 @@
         <picture></picture>
         <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth padding-y-10px width-300px" id="my-login" onsubmit="controller.my.login(event)">
           <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
-            <section><input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text"></section>
+            <section>
+              <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">
+            </section>
           </box>
           <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
             <section class="direction-row flex">
@@ -43,11 +45,12 @@
               </ico><text class="flex-1 line-height-36px text-align-center">Continue as Guest</text>
             </section>
           </box>
-          <box class="padding--10px width-100pc">
+          <box class="padding--10px width-100pc" data-href="/my/account/password/">
             <section>
               <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
                 <n class="ui-bg-incognito"></n>
-              </ico><text class="flex-1 line-height-50px text-align-center">Forgot Password?</text>
+              </ico>
+              <text class="flex-1 line-height-50px text-align-center">Forgot Password?</text>
             </section>
           </box>
         </form>
