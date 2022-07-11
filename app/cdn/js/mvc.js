@@ -183,7 +183,7 @@ window.mvc.v
               //avi.onerror = e => model.error.image(avi);
               var avi = byId('users-user-avatar').firstElementChild;
               avi.src = avatar;
-              //byId('users-user-username').textContent = username;
+              byId('users-user-username').textContent = username;
 
               route = rout.e(rout.ed.url(get));
 
