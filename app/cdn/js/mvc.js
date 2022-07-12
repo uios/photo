@@ -179,10 +179,11 @@ window.mvc.v
               var username = get[1] = json.user.username;
 
               //var avi = document.createElement('img');
-              var avatar = "https://cdn.uios.computer/file/share-uios/"+uid+"/avi.png";
               //avi.onerror = e => model.error.image(avi);
-              var avi = byId('users-user-avatar').firstElementChild;
-              avi.src = avatar;
+              var avi = byId('users-user-avatar');
+              var img = avi.firstElementChild;
+              img.src = "https://cdn.uios.computer/file/share-uios/"+uid+"/avi.png";
+
               byId('users-user-username').textContent = username;
 
               route = rout.e(rout.ed.url(get));
