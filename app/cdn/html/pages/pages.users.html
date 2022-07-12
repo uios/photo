@@ -2,7 +2,7 @@
   <blocks class="margin-auto padding-top-70px tablet-width-100pc width-100pc-40px">
     <block class="margin-x-auto max-width-100pc-40px width-960px padding-y-20px">
       <section class="direction-row">
-        <card class="tablet-width-auto width-300px">
+        <card class="hide tablet-width-auto width-300px">
           <section>
             <box class="align-center cell flex justify-center margin-x-auto tablet-width-90px width-150px" data-api="controller" data-method="users" data-resource="profile" id="avi">
               <picture class="aspect-ratio-1x1"><img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
@@ -15,21 +15,35 @@
             </box>
           </section>
         </card>
-        <card class="flex-1 margin-left-20px">
+        <card class="flex-1">
           <section class="direction-column">
-            <box>
+            <box class="absolute align-center cell flex justify-center left-0 margin-x-auto order-1 tablet-width-77px width-150px" data-api="controller" data-method="users" data-resource="profile" id="avi">
+              <picture class="aspect-ratio-1x1"><img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
               <section>
-                <text class="font-size-28px" id="users-user-username" placeholder="username"></text>
+                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar"><img class="border-radius-50pc border-5px-solid border-color-fff width-100pc-20px" onerror="model.error.image(this)" src="https://avatars.githubusercontent.com/u/91961816"></picture>
+                <ico class="absolute aspect-ratio-1x1 empty-state flex width-100pc-20px" data-height data-width>
+                  <n class="gg-user"></n>
+                </ico>
               </section>
             </box>
-            <box class="font-size-16px margin-y-20px tablet-hide">
+            <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-100px">
+              <section>
+                <text class="font-size-28px order-1" id="users-user-username" placeholder="username"></text>
+                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-20px order-2 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5">Edit profile</text>
+                <line class="hide order-4 tablet-show" data-width="100%"></line>
+                <ico class="margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
+                  <n class="gg-options"></n>
+                </ico>
+              </section>
+            </box>
+            <box class="font-size-16px margin-bottom-20px margin-left-170px order-3 tablet-hidden tablet-margin-x-0 tablet-order-5">
               <section>
                 <text><b>3</b> posts</text>
                 <text class="margin-x-50px"><b>6</b> followers</text>
                 <text><b>9</b> following</text>                  
               </section>
             </box>
-            <box class="font-size-16px line-height-24px tablet-hide">
+            <box class="font-size-16px line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-hidden tablet-margin-x-0">
               <section class="direction-column">
                 <text class="bolder">Anon ||| Mous</text>
                 <text class="color-8e">Web Developer</text>
@@ -40,7 +54,8 @@
         </card>
       </section>
     </block>
-    <block class="hide margin-x-auto max-width-100pc-40px tablet-flex width-960px padding-y-20px">
+
+    <!--<block class="hide margin-x-auto max-width-100pc-40px tablet-flex width-960px padding-y-20px">
       <section class="direction-row">
         <card class="flex-1">
           <section class="direction-column">
@@ -80,7 +95,8 @@
           </section>
         </card>
       </section>
-    </block>
+    </block>-->
+
     <block class="border-top-1px-solid border-color-dbdbdb color-8e margin-x-auto max-width-100pc width-960px">
       <section>
         <card>
@@ -114,67 +130,67 @@
       </section>
     </block>
   </blocks>
+  <page data-page="/users/*/">
+    <blocks>
+      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+        <section data-columns="3"></section>
+        <section class="empty-state">
+          <card>
+            <section class="direction-column">
+              <box>
+                <section class="align-center items direction-column justify-center">
+                  <picture class="margin-bottom-50px width-25px">
+                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  </picture>
+                  <text class="font-size-28px">No Posts Yet</text>
+                </section>
+              </box>
+            </section>
+          </card>
+        </section>
+      </block>
+    </blocks>
+  </page>
+  <page data-page="/users/*/saved/">
+    <blocks>
+      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+        <section data-columns="3"></section>
+        <section class="empty-state">
+          <card>
+            <section class="direction-column">
+              <box>
+                <section class="align-center items direction-column justify-center">
+                  <picture class="margin-bottom-50px width-25px">
+                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  </picture>
+                  <text class="font-size-28px">No Posts Yet</text>
+                </section>
+              </box>
+            </section>
+          </card>
+        </section>
+      </block>
+    </blocks>
+  </page>
+  <page data-page="/users/*/tagged/">
+    <blocks>
+      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+        <section data-columns="3"></section>
+        <section class="empty-state">
+          <card>
+            <section class="direction-column">
+              <box>
+                <section class="align-center items direction-column justify-center">
+                  <picture class="margin-bottom-50px width-25px">
+                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  </picture>
+                  <text class="font-size-28px">No Posts Yet</text>
+                </section>
+              </box>
+            </section>
+          </card>
+        </section>
+      </block>
+    </blocks>
+  </page>
 </wrap>
-<page data-page="/users/*/">
-  <blocks>
-    <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
-      <section data-columns="3"></section>
-      <section class="empty-state">
-        <card>
-          <section class="direction-column">
-            <box>
-              <section class="align-center items direction-column justify-center">
-                <picture class="margin-bottom-50px width-25px">
-                  <img src="https://share.uios.computer/cdn/svg/camera.svg">
-                </picture>
-                <text class="font-size-28px">No Posts Yet</text>
-              </section>
-            </box>
-          </section>
-        </card>
-      </section>
-    </block>
-  </blocks>
-</page>
-<page data-page="/users/*/saved/">
-  <blocks>
-    <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
-      <section data-columns="3"></section>
-      <section class="empty-state">
-        <card>
-          <section class="direction-column">
-            <box>
-              <section class="align-center items direction-column justify-center">
-                <picture class="margin-bottom-50px width-25px">
-                  <img src="https://share.uios.computer/cdn/svg/camera.svg">
-                </picture>
-                <text class="font-size-28px">No Posts Yet</text>
-              </section>
-            </box>
-          </section>
-        </card>
-      </section>
-    </block>
-  </blocks>
-</page>
-<page data-page="/users/*/tagged/">
-  <blocks>
-    <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
-      <section data-columns="3"></section>
-      <section class="empty-state">
-        <card>
-          <section class="direction-column">
-            <box>
-              <section class="align-center items direction-column justify-center">
-                <picture class="margin-bottom-50px width-25px">
-                  <img src="https://share.uios.computer/cdn/svg/camera.svg">
-                </picture>
-                <text class="font-size-28px">No Posts Yet</text>
-              </section>
-            </box>
-          </section>
-        </card>
-      </section>
-    </block>
-  </blocks>
-</page>
