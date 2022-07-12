@@ -1,32 +1,23 @@
 <wrap>
   <blocks class="margin-auto padding-top-70px tablet-width-100pc width-100pc-40px">
-    <block class="margin-x-auto max-width-100pc-40px width-960px padding-y-20px">
+    <block class="margin-x-auto max-width-100pc tablet-max-width-100pc width-960px">
       <section class="direction-row">
-        <card class="hide tablet-width-auto width-300px">
-          <section>
-            <box class="align-center cell flex justify-center margin-x-auto tablet-width-90px width-150px" data-api="controller" data-method="users" data-resource="profile" id="avi">
-              <picture class="aspect-ratio-1x1"><img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
-              <section>
-                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar"><img class="border-radius-50pc border-5px-solid border-color-fff width-100pc-20px" onerror="model.error.image(this)" src="https://avatars.githubusercontent.com/u/91961816"></picture>
-                <ico class="absolute aspect-ratio-1x1 empty-state flex width-100pc-20px" data-height data-width>
-                  <n class="gg-user"></n>
-                </ico>
-              </section>
-            </box>
-          </section>
-        </card>
         <card class="flex-1">
           <section class="direction-column">
-            <box class="absolute align-center cell flex justify-center left-0 margin-x-auto order-1 tablet-width-77px width-150px" data-api="controller" data-method="users" data-resource="profile" id="avi">
-              <picture class="aspect-ratio-1x1"><img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png"></picture>
+            <box class="absolute align-center cell flex justify-center left-0 margin-x-auto order-1 tablet-margin-left-20px tablet-width-77px width-150px" data-api="controller" data-method="users" data-resource="profile" id="avi">
+              <picture class="aspect-ratio-1x1 hide">
+                <img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png">                      
+              </picture>
               <section>
-                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar"><img class="border-radius-50pc border-5px-solid border-color-fff width-100pc-20px" onerror="model.error.image(this)" src="https://avatars.githubusercontent.com/u/91961816"></picture>
+                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar">
+                  <img class="bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px" onerror="model.error.image(this)">                        
+                </picture>
                 <ico class="absolute aspect-ratio-1x1 empty-state flex width-100pc-20px" data-height data-width>
                   <n class="gg-user"></n>
                 </ico>
               </section>
             </box>
-            <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-100px">
+            <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-120px">
               <section>
                 <text class="font-size-28px order-1" id="users-user-username" placeholder="username"></text>
                 <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-20px order-2 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5">Edit profile</text>
@@ -36,18 +27,18 @@
                 </ico>
               </section>
             </box>
-            <box class="font-size-16px margin-bottom-20px margin-left-170px order-3 tablet-hidden tablet-margin-x-0 tablet-order-5">
-                  <section>
-                    <text class="flex tablet-direction-column width-one-third"><b>3</b> <rgb>posts</rgb></text>
-                    <text class="flex tablet-direction-column margin-x-50px tablet-margin-x-0 width-one-third"><b>6</b> <rgb>followers</rgb></text>
-                    <text class="flex tablet-direction-column width-one-third"><b>9</b> <rgb>following</rgb></text>                  
-                  </section>
-                </box>
-            <box class="font-size-16px line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-hidden tablet-margin-x-0">
+            <box class="border-color-dbdbdb font-size-16px margin-bottom-20px margin-left-170px order-3 padding-y-10px tablet-border-top-1px-solid tablet-margin-bottom-0 tablet-margin-x-0 tablet-order-5">
+              <section>
+                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b>3</b> <rgb>posts</rgb></text>
+                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third"><b>6</b> <rgb>followers</rgb></text>
+                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b>9</b> <rgb>following</rgb></text>                  
+              </section>
+            </box>
+            <box class="font-size-16px line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-hidden tablet-margin-x-0 tablet-padding-x-20px">
               <section class="direction-column">
-                <text class="bolder">Anon ||| Mous</text>
-                <text class="color-8e">Web Developer</text>
-                <text>a certain set of skills<br>&#x2601;&#xFE0F; Web &#x1F3B5; Music &#x270F;&#xFE0F; Art<br>III™ 2022</text>
+                <text class="bolder"><span placeholder="Full"></span> <span placeholder="Name"></span></text>
+                <text class="color-8e" placeholder="Occupation"></text>
+                <text placeholder="Bio"><!--a certain set of skills<br>&#x2601;&#xFE0F; Web &#x1F3B5; Music &#x270F;&#xFE0F; Art<br>III™ 2022--></text>
               </section>
             </box>
           </section>
