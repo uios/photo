@@ -20,8 +20,12 @@
             <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-120px">
               <section>
                 <text class="font-size-28px order-1" id="users-user-username" placeholder="username"></text>
+                <text class="bg-b bolder border-1px-solid border-color-b border-radius-3px fg-white font-size-14px hide line-height-30px margin-left-30px order-4 padding-x-20px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-height="30px" id="users-user-follow">Follow</text>
                 <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-20px order-2 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5">Edit profile</text>
                 <line class="hide order-4 tablet-show" data-width="100%"></line>
+                <ico class="hide margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
+                  <n class="gg-more-alt"></n>
+                </ico>
                 <ico class="margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
                   <n class="gg-options"></n>
                 </ico>
@@ -29,9 +33,9 @@
             </box>
             <box class="border-color-dbdbdb font-size-16px margin-bottom-20px margin-left-170px order-3 padding-y-10px tablet-border-top-1px-solid tablet-margin-bottom-0 tablet-margin-x-0 tablet-order-5">
               <section>
-                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b>3</b> <rgb>posts</rgb></text>
-                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third"><b>6</b> <rgb>followers</rgb></text>
-                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b>9</b> <rgb>following</rgb></text>                  
+                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b placeholder="0"></b> <rgb>posts</rgb></text>
+                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third"><b placeholder="0"></b> <rgb>followers</rgb></text>
+                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b placeholder="0"></b> <rgb>following</rgb></text>                  
               </section>
             </box>
             <box class="font-size-16px hide line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-margin-x-0 tablet-padding-x-20px">
@@ -44,8 +48,7 @@
           </section>
         </card>
       </section>
-    </block>
-
+    </block>        
     <block class="border-top-1px-solid border-color-dbdbdb color-8e margin-x-auto max-width-100pc width-960px">
       <section>
         <card>
@@ -94,7 +97,7 @@
         <section class="empty-state">
           <card class="margin-y-50px padding-y-10px">
             <section class="direction-column">
-              <box>
+              <box class="margin-x-auto width-350px">
                 <section class="align-center items direction-column justify-center">
                   <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
                     <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
@@ -111,17 +114,18 @@
   </page>
   <page data-page="/users/*/feed/">
     <blocks>
-      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+      <block class="margin-x-auto max-width-100pc width-960px">
         <section data-columns="3"></section>
         <section class="empty-state">
-          <card>
+          <card class="margin-y-50px padding-y-10px">
             <section class="direction-column">
-              <box>
+              <box class="margin-x-auto width-350px">
                 <section class="align-center items direction-column justify-center">
-                  <picture class="margin-bottom-50px width-25px">
-                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
                   </picture>
-                  <text class="font-size-28px">No Posts Yet</text>
+                  <text class="font-size-28px line-height-32px margin-y-24px">Share Photos</text>
+                  <text class="font-size-14px line-height-18px">When you share photos, they will appear on your profile.</text>
                 </section>
               </box>
             </section>
@@ -132,17 +136,18 @@
   </page>
   <page data-page="/users/*/saved/">
     <blocks>
-      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+      <block class="margin-x-auto max-width-100pc width-960px">
         <section data-columns="3"></section>
         <section class="empty-state">
-          <card>
+          <card class="margin-y-50px padding-y-10px">
             <section class="direction-column">
-              <box>
+              <box class="margin-x-auto width-350px">
                 <section class="align-center items direction-column justify-center">
-                  <picture class="margin-bottom-50px width-25px">
-                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
                   </picture>
-                  <text class="font-size-28px">No Posts Yet</text>
+                  <text class="font-size-28px line-height-32px margin-y-24px">Save</text>
+                  <text class="font-size-14px line-height-18px">Save photos and videos that you want to see again. No one is notified, and only you can see what you've saved.</text>
                 </section>
               </box>
             </section>
@@ -153,17 +158,18 @@
   </page>
   <page data-page="/users/*/tagged/">
     <blocks>
-      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+      <block class="margin-x-auto max-width-100pc width-960px">
         <section data-columns="3"></section>
         <section class="empty-state">
-          <card>
+          <card class="margin-y-50px padding-y-10px">
             <section class="direction-column">
-              <box>
+              <box class="margin-x-auto width-350px">
                 <section class="align-center items direction-column justify-center">
-                  <picture class="margin-bottom-50px width-25px">
-                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
                   </picture>
-                  <text class="font-size-28px">No Posts Yet</text>
+                  <text class="font-size-28px line-height-32px margin-y-24px">Photos of you</text>
+                  <text class="font-size-14px line-height-18px">When people tag you in photos, they'll appear here.</text>
                 </section>
               </box>
             </section>
