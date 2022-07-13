@@ -10,6 +10,10 @@ window.api = {
   endpoint: "https://api.uios.computer"
 };
 
+window.cdn = {
+  endpoint = "https://cdn.uios.computer"
+};
+
 window.is = {
   json: (text) => {
     return /^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
