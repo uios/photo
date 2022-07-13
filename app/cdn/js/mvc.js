@@ -30,6 +30,21 @@ window.mvc.v
     console.log(get,path);
 
     if (root) {
+      if(root === "activity") {        
+        if(get.length > 1) {
+          //$('#tabs-activity > *').removeClass('color-000');
+          if(get.length > 2) {
+          } 
+          else {
+            if(get[2] === "alerts") {
+              //byId('tab-activity-alerts').classList.add('color-000');
+            }
+          }
+        } 
+        else {
+          //byId('tab-activity').classList.add('color-000');          
+        }
+      }      
       if(root === "chat") {
         var vp = dom.body.find('[data-root="'+root+'"]');
         vp.dataset.zIndex = 3;
