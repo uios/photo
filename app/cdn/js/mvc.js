@@ -248,8 +248,9 @@ window.mvc.v
           if(posts.length > 0) {
             //var html = '';
             var p = 0; do {
-              var template = byId('template-post-card-column');
-              var card = template.content.firstElementChild.cloneNode(true);
+              var template = await ajax('/cdn/html/template/template.post.card.column.html');
+              var html = new DOMParser().parseFromString(template, "application/html");
+              var card =  html.body.firstElementChild.cloneNode(true);
               var boxes = card.all('box');
               var media = boxes[1].find('media');
 
