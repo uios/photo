@@ -201,6 +201,9 @@ window.mvc.v
 
               $('#tabs-profile > *').removeClass('color-000');
               if(get.length > 2) {
+                if(get[2] === "feed") {
+                  byId('tab-user-profile-feed').classList.add('color-000');
+                }
                 if(get[2] === "saved") {
                   byId('tab-user-profile-saved').classList.add('color-000');
                 }
