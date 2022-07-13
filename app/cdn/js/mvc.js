@@ -176,6 +176,7 @@ window.mvc.v
               //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
 
               var uid = json.user.uid;
+              var fullname = json.user.fullname;
               var username = get[1] = json.user.username;
 
               //var avi = document.createElement('img');
@@ -184,6 +185,14 @@ window.mvc.v
               var img = avi.firstElementChild;
               img.src = "https://cdn.uios.computer/file/share-uios/"+uid+"/avi.png";
 
+              if(fullname) {
+                byId('users-user-fullname').textContent = fullname;
+                byId('users-user-fullname').classList.remove('hide');
+              }
+              if(fullname) {                    
+                var about = byId('users-user-fullname').closest('box');
+                about.classList.remove('hide');
+              }
               byId('users-user-username').textContent = username;
 
               route = rout.e(rout.ed.url(get));
