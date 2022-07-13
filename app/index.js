@@ -11,7 +11,7 @@ window.api = {
 };
 
 window.cdn = {
-  endpoint: "https://cdn.uios.computer"
+  endpoint: "https://cdn.uios.computer/file/share-uios"
 };
 
 window.is = {
