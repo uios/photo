@@ -34,7 +34,7 @@
                 <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b>9</b> <rgb>following</rgb></text>                  
               </section>
             </box>
-            <box class="font-size-16px hide line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-hidden tablet-margin-x-0 tablet-padding-x-20px">
+            <box class="font-size-16px hide line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-margin-x-0 tablet-padding-x-20px">
               <section class="direction-column">
                 <text class="bolder"><span placeholder="Full"></span> <span placeholder="Name"></span></text>
                 <text class="color-8e" placeholder="Occupation"></text>
@@ -50,24 +50,32 @@
       <section>
         <card>
           <section class="align-center bolder flex font-size-12px justify-center line-height-50px uppercase" id="tabs-profile">
-            <box class="padding-x-20px" data-href="/users/:get/" id="tab-user-profile">
-              <section>
+            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/" id="tab-user-profile">
+              <section class="tablet-justify-center">
                 <ico>
                   <n class="gg-view-grid"></n>
                 </ico>
                 <text class="tablet-hide">Posts</text>
               </section>
             </box>
-            <box class="padding-x-20px" data-href="/users/:get/saved/" id="tab-user-profile-saved">
-              <section>
+            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/feed/" id="tab-user-profile-feed">
+              <section class="tablet-justify-center">
+                <ico>
+                  <n class="gg-feed"></n>
+                </ico>
+                <text class="tablet-hide">Feed</text>
+              </section>
+            </box>
+            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/saved/" id="tab-user-profile-saved">
+              <section class="tablet-justify-center">
                 <ico>
                   <n class="gg-bookmark"></n>
                 </ico>
                 <text class="tablet-hide">Saved</text>
               </section>
             </box>
-            <box class="padding-x-20px" data-href="/users/:get/tagged/" id="tab-user-profile-tagged">
-              <section>
+            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/tagged/" id="tab-user-profile-tagged">
+              <section class="tablet-justify-center">
                 <ico>
                   <n class="gg-tag"></n>
                 </ico>
@@ -80,6 +88,27 @@
     </block>
   </blocks>
   <page data-page="/users/*/">
+    <blocks>
+      <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
+        <section data-columns="3"></section>
+        <section class="empty-state">
+          <card>
+            <section class="direction-column">
+              <box>
+                <section class="align-center items direction-column justify-center">
+                  <picture class="margin-bottom-50px width-25px">
+                    <img src="https://share.uios.computer/cdn/svg/camera.svg">
+                  </picture>
+                  <text class="font-size-28px">No Posts Yet</text>
+                </section>
+              </box>
+            </section>
+          </card>
+        </section>
+      </block>
+    </blocks>
+  </page>
+  <page data-page="/users/*/feed/">
     <blocks>
       <block class="margin-x-auto max-width-100pc width-960px padding-y-20px">
         <section data-columns="3"></section>
