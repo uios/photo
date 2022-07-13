@@ -248,18 +248,25 @@ window.mvc.v
           if(posts.length > 0) {
             //var html = '';
             var p = 0; do {
-              var template = await ajax('/cdn/html/template/template.post.card.column.html');
-              var html = new DOMParser().parseFromString(template, "text/html");
-              var card =  html.body.firstElementChild.cloneNode(true);
+              var template = byId('template-post-card-column');
+              var html = template.content;
+              var card = html.firstElementChild.cloneNode(true);
               var boxes = card.all('box');
+              var avi = boxes[0].find('picture img');
+              var owner = boxes[0].find('text');
               var media = boxes[1].find('media');
 
               var post = posts[p];
               var ext = post.format;
               var uid = post.uid;
               var user = post.user;
+              var username = post.username;
 
               card.dataset.uid = uid;
+
+              avi.dataset.src = cdn.endpoint+"/"+user+"/avi.jpg";
+
+              owner.textContent = username;
 
               var content = document.createElement('img');
               var format = "";
