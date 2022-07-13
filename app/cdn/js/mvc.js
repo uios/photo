@@ -237,17 +237,53 @@ window.mvc.v
       }
     } 
     else {
-      document.body.removeAttribute("data-profile");
-      //var card = byId("post").content.firstElementChild;
-      //var json = await ajax("https://api-anon.herokuapp.com/v1/posts/read");
-      //var posts = JSON.parse(json);
-      //console.log({ posts });
-      //var clone = card.cloneNode(true);
-      //var media = clone.find(".media");
-      //var html = mvc.m.posts.read(posts.rows);
-      //console.log(byId("feed"), { html });
-      //byId("feed").innerHTML = html;
-      resolve(route);
+      var v = dom.body.find('pages[data-root="'+root+'"]');
+      ajax(api.endpoint+'/v1/posts/')
+        .then(d => {
+          var data = JSON.parse(d);
+          console.log('mvc.v / then',{data});
+
+          var feed = byId('feed-index-posts');
+          var posts = data.posts;
+          if(posts.length > 0) {
+            //var html = '';
+            var p = 0; do {
+              var template = byId('template-post-card-column');
+              var card = template.content.firstElementChild.cloneNode(true);
+              var boxes = card.all('box');
+              var media = boxes[1].find('media');
+
+              var post = posts[p];
+              var ext = post.format;
+              var uid = post.uid;
+              var user = post.user;
+
+              card.dataset.uid = uid;
+
+              var content = document.createElement('img');
+              var format = "";
+              if(["jpg"].includes(ext)) {
+                var format = "photo";
+              }
+              else if(["mp4"].includes(ext)) {
+                var format = "video";                    
+              }
+              content.src = cdn.endpoint+"/"+user+"/"+format+"/"+uid+"."+ext;
+              media.insertAdjacentHTML("beforeend",content.outerHTML);
+
+              //html += card.outerHTML;
+              feed.insertAdjacentHTML('afterbegin',card.outerHTML);
+            p++; } while(p < posts.length);
+            //feed.innerHTML = html;
+          }
+
+          resolve(route);
+        })
+        .catch((e) => {
+          console.log('mvc.v users user /v1/users/:user catch',{e});
+          model.error.code(e,v);
+          resolve(route);
+        });
     }
   });
 });
