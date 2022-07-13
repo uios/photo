@@ -241,16 +241,15 @@ window.mvc.v
       ajax(api.endpoint+'/v1/posts/')
         .then(async(d) => {
           var data = JSON.parse(d);
-          console.log('mvc.v / then',{data});
-
-          var feed = byId('feed-index-posts');
           var posts = data.posts;
           if(posts.length > 0) {
+            var feed = byId('feed-index-posts');
             //var html = '';
             var p = 0; do {
-              var template = byId('template-post-card-column');
-              var html = template.content;
-              var card = html.firstElementChild.cloneNode(true);
+              var template = await ajax('/cdn/html/template/template.post.card.column.html');
+              var html = new DOMParser().parseFromString(template, "text/html");
+              var card =  html.body.firstElementChild.cloneNode(true);
+              
               var boxes = card.all('box');
               var avi = boxes[0].find('picture img');
               var owner = boxes[0].find('text');
