@@ -44,8 +44,9 @@ window.mvc.v
         else {
           //byId('tab-activity').classList.add('color-000');          
         }
+        resolve(route);
       }      
-      if(root === "chat") {
+      else if(root === "chat") {
         var vp = dom.body.find('[data-root="'+root+'"]');
         vp.dataset.zIndex = 3;
         vp.dataset.mobileZIndex = 9;
@@ -68,21 +69,21 @@ window.mvc.v
         }
         resolve(route);
       }
-      if(root === "find") {
+      else if(root === "find") {
         if(get.length > 1) {
         } 
         else {
         }
         resolve(route);
       }
-      if(root === "my") {
+      else if(root === "my") {
         if(get.length > 1) {
         } 
         else {
         }
         resolve(route);
       }
-      if(root === "post") {
+      else if(root === "post") {
         var post = byId('post');
         var postEr = byId('post-er');
         var postForm = byId('post-form');
@@ -163,7 +164,7 @@ window.mvc.v
         cameraNext.className = "bottom-0 fixed hide right-0";
         resolve(route);
       }
-      if(root === "users") {
+      else if(root === "users") {
         if(get.length > 1) {
           var v = dom.body.find('pages[data-root="'+root+'"]');
           ajax(api.endpoint+'/v1/users/'+get[1])
@@ -224,6 +225,15 @@ window.mvc.v
               resolve(route);
             });
         }
+      }
+      else {
+        var e = {
+          code: 404,
+          message: "Not Found"
+        };
+        console.log('mvc.v '+route.path,{e});
+        model.error.code(e,v);
+        resolve(route);
       }
     } 
     else {
