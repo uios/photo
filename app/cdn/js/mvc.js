@@ -239,7 +239,7 @@ window.mvc.v
     else {
       var v = dom.body.find('pages[data-root="'+root+'"]');
       ajax(api.endpoint+'/v1/posts/')
-        .then(d => {
+        .then(async(d) => {
           var data = JSON.parse(d);
           console.log('mvc.v / then',{data});
 
