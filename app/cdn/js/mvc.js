@@ -249,7 +249,7 @@ window.mvc.v
             //var html = '';
             var p = 0; do {
               var template = await ajax('/cdn/html/template/template.post.card.column.html');
-              var html = new DOMParser().parseFromString(template, "text/html");
+              var html = new DOMParser().parseFromString(template, "text/html"); console.log(252,{html});
               var card =  html.body.firstElementChild.cloneNode(true);
               var boxes = card.all('box');
               var media = boxes[1].find('media');
