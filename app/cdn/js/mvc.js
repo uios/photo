@@ -269,7 +269,7 @@ window.mvc.v
               else if(["mp4"].includes(ext)) {
                 var format = "video";                    
               }
-              content.src = cdn.endpoint+"/"+user+"/"+format+"/"+uid+"."+ext;
+              content.dataset.src = cdn.endpoint+"/"+user+"/"+format+"/"+uid+"."+ext;
               media.insertAdjacentHTML("beforeend",content.outerHTML); console.log(273,{card});
 
               //html += card.outerHTML;
