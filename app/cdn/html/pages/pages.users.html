@@ -9,12 +9,10 @@
                 <img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png">                      
               </picture>
               <section>
-                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar">
-                  <img class="bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px" onerror="model.error.image(this)">                        
+                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar"><img class="bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px" onerror="model.error.image(this)"></picture>
+                <picture class="absolute absolute-full bg-db border-radius-50pc empty-state flex width-100pc">
+                  <img class="absolute bottom-0 height-75pc width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
                 </picture>
-                <ico class="absolute aspect-ratio-1x1 empty-state flex width-100pc-20px" data-height data-width>
-                  <n class="gg-user"></n>
-                </ico>
               </section>
             </box>
             <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-120px">
@@ -31,11 +29,11 @@
                 </ico>
               </section>
             </box>
-            <box class="border-color-dbdbdb font-size-16px margin-bottom-20px margin-left-170px order-3 padding-y-10px tablet-border-top-1px-solid tablet-margin-bottom-0 tablet-margin-x-0 tablet-order-5">
+            <box class="border-color-dbdbdb font-size-16px margin-bottom-20px margin-left-170px order-3 padding-y-10px tablet-border-top-1px-solid tablet-margin-bottom-0 tablet-margin-x-0 tablet-order-5" id="users-user-count">
               <section>
-                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b placeholder="0"></b> <rgb>posts</rgb></text>
-                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third"><b placeholder="0"></b> <rgb>followers</rgb></text>
-                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b placeholder="0"></b> <rgb>following</rgb></text>                  
+                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b id="users-user-count-posts" placeholder="?">0</b> <rgb>posts</rgb></text>
+                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third"><b id="users-user-count-followers" placeholder="?">0</b> <rgb>followers</rgb></text>
+                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b id="users-user-count-following" placeholder="?">0</b> <rgb>following</rgb></text>                  
               </section>
             </box>
             <box class="font-size-16px hide line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-margin-x-0 tablet-padding-x-20px">
