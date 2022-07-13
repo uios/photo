@@ -270,7 +270,7 @@ window.mvc.v
                 var format = "video";                    
               }
               content.src = cdn.endpoint+"/"+user+"/"+format+"/"+uid+"."+ext;
-              media.insertAdjacentHTML("beforeend",content.outerHTML);
+              media.insertAdjacentHTML("beforeend",content.outerHTML); console.log(273,{card});
 
               //html += card.outerHTML;
               feed.insertAdjacentHTML('afterbegin',card.outerHTML);
