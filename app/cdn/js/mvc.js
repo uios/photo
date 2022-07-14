@@ -16,6 +16,17 @@ window.mvc.m
       console.log('model.error.image',e);
       e.remove();
     }
+  },
+  time: {
+    date: (timestamp) => {
+      const rtf = new Intl.RelativeTimeFormat('en', {
+        numeric: 'always',
+      });
+      const oneDayInMs = 1000 * 60 * 60 * 24;
+      const daysDifference = Math.round((timestamp - new Date().getTime()) / oneDayInMs,);
+
+      return rtf.format(daysDifference, 'day');
+    }
   }
 });
 
@@ -247,30 +258,29 @@ window.mvc.v
             var feed = byId('feed-index-posts');
             //var html = '';
             var p = 0; do {
-              var template = await ajax('/cdn/html/template/template.post.card.column.html');
-              var html = new DOMParser().parseFromString(template, "text/html");
-              var card =  html.body.firstElementChild.cloneNode(true);
-              
-              var boxes = card.all('box');
-              var profile = boxes[0].find('span');
-              var avi = boxes[0].find('picture img');
-              var owner = boxes[0].find('text');
-              var media = boxes[1].find('media');
+              var template = byId('template-post-card-column');
+              var html = template.content;
 
               var post = posts[p];
+              var caption = post.caption;
+              var created = post.created;
               var ext = post.format;
               var uid = post.uid;
               var user = post.user;
               var username = post.username;
 
+              var card = html.firstElementChild.cloneNode(true);
+              var boxes = card.all('box');
               card.dataset.uid = uid;
 
-              profile.dataset.href = "/users/"+username+"/";
-
-              avi.dataset.src = cdn.endpoint+"/"+user+"/avi.jpg";
-
+              var profile = boxes[0].find('span');
+              var avi = boxes[0].find('picture img');
+              var owner = boxes[0].find('text');
+              profile.dataset.href = "/users/"+username+"/";                  
+              avi.dataset.src = cdn.endpoint+"/"+user+"/avi.jpg";                  
               owner.textContent = username;
 
+              var media = boxes[1].find('media');
               var content = document.createElement('img');
               var format = "";
               if(["jpg"].includes(ext)) {
@@ -281,6 +291,16 @@ window.mvc.v
               }
               content.dataset.src = cdn.endpoint+"/"+user+"/"+format+"/"+uid+"."+ext;
               media.insertAdjacentHTML("beforeend",content.outerHTML);
+
+              if(caption) {
+                var about = boxes[4];
+                about.find('b').textContent = username;
+                about.find('span').textContent = caption;
+                about.removeClass('hide');
+              }
+
+              var date = boxes[6].find('text');
+              date.textContent = model.time.date(new Date(created).getTime());
 
               //html += card.outerHTML;
               feed.insertAdjacentHTML('afterbegin',card.outerHTML);
