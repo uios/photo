@@ -179,7 +179,7 @@ window.mvc.v
         if(get.length > 1) {
           var v = dom.body.find('pages[data-root="'+root+'"]');
           ajax(api.endpoint+'/v1/users/'+get[1])
-            .then(user => {
+            .then(async(user) => {
               var error = v.find('error');
               error ? error.remove() : null;
 
@@ -225,7 +225,7 @@ window.mvc.v
               else {
                 byId('tab-user-profile').classList.add('color-000');
                 ajax(api.endpoint+'/v1/posts/'+uid)
-                  .then(d => {
+                  .then(async(d) => {
                     var data = JSON.parse(d);
                     var posts = data.posts;
                     if(posts) {
