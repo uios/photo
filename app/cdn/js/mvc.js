@@ -194,7 +194,7 @@ window.mvc.v
               //avi.onerror = e => model.error.image(avi);
               var avi = byId('users-user-avatar');
               var img = avi.firstElementChild;
-              img.src = "https://cdn.uios.computer/file/share-uios/"+uid+"/avi.png";
+              img.src = cdn.endpoint+"/"+uid+"/avi.jpg";
 
               if(fullname) {
                 byId('users-user-fullname').textContent = fullname;
@@ -224,11 +224,40 @@ window.mvc.v
               } 
               else {
                 byId('tab-user-profile').classList.add('color-000');
-                //var html = page.innerHTML;
-                //rout.er().innerHTML = html;
-              }
+                ajax(api.endpoint+'/v1/posts/'+uid)
+                  .then(d => {
+                    var data = JSON.parse(d);
+                    var posts = data.posts;
+                    if(posts) {
+                      var html = await ajax('/cdn/html/template/template.post.card.grid.html');
+                      var template = new DOMParser().parseFromString(template, "text/html").body.firstElementChild;
+                      byId('users-user-posts').innerHTML = "";
+                      var p = 0; do {
+                        var post = posts[p];
+                        var ext = post.format;
 
-              resolve(route);
+                        var card = template.cloneNode(true);
+                        var boxes = card.all('box');
+
+                        var format = "";
+                        if(['jpg'].includes(ext)) {
+                          format = "photo";
+                        }
+                        else if(['mp4'].includes(ext)) {
+                          format = "video";
+                        }
+                        boxes[0].find('picture img').dataset.src = cdn.endpoint+"/"+uid+"/"+format+"/"+post.uid+"."+ext;
+
+                        byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
+                      p++; } while(p < posts.length);
+                    }            
+                    resolve(route);
+                  })
+                  .catch((e) => {
+                    console.log('mvc.v users user /v1/posts/:user catch',{e});
+                    resolve(route);
+                  });
+              }
             })
             .catch((e) => {
               console.log('mvc.v users user /v1/users/:user catch',{e});
