@@ -230,7 +230,7 @@ window.mvc.v
                     var posts = data.posts;
                     if(posts) {
                       var html = await ajax('/cdn/html/template/template.post.card.grid.html');
-                      var template = new DOMParser().parseFromString(template, "text/html").body.firstElementChild;
+                      var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
                       byId('users-user-posts').innerHTML = "";
                       var p = 0; do {
                         var post = posts[p];
