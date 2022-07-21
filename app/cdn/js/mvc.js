@@ -287,8 +287,8 @@ window.mvc.v
             var feed = byId('feed-index-posts');
             //var html = '';
             var p = 0; do {
-              var template = await ajax('/cdn/html/template/template.post.card.column.html');
-              var html = new DOMParser().parseFromString(template, "text/html").body;
+              var template = byId('template-post-card-column');
+              var html = template.content;
 
               var post = posts[p];
               var caption = post.caption;
@@ -298,7 +298,7 @@ window.mvc.v
               var user = post.user;
               var username = post.username;
 
-              var card =  html.firstElementChild.cloneNode(true);
+              var card = html.firstElementChild.cloneNode(true);
               var boxes = card.all('box');
               card.dataset.uid = uid;
 
@@ -325,7 +325,7 @@ window.mvc.v
                 var about = boxes[4];
                 about.find('b').textContent = username;
                 about.find('span').textContent = caption;
-                about.removeClass('hide');
+                about.classList.remove('hide');
               }
 
               var date = boxes[6].find('text');
@@ -333,7 +333,7 @@ window.mvc.v
 
               //html += card.outerHTML;
               feed.insertAdjacentHTML('afterbegin',card.outerHTML);
-            p++; } while(p < posts.length);
+              p++; } while(p < posts.length);
             //feed.innerHTML = html;
           }
 
