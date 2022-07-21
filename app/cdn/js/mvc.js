@@ -447,6 +447,76 @@ window.mvc.c
       postHeader.classList.add('hide');
       postOptions.classList.add('hide');
     },
+    submit: async(event) => {
+      event.preventDefault();
+      
+      const form = event.target;
+      const submit = form.find('[type="submit"]');
+      submit.disabled = true;
+      
+      const format = GET[1];      
+      if(["photo"].includes(format)) {
+        const card = byId("post-"+format+"-metadata");
+        if(format === "photo") {
+          const file = byId('post-file').files[0];
+          //const img = byId('camera-photo').find('img');
+          //const src = img.src;
+          if(file) {
+            var data = new FormData();
+            var elem = null;
+            
+            //data.append('base64', src);            
+            data.append('file', file);
+
+            elem = card.find("#post-photo-metadata-title input");
+            var title = elem.value === "" ? null : elem.value;
+
+            elem = card.find("#post-photo-metadata-details textarea");
+            var caption = elem.value === "" ? null : elem.value;
+
+            var tags = null;
+            const elems = card.all("#post-photo-metadata-tags section > text");
+            if(elems.length > 0) {
+              tags = [];
+              var e = 0; do {
+                var elem = elems[e];
+                var tag = elem.textContent;
+                tags[e] = tag;
+              e++; } while(e < elems.length);
+            }
+
+            if(caption || tags || title) {
+              caption ? data.caption = caption : null;
+              tags ? data.tags = tags : null;
+              title ? data.title = title : null;
+            }
+
+            data.append("jwt", await auth.getIdToken())
+
+            //const url = api.endpoint+"/v1/posts";
+            const url = "https://api.uios.tld"+"/v1/posts";
+            var settings = { data, dataType: "POST" };
+            console.log({url,settings});
+            alert("Uploading "+format+" post.");
+            ajax(url,settings).then((d) => {
+              var data = JSON.parse(d);
+              submit.disabled = false;    
+            }).catch(error => {
+              console.log({error});
+              submit.disabled = false;             
+            });
+          }
+          else {
+            alert("You must add a photo.");
+            submit.disabled = false;
+          }
+        }        
+      } 
+      else {
+        alert("Format not supported.");
+        submit.disabled = false;
+      }
+    },
     type: target => {
       var elem = target.closest('[data-format]');
       if(elem) {
