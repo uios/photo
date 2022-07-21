@@ -468,11 +468,11 @@ window.mvc.c
             //data.append('base64', src);            
             data.append('file', file);
 
-            elem = card.find("#post-photo-metadata-title input");
-            var title = elem.value === "" ? null : elem.value;
+            //elem = card.find("#post-photo-metadata-title input");
+            //elem.value === "" ? null : data.append("title", elem.value);
 
             elem = card.find("#post-photo-metadata-details textarea");
-            var caption = elem.value === "" ? null : elem.value;
+            elem.value === "" ? null : data.append("caption", elem.value);
 
             var tags = null;
             const elems = card.all("#post-photo-metadata-tags section > text");
@@ -483,24 +483,21 @@ window.mvc.c
                 var tag = elem.textContent;
                 tags[e] = tag;
               e++; } while(e < elems.length);
-            }
-
-            if(caption || tags || title) {
-              caption ? data.caption = caption : null;
-              tags ? data.tags = tags : null;
-              title ? data.title = title : null;
+              data.append("tags", tags);
             }
 
             data.append("jwt", await auth.getIdToken())
 
-            //const url = api.endpoint+"/v1/posts";
-            const url = "https://api.uios.tld"+"/v1/posts";
+            const url = api.endpoint+"/v1/posts";
+            //const url = "https://api.uios.tld"+"/v1/posts";
             var settings = { data, dataType: "POST" };
             console.log({url,settings});
             alert("Uploading "+format+" post.");
             ajax(url,settings).then((d) => {
               var data = JSON.parse(d);
-              submit.disabled = false;    
+              submit.disabled = false;
+              //'/post/photo/'+data.uid+'/'.router();
+              '/'.router();
             }).catch(error => {
               console.log({error});
               submit.disabled = false;             
