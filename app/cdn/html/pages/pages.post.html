@@ -101,12 +101,13 @@
                   <text class="line-height-36px">Embed</text>
                 </section>                      
               </box>
-              <box class="absolute mobile-bottom-0 mobile-webcam-color-fff right-0">
+              <box class="absolute mobile-bottom-0 mobile-webcam-color-fff right-0" data-accept="image/jpeg" data-file="post-file">
                 <section>
                   <text class="line-height-36px">Upload</text>
                   <ico data-height="36px" data-width="36px">
                     <n class="gg-software-upload"></n>
                   </ico>
+                  <input id="post-file" onchange="controller.post.file(this)" type="file">
                 </section>                      
               </box>
               <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-api="controller" data-height="120px" data-method="post" data-mobile-top="calc(100vw + 50px)" data-resource="snap" data-tap=" controller.post.snap(event.target)" data-width="120px" data-z-index="5">
