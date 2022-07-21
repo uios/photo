@@ -1,5 +1,5 @@
 <wrap class="backdrop-blur-10px bg-d2 flex min-height-100pc relative scroll-y width-100pc" id="post">
-  <form class="direction-row dw1000px-direction-column margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px" id="post-form">
+  <form class="direction-row dw1000px-direction-column margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px" id="post-form" onsubmit="controller.post.submit(event);">
     <blocks id="post-er">
       <block class="dw960px-margin-x-auto dw960px-width-480px hide margin-right max-width-100pc width-320px" id="post-header">
         <section>
@@ -156,7 +156,7 @@
                   </box>
                   <box class="border-1px-solid border-radius-20px font-size-18px margin-y-20px padding-10px width-100pc-20px" id="post-photo-metadata-details">
                     <section>
-                      <textarea class="dark-color-fff min-height-100px" placeholder="Briefly describe the content in the video. Feel free to add any credits and legal notes."></textarea>
+                      <textarea class="dark-color-fff min-height-100px" placeholder="Briefly describe the content in the photo. Feel free to add any credits and legal notes."></textarea>
                     </section>
                   </box>
                   <box class="width-100pc" id="post-photo-metadata-tags">
@@ -173,7 +173,7 @@
               </card>
               <card id="post-photo-submit">
                 <section class="grid-gap-10px" data-columns="2" data-mobile-columns="1">
-                  <box class="bg-black border-1px-solid border-color-000 border-radius-50px dark-border-color-fff font-size-18px height-36px line-height-36px text-align-center">
+                  <box class="bg-black border-1px-solid border-color-000 border-radius-50px dark-border-color-fff font-size-18px height-36px line-height-36px text-align-center" data-submit="post-form">
                     <section class="justify-center">
                       <input class="color-fff dark-color-000" type="submit" value="Post It">
                     </section>
@@ -185,63 +185,7 @@
                   </box>
                   <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
                     <section class="justify-center">
-                      <text>Save</text>
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center" data-href="/post/">
-                    <section class="justify-center">
-                      <text>Cancel</text>
-                    </section>
-                  </box>
-                </section>
-              </card>
-            </section>
-          </block>
-        </blocks>
-      </page>
-      <page data-page="/post/video/">
-        <blocks>
-          <block>
-            <section>
-              <card id="post-video-metadata">
-                <section class="direction-column">
-                  <box class="border-1px-solid border-radius-20px font-size-18px height-36px line-height-36px padding-x-10px width-100pc-20px" id="post-video-metadata-title">
-                    <section>
-                      <input class="dark-color-fff" placeholder="Enter a title">
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-20px font-size-18px margin-y-20px padding-10px width-100pc-20px" id="post-video-metadata-details">
-                    <section>
-                      <textarea class="dark-color-fff min-height-100px" placeholder="Briefly describe the content in the video. Feel free to add any credits and legal notes."></textarea>
-                    </section>
-                  </box>
-                  <box class="width-100pc" id="post-video-metadata-tags">
-                    <section>
-                      <span class="align-center border-1px-solid border-radius-20px font-size-18px height-36px justify-center line-height-36px padding-x-10px">
-                        <ico data-height="20px" data-width="20px">
-                          <n class="gg-math-plus"></n>
-                        </ico>
-                        <text class="margin-left-5px" contenteditable="true" placeholder="Add Tag"></text>
-                      </span>
-                    </section>
-                  </box>
-                </section>
-              </card>
-              <card id="post-video-submit">
-                <section data-columns="2" data-mobile-columns="1">
-                  <box class="bg-black border-1px-solid border-color-000 border-radius-50px dark-border-color-fff font-size-18px height-36px line-height-36px text-align-center">
-                    <section class="justify-center">
-                      <input class="color-fff dark-color-000" type="submit" value="Post It">
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
-                    <section class="justify-center">
-                      <text>Preview</text>
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
-                    <section class="justify-center">
-                      <text>Save</text>
+                      <text>Save Draft</text>
                     </section>
                   </box>
                   <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center" data-href="/post/">
