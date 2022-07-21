@@ -384,6 +384,18 @@ window.mvc.c
     }
   },
   post: {
+    file: input => {
+      webcam.load.file(input).then(media => {
+        var file = media.file;
+        var type = media.type;        
+        const camera = byId('camera');
+        const photo = camera.find('#camera-photo');
+        const elem = photo.find('img');
+        elem.dataset.type = type;
+        elem.src = file;
+        controller.post.shot();
+      });
+    },
     skip: target => {
       var tabs = byId('post-tabs');
       var tab = tabs.find('[data-selected="true"]');
