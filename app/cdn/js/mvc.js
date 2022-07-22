@@ -352,6 +352,20 @@ window.mvc.c
   ? null
 : (window.mvc.c = controller = {
   my: {
+    forgot: event => {
+      event.preventDefault();
+      const form = event.target;
+      const email = form.find('[type="email"]').value;
+      firebase.auth().sendPasswordResetEmail(email)
+        .then(event => {
+          alert("Password reset email sent!");
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
+    },
     login: event => {
       event.preventDefault();
       auth.account.login(event)
