@@ -282,9 +282,14 @@ window.mvc.v
         .then(async(d) => {
           var data = JSON.parse(d);            
           var posts = data.posts;
+          var feed = byId('feed-index-posts');
+          var lastFeedId = feed.innerHTML === "" ? 0 : parseInt(feed.firstElementChild.dataset.id);
+          var lastPostId = parseInt(posts[posts.length-1].id);
 
-          if(posts.length > 0) {
-            var feed = byId('feed-index-posts');
+          if(
+            lastPostId > lastFeedId && 
+            posts.length > 0
+          ) {
             //var html = '';
             var p = 0; do {
               var template = await ajax('/cdn/html/template/template.post.card.column.html');
