@@ -74,13 +74,16 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 resolve(route);
             } else if (root === "my") {
                 if (get.length > 1) {
-                    var pages = dom.body.find('[data-pages="/my/account/"]');
                     if (get[1] === "account") {
+                        const menu = byId("my-account-menu");
+                        if (get.length > 2) {
+                            menu.classList.add('tablet-translate-x-neg100pc');
+                        } else {
+                            menu.classList.remove('tablet-translate-x-neg100pc');
+                        }
                     }
-                    resolve(route);
-                } else {
-                    resolve(route);
                 }
+                resolve(route);
             } else if (root === "post") {
                 var post = byId('post');
                 var postEr = byId('post-er');
@@ -345,6 +348,16 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 );
 
 window.mvc.c ? null : (window.mvc.c = controller = {
+    account: {
+        menu: ()=>{
+            const menu = byId("my-account-menu");
+            if (GET.length > 2) {
+                '/my/account/'.router();
+            } else {
+                rout.ed.close();
+            }
+        }
+    },
     my: {
         forgot: event=>{
             event.preventDefault();
