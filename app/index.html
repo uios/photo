@@ -1,157 +1,242 @@
 <html>
-  
-  <head>
-    <title>Photo | uiOS</title>
-    <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0'>
-    <meta http-equiv='Content-Type' content='text/html' ; charset='UTF-8'>
-    <meta name='apple-mobile-web-app-capable' content='yes'>
-    <meta name='apple-mobile-web-app-status-bar-style' content='#021025'>
-    <meta name="apple-mobile-web-app-title" content="Share">
-    <meta name="application-name" content="Share">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name='theme-color' content='#021025'>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/png/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/png/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/png/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/cdn/svg/safari-pinned-tab.svg" color="#5bbad5">    
-    <link rel="stylesheet" href="https://cdn.endk.it/css/boiler.css">
-    <link rel="stylesheet" href="https://cdn.endk.it/css/theme.css">
-    <link rel="stylesheet" href="https://cdn.endk.it/css/modal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
-    <link rel="stylesheet" href="/index.css">
-    <script id="eruda" src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js"></script>
-    <script id="firebase-app" src="https://cdn.endk.it/js/firebase-app.js"></script>
-    <script id="firebase-auth" src="https://cdn.endk.it/js/firebase-auth.js"></script>
-    <script id="script-vanilla" src="https://cdn.endk.it/js/vanilla.js"></script>
-    <script id="script-auth" src="https://cdn.endk.it/js/auth.js"></script>
-    <script id="script-db" src="https://cdn.endk.it/js/db.js"></script>
-    <script id="script-mvc" src="/cdn/js/mvc.js"></script>
-    <script id="script-on" src="https://cdn.endk.it/js/on.js"></script>
-    <script id="script-router" src="https://cdn.endk.it/js/router.js"></script>
-    <script id="script-touch-polyfill" src="https://cdn.endk.it/js/touch.polyfill.js"></script>
-    <script id="script-touch" src="https://cdn.endk.it/js/touch.js"></script>  
-    <script id="script-webcam" src="https://cdn.endk.it/js/webcam.js"></script>
-    <script id="script-index" src="/index.js"></script>
-  </head>
-
-  <body class="bg-fa" data-load="ing">
-    
-    <boot class="boot" id="boot">
-      <div class="bouncing bounce1 bg-r"></div>
-      <div class="bouncing bounce2 bg-g"></div>
-      <div class="bouncing bounce3 bg-b"></div>
-    </boot>
-    
-    <header class="bg-white border-bottom-1px-solid border-color-dbdbdb margin-x-auto" data-position="fixed" data-width="100%" data-top="0" data-z-index="5">
-      <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
-      <section>
-        <card class="align-center border-radius-50px height-44px justify-center line-height-44px margin-auto margin-y-5px mobile-padding-x-0 mobile-shadow-none vga-padding-x-10px xga-border-radius-0 xga-padding-x-20px" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
-          <section>
-            <box class="bolder height-100pc margin-right mobile-padding-x-10px padding-x-20px vga-padding-x-10px xga-padding-x-0" data-href="/">
-              <section>
-                <text>Share</text>
-              </section>
-            </box>
-            <form class="hide">
-              <input type="text">
-              <input type="submit">
-            </form>
-            <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/">
-              <section>
-                <ico data-height="44px">
-                  <n class="gg-home"></n>
-                </ico>
-              </section>
-            </box>
-            <box class="cell align-center flex height-100pc justify-center" data-href="/chat/">
-              <section>
-                <ico data-height="44px">
-                  <n class="gg-comment margin-bottom-5px"></n>
-                </ico>
-              </section>
-            </box>
-            <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/post/">
-              <section>
-                <ico data-height="44px">
-                  <n class="gg-add-r"></n>
-                </ico>
-              </section>
-            </box>
-            <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/find/">
-              <section>
-                <ico data-height="44px">
-                  <n class="gg-search"></n>
-                </ico>
-              </section>
-            </box>
-            <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/activity/">
-              <section>
-                <ico data-height="44px">
-                  <n class="gg-heart"></n>
-                </ico>
-              </section>
-            </box>
-            <box class="align-center cell flex justify-center mobile-bottom-0 mobile-fixed mobile-right-20px" data-press="'/my/'.router()" data-tap="controller.users.profile()" data-z-index="6" id="avi-mobile">
-              <picture class="absolute absolute-full hide isauth"><img class="absolute absolute-full border-radius-50pc cell-40px fit-contain height-100pc-10px margin-5px spin-30s width-100pc-10px" data-src="https://cdn.endk.it/png/rainring.png"></picture>
-              <section>
-                <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
-                <picture class="bg-db border-radius-50pc empty-state margin-7px" data-height="30px" data-width="30px">
-                  <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                </picture>
-              </section>
-            </box>
-          </section>
-        </card>
-      </section>
-    </header>
-      
-    <page data-fetch="/cdn/html/page/page.activity.html" data-page="/activity/"></page>    
-
-    <pages data-fetch="/cdn/html/pages/pages.chat.html" data-pages="/chat/" data-root="chat"></pages>
-    
-    <pages data-pages="/my/" data-root="my">
-      <page data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
-      <page data-fetch="/cdn/html/page/page.my.account.html" data-page="/my/account/"></page>
-      <page data-fetch="/cdn/html/page/page.my.account.password.html" data-page="/my/account/password/"></page>
-    </pages>
-
-    <pages data-fetch="/cdn/html/pages/pages.post.html" data-pages="/post/" data-root="post"></pages>
-
-    <main>
-      <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>   
-      
-      <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
-      
-      <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
-    </main>
-
-    <footer class="bg-white hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="3">
-      <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
-      <card class="align-center border-radius-50px height-44px justify-center margin-auto margin-y-20px mobile-max-width-100pc-40px mobile-width-100pc" data-display="flex" data-flex-direction="row" data-width="250px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="2">
-        <icon class="align-center flex justify-center" data-height="44px" data-href="/">
-          <div class="gg-home"></div>
-        </icon>
-        <icon class="align-center flex justify-center" data-height="44px" data-href="/find/">
-          <div class="gg-search"></div>
-        </icon>
-        <icon class="align-center flex justify-center" data-height="44px" data-href="/post/">
-          <div class="gg-add-r"></div>
-        </icon>
-        <icon class="align-center flex justify-center" data-height="44px" data-href="/activity/">
-          <div class="gg-heart"></div>
-        </icon>
-        <box>
-          <section>
-            <ico>
-              <n></n>
-            </ico>
-          </section>
-        </box>
-      </card>
-    </footer>
-    
-  </body>
-  
+    <head>
+        <title>Photo | uiOS</title>
+        <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0'>
+        <meta http-equiv='Content-Type' content='text/html' ; charset='UTF-8'>
+        <meta name='apple-mobile-web-app-capable' content='yes'>
+        <meta name='apple-mobile-web-app-status-bar-style' content='#021025'>
+        <meta name="apple-mobile-web-app-title" content="Share">
+        <meta name="application-name" content="Share">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name='theme-color' content='#021025'>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/png/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/png/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/png/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/cdn/svg/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="stylesheet" href="https://cdn.endk.it/css/boiler.css">
+        <link rel="stylesheet" href="https://cdn.endk.it/css/theme.css">
+        <link rel="stylesheet" href="https://cdn.endk.it/css/modal.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
+        <link rel="stylesheet" href="/index.css">
+        <script id="eruda" src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js"></script>
+        <script id="firebase-app" src="https://cdn.endk.it/js/firebase-app.js"></script>
+        <script id="firebase-auth" src="https://cdn.endk.it/js/firebase-auth.js"></script>
+        <script id="script-vanilla" src="https://cdn.endk.it/js/vanilla.js"></script>
+        <script id="script-auth" src="https://cdn.endk.it/js/auth.js"></script>
+        <script id="script-db" src="https://cdn.endk.it/js/db.js"></script>
+        <script id="script-mvc" src="/cdn/js/mvc.js"></script>
+        <script id="script-on" src="https://cdn.endk.it/js/on.js"></script>
+        <script id="script-router" src="https://cdn.endk.it/js/router.js"></script>
+        <script id="script-touch-polyfill" src="https://cdn.endk.it/js/touch.polyfill.js"></script>
+        <script id="script-touch" src="https://cdn.endk.it/js/touch.js"></script>
+        <script id="script-webcam" src="https://cdn.endk.it/js/webcam.js"></script>
+        <script id="script-index" src="/index.js"></script>
+    </head>
+    <body class="bg-fa" data-load="ing">
+        <boot class="boot" id="boot">
+            <div class="bouncing bounce1 bg-r"></div>
+            <div class="bouncing bounce2 bg-g"></div>
+            <div class="bouncing bounce3 bg-b"></div>
+        </boot>
+        <header class="bg-white border-bottom-1px-solid border-color-dbdbdb margin-x-auto" data-position="fixed" data-width="100%" data-top="0" data-z-index="5">
+            <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
+            <section>
+                <card class="align-center border-radius-50px height-44px justify-center line-height-44px margin-auto margin-y-5px mobile-padding-x-0 mobile-shadow-none vga-padding-x-10px xga-border-radius-0 xga-padding-x-20px" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
+                    <section>
+                        <box class="bolder height-100pc margin-right mobile-padding-x-10px padding-x-20px vga-padding-x-10px xga-padding-x-0" data-href="/">
+                            <section>
+                                <text>Share</text>
+                            </section>
+                        </box>
+                        <form class="hide">
+                            <input type="text">
+                            <input type="submit">
+                        </form>
+                        <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/">
+                            <section>
+                                <ico data-height="44px">
+                                    <n class="gg-home"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="cell align-center flex height-100pc justify-center" data-href="/chat/">
+                            <section>
+                                <ico data-height="44px">
+                                    <n class="gg-comment margin-bottom-5px"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/post/">
+                            <section>
+                                <ico data-height="44px">
+                                    <n class="gg-add-r"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/find/">
+                            <section>
+                                <ico data-height="44px">
+                                    <n class="gg-search"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/activity/">
+                            <section>
+                                <ico data-height="44px">
+                                    <n class="gg-heart"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="align-center cell flex justify-center mobile-hide" data-press="'/my/'.router()" data-tap="controller.users.profile()" data-z-index="6" id="avi-mobile">
+                            <picture class="absolute absolute-full hide isauth">
+                                <img class="absolute absolute-full border-radius-50pc cell-40px fit-contain height-100pc-10px margin-5px spin-30s width-100pc-10px" data-src="https://cdn.endk.it/png/rainring.png">
+                            </picture>
+                            <section>
+                                <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
+                                <picture class="bg-db border-radius-50pc empty-state margin-7px" data-height="30px" data-width="30px">
+                                    <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
+                                </picture>
+                            </section>
+                        </box>
+                    </section>
+                </card>
+            </section>
+        </header>
+        <page data-fetch="/cdn/html/page/page.activity.html" data-page="/activity/"></page>
+        <pages data-fetch="/cdn/html/pages/pages.chat.html" data-pages="/chat/" data-root="chat"></pages>
+        <pages data-pages="/my/" data-root="my">
+            <page data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
+            <wrap class="bg-white tablet-height-100pc tablet-width-100pc" data-pages="/my/account/">
+                <header class="hide mobile-flex position-relative">
+                    <row>
+                        <box data-width="100%">
+                            <row class="align-center space-between width-100pc">
+                                <ico data-tap="rout.ed.close();">
+                                    <n class="gg-chevron-left"></n>
+                                </ico>
+                                <text class="bolder">
+                                    <span data-page="/my/account/">Account</span>
+                                </text>
+                                <ico></ico>
+                            </row>
+                        </box>
+                    </row>
+                </header>
+                <blocks class="border-radius-5px direction-row fg-lightgray height-100pc margin-bottom-20px margin-top-90px margin-x-auto max-width-100pc-40px mobile-height-100pc mobile-margin-0 mobile-max-width-100pc overflow-hidden shadow tablet-border-radius-0 tablet-height-100pc tablet-margin-0 tablet-max-width-100pc width-960px">
+                    <block class="bg-white border-color-db border-right-1px-solid color-000 height-100pc max-width-100pc mobile-fixed mobile-width-100pc tablet-height-100pc width-240px" data-z-index="5" id="convos">
+                        <section class="absolute-full">
+                            <card class="line-height-50px">
+                                <column class="align-center justify-center">
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">Account</text>
+                                        </section>
+                                    </box>
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">Password</text>
+                                        </section>
+                                    </box>
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">Notifications</text>
+                                        </section>
+                                    </box>
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">Privacy</text>
+                                        </section>
+                                    </box>
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">Theme</text>
+                                        </section>
+                                    </box>
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">About</text>
+                                        </section>
+                                    </box>
+                                    <box data-width="100%">
+                                        <section class="space-between">
+                                            <text class="padding-x-20px">Help</text>
+                                        </section>
+                                    </box>
+                                </column>
+                            </card>
+                        </section>
+                    </block>
+                    <block class="bg-white flex-1" data-z-index="1" id="convo">
+                        <section data-page="/my/account/">
+                            <card>
+                                <section class="direction-column">
+                                    <box class="fg-black padding-x-40px">
+                                        <section class="align-center items direction-column justify-center"></section>
+                                    </box>
+                                </section>
+                            </card>
+                        </section>
+                        <section class="flex-1" data-page="/my/account/password/">
+                            <card class="border-bottom-1px-solid border-color-db color-000 height-50px line-height-50px width-100pc">
+                                <!--<card class="border-bottom-1px-solid border-color-db color-000 height-50px line-height-50px top--50px width-100pc" data-position="absolute">-->
+                                <section class="align-center">
+                                    <box data-width="100%">
+                                        <section class="align-center justify-content space-between">
+                                            <ico class="hide tablet-hide"></ico>
+                                            <ico class="hide tablet-flex" data-href="/chat/">
+                                                <n class="gg-chevron-left"></n>
+                                            </ico>
+                                            <ico data-height="50px" data-width="50px">
+                                                <picture class="bg-ef border-radius-50pc height-25px width-25px"></picture>
+                                            </ico>
+                                            <text class="bolder">Full Name</text>
+                                            <ico class="margin-left">
+                                                <n class="gg-info"></n>
+                                            </ico>
+                                        </section>
+                                    </box>
+                                </section>
+                            </card>
+                        </section>
+                    </block>
+                </blocks>
+            </wrap>
+        </pages>
+        <pages data-fetch="/cdn/html/pages/pages.post.html" data-pages="/post/" data-root="post"></pages>
+        <main>
+            <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>
+            <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
+            <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
+        </main>
+        <footer class="bg-white hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
+            <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
+            <card class="align-center border-radius-50px height-44px justify-center margin-auto margin-y-20px mobile-max-width-100pc-40px mobile-width-100pc" data-display="flex" data-flex-direction="row" data-width="250px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="2">
+                <icon class="align-center flex justify-center" data-height="44px" data-href="/">
+                    <div class="gg-home"></div>
+                </icon>
+                <icon class="align-center flex justify-center" data-height="44px" data-href="/find/">
+                    <div class="gg-search"></div>
+                </icon>
+                <icon class="align-center flex justify-center" data-height="44px" data-href="/post/">
+                    <div class="gg-add-r"></div>
+                </icon>
+                <icon class="align-center flex justify-center" data-height="44px" data-href="/activity/">
+                    <div class="gg-heart"></div>
+                </icon>
+                <box class="align-center flex justify-center" data-press="'/my/'.router()" data-tap="controller.users.profile()" data-z-index="6" id="footer-avi">
+                    <picture class="absolute absolute-full hide isauth">
+                        <img class="absolute absolute-full border-radius-50pc cell-40px fit-contain height-100pc-10px margin-5px spin-30s width-100pc-10px" data-src="https://cdn.endk.it/png/rainring.png">
+                    </picture>
+                    <section>
+                        <picture class="absolute absolute-full border-radius-50pc" id="pic"></picture>
+                        <picture class="bg-db border-radius-50pc empty-state margin-7px" data-height="30px" data-width="30px">
+                            <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
+                        </picture>
+                    </section>
+                </box>
+            </card>
+        </footer>
+    </body>
 </html>

@@ -1,58 +1,169 @@
-<blocks class="min-height-100vh" data-backdrop-blur="10px">
-  <block class="height-100pc">
-    <section class="padding-y-50px max-height-100pc--120px">
-      <card>
-        <picture></picture>
-        <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="controller.my.setup(event)" id="my-setup">
-          <box class="width-100pc">
-            <section class="direction-row flex-wrap-unset">
-              <span class="border-radius-5px inline-flex shadow">
-                <input class="line-height-36px padding-x-10px width-100pc" placeholder="First Name" type="text">
-              </span>
-              <span class="border-radius-5px inline-flex margin-left-10px shadow" data-href="/my/account/">
-                <input class="line-height-36px padding-x-10px width-100pc" placeholder="Last Name" type="text">
-              </span>                 
-            </section>
-          </box>
-          <box class="border-radius-5px margin-y-10px shadow width-100pc">
-            <section><input class="line-height-36px padding-x-10px width-100pc" placeholder="Username" type="text"></section>
-          </box>
-          <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
-            <section>
-              <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">                  
-            </section>
-          </box>
-          <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
-            <section class="direction-row flex">
-              <input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password">
-              <input class="height-36px hide invert ui-bg-key width-36px" type="submit">
-            </section>
-          </box>
-          <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc" data-submit="my-setup">
-            <section>
-              <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
-                <n class="ui-bg-email"></n>
-              </ico>
-              <text class="flex-1 line-height-36px text-align-center">Create Account</text>
-            </section>
-          </box>
-          <box class="border-radius-5px fg-black inline-flex shadow width-100pc" data-href="/my/">
-            <section>
-              <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
-                <n class="ui-bg-email"></n>
-              </ico><text class="flex-1 line-height-36px text-align-center">Signin with Account</text>
-            </section>
-          </box>
-          <box class="margin-bottom-36px padding-y-10px width-100pc" data-tap="rout.ed.close()">
-            <section>
-              <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
-                <n class="ui-bg-incognito"></n>
-              </ico><text class="flex-1 line-height-50px text-align-center">Continue as Guest</text>
-            </section>
-          </box>
-        </form>
-      </card>
-    </section>
-  </block>
+<blocks class="min-height-100vh noauth" data-backdrop-blur="10px">
+    <block class="height-100pc">
+        <section class="padding-y-50px max-height-100pc--120px">
+            <card>
+                <picture></picture>
+                <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="controller.my.setup(event)" id="my-setup">
+                    <box class="width-100pc">
+                        <section class="direction-row flex-wrap-unset">
+                            <span class="border-radius-5px inline-flex shadow">
+                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="First Name" type="text">
+                            </span>
+                            <span class="border-radius-5px inline-flex margin-left-10px shadow" data-href="/my/account/">
+                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="Last Name" type="text">
+                            </span>
+                        </section>
+                    </box>
+                    <box class="border-radius-5px margin-y-10px shadow width-100pc">
+                        <section>
+                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Username" type="text">
+                        </section>
+                    </box>
+                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
+                        <section>
+                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">
+                        </section>
+                    </box>
+                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
+                        <section class="direction-row flex">
+                            <input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password">
+                            <input class="height-36px hide invert ui-bg-key width-36px" type="submit">
+                        </section>
+                    </box>
+                    <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc" data-submit="my-setup">
+                        <section>
+                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                <n class="ui-bg-email"></n>
+                            </ico>
+                            <text class="flex-1 line-height-36px text-align-center">Create Account</text>
+                        </section>
+                    </box>
+                    <box class="border-radius-5px fg-black inline-flex shadow width-100pc" data-href="/my/">
+                        <section>
+                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                <n class="ui-bg-email"></n>
+                            </ico>
+                            <text class="flex-1 line-height-36px text-align-center">Signin with Account</text>
+                        </section>
+                    </box>
+                    <box class="margin-bottom-36px padding-y-10px width-100pc" data-tap="rout.ed.close()">
+                        <section>
+                            <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
+                                <n class="ui-bg-incognito"></n>
+                            </ico>
+                            <text class="flex-1 line-height-50px text-align-center">Continue as Guest</text>
+                        </section>
+                    </box>
+                </form>
+            </card>
+        </section>
+    </block>
 </blocks>
-<blocks class="height-100pc isauth"></blocks>
+<blocks class="border-radius-25px direction-row fg-lightgray height-100pc margin-bottom-20px margin-top-90px margin-x-auto max-width-100pc-40px mobile-height-100pc mobile-margin-0 mobile-max-width-100pc overflow-hidden shadow tablet-border-radius-0 tablet-height-100pc tablet-margin-0 tablet-max-width-100pc width-960px">
+    <block class="bg-white border-color-db border-right-1px-solid color-000 height-100pc max-width-100pc mobile-width-100pc tablet-height-100pc tablet-position-absolute tablet-width-100pc width-320px" data-tablet-position="absolute" data-z-index="2" id="convos">
+        <section class="absolute-full">
+            <card class="border-bottom-1px-solid border-color-db height-50px line-height-50px">
+                <section class="align-center justify-center">
+                    <box data-width="100%">
+                        <section class="space-between">
+                            <ico data-tap="rout.ed.close();">
+                                <n class="gg-chevron-left"></n>
+                            </ico>
+                            <text class="bolder">username</text>
+                            <picture data-height="50px" data-href="/chat/with/" data-width="50px">
+                                <img data-height="20px" data-width="20px" src="https://share.uios.computer/cdn/svg/compose.svg">
+                            </picture>
+                        </section>
+                    </box>
+                </section>
+            </card>
+            <card class="height-50px line-height-50px">
+                <section class="align-center justify-center">
+                    <box class="line-height-50px padding-x-20px width-100pc">
+                        <section class="justify-between">
+                            <text class="bolder">Messages</text>
+                            <text class="bolder fg-b font-size-14px hide">1 Request</text>
+                        </section>
+                    </box>
+                </section>
+            </card>
+            <card class="flex-1">
+                <section class="justify-left width-100pc">
+                    <box class="line-height-50px padding-x-20px" data-href="/chat/with/anoniiimous/">
+                        <section class="align-left width-100pc">
+                            <picture class="bg-ef border-radius-50pc height-50px width-50px"></picture>
+                            <text class="empty"></text>
+                            <span class="align-left direction-column empty-state height-50px justify-center flex margin-left-10px">
+                                <div class="bg-ef border-radius-4px height-10px width-120px"></div>
+                                <div class="bg-ef border-radius-4px height-10px margin-top-10px width-90px"></div>
+                            </span>
+                        </section>
+                    </box>
+                </section>
+            </card>
+        </section>
+        <section></section>
+        <section></section>
+    </block>
+    <block class="bg-white flex-1 height-100pc" data-tablet-position="absolute" data-z-index="1" id="convo">
+        <section data-page="/chat/">
+            <card>
+                <section class="direction-column">
+                    <box class="fg-black padding-x-40px">
+                        <section class="align-center items direction-column justify-center">
+                            <picture class="margin-bottom-50px width-100px">
+                                <img src="https://share.uios.computer/cdn/svg/send.svg">
+                            </picture>
+                            <text class="font-size-22px">Your Messages</text>
+                            <text class="font-size-14px margin-top-16px text-align-center">Send private photos and messages to a friend or group.</text>
+                            <text class="bg-b border-radius-5px color-fff font-size-14px margin-top-20px padding-10px">Send Message</text>
+                        </section>
+                    </box>
+                </section>
+            </card>
+        </section>
+        <section class="flex-1" data-page="/chat/with/*/">
+            <card class="border-bottom-1px-solid border-color-db color-000 height-50px line-height-50px width-100pc">
+                <!--<card class="border-bottom-1px-solid border-color-db color-000 height-50px line-height-50px top--50px width-100pc" data-position="absolute">-->
+                <section class="align-center">
+                    <box data-width="100%">
+                        <section class="align-center justify-content space-between">
+                            <ico class="hide tablet-hide"></ico>
+                            <ico class="hide tablet-flex" data-href="/chat/">
+                                <n class="gg-chevron-left"></n>
+                            </ico>
+                            <ico data-height="50px" data-width="50px">
+                                <picture class="bg-ef border-radius-50pc height-25px width-25px"></picture>
+                            </ico>
+                            <text class="bolder">Full Name</text>
+                            <ico class="margin-left">
+                                <n class="gg-info"></n>
+                            </ico>
+                        </section>
+                    </box>
+                </section>
+            </card>
+            <card class="height-100pc">
+                <section></section>
+            </card>
+            <form class="absolute border-1px-solid border-color-db border-radius-50px height-50px bottom-0 margin-20px width-100pc-40px">
+                <section>
+                    <box class="color-000 width-100pc">
+                        <section class="align-center direction-row justify-center">
+                            <ico>
+                                <n class="gg-smile"></n>
+                            </ico>
+                            <textarea class="flex-1 font-size-14px height-18px line-height-18px" placeholder="Message..."></textarea>
+                            <ico>
+                                <n class="gg-image"></n>
+                            </ico>
+                            <ico>
+                                <n class="gg-heart"></n>
+                            </ico>
+                        </section>
+                    </box>
+                </section>
+            </form>
+        </section>
+    </block>
+</blocks>
