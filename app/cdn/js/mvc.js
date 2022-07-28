@@ -63,8 +63,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         }
                     } else {
-                        if (get[1] === "with") {
-                        }
+                        if (get[1] === "with") {}
                     }
                 } else {
                     byId('convos').dataset.zIndex = 2;
@@ -75,19 +74,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 resolve(route);
             } else if (root === "my") {
                 if (get.length > 1) {
-                    var vp = dom.body.find('[data-pages="/my/account/"]');
-                    var pages = vp.closest("pages");
+                    var pages = dom.body.find('[data-pages="/my/account/"]');
                     if (get[1] === "account") {
-                        pages.dataset.mobileHeight = "calc(100%-50px)";
-                        pages.dataset.mobileZIndex = 5;
-                        pages.dataset.zIndex = 3;
-                    } else {
-                        pages.removeAttribute("data-mobile-height");
-                        pages.removeAttribute("data-mobile-z-index");
-                        pages.removeAttribute("data-z-index");
                     }
+                    resolve(route);
+                } else {
+                    resolve(route);
                 }
-                resolve(route);
             } else if (root === "post") {
                 var post = byId('post');
                 var postEr = byId('post-er');
