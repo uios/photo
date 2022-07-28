@@ -2,7 +2,7 @@
     <head>
         <title>Photo | uiOS</title>
         <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0'>
-        <meta http-equiv='Content-Type' content='text/html' ; charset='UTF-8'>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
         <meta name='apple-mobile-web-app-capable' content='yes'>
         <meta name='apple-mobile-web-app-status-bar-style' content='#021025'>
         <meta name="apple-mobile-web-app-title" content="Share">
@@ -109,22 +109,22 @@
         <pages data-pages="/my/" data-root="my">
             <page data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
             <wrap class="bg-white tablet-height-100pc tablet-width-100pc" data-pages="/my/account/">
-                <header class="hide mobile-flex position-relative">
-                    <row>
-                        <box data-width="100%">
-                            <row class="align-center space-between width-100pc">
-                                <ico data-tap="rout.ed.close();">
-                                    <n class="gg-chevron-left"></n>
-                                </ico>
-                                <text class="bolder">
-                                    <span data-page="/my/account/">Account</span>
-                                </text>
-                                <ico></ico>
-                            </row>
-                        </box>
-                    </row>
-                </header>
-                <blocks class="border-radius-5px direction-row fg-lightgray height-100pc margin-bottom-20px margin-top-90px margin-x-auto max-width-100pc-40px mobile-height-100pc mobile-margin-0 mobile-max-width-100pc overflow-hidden shadow tablet-border-radius-0 tablet-height-100pc tablet-margin-0 tablet-max-width-100pc width-960px">
+                <blocks class="border-radius-5px direction-row fg-lightgray height-100pc margin-bottom-20px margin-top-90px margin-x-auto max-width-100pc-40px mobile-height-100pc mobile-margin-0 mobile-max-width-100pc noauth overflow-hidden shadow tablet-border-radius-0 tablet-height-100pc tablet-margin-0 tablet-max-width-100pc width-960px">
+                    <header class="hide mobile-flex position-relative">
+                        <row>
+                            <box data-width="100%">
+                                <row class="align-center space-between width-100pc">
+                                    <ico data-tap="rout.ed.close();">
+                                        <n class="gg-chevron-left"></n>
+                                    </ico>
+                                    <text class="bolder">
+                                        <span data-page="/my/account/">Account</span>
+                                    </text>
+                                    <ico></ico>
+                                </row>
+                            </box>
+                        </row>
+                    </header>
                     <block class="bg-white border-color-db border-right-1px-solid color-000 height-100pc max-width-100pc mobile-fixed mobile-width-100pc tablet-height-100pc width-240px" data-z-index="5" id="convos">
                         <section class="absolute-full">
                             <card class="line-height-50px">
@@ -198,6 +198,67 @@
                                         </section>
                                     </box>
                                 </section>
+                            </card>
+                        </section>
+                    </block>
+                </blocks>
+                <blocks class="min-height-100vh noauth" data-backdrop-blur="10px">
+                    <block class="height-100pc">
+                        <section class="padding-y-50px max-height-100pc--120px">
+                            <card>
+                                <picture></picture>
+                                <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="controller.my.setup(event)" id="my-setup">
+                                    <box class="width-100pc">
+                                        <section class="direction-row flex-wrap-unset">
+                                            <span class="border-radius-5px inline-flex shadow">
+                                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="First Name" type="text">
+                                            </span>
+                                            <span class="border-radius-5px inline-flex margin-left-10px shadow" data-href="/my/account/">
+                                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="Last Name" type="text">
+                                            </span>
+                                        </section>
+                                    </box>
+                                    <box class="border-radius-5px margin-y-10px shadow width-100pc">
+                                        <section>
+                                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Username" type="text">
+                                        </section>
+                                    </box>
+                                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
+                                        <section>
+                                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">
+                                        </section>
+                                    </box>
+                                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
+                                        <section class="direction-row flex">
+                                            <input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password">
+                                            <input class="height-36px hide invert ui-bg-key width-36px" type="submit">
+                                        </section>
+                                    </box>
+                                    <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc" data-submit="my-setup">
+                                        <section>
+                                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                                <n class="ui-bg-email"></n>
+                                            </ico>
+                                            <text class="flex-1 line-height-36px text-align-center">Create Account</text>
+                                        </section>
+                                    </box>
+                                    <box class="border-radius-5px fg-black inline-flex shadow width-100pc" data-href="/my/">
+                                        <section>
+                                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                                <n class="ui-bg-email"></n>
+                                            </ico>
+                                            <text class="flex-1 line-height-36px text-align-center">Signin with Account</text>
+                                        </section>
+                                    </box>
+                                    <box class="margin-bottom-36px padding-y-10px width-100pc" data-tap="rout.ed.close()">
+                                        <section>
+                                            <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
+                                                <n class="ui-bg-incognito"></n>
+                                            </ico>
+                                            <text class="flex-1 line-height-50px text-align-center">Continue as Guest</text>
+                                        </section>
+                                    </box>
+                                </form>
                             </card>
                         </section>
                     </block>
