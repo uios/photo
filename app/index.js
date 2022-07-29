@@ -76,7 +76,10 @@ function init() {
     console.log("Initializing...");
 
     window.rout.ing = (href,GOT,n,m=GOT[n],root=GOT[0])=>{
-        return m.includes("#") || (root === 'chat' && n > 1) || (root === 'users' && n === 1);
+        return m.includes("#") 
+            || (root === 'chat' && n > 1) 
+            || (root === 'my' && GOT[1] === "account" && n > 1) 
+            || (root === 'users' && n === 1);
     }
     ;
 
@@ -99,6 +102,7 @@ function init() {
     dom.body.addEventListener("touchcancel", touch.handler, false);
     dom.body.addEventListener("touchend", touch.handler, false);
 
+    var go = false;
     const onAuthStateChanged = function(user) {
         const authChange = function(e) {
             const load = function (e) {
@@ -111,11 +115,11 @@ function init() {
             byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img src='"+(cdn.endpoint+"/"+user.uid+"/avi.jpg")+"'>";
         } else {
             byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
-        }
+        }        
+        go ? null : (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router().then(go = true);
     }
-    firebase.auth().onAuthStateChanged(onAuthStateChanged);
     
-    (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router();
+    firebase.auth().onAuthStateChanged(onAuthStateChanged);       
 
     console.log("Initialized");
 
