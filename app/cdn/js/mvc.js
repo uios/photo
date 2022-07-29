@@ -75,6 +75,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "my") {
                 if (get.length > 1) {
                     if (get[1] === "account") {
+                        const menu = byId("my-account-menu");
                         if (get.length > 2) {
                             var vp = dom.body.find('pages[data-pages="/my/account/"]');
                             if (auth.user()) {
