@@ -75,12 +75,21 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "my") {
                 if (get.length > 1) {
                     if (get[1] === "account") {
+
+                        var vp = dom.body.find('pages[data-pages="/my/account/"]');
+                        if (auth.user()) {
+                            vp.dataset.zIndex = 3;
+                        } else {
+                            vp.dataset.zIndex = 5;
+                        }
+
                         const menu = byId("my-account-menu");
                         if (get.length > 2) {
                             menu.classList.add('tablet-hide');
                         } else {
                             menu.classList.remove('tablet-hide');
                         }
+
                     }
                 }
                 resolve(route);

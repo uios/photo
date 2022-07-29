@@ -104,11 +104,13 @@ function init() {
             const load = function (e) {
                 dom.body.dataset.load = "ed";
             };
-            (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router().then(load);
+            dom.body.dataset.load = "ed";
         }
         auth.change(user).then(authChange)
     }
     firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    
+    (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router();
 
     console.log("Initialized");
 
