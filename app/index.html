@@ -104,16 +104,16 @@
                 </card>
             </section>
         </header>
-        <page data-fetch="/cdn/html/page/page.activity.html" data-height="100%" data-page="/activity/"></page>
-        <pages data-fetch="/cdn/html/pages/pages.chat.html" data-height="100%" data-pages="/chat/" data-root="chat"></pages>
-        <page data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
-        <pages class="bg-fa min-height-100pc tablet-width-100pc" data-fetch="/cdn/html/pages/pages.my.account.html" data-mobile-height="calc(100% - 50px)" data-mobile-z-index="5" data-pages="/my/account/" data-root="my" data-tablet-width="100%" data-tablet-z-index="5" data-z-index="3"></pages>
-        <pages data-fetch="/cdn/html/pages/pages.post.html" data-pages="/post/" data-root="post"></pages>
+        <page class="fixed height-100pc scroll-y" data-fetch="/cdn/html/page/page.activity.html" data-height="100%" data-page="/activity/"></page>
+        <page class="fixed height-100pc scroll-y" data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
+        <pages class="fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.chat.html" data-height="100%" data-pages="/chat/" data-root="chat"></pages>
+        <pages class="fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.post.html" data-pages="/post/" data-root="post"></pages>
         <main>
             <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>
             <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
             <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
         </main>
+        <pages class="bg-fa fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.my.account.html" data-mobile-height="calc(100% - 50px)" data-min-height="100pc" data-mobile-z-index="5" data-pages="/my/account/" data-root="my" data-tablet-width="100%" data-tablet-z-index="5" data-z-index="3"></pages>
         <footer class="bg-white hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
             <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
             <card class="align-center border-radius-50px height-44px justify-center margin-auto margin-y-20px mobile-max-width-100pc-40px mobile-width-100pc" data-display="flex" data-flex-direction="row" data-width="250px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="2">

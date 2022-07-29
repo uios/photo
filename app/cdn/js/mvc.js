@@ -77,9 +77,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     if (get[1] === "account") {
                         const menu = byId("my-account-menu");
                         if (get.length > 2) {
-                            menu.classList.add('tablet-translate-x-neg100pc');
+                            menu.classList.add('tablet-hide');
                         } else {
-                            menu.classList.remove('tablet-translate-x-neg100pc');
+                            menu.classList.remove('tablet-hide');
                         }
                     }
                 }
