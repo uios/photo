@@ -79,8 +79,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var vp = dom.body.find('pages[data-pages="/my/account/"]');
                         if (auth.user()) {
                             vp.dataset.zIndex = 3;
+                            vp.dataset.mobileZIndex = 9;
                         } else {
-                            vp.dataset.zIndex = 5;
+                            vp.dataset.zIndex = 9;
+                            vp.dataset.mobileZIndex = 9;
                         }
 
                         const menu = byId("my-account-menu");
