@@ -106,7 +106,12 @@ function init() {
             };
             dom.body.dataset.load = "ed";
         }
-        auth.change(user).then(authChange)
+        auth.change(user).then(authChange);
+        if(user) {
+            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img src='"+(cdn.endpoint+"/"+user.uid+"/avi.jpg")+"'>";
+        } else {
+            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
+        }
     }
     firebase.auth().onAuthStateChanged(onAuthStateChanged);
     
