@@ -75,21 +75,55 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "my") {
                 if (get.length > 1) {
                     if (get[1] === "account") {
+                        var vp = dom.body.find('pages[data-pages="/my/account/"]');
+                        const account = byId("my-account");
+                        const header = byId('my-account-header');
                         const menu = byId("my-account-menu");
+                        const menus = byId("my-account-menus");
                         if (get.length > 2) {
-                            var vp = dom.body.find('pages[data-pages="/my/account/"]');
                             if (auth.user()) {
                                 vp.dataset.zIndex = 3;
+                                vp.dataset.tabletZIndex = 9;
+                                vp.dataset.mobileZIndex = 5;
                             } else {
                                 vp.dataset.zIndex = 5;
+                                vp.dataset.tabletZIndex = 9;
+                                vp.dataset.mobileZIndex = 9;
                             }
 
-                            const menu = byId("my-account-menu");
-                            if (get.length > 2) {
-                                menu.classList.add('tablet-hide');
-                            } else {
-                                menu.classList.remove('tablet-hide');
-                            }
+                            account.classList.add('margin-top-90px');
+                            account.classList.add('tablet-margin-top-60px');
+                            account.classList.add('margin-bottom-20px');
+                            account.classList.remove('min-height-100pc');
+
+                            header.classList.remove('tablet-hide');
+                            header.classList.add('tablet-flex');
+                            header.classList.add('mobile-flex');
+
+                            menu.classList.add('tablet-hide');
+                            menu.dataset.width = "240px";
+
+                            menus.classList.remove('hide');
+                            menus.classList.add('tablet-hide');
+                        } else {
+                            vp.dataset.zIndex = 9;
+                            vp.dataset.tabletZIndex = 9;
+                            vp.dataset.mobileZIndex = 5;
+
+                            account.classList.remove('margin-top-90px');
+                            account.classList.remove('tablet-margin-top-60px');
+                            account.classList.remove('margin-bottom-20px');
+                            account.classList.add('min-height-100pc');
+
+                            header.classList.add('tablet-hide');
+                            header.classList.remove('tablet-flex');
+                            header.classList.add('mobile-flex');
+
+                            menu.classList.remove('tablet-hide');
+                            menu.dataset.width = "100%";
+
+                            menus.classList.add('hide');
+                            menus.classList.add('tablet-hide');
                         }
                     }
                 }
