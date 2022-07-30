@@ -104,6 +104,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menu.dataset.width = "240px";
                             menu.classList.remove('flex');
                             menu.classList.remove('mobile-display-block');
+                            menu.classList.add('tablet-margin-top-60px');
+                            menu.classList.add('tablet-margin-bottom-10px');
 
                             menus.classList.remove('hide');
                             menus.classList.add('tablet-hide');
@@ -125,6 +127,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menu.dataset.width = "100%";
                             menu.classList.add('flex');
                             menu.classList.add('mobile-display-block');
+                            menu.classList.remove('tablet-margin-top-60px');
+                            menu.classList.remove('tablet-margin-bottom-10px');
 
                             menus.classList.add('hide');
                             menus.classList.add('tablet-hide');
