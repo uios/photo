@@ -85,22 +85,40 @@ function init() {
 
     firebase.initializeApp(auth.config);
 
-    dom.body.dataset.theme = "meridiem";
-
     touch.events = {
         dbltap: on.touch.dbltap,
         drag: on.touch.drag,
         press: on.touch.press,
         tap: on.touch.tap
-    };
-    dom.body.addEventListener("touchstart", touch.handler, {
+    };    
+    touch.ing = false;
+    
+    dom.body.dataset.theme = "meridiem";
+    dom.body.addEventListener("click", function(e) {
+        if(window.touch.ing === false) {
+            on.touch.tap(e);
+            console.log(e.type,window.touch.ing);
+        } else {
+            window.touch.ing = false;
+            console.log(e.type,window.touch.ing);
+        }
+    });
+    dom.body.addEventListener("touchstart", function(e) {
+        window.touch.ing = true;
+        touch.handler(event);
+        console.log(e.type);
+    }, {
         passive: true
     });
     dom.body.addEventListener("touchmove", touch.handler, {
         passive: true
     });
     dom.body.addEventListener("touchcancel", touch.handler, false);
-    dom.body.addEventListener("touchend", touch.handler, false);
+    dom.body.addEventListener("touchend", function(e) {
+        //window.touch.ing = false;
+        touch.handler(event);
+        console.log(e.type);
+    });
 
     var go = false;
     const onAuthStateChanged = function(user) {
