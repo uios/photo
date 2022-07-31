@@ -131,7 +131,7 @@
                                     <text class="-tablet-font-weight-bolder margin-left-5px">Theme</text>
                                 </section>
                             </box>
-                            <box class="box-sizing-border-box padding-x-20px tablet-padding-0" data-href="/my/account/about/" data-width="100%">
+                            <box class="box-sizing-border-box hide padding-x-20px tablet-padding-0" data-href="/my/account/about/" data-width="100%">
                                 <ico class="absolute left-0" data-path="/my/account/about/" data-width="2px">
                                     <n class="bg-black height-100pc width-100pc"></n>
                                 </ico>
@@ -142,7 +142,7 @@
                                     <text class="-tablet-font-weight-bolder margin-left-5px">About</text>
                                 </section>
                             </box>
-                            <box class="box-sizing-border-box padding-x-20px tablet-padding-0" data-href="/my/account/legal/" data-width="100%">
+                            <box class="box-sizing-border-box hide padding-x-20px tablet-padding-0" data-href="/my/account/legal/" data-width="100%">
                                 <ico class="absolute left-0" data-path="/my/account/legal/" data-width="2px">
                                     <n class="bg-black height-100pc width-100pc"></n>
                                 </ico>
@@ -389,12 +389,12 @@
             </card>
         </form>
         <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/notifications/" id="form-my-account-notifications"></form>
-        <section class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right width-100pc" data-columns="1" data-path="/my/account/privacy/" id="form-my-account-privacy">
+        <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc" data-columns="1" data-path="/my/account/privacy/" id="form-my-account-privacy">
             <card class="padding-20px">
                 <column>
+                    <text class="font-size-24px margin-bottom-20px width-100pc">Account Privacy</text>
                     <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc">
                         <column>
-                            <text class="font-size-24px margin-bottom-20px width-100pc">Account Privacy</text>
                             <label class="margin-bottom-5px">
                                 <input class="margin-right-5px" type="checkbox">
                                 <span class="bolder font-size-14px">Private Account</span>
@@ -478,6 +478,33 @@
                             <label class="font-size-16ox margin-bottom-5px">
                                 <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
                                 <span>No One</span>
+                            </label>
+                        </column>
+                    </form>
+                </column>
+            </card>
+        </section>
+        <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc" data-columns="1" data-path="/my/account/theme/" id="form-my-account-theme">
+            <card class="padding-20px">
+                <column>
+                    <text class="font-size-18px margin-bottom-20px width-100pc">Select a single theme, or sync with your system and automatically switch between day and night themes.</text>
+                    <form class="box-sizing-border-box padding-bottom-20px width-100pc">
+                        <column>
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
+                                <span class="font-size-16px">Auto</span>
+                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            </label>
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
+                                <span class="font-size-16px">Light</span>
+                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            </label>
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
+                                <span class="font-size-16px">Dark</span>
+                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            </label>
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
+                                <span class="font-size-16px">System</span>
+                                <input class="margin-right-5px" name="account-theme" type="radio">
                             </label>
                         </column>
                     </form>
