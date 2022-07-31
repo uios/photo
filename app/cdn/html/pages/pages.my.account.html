@@ -1,5 +1,5 @@
 <blocks class="bg-white border-1px-solid border-color-db border-radius-5px box-sizing-border-box direction-row flex-wrap isauth margin-bottom-20px margin-top-90px margin-x-auto max-width-100pc-40px mobile-border-unset mobile-height-100pc mobile-margin-0 mobile-max-width-100pc tablet-border-radius-0 tablet-height-auto tablet-margin-x-auto tablet-max-width-100pc-20px width-960px" id="my-account">
-    <header class="bg-white mobile-border-bottom-1px-solid tablet-border-bottom-1px-solid border-color-db hide height-50px isauth mobile-position-fixed mobile-padding-top-0 tablet-flex tablet-padding-0 mobile-position-fixed width-100pc z-index-7" id="my-account-header">
+    <header class="bg-white mobile-border-bottom-1px-solid border-color-db hide height-50px isauth mobile-position-fixed mobile-padding-top-0 tablet-flex tablet-padding-0 mobile-position-fixed width-100pc z-index-7" id="my-account-header">
         <row>
             <box data-width="100%">
                 <row class="align-center width-100pc">
@@ -389,10 +389,10 @@
             </card>
         </form>
         <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/notifications/" id="form-my-account-notifications"></form>
-        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/privacy/" id="form-my-account-privacy">
+        <section class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right width-100pc" data-columns="1" data-path="/my/account/privacy/" id="form-my-account-privacy">
             <card class="padding-20px">
                 <column>
-                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Account Privacy</text>
                             <label class="margin-bottom-5px">
@@ -401,8 +401,8 @@
                             </label>
                             <text class="color-8e font-size-14px margin-top-10px">When your account is private, only people you approve can see your photos and videos on Instagram. Your existing followers won't be affected.</text>
                         </column>
-                    </box>
-                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    </form>
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Activity Status</text>
                             <label class="margin-bottom-5px">
@@ -414,8 +414,8 @@
                             </text>
                             <text class="color-8e font-size-14px margin-top-10px">You can continue to use our services if active status is off.</text>
                         </column>
-                    </box>
-                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    </form>
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Photos of You</text>
                             <label class="margin-bottom-5px">
@@ -428,8 +428,8 @@
                             </label>
                             <text class="color-8e font-size-14px margin-top-10px">Choose how you want photos of you added to your profile. <rgb class="bolder fg-b">Learn more</rgb> about Photos of You.</text>
                         </column>
-                    </box>
-                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    </form>
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Mentions</text>
                             <text class="bolder font-size-16px margin-bottom-30px">Allow @mentions from</text>
@@ -447,8 +447,8 @@
                             </label>
                             <text class="color-8e font-size-12px margin-top-10px">Choose who can @mention you to link your account in their stories, comments, live videos, and captions. When people try to @mention you, they'll see if you don't allow @mentions.</text>
                         </column>
-                    </box>
-                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    </form>
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Posts</text>
                             <text class="bolder font-size-16px margin-bottom-5px">Likes and Views</text>
@@ -463,8 +463,8 @@
                             </row>
                             <text class="color-8e font-size-12px margin-top-10px">You won't see the total number of likes and views on posts from other accounts. You can hide like counts on your own posts when you create them by going to Advanced Settings and turning on "Hide Like and View Counts on This Post".</text>
                         </column>
-                    </box>
-                    <box class="box-sizing-border-box padding-y-20px width-100pc">
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
                         <column>
                             <text class="bolder font-size-16px margin-bottom-30px">Allow tags from</text>
                             <label class="font-size-16px margin-bottom-5px">
@@ -480,10 +480,10 @@
                                 <span>No One</span>
                             </label>
                         </column>
-                    </box>
+                    </form>
                 </column>
             </card>
-        </form>
+        </section>
     </block>
 </blocks>
 <blocks class="min-height-100vh noauth" data-backdrop-blur="10px">
