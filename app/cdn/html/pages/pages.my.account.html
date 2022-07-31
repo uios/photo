@@ -391,9 +391,13 @@
         <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/notifications/" id="form-my-account-notifications">
             <card class="padding-20px">
                 <column>
+                    <box>
+                        <section>
+                            <text class="bolder font-size-16px margin-bottom-5px">Push Notifications</text>
+                        </section>
+                    </box>
                     <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
                         <column>
-                            <text class="bolder font-size-16px margin-bottom-5px">Push Notifications</text>
                             <row class="align-center margin-y-20px padding-top-10px space-between width-100pc">
                                 <text class="font-size-16px">Pause All</text>
                                 <label class="align-center inline-flex space-between">
@@ -405,26 +409,186 @@
                             </row>
                         </column>
                     </form>
-                    <text class="font-size-16px margin-y-20px">Posts, Stories and Comments</text>
+                    <box>
+                        <row class="space-between">
+                            <text class="font-size-16px margin-y-20px">Posts and Comments</text>
+                            <ico>
+                                <n class="gg-chevron-down"></n>
+                            </ico>
+                        </row>
+                    </box>
                     <form class="box-sizing-border-box padding-y-20px width-100pc">
-                        <column>
-                            <text class="bolder font-size-16px margin-bottom-30px">Allow tags from</text>
-                            <label class="font-size-16px margin-bottom-5px">
+                        <column class="border-bottom-1px-solid border-color-db">
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Likes</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
                                 <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
-                                <span>Everyone</span>
+                                <span>Off</span>
                             </label>
-                            <label class="font-size-16ox margin-bottom-5px">
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
                                 <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
-                                <span>People You Follow</span>
+                                <span>From People I Follow</span>
                             </label>
-                            <label class="font-size-16ox margin-bottom-5px">
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
                                 <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
-                                <span>No One</span>
+                                <span>From Everyone</span>
                             </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniiimous liked your photo.</text>
                         </column>
                     </form>
-                    <text class="font-size-16px margin-y-20px">Following and Followers</text>
-                    <text class="font-size-16px margin-y-20px">Direct Messages and Calls</text>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column class="border-bottom-1px-solid border-color-db">
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Likes and Comments on Photos of You</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>From People I Follow</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>From Everyone</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniiimous commented on a post you're tagged in.</text>
+                        </column>
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column class="border-bottom-1px-solid border-color-db">
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Comments</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>From People I Follow</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>From Everyone</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniiimous commented: "Nice shot!"</text>
+                        </column>
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Comment Likes</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-commentlikes" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-commentlikes" type="radio">
+                                <span>On</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniiimous liked your comment: "Nice shot!"</text>
+                        </column>
+                    </form>
+                    <box>
+                        <row class="space-between">
+                            <text class="font-size-16px margin-y-20px">Following and Followers</text>
+                            <ico>
+                                <n class="gg-chevron-down"></n>
+                            </ico>
+                        </row>
+                    </box>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">New followers</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-newfollowers" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-newfollowers" type="radio">
+                                <span>On</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">Anon III Mous (anoniimous) started following you.</text>
+                        </column>
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Accepted Follow Requests</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-acceptedfollowrequests" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-acceptedfollowrequests" type="radio">
+                                <span>On</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">Anon III Mous (anoniimous) accepted your follow request.</text>
+                        </column>
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Account Suggestions</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-accountsuggestions" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-accountsuggestions" type="radio">
+                                <span>On</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniimous, who you might know, is on Instagram, and other similar notifications.</text>
+                        </column>
+                    </form>
+                    <box>
+                        <row class="space-between">
+                            <text class="font-size-16px margin-y-20px">Direct Messages</text>
+                            <ico>
+                                <n class="gg-chevron-down"></n>
+                            </ico>
+                        </row>
+                    </box>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Message Requests</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-messagerequests" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-messagerequests" type="radio">
+                                <span>On</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniimous wants to send you a message.</text>
+                        </column>
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Group Requests</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-messagerequests" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-messagerequests" type="radio">
+                                <span>On</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniimous wants to add janeappleseed to your group.</text>
+                        </column>
+                    </form>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px margin-top-10px">Messages</text>
+                            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-notifications-messages" type="radio">
+                                <span>Off</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-messages" type="radio">
+                                <span>From Primary Only</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-notifications-messages" type="radio">
+                                <span>From Primary and General</span>
+                            </label>
+                            <text class="color-8e font-size-12px margin-bottom-5px margin-top-10px">anoniiimous sent you a message.</text>
+                        </column>
+                    </form>
                 </column>
             </card>
         </form>
@@ -465,7 +629,12 @@
                                 <input class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" type="radio">
                                 <span class="bolder font-size-14px">Add Manually</span>
                             </label>
-                            <text class="color-8e font-size-14px margin-top-10px">Choose how you want photos of you added to your profile. <rgb class="bolder fg-b">Learn more</rgb> about Photos of You.</text>
+                            <text class="color-8e font-size-14px margin-top-10px">
+                                Choose how you want photos of you added to your profile. <rgb class="bolder fg-b">Learn more</rgb>
+                                about Photos of You.
+                            
+                            
+                            </text>
                         </column>
                     </form>
                     <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
@@ -614,4 +783,3 @@
         </section>
     </block>
 </blocks>
-
