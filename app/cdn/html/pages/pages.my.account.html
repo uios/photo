@@ -388,7 +388,46 @@
                 </section>
             </card>
         </form>
-        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/notifications/" id="form-my-account-notifications"></form>
+        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/notifications/" id="form-my-account-notifications">
+            <card class="padding-20px">
+                <column>
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-5px">Push Notifications</text>
+                            <row class="align-center margin-y-20px padding-top-10px space-between width-100pc">
+                                <text class="font-size-16px">Pause All</text>
+                                <label class="align-center inline-flex space-between">
+                                    <input class="opacity-0 height-0 width-0" type="checkbox">
+                                    <row class="bg-db -checked-bg-0096c7 box-sizing-border-box border-radius-50px color-db height-30px padding-3px relative transition-1s width-60px">
+                                        <flex class="bg-white border-radius-50px height-24px margin-3px transition-1s -checked-translateX-30px width-24px"></flex>
+                                    </row>
+                                </label>
+                            </row>
+                        </column>
+                    </form>
+                    <text class="font-size-16px margin-y-20px">Posts, Stories and Comments</text>
+                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                        <column>
+                            <text class="bolder font-size-16px margin-bottom-30px">Allow tags from</text>
+                            <label class="font-size-16px margin-bottom-5px">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>Everyone</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>People You Follow</span>
+                            </label>
+                            <label class="font-size-16ox margin-bottom-5px">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <span>No One</span>
+                            </label>
+                        </column>
+                    </form>
+                    <text class="font-size-16px margin-y-20px">Following and Followers</text>
+                    <text class="font-size-16px margin-y-20px">Direct Messages and Calls</text>
+                </column>
+            </card>
+        </form>
         <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc" data-columns="1" data-path="/my/account/privacy/" id="form-my-account-privacy">
             <card class="padding-20px">
                 <column>
@@ -422,61 +461,61 @@
                                 <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" type="radio">
                                 <span class="bolder font-size-14px">Add Automatically</span>
                             </label>
-                            <label">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" type="radio">
-                                <span class="bolder font-size-14px">Add Manually</span>
+                            <label ">
+                                <input class="border-radius-50pc margin-right-5px " name="account-privacy-photosofyou " type="radio ">
+                                <span class="bolder font-size-14px ">Add Manually</span>
                             </label>
-                            <text class="color-8e font-size-14px margin-top-10px">Choose how you want photos of you added to your profile. <rgb class="bolder fg-b">Learn more</rgb> about Photos of You.</text>
+                            <text class="color-8e font-size-14px margin-top-10px ">Choose how you want photos of you added to your profile. <rgb class="bolder fg-b ">Learn more</rgb> about Photos of You.</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc ">
                         <column>
-                            <text class="font-size-24px margin-bottom-20px width-100pc">Mentions</text>
-                            <text class="bolder font-size-16px margin-bottom-30px">Allow @mentions from</text>
-                            <label class="font-size-16px margin-bottom-5px">
-                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" type="radio">
+                            <text class="font-size-24px margin-bottom-20px width-100pc ">Mentions</text>
+                            <text class="bolder font-size-16px margin-bottom-30px ">Allow @mentions from</text>
+                            <label class="font-size-16px margin-bottom-5px ">
+                                <input checked class="border-radius-50pc margin-right-5px " name="account-privacy-mentions " type="radio ">
                                 <span>Everyone</span>
                             </label>
-                            <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" type="radio">
+                            <label class="font-size-16ox margin-bottom-5px ">
+                                <input class="border-radius-50pc margin-right-5px " name="account-privacy-mentions " type="radio ">
                                 <span>People You Follow</span>
                             </label>
-                            <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" type="radio">
+                            <label class="font-size-16ox margin-bottom-5px ">
+                                <input class="border-radius-50pc margin-right-5px " name="account-privacy-mentions " type="radio ">
                                 <span>No One</span>
                             </label>
-                            <text class="color-8e font-size-12px margin-top-10px">Choose who can @mention you to link your account in their stories, comments, live videos, and captions. When people try to @mention you, they'll see if you don't allow @mentions.</text>
+                            <text class="color-8e font-size-12px margin-top-10px ">Choose who can @mention you to link your account in their stories, comments, live videos, and captions. When people try to @mention you, they'll see if you don't allow @mentions.</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc ">
                         <column>
-                            <text class="font-size-24px margin-bottom-20px width-100pc">Posts</text>
-                            <text class="bolder font-size-16px margin-bottom-5px">Likes and Views</text>
-                            <row class="align-center padding-top-10px space-between width-100pc">
-                                <text class="font-size-16px">Hide Like and View Counts</text>
-                                <label class="align-center inline-flex space-between">
-                                    <input class="opacity-0 height-0 width-0" type="checkbox">
-                                    <row class="bg-db -checked-bg-0096c7 box-sizing-border-box border-radius-50px color-db height-30px padding-3px relative transition-1s width-60px">
-                                        <flex class="bg-white border-radius-50px height-24px margin-3px transition-1s -checked-translateX-30px width-24px"></flex>
+                            <text class="font-size-24px margin-bottom-20px width-100pc ">Posts</text>
+                            <text class="bolder font-size-16px margin-bottom-5px ">Likes and Views</text>
+                            <row class="align-center padding-top-10px space-between width-100pc ">
+                                <text class="font-size-16px ">Hide Like and View Counts</text>
+                                <label class="align-center inline-flex space-between ">
+                                    <input class="opacity-0 height-0 width-0 " type="checkbox ">
+                                    <row class="bg-db -checked-bg-0096c7 box-sizing-border-box border-radius-50px color-db height-30px padding-3px relative transition-1s width-60px ">
+                                        <flex class="bg-white border-radius-50px height-24px margin-3px transition-1s -checked-translateX-30px width-24px "></flex>
                                     </row>
                                 </label>
                             </row>
-                            <text class="color-8e font-size-12px margin-top-10px">You won't see the total number of likes and views on posts from other accounts. You can hide like counts on your own posts when you create them by going to Advanced Settings and turning on "Hide Like and View Counts on This Post".</text>
+                            <text class="color-8e font-size-12px margin-top-10px ">You won't see the total number of likes and views on posts from other accounts. You can hide like counts on your own posts when you create them by going to Advanced Settings and turning on "Hide Like and View Counts on This Post ".</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box padding-y-20px width-100pc ">
                         <column>
-                            <text class="bolder font-size-16px margin-bottom-30px">Allow tags from</text>
-                            <label class="font-size-16px margin-bottom-5px">
-                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                            <text class="bolder font-size-16px margin-bottom-30px ">Allow tags from</text>
+                            <label class="font-size-16px margin-bottom-5px ">
+                                <input checked class="border-radius-50pc margin-right-5px " name="account-privacy-tags " type="radio ">
                                 <span>Everyone</span>
                             </label>
-                            <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                            <label class="font-size-16ox margin-bottom-5px ">
+                                <input class="border-radius-50pc margin-right-5px " name="account-privacy-tags " type="radio ">
                                 <span>People You Follow</span>
                             </label>
-                            <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                            <label class="font-size-16ox margin-bottom-5px ">
+                                <input class="border-radius-50pc margin-right-5px " name="account-privacy-tags " type="radio ">
                                 <span>No One</span>
                             </label>
                         </column>
@@ -484,27 +523,27 @@
                 </column>
             </card>
         </section>
-        <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc" data-columns="1" data-path="/my/account/theme/" id="form-my-account-theme">
-            <card class="padding-20px">
+        <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc " data-columns="1 " data-path="/my/account/theme/" id="form-my-account-theme ">
+            <card class="padding-20px ">
                 <column>
-                    <text class="font-size-18px margin-bottom-20px width-100pc">Select a single theme, or sync with your system and automatically switch between day and night themes.</text>
-                    <form class="box-sizing-border-box padding-bottom-20px width-100pc">
+                    <text class="font-size-18px margin-bottom-20px width-100pc ">Select a single theme, or sync with your system and automatically switch between day and night themes.</text>
+                    <form class="box-sizing-border-box padding-bottom-20px width-100pc ">
                         <column>
-                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">Auto</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc ">
+                                <span class="font-size-16px ">Auto</span>
+                                <input class="margin-right-5px " name="account-theme " type="radio ">
                             </label>
-                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">Light</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc ">
+                                <span class="font-size-16px ">Light</span>
+                                <input class="margin-right-5px " name="account-theme " type="radio ">
                             </label>
-                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">Dark</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc ">
+                                <span class="font-size-16px ">Dark</span>
+                                <input class="margin-right-5px " name="account-theme " type="radio ">
                             </label>
-                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">System</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                            <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc ">
+                                <span class="font-size-16px ">System</span>
+                                <input class="margin-right-5px " name="account-theme " type="radio ">
                             </label>
                         </column>
                     </form>
@@ -513,61 +552,61 @@
         </section>
     </block>
 </blocks>
-<blocks class="min-height-100vh noauth" data-backdrop-blur="10px">
-    <block class="height-100pc">
-        <picture data-backdrop-blur="10px"></picture>
-        <section class="padding-y-50px max-height-100pc--120px">
+<blocks class="min-height-100vh noauth " data-backdrop-blur="10px ">
+    <block class="height-100pc ">
+        <picture data-backdrop-blur="10px "></picture>
+        <section class="padding-y-50px max-height-100pc--120px ">
             <card>
                 <picture></picture>
-                <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px" onsubmit="controller.my.setup(event)" id="my-setup">
-                    <box class="width-100pc">
-                        <section class="direction-row flex-wrap-unset">
-                            <span class="border-radius-5px inline-flex shadow">
-                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="First Name" type="text">
+                <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth width-300px " onsubmit="controller.my.setup(event)" id="my-setup ">
+                    <box class="width-100pc ">
+                        <section class="direction-row flex-wrap-unset ">
+                            <span class="border-radius-5px inline-flex shadow ">
+                                <input class="line-height-36px padding-x-10px width-100pc " placeholder="First Name " type="text ">
                             </span>
-                            <span class="border-radius-5px inline-flex margin-left-10px shadow" data-href="/my/account/">
-                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="Last Name" type="text">
+                            <span class="border-radius-5px inline-flex margin-left-10px shadow " data-href="/my/account/">
+                                <input class="line-height-36px padding-x-10px width-100pc " placeholder="Last Name " type="text ">
                             </span>
                         </section>
                     </box>
-                    <box class="border-radius-5px margin-y-10px shadow width-100pc">
+                    <box class="border-radius-5px margin-y-10px shadow width-100pc ">
                         <section>
-                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Username" type="text">
+                            <input class="line-height-36px padding-x-10px width-100pc " placeholder="Username " type="text ">
                         </section>
                     </box>
-                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
+                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc ">
                         <section>
-                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">
+                            <input class="line-height-36px padding-x-10px width-100pc " placeholder="Email " type="text ">
                         </section>
                     </box>
-                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc">
-                        <section class="direction-row flex">
-                            <input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password">
-                            <input class="height-36px hide invert ui-bg-key width-36px" type="submit">
+                    <box class="border-radius-5px margin-bottom-10px shadow width-100pc ">
+                        <section class="direction-row flex ">
+                            <input class="flex-1 line-height-36px padding-x-10px " placeholder="Password " type="password ">
+                            <input class="height-36px hide invert ui-bg-key width-36px " type="submit ">
                         </section>
                     </box>
-                    <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc" data-submit="my-setup">
+                    <box class="border-radius-5px fg-black inline-flex margin-bottom-36px shadow width-100pc " data-submit="my-setup ">
                         <section>
-                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
-                                <n class="ui-bg-email"></n>
+                            <ico class="absolute height-36px left-0 width-36px " data-height="36px " data-width="36px ">
+                                <n class="ui-bg-email "></n>
                             </ico>
-                            <text class="flex-1 line-height-36px text-align-center">Create Account</text>
+                            <text class="flex-1 line-height-36px text-align-center ">Create Account</text>
                         </section>
                     </box>
-                    <box class="border-radius-5px fg-black inline-flex shadow width-100pc" data-href="/my/">
+                    <box class="border-radius-5px fg-black inline-flex shadow width-100pc " data-href="/my/">
                         <section>
-                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
-                                <n class="ui-bg-email"></n>
+                            <ico class="absolute height-36px left-0 width-36px " data-height="36px " data-width="36px ">
+                                <n class="ui-bg-email "></n>
                             </ico>
-                            <text class="flex-1 line-height-36px text-align-center">Signin with Account</text>
+                            <text class="flex-1 line-height-36px text-align-center ">Signin with Account</text>
                         </section>
                     </box>
-                    <box class="padding-y-10px width-100pc" data-tap="rout.ed.close()">
+                    <box class="padding-y-10px width-100pc " data-tap="rout.ed.close()">
                         <section>
-                            <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
-                                <n class="ui-bg-incognito"></n>
+                            <ico class="absolute height-50px invert left-0 width-36px " data-height="50px " data-width="36px ">
+                                <n class="ui-bg-incognito "></n>
                             </ico>
-                            <text class="flex-1 line-height-50px text-align-center">Continue as Guest</text>
+                            <text class="flex-1 line-height-50px text-align-center ">Continue as Guest</text>
                         </section>
                     </box>
                 </form>
@@ -575,3 +614,4 @@
         </section>
     </block>
 </blocks>
+
