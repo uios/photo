@@ -134,6 +134,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menus.classList.add('tablet-hide');
                         }
                     }
+                    if (auth.user()) {
+                        vp.dataset.zIndex = 3;
+                        vp.dataset.tabletZIndex = 9;
+                        vp.dataset.mobileZIndex = 5;
+                    } else {
+                        vp.dataset.zIndex = 9;
+                        vp.dataset.tabletZIndex = 9;
+                        vp.dataset.mobileZIndex = 9;
+                    }
                 }
                 resolve(route);
             } else if (root === "post") {
