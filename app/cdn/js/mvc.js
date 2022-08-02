@@ -472,6 +472,30 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             );
         }
     },
+    feed: {
+        like: async function(target) {
+            if (auth.user()) {
+                const a = function(data) {
+                    console.log(data);
+                };
+                const b = function(error) {
+                    console.log(error);
+                    alert(error.message);
+                };
+                var data = new FormData();
+                data.append("jwt", await auth.getIdToken());
+                data.append("ref", target.closest('[data-uid]').dataset.uid);
+                data.append("type", "like");
+                ajax("http://api.uios.tld" + "/v1/activity", {
+                    data,
+                    dataType: "POST"
+                }).then(a).catch(b);
+            }
+        },
+        more: function() {},
+        save: function() {},
+        share: function() {}
+    },
     post: {
         file: input=>{
             webcam.load.file(input).then(media=>{
