@@ -86,11 +86,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 vp.dataset.tabletZIndex = 9;
                                 vp.dataset.mobileZIndex = 5;
                             } else {
-                                vp.dataset.zIndex = 5;
+                                vp.dataset.zIndex = 9;
                                 vp.dataset.tabletZIndex = 9;
                                 vp.dataset.mobileZIndex = 9;
                             }
-
                             account.classList.add('margin-top-90px');
                             account.classList.add('tablet-margin-top-60px');
                             account.classList.add('margin-bottom-20px');
@@ -110,10 +109,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menus.classList.remove('hide');
                             menus.classList.add('tablet-hide');
                         } else {
-                            vp.dataset.zIndex = 9;
-                            vp.dataset.tabletZIndex = 9;
-                            vp.dataset.mobileZIndex = 5;
-
+                            if (auth.user()) {
+                                vp.dataset.zIndex = 9;
+                                vp.dataset.tabletZIndex = 9;
+                                vp.dataset.mobileZIndex = 5;
+                            } else {
+                                vp.dataset.zIndex = 9;
+                                vp.dataset.tabletZIndex = 9;
+                                vp.dataset.mobileZIndex = 9;
+                            }
                             account.classList.remove('margin-top-90px');
                             account.classList.remove('tablet-margin-top-60px');
                             account.classList.remove('margin-bottom-20px');
@@ -133,15 +137,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menus.classList.add('hide');
                             menus.classList.add('tablet-hide');
                         }
-                    }
-                    if (auth.user()) {
-                        vp.dataset.zIndex = 3;
-                        vp.dataset.tabletZIndex = 9;
-                        vp.dataset.mobileZIndex = 5;
-                    } else {
-                        vp.dataset.zIndex = 9;
-                        vp.dataset.tabletZIndex = 9;
-                        vp.dataset.mobileZIndex = 9;
                     }
                 }
                 resolve(route);
@@ -225,7 +220,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "users") {
                 if (get.length > 1) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');
-                    ajax(api.endpoint + '/v1/users/' + get[1]).then(async(user)=>{
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + '/v1/users/' + get[1]).then(async(user)=>{
                         var error = v.find('error');
                         error ? error.remove() : null;
 
@@ -331,7 +327,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
         } else {
             var v = dom.body.find('page[data-page="/"]');
-            ajax(api.endpoint + '/v1/posts/').then(async(d)=>{
+            const jwt = await auth.getIdToken();
+            var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+            ajax(endpoint + '/v1/posts?jwt=' + jwt).then(async(d)=>{
                 var data = JSON.parse(d);
                 var posts = data.posts;
                 var feed = byId('feed-index-posts');
@@ -352,6 +350,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var uid = post.uid;
                         var user = post.user;
                         var username = post.username;
+                        var liked = post.liked;
 
                         var card = html.firstElementChild.cloneNode(true);
                         var boxes = card.all('box');
@@ -374,6 +373,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         }
                         content.dataset.src = cdn.endpoint + "/" + user + "/" + format + "/" + uid + "." + ext;
                         media.insertAdjacentHTML("beforeend", content.outerHTML);
+
+                        if (liked > 0) {
+                            var actions = boxes[2];
+                            var like = actions.find('.gg-heart').closest('ico');
+                            like.classList.add('color-ff3b30');
+                        }
 
                         if (caption) {
                             var about = boxes[4];
@@ -475,21 +480,40 @@ window.mvc.c ? null : (window.mvc.c = controller = {
     feed: {
         like: async function(target) {
             if (auth.user()) {
-                const a = function(data) {
-                    console.log(data);
-                };
-                const b = function(error) {
-                    console.log(error);
-                    alert(error.message);
-                };
-                var data = new FormData();
-                data.append("jwt", await auth.getIdToken());
-                data.append("ref", target.closest('[data-uid]').dataset.uid);
-                data.append("type", "like");
-                ajax("http://api.uios.tld" + "/v1/activity", {
-                    data,
-                    dataType: "POST"
-                }).then(a).catch(b);
+                const post = target.closest('[data-uid]');
+                const like = post.find('.gg-heart').closest('ico');
+                const jwt = await auth.getIdToken(); //console.log({jwt});
+                if (like.classList.contains('color-ff3b30')) {
+                    const a = function(data) {
+                        like.classList.remove('color-ff3b30')
+                        console.log('activity.like', data);
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        alert(error.message);
+                    };
+                    ajax("http://api.uios.tld" + "/v1/activity/like/"+post.dataset.uid+'?app=photo&jwt='+jwt, {
+                        dataType: "DELETE"
+                    }).then(a).catch(b);
+                } else {
+                    const a = function(data) {
+                        like.classList.add('color-ff3b30')
+                        console.log('activity.like', data);
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        alert(error.message);
+                    };
+                    var data = new FormData();
+                    data.append("app", "photo");
+                    data.append("jwt", jwt);
+                    data.append("ref", post.dataset.uid);
+                    data.append("type", "like");
+                    ajax("http://api.uios.tld" + "/v1/activity", {
+                        data,
+                        dataType: "POST"
+                    }).then(a).catch(b);
+                }
             }
         },
         more: function() {},

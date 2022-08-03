@@ -19,7 +19,7 @@ window.is = {
         return /^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
     }
     ,
-    local: href=>href.contains(['127.0.0.1', 'about:', 'blob:', 'file:', 'localhost']),
+    local: href=>href.contains(['127.0.0.1', 'about:', 'blob:', 'file:', 'localhost', 'tld']),
     mobile: ()=>{
         return ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend"in document)
     }
@@ -75,13 +75,9 @@ function init() {
 
     console.log("Initializing...");
 
-    window.rout.ing = (href,GOT,n,m=GOT[n],root=GOT[0])=>{
-        return m.includes("#") 
-            || (root === 'chat' && n > 1) 
-            || (root === 'my' && GOT[1] === "account" && n > 1) 
-            || (root === 'users' && n === 1);
+    window.rout.ing = function(href, GOT, n, m=GOT[n], root=GOT[0]) {
+        return m.includes("#") || (root === 'chat' && n > 1) || (root === 'my' && GOT[1] === "account" && n > 1) || (root === 'users' && n === 1);
     }
-    ;
 
     firebase.initializeApp(auth.config);
 
@@ -90,12 +86,12 @@ function init() {
         drag: on.touch.drag,
         press: on.touch.press,
         tap: on.touch.tap
-    };    
+    };
     touch.ing = false;
-    
+
     dom.body.dataset.theme = "meridiem";
     dom.body.addEventListener("click", function(e) {
-        if(window.touch.ing === false) {
+        if (window.touch.ing === false) {
             on.touch.tap(e);
             //console.log(e.type,window.touch.ing);
         } else {
@@ -123,21 +119,21 @@ function init() {
     var go = false;
     const onAuthStateChanged = function(user) {
         const authChange = function(e) {
-            const load = function (e) {
+            const load = function(e) {
                 dom.body.dataset.load = "ed";
             };
             dom.body.dataset.load = "ed";
         }
         auth.change(user).then(authChange);
-        if(user) {
-            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img src='"+(cdn.endpoint+"/"+user.uid+"/avi.jpg")+"'>";
+        if (user) {
+            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img src='" + (cdn.endpoint + "/" + user.uid + "/avi.jpg") + "'>";
         } else {
             byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
-        }        
+        }
         go ? null : (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router().then(go = true);
     }
-    
-    firebase.auth().onAuthStateChanged(onAuthStateChanged);       
+
+    firebase.auth().onAuthStateChanged(onAuthStateChanged);
 
     console.log("Initialized");
 
