@@ -43,15 +43,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         if (root) {
             if (root === "activity") {
                 var vp = dom.body.find('[data-page="' + page + '"]');
-                if (auth.user()) {
-                    vp.dataset.zIndex = 9;
-                    vp.dataset.tabletZIndex = 9;
-                    vp.dataset.mobileZIndex = 5;
-                } else {
-                    vp.dataset.zIndex = 9;
-                    vp.dataset.tabletZIndex = 9;
-                    vp.dataset.mobileZIndex = 9;
-                }
+                vp.dataset.zIndex = 9;
+                vp.dataset.vgaZIndex = 3;
+                vp.dataset.mobileZIndex = 5;
                 if (get.length > 1) {
                     //$('#tabs-activity > *').removeClass('color-000');
                     if (get.length > 2) {} else {
