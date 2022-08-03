@@ -492,7 +492,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         console.log(error);
                         alert(error.message);
                     };
-                    ajax("http://api.uios.tld" + "/v1/activity/like/"+post.dataset.uid+'?app=photo&jwt='+jwt, {
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/activity/like/"+post.dataset.uid+'?app=photo&jwt='+jwt, {
                         dataType: "DELETE"
                     }).then(a).catch(b);
                 } else {
@@ -509,7 +510,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     data.append("jwt", jwt);
                     data.append("ref", post.dataset.uid);
                     data.append("type", "like");
-                    ajax("http://api.uios.tld" + "/v1/activity", {
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/activity", {
                         data,
                         dataType: "POST"
                     }).then(a).catch(b);
