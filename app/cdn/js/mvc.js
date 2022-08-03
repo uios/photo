@@ -327,9 +327,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
         } else {
             var v = dom.body.find('page[data-page="/"]');
-            const jwt = await auth.getIdToken();
+            const jwt = auth.user() ? await auth.getIdToken() : null;
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-            ajax(endpoint + '/v1/posts?jwt=' + jwt).then(async(d)=>{
+                endpoint += '/v1/posts';
+                endpoint += (auth.user() ? '?jwt=' + jwt : '');
+            ajax(endpoint).then(async(d)=>{
                 var data = JSON.parse(d);
                 var posts = data.posts;
                 var feed = byId('feed-index-posts');
