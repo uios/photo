@@ -33,6 +33,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
 window.mvc.v ? null : (window.mvc.v = view = function(route) {
     console.log(route);
     return new Promise(async function(resolve, reject) {
+        var page = route.page;
         var path = route.path;
         var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
         var root = get[0];
@@ -41,6 +42,16 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
         if (root) {
             if (root === "activity") {
+                var vp = dom.body.find('[data-page="' + page + '"]');
+                if (auth.user()) {
+                    vp.dataset.zIndex = 9;
+                    vp.dataset.tabletZIndex = 9;
+                    vp.dataset.mobileZIndex = 5;
+                } else {
+                    vp.dataset.zIndex = 9;
+                    vp.dataset.tabletZIndex = 9;
+                    vp.dataset.mobileZIndex = 9;
+                }
                 if (get.length > 1) {
                     //$('#tabs-activity > *').removeClass('color-000');
                     if (get.length > 2) {} else {
@@ -329,8 +340,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             var v = dom.body.find('page[data-page="/"]');
             const jwt = auth.user() ? await auth.getIdToken() : null;
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                endpoint += '/v1/posts';
-                endpoint += (auth.user() ? '?jwt=' + jwt : '');
+            endpoint += '/v1/posts';
+            endpoint += (auth.user() ? '?jwt=' + jwt : '');
             ajax(endpoint).then(async(d)=>{
                 var data = JSON.parse(d);
                 var posts = data.posts;
@@ -484,7 +495,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             if (auth.user()) {
                 const post = target.closest('[data-uid]');
                 const like = post.find('.gg-heart').closest('ico');
-                const jwt = await auth.getIdToken(); //console.log({jwt});
+                const jwt = await auth.getIdToken();
+                //console.log({jwt});
                 if (like.classList.contains('color-ff3b30')) {
                     const a = function(data) {
                         like.classList.remove('color-ff3b30')
@@ -495,7 +507,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         alert(error.message);
                     };
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/activity/like/"+post.dataset.uid+'?app=photo&jwt='+jwt, {
+                    ajax(endpoint + "/v1/activity/like/" + post.dataset.uid + '?app=photo&jwt=' + jwt, {
                         dataType: "DELETE"
                     }).then(a).catch(b);
                 } else {
