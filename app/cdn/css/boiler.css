@@ -6550,10 +6550,6 @@ empty:hover {
     height: 100%;
 }
 
-[data-height="100%"] {
-    height: 100%;
-}
-
 [data-height="10px"] {
     height: 10px;
 }
@@ -6578,27 +6574,15 @@ empty:hover {
     height: 15px;
 }
 
-[data-height="16px"] {
+.height-16px, [data-height="16px"] {
     height: 16px;
 }
 
-[data-height="16px"] {
-    height: 16px;
-}
-
-[data-height="16px"] {
-    height: 16px;
-}
-
-[data-height="16px"] {
-    height: 16px;
-}
-
-[data-height="20px"] {
+.height-20px, [data-height="20px"] {
     height: 20px;
 }
 
-[data-height="30px"] {
+.height-30px, [data-height="30px"] {
     height: 30px;
 }
 
