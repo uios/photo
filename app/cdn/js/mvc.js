@@ -533,6 +533,12 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             }
         }
     },
+    comment: {
+        oninput: function(target) {
+            target.style.height = 'auto';
+            target.style.height = target.scrollHeight + 'px';
+        }
+    },
     my: {
         forgot: event=>{
             event.preventDefault();
