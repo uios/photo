@@ -526,7 +526,14 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 }
             }
         },
-        more: function() {},
+        more: async function(target) {
+            var template = await ajax('/cdn/html/template/template.post.more.html');
+            var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'lastElementChild'];
+            var boxes = html.all('box');
+            const uid = target.closest('[data-uid]').dataset.uid;
+            boxes[3].dataset.tap = '("/post/photo/'+uid+'").router().then(modal.exit(event.target))';
+            modal.card(html.outerHTML);
+        },
         save: function() {},
         share: function() {}
     },
