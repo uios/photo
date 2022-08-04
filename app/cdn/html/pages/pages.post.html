@@ -1,204 +1,212 @@
-<wrap class="backdrop-blur-10px bg-d2 flex min-height-100pc relative scroll-y width-100pc" id="post">
-  <form class="direction-row dw1000px-direction-column margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px" id="post-form" onsubmit="controller.post.submit(event);">
-    <blocks id="post-er">
-      <block class="dw960px-margin-x-auto dw960px-width-480px hide margin-right max-width-100pc width-320px" id="post-header">
-        <section>
-          <card id="post-tabs">
-            <picture class="absolute bg-black bottom-0 top-unset height-2px transition-1s width-50pc"></picture>
-            <section class="space-evenly" data-api="controller" data-method="post" data-resource="type">
-              <box class="align-center direction-row justify-content width-50pc" data-format="photo" data-selected="true">
-                <ico>
-                  <n class="gg-image"></n>
-                </ico>
-                <text>Photo</text>
-              </box>
-              <box class="align-center direction-row justify-content width-50pc" data-format="video">
-                <ico>
-                  <n class="gg-film"></n>
-                </ico>
-                <text>Video</text>
-              </box>
-              <box class="align-center hide justify-content width-50pc" data-format="audio">
-                <ico>
-                  <n class="gg-music"></n>
-                </ico>
-              </box>
-              <box class="align-center hide justify-content width-50pc" data-format="pages">
-                <ico>
-                  <n class="gg-file-document"></n>
-                </ico>
-              </box>
-              <box class="align-center hide justify-content width-50pc" data-format="merch">
-                <ico>
-                  <n class="gg-shopping-bag"></n>
-                </ico>
-              </box>
-            </section>
-          </card>
-        </section>
-      </block>
-      <block class="dw960px-width-480px margin-x-auto max-width-100pc mobile-padding-0 padding-y-36px dw960px-padding-bottom-0" id="post-media">
-        <section class="direction-row dw960px-direction-column">
-          <card class="bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-50pc" id="camera">
-            <section>
-              <box class="aspect-ratio-1x1" id="camera-aspect">
-                <canvas class="hide" id="camera-canvas"></canvas>
-                <picture class="absolute absolute-full" id="camera-photo">
-                  <img class="absolute absolute-full">
-                </picture>
-                <video class="absolute absolute-full webcam-show" data-scale-x="-1" id="camera-video"></video>
-              </box>
-              <box class="absolute color-fff webcam-show" data-api="webcam" data-method="control" data-resource="stop" id="camera-disable">
+<wrap class="backdrop-blur-10px bg-fa flex min-height-100pc relative scroll-y width-100pc" id="post">
+    <header class="bg-white border-bottom-1px-solid border-color-db hide mobile-flex position-fixed top-0 width-100pc z-index-5" id="media-header">
+        <row class="align-center justify-center relative width-100pc">
+            <ico class="absolute left-0" data-tap="rout.ed.back()">
+                <n class="gg-chevron-left"></n>
+            </ico>
+            <text class="bolder line-height-50px">Photo</text>
+        </row>
+    </header>
+    <form class="direction-row dw1000px-direction-column margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px" id="post-form" onsubmit="controller.post.submit(event);">
+        <blocks id="post-er">
+            <block class="dw960px-margin-x-auto dw960px-width-480px hide margin-right max-width-100pc width-320px" id="post-header">
                 <section>
-                  <picture class="height-36px invert width-36px">
-                    <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/power.svg">                        
-                  </picture>
-                  <text class="line-height-36px">Disable</text>
-                </section>                      
-              </box>
-              <box class="absolute color-fff right-0 webcam-show" data-api="webcam" data-method="control" data-resource="switch"  id="camera-flip">
-                <section>
-                  <text class="line-height-36px">Flip</text>
-                  <picture class="height-36px invert width-36px">
-                    <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/flip.svg">                        
-                  </picture>
-                </section>                      
-              </box>
-              <box class="absolute absolute-full height-120px margin-auto text-align-center webcam-hide width-200px" id="camera-permissions">
-                <section class="direction-column">
-                  <text class="margin-bottom-20px">Allow access to your camera and microphone</text>
-                  <text class="bg-2f80ec border-radius-5px color-fff line-height-36px" data-api="webcam" data-method="control" data-resource="play">Enable Webcam</text>
+                    <card id="post-tabs">
+                        <picture class="absolute bg-black bottom-0 top-unset height-2px transition-1s width-50pc"></picture>
+                        <section class="space-evenly" data-api="controller" data-method="post" data-resource="type">
+                            <box class="align-center direction-row justify-content width-50pc" data-format="photo" data-selected="true">
+                                <ico>
+                                    <n class="gg-image"></n>
+                                </ico>
+                                <text>Photo</text>
+                            </box>
+                            <box class="align-center direction-row justify-content width-50pc" data-format="video">
+                                <ico>
+                                    <n class="gg-film"></n>
+                                </ico>
+                                <text>Video</text>
+                            </box>
+                            <box class="align-center hide justify-content width-50pc" data-format="audio">
+                                <ico>
+                                    <n class="gg-music"></n>
+                                </ico>
+                            </box>
+                            <box class="align-center hide justify-content width-50pc" data-format="pages">
+                                <ico>
+                                    <n class="gg-file-document"></n>
+                                </ico>
+                            </box>
+                            <box class="align-center hide justify-content width-50pc" data-format="merch">
+                                <ico>
+                                    <n class="gg-shopping-bag"></n>
+                                </ico>
+                            </box>
+                        </section>
+                    </card>
                 </section>
-              </box>           
-              <box class="bottom-0 hide fixed left-0" data-href="/post/" id="camera-back">
-                <section>
-                  <ico data-height="36px" data-width="36px">
-                    <n class="gg-chevron-left"></n>
-                  </ico>
-                  <text class="line-height-36px">Back</text>
-                </section>                      
-              </box>
-              <box class="bottom-0 hide fixed right-0" data-api="controller" data-method="post" data-resource="skip" id="camera-next">
-                <section>
-                  <text class="line-height-36px">Next</text>
-                  <ico data-height="36px" data-width="36px">
-                    <n class="gg-chevron-right"></n>
-                  </ico>
-                </section>                      
-              </box>
-            </section>
-          </card>
-          <card class="dw960px-width-100pc dw960px-margin-top-20px dw1000px-margin-left-0 margin-left-20px mobile-margin-top-0 width-50pc" id="post-options">
-            <section>
-              <box class="aspect-ratio-1x1 dw960px-aspect-ratio-16x9 mobile-hide" id="post-options-aspect">
-                <section></section>                      
-              </box>
-              <box class="absolute mobile-bottom-0 mobile-webcam-color-fff">
-                <section>
-                  <ico data-height="36px" data-width="36px">
-                    <n class="gg-share"></n>
-                  </ico>
-                  <text class="line-height-36px">Embed</text>
-                </section>                      
-              </box>
-              <box class="absolute mobile-bottom-0 mobile-webcam-color-fff right-0" data-accept="image/jpeg" data-file="post-file">
-                <section>
-                  <text class="line-height-36px">Upload</text>
-                  <ico data-height="36px" data-width="36px">
-                    <n class="gg-software-upload"></n>
-                  </ico>
-                  <input id="post-file" onchange="controller.post.file(this)" type="file">
-                </section>                      
-              </box>
-              <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-api="controller" data-height="120px" data-method="post" data-mobile-top="calc(100vw + 50px)" data-resource="snap" data-tap=" controller.post.snap(event.target)" data-width="120px" data-z-index="5">
-                <section>
-                  <picture id="camera-shutter">
-                    <img src="https://share.uios.computer/cdn/svg/shutter.svg">
-                  </picture>
-                  <ico class="absolute absolute-full hide" data-height="100%" data-width="100%" id="camcorder-shutter">
-                    <n class="absolute border-2px-solid border-color-000 border-radius-50pc dark-border-color-fff" data-height="calc(100% - 4px)" data-width="calc(100% - 4px)"></n>
-                    <n class="absolute bg-black dark-bg-fff border-radius-50pc" data-height="calc(100% - 8px)" data-width="calc(100% - 8px)"></n>
-                  </ico>
-                </section>                      
-              </box>
-              <box class="absolute bottom-0 mobile-fixed" data-tap="rout.ed.close()">
-                <section>
-                  <ico data-height="36px" data-width="36px">
-                    <n class="gg-chevron-left"></n>
-                  </ico>
-                  <text class="line-height-36px">Exit</text>
-                </section>                      
-              </box>
-              <box class="absolute bottom-0 right-0 mobile-fixed" data-api="controller" data-method="post" data-resource="skip">
-                <section>
-                  <text class="line-height-36px">Skip</text>
-                  <ico data-height="36px" data-width="36px">
-                    <n class="gg-chevron-right"></n>
-                  </ico>
-                </section>                      
-              </box>
-            </section>
-          </card>
-        </section>
-      </block>
-    </blocks>
-    <blocks class="flex-1" id="post-format">
-      <page data-page="/post/photo/">
-        <blocks>
-          <block>
-            <section>
-              <card id="post-photo-metadata">
-                <section class="direction-column">
-                  <box class="border-1px-solid border-radius-20px font-size-18px height-36px line-height-36px padding-x-10px width-100pc-20px" id="post-photo-metadata-title">
-                    <section>
-                      <input class="dark-color-fff" placeholder="Enter a title">
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-20px font-size-18px margin-y-20px padding-10px width-100pc-20px" id="post-photo-metadata-details">
-                    <section>
-                      <textarea class="dark-color-fff min-height-100px" placeholder="Briefly describe the content in the photo. Feel free to add any credits and legal notes."></textarea>
-                    </section>
-                  </box>
-                  <box class="width-100pc" id="post-photo-metadata-tags">
-                    <section>
-                      <span class="align-center border-1px-solid border-radius-20px font-size-18px height-36px justify-center line-height-36px padding-x-10px">
-                        <ico data-height="20px" data-width="20px">
-                          <n class="gg-math-plus"></n>
-                        </ico>
-                        <text class="margin-left-5px" contenteditable="true" placeholder="Add Tag"></text>
-                      </span>
-                    </section>
-                  </box>
+            </block>
+            <block class="dw960px-width-480px margin-x-auto max-width-100pc mobile-padding-0 padding-y-36px dw960px-padding-bottom-0" id="post-media">
+                <section class="direction-row dw960px-direction-column">
+                    <card class="bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-50pc" id="camera">
+                        <section>
+                            <box class="aspect-ratio-1x1" id="camera-aspect">
+                                <canvas class="hide" id="camera-canvas"></canvas>
+                                <picture class="absolute absolute-full" id="camera-photo">
+                                    <img class="absolute absolute-full">
+                                </picture>
+                                <video class="absolute absolute-full webcam-show" data-scale-x="-1" id="camera-video"></video>
+                            </box>
+                            <box class="absolute color-fff webcam-show" data-api="webcam" data-method="control" data-resource="stop" id="camera-disable">
+                                <section>
+                                    <picture class="height-36px invert width-36px">
+                                        <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/power.svg">
+                                    </picture>
+                                    <text class="line-height-36px">Disable</text>
+                                </section>
+                            </box>
+                            <box class="absolute color-fff right-0 webcam-show" data-api="webcam" data-method="control" data-resource="switch" id="camera-flip">
+                                <section>
+                                    <text class="line-height-36px">Flip</text>
+                                    <picture class="height-36px invert width-36px">
+                                        <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/flip.svg">
+                                    </picture>
+                                </section>
+                            </box>
+                            <box class="absolute absolute-full height-120px margin-auto text-align-center webcam-hide width-200px" id="camera-permissions">
+                                <section class="direction-column">
+                                    <text class="margin-bottom-20px">Allow access to your camera and microphone</text>
+                                    <text class="bg-2f80ec border-radius-5px color-fff line-height-36px" data-api="webcam" data-method="control" data-resource="play">Enable Webcam</text>
+                                </section>
+                            </box>
+                            <box class="bottom-0 hide fixed left-0" data-href="/post/" id="camera-back">
+                                <section>
+                                    <ico data-height="36px" data-width="36px">
+                                        <n class="gg-chevron-left"></n>
+                                    </ico>
+                                    <text class="line-height-36px">Back</text>
+                                </section>
+                            </box>
+                            <box class="bottom-0 hide fixed right-0" data-api="controller" data-method="post" data-resource="skip" id="camera-next">
+                                <section>
+                                    <text class="line-height-36px">Next</text>
+                                    <ico data-height="36px" data-width="36px">
+                                        <n class="gg-chevron-right"></n>
+                                    </ico>
+                                </section>
+                            </box>
+                        </section>
+                    </card>
+                    <card class="dw960px-width-100pc dw960px-margin-top-20px dw1000px-margin-left-0 margin-left-20px mobile-margin-top-0 width-50pc" id="post-options">
+                        <section>
+                            <box class="aspect-ratio-1x1 dw960px-aspect-ratio-16x9 mobile-hide" id="post-options-aspect">
+                                <section></section>
+                            </box>
+                            <box class="absolute mobile-bottom-0 mobile-webcam-color-fff">
+                                <section>
+                                    <ico data-height="36px" data-width="36px">
+                                        <n class="gg-share"></n>
+                                    </ico>
+                                    <text class="line-height-36px">Embed</text>
+                                </section>
+                            </box>
+                            <box class="absolute mobile-bottom-0 mobile-webcam-color-fff right-0" data-accept="image/jpeg" data-file="post-file">
+                                <section>
+                                    <text class="line-height-36px">Upload</text>
+                                    <ico data-height="36px" data-width="36px">
+                                        <n class="gg-software-upload"></n>
+                                    </ico>
+                                    <input id="post-file" onchange="controller.post.file(this)" type="file">
+                                </section>
+                            </box>
+                            <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-api="controller" data-height="120px" data-method="post" data-mobile-top="calc(100vw + 50px)" data-resource="snap" data-tap=" controller.post.snap(event.target)" data-width="120px" data-z-index="5">
+                                <section>
+                                    <picture id="camera-shutter">
+                                        <img src="https://share.uios.computer/cdn/svg/shutter.svg">
+                                    </picture>
+                                    <ico class="absolute absolute-full hide" data-height="100%" data-width="100%" id="camcorder-shutter">
+                                        <n class="absolute border-2px-solid border-color-000 border-radius-50pc dark-border-color-fff" data-height="calc(100% - 4px)" data-width="calc(100% - 4px)"></n>
+                                        <n class="absolute bg-black dark-bg-fff border-radius-50pc" data-height="calc(100% - 8px)" data-width="calc(100% - 8px)"></n>
+                                    </ico>
+                                </section>
+                            </box>
+                            <box class="absolute bottom-0 mobile-fixed" data-tap="rout.ed.close()">
+                                <section>
+                                    <ico data-height="36px" data-width="36px">
+                                        <n class="gg-chevron-left"></n>
+                                    </ico>
+                                    <text class="line-height-36px">Exit</text>
+                                </section>
+                            </box>
+                            <box class="absolute bottom-0 right-0 mobile-fixed" data-api="controller" data-method="post" data-resource="skip">
+                                <section>
+                                    <text class="line-height-36px">Skip</text>
+                                    <ico data-height="36px" data-width="36px">
+                                        <n class="gg-chevron-right"></n>
+                                    </ico>
+                                </section>
+                            </box>
+                        </section>
+                    </card>
                 </section>
-              </card>
-              <card id="post-photo-submit">
-                <section class="grid-gap-10px" data-columns="2" data-mobile-columns="1">
-                  <box class="bg-black border-1px-solid border-color-000 border-radius-50px dark-border-color-fff font-size-18px height-36px line-height-36px text-align-center" data-submit="post-form">
-                    <section class="justify-center">
-                      <input class="color-fff dark-color-000" type="submit" value="Post It">
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
-                    <section class="justify-center">
-                      <text>Preview</text>
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
-                    <section class="justify-center">
-                      <text>Save Draft</text>
-                    </section>
-                  </box>
-                  <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center" data-href="/post/">
-                    <section class="justify-center">
-                      <text>Cancel</text>
-                    </section>
-                  </box>
-                </section>
-              </card>
-            </section>
-          </block>
+            </block>
         </blocks>
-      </page>
-    </blocks>
-  </form>
+        <blocks class="flex-1" id="post-format">
+            <page data-page="/post/photo/">
+                <blocks>
+                    <block>
+                        <section>
+                            <card id="post-photo-metadata">
+                                <section class="direction-column">
+                                    <box class="border-1px-solid border-radius-20px font-size-18px height-36px line-height-36px padding-x-10px width-100pc-20px" id="post-photo-metadata-title">
+                                        <section>
+                                            <input class="dark-color-fff" placeholder="Enter a title">
+                                        </section>
+                                    </box>
+                                    <box class="border-1px-solid border-radius-20px font-size-18px margin-y-20px padding-10px width-100pc-20px" id="post-photo-metadata-details">
+                                        <section>
+                                            <textarea class="dark-color-fff min-height-100px" placeholder="Briefly describe the content in the photo. Feel free to add any credits and legal notes."></textarea>
+                                        </section>
+                                    </box>
+                                    <box class="width-100pc" id="post-photo-metadata-tags">
+                                        <section>
+                                            <span class="align-center border-1px-solid border-radius-20px font-size-18px height-36px justify-center line-height-36px padding-x-10px">
+                                                <ico data-height="20px" data-width="20px">
+                                                    <n class="gg-math-plus"></n>
+                                                </ico>
+                                                <text class="margin-left-5px" contenteditable="true" placeholder="Add Tag"></text>
+                                            </span>
+                                        </section>
+                                    </box>
+                                </section>
+                            </card>
+                            <card id="post-photo-submit">
+                                <section class="grid-gap-10px" data-columns="2" data-mobile-columns="1">
+                                    <box class="bg-black border-1px-solid border-color-000 border-radius-50px dark-border-color-fff font-size-18px height-36px line-height-36px text-align-center" data-submit="post-form">
+                                        <section class="justify-center">
+                                            <input class="color-fff dark-color-000" type="submit" value="Post It">
+                                        </section>
+                                    </box>
+                                    <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
+                                        <section class="justify-center">
+                                            <text>Preview</text>
+                                        </section>
+                                    </box>
+                                    <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
+                                        <section class="justify-center">
+                                            <text>Save Draft</text>
+                                        </section>
+                                    </box>
+                                    <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center" data-href="/post/">
+                                        <section class="justify-center">
+                                            <text>Cancel</text>
+                                        </section>
+                                    </box>
+                                </section>
+                            </card>
+                        </section>
+                    </block>
+                </blocks>
+            </page>
+        </blocks>
+    </form>
 </wrap>

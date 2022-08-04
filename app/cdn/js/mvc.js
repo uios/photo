@@ -146,6 +146,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 }
                 resolve(route);
             } else if (root === "post") {
+                var vp = dom.body.find('pages[data-root="' + root + '"]');
+
                 var post = byId('post');
                 var postEr = byId('post-er');
                 var postForm = byId('post-form');
@@ -165,8 +167,59 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 var cameraPhoto = byId('camera-photo');
                 var cameraVideo = camera.find('video');
 
+                var postPhoto = byId('post-photo');
+                var postPhotoSubmit = byId('post-photo-submit');
+                var mediaHeader = byId('media-header');
+
                 if (get.length > 1) {
-                    if (get.length > 2) {} else {
+                    var format = get[1];
+                    if (get.length > 2) {
+                        var uid = get[2];
+                        if (format === "photo") {
+                            vp.dataset.zIndex = 3;
+                            vp.dataset.vgaZIndex = 3;
+                            vp.dataset.mobileZIndex = 5;
+
+                            mediaHeader.classList.add('mobile-flex');
+
+                            postEr.className = "dw1000px-padding-y-20px dw1000px-width-600px margin-x-auto max-width-100pc mobile-padding-top-0 width-50pc";
+                            postForm.className = "direction-row dw1000px-direction-column dw1000px-margin-x-auto margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px";
+                            postFormat.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-left-20px max-width-100pc mobile-max-width-100pc-20px mobile-padding-x-10px";
+                            postPhotoSubmit.className = "flex-1 dw1000px-width-600px dw1000px-margin-x-auto margin-y-20px max-width-100pc";
+                            postHeader.className = "hide";
+                            postMedia.className = "dw1000px-width-600px margin-x-auto max-width-100pc mobile-margin-top-50px dw960px-padding-bottom-0";
+                            postOptions.className = "hide";
+                            camera.className = "bg-e5e5e5 border-radius-20px dw960px-width-100pc mobile-border-radius-0 mobile-margin-0 overflow-hidden width-100pc";
+                            cameraDisable.classList.add('hide');
+                            cameraFlip.classList.add('hide');
+                            cameraPermissions.className = "hide";
+
+                            var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                            ajax(endpoint + "/v1/posts/" + uid).then(function(d) {
+                                var data = JSON.parse(d);
+                                var post = data.post;
+                                var user = post.user;
+                                var uid = post.uid;
+                                var ext = post.format;
+
+                                var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
+                                console.log(src);
+                                cameraPhoto.find('img').src = src;
+                            });
+                        } else {
+                            vp.dataset.zIndex = 9;
+                            vp.dataset.vgaZIndex = 9;
+                            vp.dataset.mobileZIndex = 9;
+
+                            mediaHeader.classList.remove('mobile-flex');
+                        }
+                    } else {
+                        vp.dataset.zIndex = 9;
+                        vp.dataset.vgaZIndex = 9;
+                        vp.dataset.mobileZIndex = 9;
+
+                        mediaHeader.classList.remove('mobile-flex');
+
                         var format = get[1];
                         if (format === "photo") {
                             var postPhoto = byId('post-photo');
@@ -206,6 +259,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         cameraVideo.classList.add('hide');
                     }
                 } else {
+                    vp.dataset.zIndex = 9;
+                    vp.dataset.vgaZIndex = 9;
+                    vp.dataset.mobileZIndex = 9;
+
+                    mediaHeader.classList.remove('mobile-flex');
+
                     postEr.removeAttribute('class');
                     postForm.className = "direction-row margin-auto max-width-100pc-40px mobile-margin-0 mobile-max-width-100pc width-1280px dw1000px-direction-column";
                     postFormat.className = "flex-1";
@@ -272,42 +331,33 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         } else {
                             byId('tab-user-profile').classList.add('color-000');
-                            ajax(api.endpoint + '/v1/posts/' + uid).then(async(d)=>{
-                                var data = JSON.parse(d);
-                                var posts = data.posts;
-                                if (posts) {
-                                    var html = await ajax('/cdn/html/template/template.post.card.grid.html');
-                                    var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-                                    byId('users-user-posts').innerHTML = "";
-                                    var p = 0;
-                                    do {
-                                        var post = posts[p];
-                                        var ext = post.format;
 
-                                        var card = template.cloneNode(true);
-                                        var boxes = card.all('box');
+                            var posts = json.posts;
+                            if (posts) {
+                                var html = await ajax('/cdn/html/template/template.post.card.grid.html');
+                                var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                byId('users-user-posts').innerHTML = "";
+                                var p = 0;
+                                do {
+                                    var post = posts[p];
+                                    var ext = post.format;
 
-                                        var format = "";
-                                        if (['jpg'].includes(ext)) {
-                                            format = "photo";
-                                        } else if (['mp4'].includes(ext)) {
-                                            format = "video";
-                                        }
-                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+                                    var card = template.cloneNode(true);
+                                    var boxes = card.all('box');
 
-                                        byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
-                                        p++;
-                                    } while (p < posts.length);
-                                }
-                                resolve(route);
+                                    var format = "";
+                                    if (['jpg'].includes(ext)) {
+                                        format = "photo";
+                                    } else if (['mp4'].includes(ext)) {
+                                        format = "video";
+                                    }
+                                    boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+
+                                    byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
+                                    p++;
+                                } while (p < posts.length);
                             }
-                            ).catch((e)=>{
-                                console.log('mvc.v users user /v1/posts/:user catch', {
-                                    e
-                                });
-                                resolve(route);
-                            }
-                            );
+                            resolve(route);
                         }
                     }
                     ).catch((e)=>{
@@ -531,7 +581,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'lastElementChild'];
             var boxes = html.all('box');
             const uid = target.closest('[data-uid]').dataset.uid;
-            boxes[3].dataset.tap = '("/post/photo/'+uid+'").router().then(modal.exit(event.target))';
+            boxes[3].dataset.tap = '("/post/photo/' + uid + '").router().then(modal.exit(event.target))';
             modal.card(html.outerHTML);
         },
         save: function() {},
