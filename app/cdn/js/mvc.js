@@ -601,7 +601,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'lastElementChild'];
             var boxes = html.all('box');
             const uid = target.closest('[data-uid]').dataset.uid;
-            boxes[3].dataset.tap = '("/post/photo/' + uid + '").router().then(modal.exit(event.target))';
+            boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
             modal.card(html.outerHTML);
         },
         save: function() {},
