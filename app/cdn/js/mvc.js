@@ -150,17 +150,30 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     var vp = dom.body.find('page[data-page="' + page + '"]');
                     var uid = get[1];
 
+                    const jwt = auth.user() ? await auth.getIdToken() : null;
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/posts/" + uid).then(function(d) {
-                        var data = JSON.parse(d); console.log({data});
+                    endpoint += '/v1/posts/' + uid;
+                    endpoint += (auth.user() ? '?jwt=' + jwt : '');
+                    ajax(endpoint).then(function(d) {
+                        var data = JSON.parse(d);
+                        console.log({
+                            data
+                        });
                         var post = data.post;
                         var user = post.user;
                         var uid = post.uid;
                         var ext = post.format;
+                        var liked = post.liked;
 
                         var photoPost = byId('photo-post');
                         var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
                         photoPost.find('img').src = src;
+
+                        if (liked > 0) {
+                            var actions = vp.find('[data-order="3"]').all('box')[1];
+                            var like = actions.find('.gg-heart').closest('ico');
+                            like.classList.add('color-ff3b30');
+                        }
 
                         resolve(route);
                     });
@@ -601,7 +614,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'lastElementChild'];
             var boxes = html.all('box');
             const uid = target.closest('[data-uid]').dataset.uid;
-            boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
+            dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
             modal.card(html.outerHTML);
         },
         save: function() {},
