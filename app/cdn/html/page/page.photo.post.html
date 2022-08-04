@@ -1,0 +1,78 @@
+<blocks class="-tablet-padding-top-0 margin-top-45px padding-top-4vh">
+    <block class="-tablet-border-unset -tablet-max-width-100pct border-1px-solid border-color-db box-sizing-border-box margin-x-auto max-width-100pc-minus-40px width-960px">
+        <section class="-tablet-flex-direction-column flex-direction-row width-100pc">
+            <card class="flex-1" data-order="2">
+                <column>
+                    <box>
+                        <section class="overflow-hidden padding-top-100pct width-100pct">
+                            <picture class="position-absolute top-0" id="photo-post">
+                                <img class="height-100pc top-0 width-100pc">
+                            </picture>
+                        </section>
+                    </box>
+                </column>
+            </card>
+            <card class="-tablet-position-relative -tablet-width-100pct height-50px position-absolute right-0 width-320px" data-order="2" data-tablet-order="1">
+                <column>
+                    <box class="border-bottom-1px-solid border-color-db width-100pct">
+                        <row>
+                            <picture class="empty"></picture>
+                            <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
+                                <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
+                            </picture>
+                            <text class="bolder line-height-50px" placeholder="username"></text>
+                            <ico class="margin-left" data-tap="controller.feed.more(event.target)">
+                                <n class="gg-more-alt"></n>
+                            </ico>
+                        </row>
+                    </box>
+                </column>
+            </card>
+            <card class="-tablet-padding-0 -tablet-width-100pct height-100pc padding-top-50px width-320px" data-order="3">
+                <column>
+                    <box class="height-100pct flex-1">
+                        <column></column>
+                    </box>
+                    <box class="border-color-db border-top-1px-solid fg-black margin-bottom-5px margin-top-auto" data-height="50px" data-width="100%">
+                        <section>
+                            <ico data-height="50px" data-tap="controller.feed.like(event.target)" data-width="50px">
+                                <n class="gg-heart"></n>
+                            </ico>
+                            <ico data-height="50px" data-width="50px">
+                                <n class="gg-comment"></n>
+                            </ico>
+                            <ico data-height="50px" data-width="50px">
+                                <n class="gg-share"></n>
+                            </ico>
+                            <ico class="margin-left" data-height="50px" data-width="50px">
+                                <n class="gg-bookmark"></n>
+                            </ico>
+                        </section>
+                    </box>
+                    <box class="font-size-14px margin-bottom-10px padding-x-10px">
+                        <section>
+                            <text class="bolder">
+                                <span>0</span>
+                                <span>likes</span>
+                            </text>
+                        </section>
+                    </box>
+                    <box class="color-8e font-size-10px padding-x-10px tablet-margin-bottom-10px">
+                        <section>
+                            <text>February 22, 2022</text>
+                        </section>
+                    </box>
+                    <box class="-tablet-display-none border-color-db border-top-1px-solid margin-top-10px">
+                        <row>
+                            <ico>
+                                <n class="gg-smile"></n>
+                            </ico>
+                            <textarea class="flex-1" placeholder="Add a comment..."></textarea>
+                            <text class="bolder fg-b line-height-50px margin-left opacity-50pc padding-x-20px">Post</text>
+                        </row>
+                    </box>
+                </column>
+            </card>
+        </section>
+    </block>
+</blocks>

@@ -145,6 +145,26 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     }
                 }
                 resolve(route);
+            } else if (root === "photo") {
+                if (get.length > 1) {
+                    var vp = dom.body.find('page[data-page="' + page + '"]');
+                    var uid = get[1];
+
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/posts/" + uid).then(function(d) {
+                        var data = JSON.parse(d); console.log({data});
+                        var post = data.post;
+                        var user = post.user;
+                        var uid = post.uid;
+                        var ext = post.format;
+
+                        var photoPost = byId('photo-post');
+                        var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
+                        photoPost.find('img').src = src;
+
+                        resolve(route);
+                    });
+                }
             } else if (root === "post") {
                 var vp = dom.body.find('pages[data-root="' + root + '"]');
 
