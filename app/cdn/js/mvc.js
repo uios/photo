@@ -164,6 +164,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var likes = post.likes;
                         var username = post.username;
 
+                        var block = vp.find('block');
+                        block.dataset.uid = uid;
+
                         var photoPost = byId('photo-post');
                         var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
                         photoPost.find('img').src = src;
