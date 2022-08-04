@@ -1,69 +1,78 @@
 <card class="bg-white border-radius-10px box-shadow-0-0-0-1px margin-bottom-20px mobile-border-radius-0 mobile-shadow-unset" data-width="100%">
-  <section class="direction-column">
-    <box class="fg-black" data-height="50px" data-width="100%">
-      <section>
-        <span>
-          <picture class="empty" data-height="50px" data-width="50px"><img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)"></picture>
-          <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
-            <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-          </picture>
-          <text class="bolder line-height-50px" placeholder="username"></text>
-        </span>
-        <ico class="margin-left" data-tap="controller.feed.more(event.target)">
-          <n class="gg-more-alt"></n>
-        </ico>
-      </section>
-    </box>
-    <box data-width="100%">
-      <section>
-        <media class="aspect-ratio-1x1 bg-lightgray box-shadow-1px empty overflow-hidden" data-width="100%"></media>
-        <div class="aspect-ratio-1x1 bg-lightgray box-shadow-1px empty-state" data-width="100%"></div>
-      </section>
-    </box>
-    <box class="fg-black margin-bottom-5px" data-height="50px" data-width="100%">
-      <section>
-        <ico data-height="50px" data-tap="controller.feed.like(event.target)" data-width="50px">
-          <n class="gg-heart"></n>
-        </ico>
-        <ico data-height="50px" data-width="50px">
-          <n class="gg-comment"></n>
-        </ico>
-        <ico data-height="50px" data-width="50px">
-          <n class="gg-share"></n>
-        </ico>
-        <ico class="margin-left" data-height="50px" data-width="50px">
-          <n class="gg-bookmark"></n>
-        </ico>
-      </section>
-    </box>
-    <box class="font-size-14px color-000 margin-bottom-10px padding-x-10px">
-      <section>
-        <text class="bolder empty"></text>
-        <text class="empty-after padding-bottom-10px"><span class="noauth">Log in</span><span class="isauth">Be the first</span> to <b>like this</b></text>
-      </section>
-    </box>
-    <box class="color-000 hide margin-bottom-5px padding-x-10px">
-      <section>
-        <text><b>username</b> <span>Lorem ipsum dolor sit amet</span></text>
-      </section>
-    </box>
-    <box class="color-8e font-size-14px hide margin-bottom-10px padding-x-10px">
-      <section>
-        <text>View all 999 comments</text>
-      </section>
-    </box>
-    <box class="color-8e font-size-10px padding-x-10px tablet-margin-bottom-10px">
-      <section>
-        <text>February 22, 2022</text>
-      </section>
-    </box>
-    <box class="border-top-1px-solid border-color-eee color-000 margin-top-10px tablet-hide" data-height="50px" data-width="100%">
-      <section>
-        <ico data-height="50px" data-width="50px">
-          <n class="gg-smile"></n>
-        </ico>
-        <text class="bolder fg-b line-height-50px margin-left opacity-50pc padding-x-20px">Post</text>
-      </section>
-    </box>
-  </section>
+    <section class="direction-column">
+        <box class="fg-black" data-height="50px" data-width="100%">
+            <section>
+                <span>
+                    <picture class="empty" data-height="50px" data-width="50px">
+                        <img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)">
+                    </picture>
+                    <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
+                        <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
+                    </picture>
+                    <text class="bolder line-height-50px" placeholder="username"></text>
+                </span>
+                <ico class="margin-left" data-tap="controller.feed.more(event.target)">
+                    <n class="gg-more-alt"></n>
+                </ico>
+            </section>
+        </box>
+        <box data-width="100%">
+            <section>
+                <media class="aspect-ratio-1x1 bg-lightgray box-shadow-1px empty overflow-hidden" data-width="100%"></media>
+                <div class="aspect-ratio-1x1 bg-lightgray box-shadow-1px empty-state" data-width="100%"></div>
+            </section>
+        </box>
+        <box class="fg-black margin-bottom-5px" data-height="50px" data-width="100%">
+            <section>
+                <ico data-height="50px" data-tap="controller.feed.like(event.target)" data-width="50px">
+                    <n class="gg-heart"></n>
+                </ico>
+                <ico data-height="50px" data-width="50px">
+                    <n class="gg-comment"></n>
+                </ico>
+                <ico data-height="50px" data-width="50px">
+                    <n class="gg-share"></n>
+                </ico>
+                <ico class="margin-left" data-height="50px" data-width="50px">
+                    <n class="gg-bookmark"></n>
+                </ico>
+            </section>
+        </box>
+        <box class="font-size-14px color-000 margin-bottom-10px padding-x-10px">
+            <section>
+                <text class="bolder empty"></text>
+                <text class="empty-state padding-bottom-10px">
+                    <span class="noauth">Log in</span>
+                    <span class="isauth">Be the first</span>
+                    to <b>like this</b>
+                </text>
+            </section>
+        </box>
+        <box class="color-000 hide margin-bottom-5px padding-x-10px">
+            <section>
+                <text>
+                    <b>username</b>
+                    <span>Lorem ipsum dolor sit amet</span>
+                </text>
+            </section>
+        </box>
+        <box class="color-8e font-size-14px hide margin-bottom-10px padding-x-10px">
+            <section>
+                <text>View all 999 comments</text>
+            </section>
+        </box>
+        <box class="color-8e font-size-10px padding-x-10px tablet-margin-bottom-10px">
+            <section>
+                <text>February 22, 2022</text>
+            </section>
+        </box>
+        <box class="border-top-1px-solid border-color-eee color-000 margin-top-10px tablet-hide" data-height="50px" data-width="100%">
+            <section>
+                <ico data-height="50px" data-width="50px">
+                    <n class="gg-smile"></n>
+                </ico>
+                <text class="bolder fg-b line-height-50px margin-left opacity-50pc padding-x-20px">Post</text>
+            </section>
+        </box>
+    </section>
 </card>

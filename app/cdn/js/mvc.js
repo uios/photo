@@ -454,6 +454,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var user = post.user;
                         var username = post.username;
                         var liked = post.liked;
+                        var likes = post.likes;
 
                         var card = html.firstElementChild.cloneNode(true);
                         var boxes = card.all('box');
@@ -481,6 +482,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             var actions = boxes[2];
                             var like = actions.find('.gg-heart').closest('ico');
                             like.classList.add('color-ff3b30');
+                        }
+
+                        if (likes > 0) {
+                            var stats = boxes[3].find('text');
+                            stats.textContent = likes + " like" + (likes > 1 ? "s" : "");
                         }
 
                         if (caption) {
