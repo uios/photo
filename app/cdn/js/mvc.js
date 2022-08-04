@@ -169,10 +169,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
                         photoPost.find('img').src = src;
 
+                        var actions = vp.find('[data-order="3"]').all('box')[1];
+                        var like = actions.find('.gg-heart').closest('ico');
                         if (liked > 0) {
-                            var actions = vp.find('[data-order="3"]').all('box')[1];
-                            var like = actions.find('.gg-heart').closest('ico');
                             like.classList.add('color-ff3b30');
+                        } else {
+                            like.classList.remove('color-ff3b30');
                         }
 
                         resolve(route);
