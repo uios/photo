@@ -156,26 +156,34 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     endpoint += (auth.user() ? '?jwt=' + jwt : '');
                     ajax(endpoint).then(function(d) {
                         var data = JSON.parse(d);
-                        console.log({
-                            data
-                        });
                         var post = data.post;
                         var user = post.user;
                         var uid = post.uid;
                         var ext = post.format;
                         var liked = post.liked;
+                        var likes = post.likes;
+                        var username = post.username;
 
                         var photoPost = byId('photo-post');
                         var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
                         photoPost.find('img').src = src;
 
+                        var profile = vp.find('[data-tablet-order="1"]');
+                        profile.all('box')[0].dataset.href = "/users/" + username + "/";
+                        profile.find('picture img').src = cdn.endpoint + "/" + user + "/avi.jpg";
+                        profile.find('[placeholder="username"]').textContent = username;
+
                         var actions = vp.find('[data-order="3"]').all('box')[1];
+
                         var like = actions.find('.gg-heart').closest('ico');
                         if (liked > 0) {
                             like.classList.add('color-ff3b30');
                         } else {
                             like.classList.remove('color-ff3b30');
                         }
+
+                        var stats = vp.find('[data-order="3"]').all('box')[2];
+                        stats.find('span').textContent = likes;
 
                         resolve(route);
                     });

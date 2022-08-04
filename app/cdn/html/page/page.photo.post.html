@@ -12,21 +12,29 @@
                     </box>
                 </column>
             </card>
-            <card class="-tablet-position-relative -tablet-width-100pct height-50px position-absolute right-0 width-320px" data-order="2" data-tablet-order="1" data-z-index="5">
-                <column>
-                    <box class="border-bottom-1px-solid border-color-db width-100pct">
+            <card class="-tablet-position-relative -tablet-width-100pct border-bottom-1px-solid border-color-db height-50px position-absolute right-0 width-320px" data-order="2" data-tablet-order="1" data-z-index="5">
+                <row>
+                    <box class="margin-10px">
                         <row>
-                            <picture class="empty"></picture>
+                            <picture class="empty"><img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)"></picture>
                             <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
                                 <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                            </picture>
+                            </picture
+                        </row>
+                    </box>
+                    <box>
+                        <row>
                             <text class="bolder line-height-50px" placeholder="username"></text>
-                            <ico class="margin-left" data-tap="controller.feed.more(event.target)">
+                        </row>
+                    </box>
+                    <box class="margin-left">
+                        <row>
+                            <ico data-tap="controller.feed.more(event.target)">
                                 <n class="gg-more-alt"></n>
                             </ico>
                         </row>
                     </box>
-                </column>
+                </row>
             </card>
             <card class="-tablet-background-color-unset -tablet-width-100pct background-color-fff height-100pc width-320px" data-order="3">
                 <column class="-tablet-padding-0 flex-1 padding-top-50px">
