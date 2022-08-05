@@ -154,8 +154,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
                     endpoint += '/v1/posts/' + uid;
                     endpoint += (auth.user() ? '?jwt=' + jwt : '');
-                    ajax(endpoint).then(function(d) {
+                    ajax(endpoint).then(async function(d) {
                         var data = JSON.parse(d);
+                        var comments = data.comments;
                         var post = data.post;
                         var user = post.user;
                         var uid = post.uid;
@@ -175,6 +176,25 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         profile.all('box')[0].dataset.href = "/users/" + username + "/";
                         profile.find('picture img').src = cdn.endpoint + "/" + user + "/avi.jpg";
                         profile.find('[placeholder="username"]').textContent = username;
+
+                        if (comments && comments.length > 0) {
+                            const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
+                            var template = postComments.firstElementChild;
+                            var html = template.cloneNode(true);
+                            html.classList.remove('hide');
+
+                            var c = 0;
+                            do {
+                                var comment = comments[c];
+                                html.all('text span')[0].textContent = comment.username;
+                                html.all('text span')[1].textContent = comment.comment;
+                                postComments.insertAdjacentHTML('beforeend', html.outerHTML);
+                                c++;
+                            } while (c < comments.length);
+                            console.log('post.comments', {
+                                comments
+                            });
+                        }
 
                         var actions = vp.find('[data-order="3"]').all('box')[1];
 
@@ -537,14 +557,26 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         onkeydown: function(event) {
             var keyCode = event.keyCode;
             var target = event.target;
+            var submit = target.closest('form').find('[type="submit"]');
             if (keyCode === 13) {
                 event.preventDefault();
-                target.closest('form').find('[type="submit"]').click();
+                submit.click();
             } else {
                 const target = event.target;
                 target.style.height = 'auto';
                 target.style.height = target.scrollHeight + 'px';
             }
+        },
+        onkeyup: function(event) {
+            var keyCode = event.keyCode;
+            var target = event.target;
+            var submit = target.closest('form').find('[type="submit"]');
+            if (target.value.length > 0) {
+                submit.removeAttribute('disabled');
+            } else {
+                submit.setAttribute('disabled', true);
+            }
+
         },
         onsubmit: async function(event) {
             event.preventDefault();

@@ -1,4 +1,4 @@
-<blocks class="-tablet-padding-top-0 margin-top-45px padding-top-4vh">
+<blocks class="-tablet-padding-top-0 margin-bottom-45px margin-top-45px padding-top-4vh">
     <block class="-tablet-border-unset -tablet-max-width-100pct border-1px-solid border-color-db box-sizing-border-box margin-x-auto max-width-100pc-minus-40px width-960px">
         <section class="-tablet-flex-direction-column flex-direction-row width-100pc" data-columns="auto 320px" data-tablet-columns="1">
             <card class="flex-1" data-order="2">
@@ -40,9 +40,9 @@
             </card>
             <card class="-tablet-background-color-unset -tablet-width-100pct background-color-fff height-100pc width-320px" data-order="3">
                 <column class="-tablet-padding-0 flex-1 padding-top-50px">
-                    <box class="flex-1 justify-content-flex-start scroll-y width-100pct"">
-                        <column class="absolute grid-gap-20px padding-y-20px" data-columns="1">
-                            <row>
+                    <box class="flex-1 justify-content-flex-start scroll-y width-100pct" data-order="1" data-tablet-order="4">
+                        <column class="-tablet-position-relative absolute grid-gap-20px padding-y-20px" data-columns="1">
+                            <row class="hide">
                                 <ico class="margin-x-10px" data-height="30px" data-width="30px">
                                     <picture class="empty"></picture>
                                     <picture class="bg-db border-radius-50pc empty-state" data-height="30px" data-width="30px">
@@ -50,37 +50,13 @@
                                     </picture>
                                 </ico>
                                 <text>
-                                    <span class="bolder">username</span>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin ipsum a leo auctor, at rutrum metus pharetra. Donec rutrum, augue sed volutpat consectetur, magna odio consequat mi, in pellentesque dolor enim non arcu. Donec commodo sem sit amet nisi volutpat volutpat. Praesent ac diam vitae nisi congue elementum. Etiam.</span>
-                                </text>
-                            </row>
-                            <row>
-                                <ico class="margin-x-10px" data-height="30px" data-width="30px">
-                                    <picture class="empty"></picture>
-                                    <picture class="bg-db border-radius-50pc empty-state" data-height="30px" data-width="30px">
-                                        <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                                    </picture>
-                                </ico>
-                                <text>
-                                    <span class="bolder">username</span>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin ipsum a leo auctor, at rutrum metus pharetra. Donec rutrum, augue sed volutpat consectetur, magna odio consequat mi, in pellentesque dolor enim non arcu. Donec commodo sem sit amet nisi volutpat volutpat. Praesent ac diam vitae nisi congue elementum. Etiam.</span>
-                                </text>
-                            </row>
-                            <row>
-                                <ico class="margin-x-10px" data-height="30px" data-width="30px">
-                                    <picture class="empty"></picture>
-                                    <picture class="bg-db border-radius-50pc empty-state" data-height="30px" data-width="30px">
-                                        <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                                    </picture>
-                                </ico>
-                                <text>
-                                    <span class="bolder">username</span>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin ipsum a leo auctor, at rutrum metus pharetra. Donec rutrum, augue sed volutpat consectetur, magna odio consequat mi, in pellentesque dolor enim non arcu. Donec commodo sem sit amet nisi volutpat volutpat. Praesent ac diam vitae nisi congue elementum. Etiam.</span>
+                                    <span class="bolder"></span>
+                                    <span></span>
                                 </text>
                             </row>
                         </column>
                     </box>
-                    <box class="border-color-db border-top-1px-solid fg-black margin-bottom-5px margin-top-auto" data-height="50px" data-width="100%">
+                    <box class="border-color-db border-top-1px-solid fg-black margin-bottom-5px margin-top-auto" data-height="50px" data-order="2" data-width="100%">
                         <section>
                             <ico data-height="50px" data-tap="controller.feed.like(event.target)" data-width="50px">
                                 <n class="gg-heart"></n>
@@ -96,7 +72,7 @@
                             </ico>
                         </section>
                     </box>
-                    <box class="font-size-14px margin-bottom-10px padding-x-10px">
+                    <box class="font-size-14px margin-bottom-10px padding-x-10px" data-order="3">
                         <section>
                             <text class="bolder">
                                 <span>0</span>
@@ -104,19 +80,18 @@
                             </text>
                         </section>
                     </box>
-                    <box class="color-8e font-size-10px padding-x-10px tablet-margin-bottom-10px">
+                    <box class="color-8e font-size-10px padding-x-10px tablet-margin-bottom-10px" data-order="5">
                         <section>
                             <text>February 22, 2022</text>
                         </section>
                     </box>
-                    <form class="-tablet-display-none border-color-db border-top-1px-solid margin-top-10px" onsubmit="controller.comment.onsubmit(event)">
+                    <form class="-tablet-display-none border-color-db border-top-1px-solid margin-top-10px" data-order="6" onsubmit="controller.comment.onsubmit(event)">
                         <row class="align-items-center justify-content-center">
                             <ico>
                                 <n class="gg-smile"></n>
                             </ico>
-                            <textarea class="flex-1 line-height-18px" onkeydown="controller.comment.onkeydown(event)" placeholder="Add a comment..." rows="1" style="height:18px"></textarea>
-                            <text class="bolder fg-b line-height-50px margin-left opacity-50pc padding-x-20px">Post</text>
-                            <input type="submit">
+                            <textarea class="flex-1 line-height-18px" onkeydown="controller.comment.onkeydown(event)" onkeyup="controller.comment.onkeyup(event)" placeholder="Add a comment..." rows="1" style="height:18px"></textarea>
+                            <input class="-disabled-opacity-50pct bolder fg-b font-size-16px line-height-50px margin-left padding-x-20px" disabled type="submit" value="Post">
                         </row>
                     </form>
                 </column>
