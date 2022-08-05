@@ -534,9 +534,48 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     comment: {
-        oninput: function(target) {
-            target.style.height = 'auto';
-            target.style.height = target.scrollHeight + 'px';
+        onkeydown: function(event) {
+            var keyCode = event.keyCode;
+            var target = event.target;
+            if (keyCode === 13) {
+                event.preventDefault();
+                target.closest('form').find('[type="submit"]').click();
+            } else {
+                const target = event.target;
+                target.style.height = 'auto';
+                target.style.height = target.scrollHeight + 'px';
+            }
+        },
+        onsubmit: async function(event) {
+            event.preventDefault();
+
+            const target = event.target;
+            const post = target.closest('[data-uid]');
+            const ref = post.dataset.uid;
+            const jwt = await auth.getIdToken();
+            const textarea = target.find('textarea');
+            const text = textarea.value;
+
+            if (text.length > 0) {
+                var data = new FormData();
+                data.append("ref", ref);
+                data.append("jwt", jwt);
+                data.append("text", text);
+
+                const a = function(data) {
+                    console.log('POST comment', data);
+                    textarea.value = "";
+                };
+                const b = function(error) {
+                    console.log(error);
+                    alert(error.message);
+                };
+                var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                ajax(endpoint + "/v1/comments", {
+                    data,
+                    dataType: "POST"
+                }).then(a).catch(b);
+            }
         }
     },
     my: {

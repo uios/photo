@@ -1313,79 +1313,6 @@ empty > section {
     }
 }
 
-/*POSITION*/
-@media screen {
-    .bottom-0 {
-        bottom: 0;
-    }
-
-    .bottom-10px {
-        bottom: 10px;
-    }
-
-    .bottom-20px {
-        bottom: 20px;
-    }
-
-    .bottom-30px {
-        bottom: 30px;
-    }
-
-    .bottom-40px {
-        bottom: 40px;
-    }
-
-    .bottom-50px {
-        bottom: 50px;
-    }
-
-    .bottom-100px {
-        bottom: 100px;
-    }
-
-    .bottom--20px {
-        bottom: -20px;
-    }
-
-    .bottom--80px {
-        bottom: -80px;
-    }
-
-    .bottom--100px {
-        bottom: -100px;
-    }
-
-    .bottom-100pc {
-        bottom: 100%;
-    }
-
-    .left-320px {
-        left: 320px;
-    }
-
-    @media screen and (max-width: 768px) {
-        .mobile-left-0 {
-            left: 0;
-        }
-
-        .mobile-left-50px {
-            left: 50px;
-        }
-    }
-
-    .top-unset {
-        top: unset;
-    }
-
-    .margin-20px {
-        margin: 20px;
-    }
-
-    .right-20px {
-        right: 20px;
-    }
-}
-
 /*SHELL*/
 @media screen {
     box sound {
@@ -2576,6 +2503,10 @@ img {
 
 .height-100pc-40px, .height-100pc--40px {
     height: calc(100% - 40px);
+}
+
+.height-75pc, .height-75pct, [data-height="75%"] {
+    height: calc(75%);
 }
 
 .max-height-100pc-10px, .max-height-100pc--10px {
@@ -4809,24 +4740,89 @@ empty:hover {
     text-shadow: #333 0px 0px 10px;
 }
 
-.bottom-0 {
-    bottom: 0;
-}
+/*POSITION*/
+@media screen {
+    .bottom-0 {
+        bottom: 0;
+    }
 
-.bottom-5px {
-    bottom: 5px;
-}
+    .bottom-5px {
+        bottom: 5px;
+    }
 
-.bottom-10px {
-    bottom: 10px;
-}
+    .bottom-10px {
+        bottom: 10px;
+    }
 
-.right-5px {
-    right: 5px;
-}
+    .bottom-20px {
+        bottom: 20px;
+    }
 
-.right-10px {
-    right: 10px;
+    .bottom-30px {
+        bottom: 30px;
+    }
+
+    .bottom-40px {
+        bottom: 40px;
+    }
+
+    .bottom-50px {
+        bottom: 50px;
+    }
+
+    .bottom-100px {
+        bottom: 100px;
+    }
+
+    .bottom--20px {
+        bottom: -20px;
+    }
+
+    .bottom--80px {
+        bottom: -80px;
+    }
+
+    .bottom--100px {
+        bottom: -100px;
+    }
+
+    .bottom-100pc {
+        bottom: 100%;
+    }
+
+    .left-320px {
+        left: 320px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .mobile-left-0 {
+            left: 0;
+        }
+
+        .mobile-left-50px {
+            left: 50px;
+        }
+    }
+
+    .top-unset {
+        top: unset;
+    }
+
+    .margin-20px {
+        margin: 20px;
+    }
+
+    .right-5px {
+        right: 5px;
+    }
+
+    .right-10px {
+        right: 10px;
+    }
+
+    .right-20px {
+        right: 20px;
+    }
 }
 
 .right-960px-0 {
