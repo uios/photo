@@ -732,7 +732,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         },
         more: async function(target) {
             var template = await ajax('/cdn/html/template/template.post.more.html');
-            var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'lastElementChild'];
+            var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'firstElementChild'];
             var boxes = html.all('box');
             const uid = target.closest('[data-uid]').dataset.uid;
             dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
