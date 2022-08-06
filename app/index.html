@@ -29,7 +29,7 @@
         <script id="script-mvc" src="/cdn/js/mvc.js"></script>
         <script id="script-on" src="https://cdn.endk.it/js/on.js"></script>
         <script id="script-modal" src="https://cdn.endk.it/js/modal.js"></script>
-        <script id="script-router" src="https://cdn.endk.it/js/router.js"></script>
+        <script id="script-router" src="/cdn/js/router.js"></script>
         <!--<script id="script-touch-polyfill" src="https://cdn.endk.it/js/touch.polyfill.js"></script>-->
         <script id="script-touch" src="https://cdn.endk.it/js/touch.js"></script>
         <script id="script-webcam" src="https://cdn.endk.it/js/webcam.js"></script>
@@ -105,6 +105,14 @@
                     </section>
                 </card>
             </section>
+            <section class="-tablet-position-fixed background-color-fff height-44px hide justify-center line-height-44px tablet-flex z-index-5" data-page="/photo/*/comments/">
+                <row class="align-items-center justify-content-center width-100pct">
+                    <ico class="left-0 position-absolute" data-href="/photo/:get/">
+                        <n class="gg-chevron-left"></n>
+                    </ico>
+                    <text class="font-weight-bolder">Comments</text>
+                </row>
+            </section>
         </header>
         <page class="fixed height-100pc scroll-y" data-fetch="/cdn/html/page/page.my.html" data-page="/my/"></page>
         <!--<page class="fixed height-100pc scroll-y" data-fetch="/cdn/html/page/page.my.account.html" data-page="/my/account/"></page>-->
@@ -113,7 +121,7 @@
             <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>
             <page data-fetch="/cdn/html/page/page.find.html" data-page="/find/"></page>
             <page data-fetch="/cdn/html/page/page.find.html" data-page="/photo/"></page>
-            <page data-fetch="/cdn/html/page/page.photo.post.html" data-page="/photo/*/"></page>
+            <pages data-fetch="/cdn/html/page/page.photo.post.html" data-pages="/photo/*/" data-root="/photo/*/"></pages>
             <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
         </main>
         <pages class="fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.chat.html" data-height="100%" data-pages="/chat/" data-root="chat"></pages>

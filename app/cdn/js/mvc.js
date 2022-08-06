@@ -147,8 +147,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 resolve(route);
             } else if (root === "photo") {
                 if (get.length > 1) {
-                    var vp = dom.body.find('page[data-page="' + page + '"]');
+                    var vp = dom.body.find('pages[data-pages="' + route.root + '"]');
+                    console.log({
+                        vp,
+                        route
+                    });
                     var uid = get[1];
+
+                    const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
 
                     const jwt = auth.user() ? await auth.getIdToken() : null;
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
@@ -177,23 +183,18 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         profile.find('picture img').src = cdn.endpoint + "/" + user + "/avi.jpg";
                         profile.find('[placeholder="username"]').textContent = username;
 
-                        if (comments && comments.length > 0) {
-                            const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
-                            var template = postComments.firstElementChild;
+                        if (postComments.find('[data-columns]').children.length === 1 && comments && comments.length > 0) {
+                            var template = postComments.find('[data-columns]').firstElementChild;
                             var html = template.cloneNode(true);
                             html.classList.remove('hide');
-
                             var c = 0;
                             do {
                                 var comment = comments[c];
                                 html.all('text span')[0].textContent = comment.username;
                                 html.all('text span')[1].textContent = comment.comment;
-                                postComments.insertAdjacentHTML('beforeend', html.outerHTML);
+                                postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);
                                 c++;
                             } while (c < comments.length);
-                            console.log('post.comments', {
-                                comments
-                            });
                         }
 
                         var actions = vp.find('[data-order="3"]').all('box')[1];
@@ -210,6 +211,18 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         resolve(route);
                     });
+
+                    const formComment = vp.find('[data-order="3"]').find('form');
+                    const postColumn = postComments.firstElementChild;
+                    if (get[2] === "comments") {
+                        postComments.className = "-tablet-background-color-fff -tablet-position-fixed -tablet-top-0 absolute height-100pc scroll-y width-100pc z-index-5";
+                        postColumn.className = "-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px";
+                        formComment.className = "-mobile-bottom-44px -tablet-background-color-fff -tablet-bottom-0 -tablet-position-fixed -tablet-z-index-5 border-color-db border-top-1px-solid margin-top-10px";
+                    } else {
+                        postComments.className = "-tablet-position-relative absolute";
+                        postColumn.className = "grid-gap-20px padding-y-20px";
+                        formComment.className = "-tablet-display-none border-color-db border-top-1px-solid margin-top-10px";
+                    }
                 }
             } else if (root === "post") {
                 var vp = dom.body.find('pages[data-root="' + root + '"]');

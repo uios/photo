@@ -12,7 +12,7 @@
                     </box>
                 </column>
             </card>
-            <card class="-tablet-position-relative -tablet-width-100pct border-bottom-1px-solid border-color-db height-50px position-absolute right-0 width-320px" data-order="2" data-tablet-order="1" data-z-index="5">
+            <card class="-tablet-position-relative -tablet-width-100pct -tablet-z-index-unset border-bottom-1px-solid border-color-db height-50px position-absolute right-0 width-320px z-index-3" data-order="2" data-tablet-order="1">
                 <row>
                     <box class="margin-10px">
                         <row>
@@ -41,19 +41,21 @@
             <card class="-tablet-background-color-unset -tablet-width-100pct background-color-fff height-100pc width-320px" data-order="3">
                 <column class="-tablet-padding-0 flex-1 padding-top-50px">
                     <box class="flex-1 justify-content-flex-start scroll-y width-100pct" data-order="1" data-tablet-order="4">
-                        <column class="-tablet-position-relative absolute grid-gap-20px padding-y-20px" data-columns="1">
-                            <row class="hide">
-                                <ico class="margin-x-10px" data-height="30px" data-width="30px">
-                                    <picture class="empty"></picture>
-                                    <picture class="bg-db border-radius-50pc empty-state" data-height="30px" data-width="30px">
-                                        <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                                    </picture>
-                                </ico>
-                                <text>
-                                    <span class="bolder"></span>
-                                    <span></span>
-                                </text>
-                            </row>
+                        <column class="-tablet-position-relative absolute">
+                            <section class="-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px" data-columns="1">
+                                <row class="hide">
+                                    <ico class="margin-x-10px" data-height="30px" data-width="30px">
+                                        <picture class="empty"></picture>
+                                        <picture class="bg-db border-radius-50pc empty-state" data-height="30px" data-width="30px">
+                                            <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
+                                        </picture>
+                                    </ico>
+                                    <text>
+                                        <span class="bolder"></span>
+                                        <span></span>
+                                    </text>
+                                </row>
+                            </section>
                         </column>
                     </box>
                     <box class="border-color-db border-top-1px-solid fg-black margin-bottom-5px margin-top-auto" data-height="50px" data-order="2" data-width="100%">
@@ -61,7 +63,7 @@
                             <ico data-height="50px" data-tap="controller.feed.like(event.target)" data-width="50px">
                                 <n class="gg-heart"></n>
                             </ico>
-                            <ico data-height="50px" data-width="50px">
+                            <ico data-height="50px" data-href="/photo/:get/comments/" data-width="50px">
                                 <n class="gg-comment"></n>
                             </ico>
                             <ico data-height="50px" data-width="50px">
@@ -85,7 +87,7 @@
                             <text>February 22, 2022</text>
                         </section>
                     </box>
-                    <form class="-tablet-display-none border-color-db border-top-1px-solid margin-top-10px" data-order="6" onsubmit="controller.comment.onsubmit(event)">
+                    <form class="-tablet-display-none border-color-db border-top-1px-solid margin-top-10px" data-order="6" id="form-post-comment" onsubmit="controller.comment.onsubmit(event)">
                         <row class="align-items-center justify-content-center">
                             <ico>
                                 <n class="gg-smile"></n>
