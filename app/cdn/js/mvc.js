@@ -217,7 +217,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     if (get[2] === "comments") {
                         postComments.className = "-tablet-background-color-fff -tablet-position-fixed -tablet-top-0 absolute height-100pc scroll-y width-100pc z-index-5";
                         postColumn.className = "-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px";
-                        formComment.className = "-mobile-bottom-44px -tablet-background-color-fff -tablet-bottom-0 -tablet-position-fixed -tablet-z-index-5 border-color-db border-top-1px-solid margin-top-10px";
+                        formComment.className = "-mobile-bottom-44px -tablet-background-color-fff -tablet-bottom-0 -tablet-position-fixed -tablet-z-index-6 border-color-db border-top-1px-solid margin-top-10px";
                     } else {
                         postComments.className = "-tablet-position-relative absolute";
                         postColumn.className = "-nth-child-3-last-display-block grid-gap-20px padding-y-20px";

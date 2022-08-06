@@ -8939,6 +8939,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     .-tablet-z-index-5, [data-tablet-z-index="5"] {
         z-index: 12345;
     }
+    
+    .-tablet-z-index-6, [data-tablet-z-index="6"] {
+        z-index: 123456;
+    }
 
     .-tablet-z-index-3, [data-tablet-z-index="3"] {
         z-index: 123;
