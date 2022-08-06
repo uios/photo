@@ -220,7 +220,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         formComment.className = "-mobile-bottom-44px -tablet-background-color-fff -tablet-bottom-0 -tablet-position-fixed -tablet-z-index-5 border-color-db border-top-1px-solid margin-top-10px";
                     } else {
                         postComments.className = "-tablet-position-relative absolute";
-                        postColumn.className = "grid-gap-20px padding-y-20px";
+                        postColumn.className = "-nth-child-3-last-display-block grid-gap-20px padding-y-20px";
                         formComment.className = "-tablet-display-none border-color-db border-top-1px-solid margin-top-10px";
                     }
                 }
@@ -607,9 +607,20 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 data.append("jwt", jwt);
                 data.append("text", text);
 
-                const a = function(data) {
+                const a = function(d) {
+                    const data = JSON.parse(d);
+                    const comment = data.comment;
                     console.log('POST comment', data);
                     textarea.value = "";
+
+                    var vp = dom.body.find('pages[data-pages="/photo/*/"]');
+                    const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
+                    var template = postComments.find('[data-columns]').firstElementChild;
+                    var html = template.cloneNode(true);
+                    html.classList.remove('hide');
+                    html.all('text span')[0].textContent = comment.username;
+                    html.all('text span')[1].textContent = comment.comment;
+                    postComments.find('[data-columns]').firstElementChild.insertAdjacentHTML('afterend', html.outerHTML);
                 };
                 const b = function(error) {
                     console.log(error);

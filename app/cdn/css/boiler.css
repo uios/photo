@@ -1524,6 +1524,10 @@ ico > svg {
     display: none;
 }
 
+.-nth-child-3-last-display-block > :nth-child(3) ~ * {
+    display: none;
+}
+
 [data-flex-direction="row"], .direction-row, .flex-direction-row {
     flex-direction: row;
 }
