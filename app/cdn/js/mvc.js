@@ -57,7 +57,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 resolve(route);
             } else if (root === "chat") {
                 var vp = dom.body.find('[data-root="' + root + '"]');
-                vp.dataset.zIndex = 3;
+                vp.dataset.zIndex = 9;
                 vp.dataset.mobileZIndex = 9;
 
                 if (get.length > 1) {

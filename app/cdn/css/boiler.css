@@ -2392,6 +2392,10 @@ img {
     line-height: 20px;
 }
 
+.line-height-22px {
+    line-height: 22px;
+}
+
 .line-height-25px {
     line-height: 25px;
 }
@@ -2519,6 +2523,10 @@ img {
 
 .height-100pc-40px, .height-100pc--40px {
     height: calc(100% - 40px);
+}
+
+.height-100pc-45px, .height-100pc--45px, [data-height="calc(100% - 45px)"] {
+    height: calc(100% - 45px);
 }
 
 .height-75pc, .height-75pct, [data-height="75%"] {
@@ -7514,6 +7522,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
 
 [data-width="40px"] {
     width: 40px;
+}
+
+[data-width="44px"] {
+    width: 44px;
 }
 
 [data-width="50px"] {
