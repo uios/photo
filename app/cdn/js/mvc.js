@@ -190,6 +190,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             var c = 0;
                             do {
                                 var comment = comments[c];
+                                html.find('picture img').dataset.src = cdn.endpoint+"/"+comment.user+"/avi.jpg";
                                 html.all('text span')[0].textContent = comment.username;
                                 html.all('text span')[1].textContent = comment.comment;
                                 postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);
