@@ -2553,7 +2553,7 @@ img {
     max-height: calc(100% - 60px);
 }
 
-.max-height-100pc-70px, .max-height-100pc--70px {
+.max-height-100pc-70px, .max-height-100pc-minus-70px {
     max-height: calc(100% - 70px);
 }
 
@@ -2569,8 +2569,14 @@ img {
     max-height: calc(100% - 120px);
 }
 
-.preview-device {
-    width: 1366px;
+.max-height-100pc-120px, .max-height-100pc-minus-140px {
+    max-height: calc(100% - 140px);
+}
+
+@media screen and (max-width: 768px) {
+    .-tablet-max-height-auto {
+        max-height: unset;
+    }
 }
 
 .empty:empty {
@@ -4964,11 +4970,11 @@ empty:hover {
         .-tablet-bottom-0 {
             bottom: 0;
         }
-        
+
         .-tablet-bottom-45px {
             bottom: 45px;
         }
-        
+
         .-tablet-top-0, .tablet-top-0 {
             top: 0;
         }
@@ -4984,7 +4990,7 @@ empty:hover {
         .-mobile-top-0 {
             top: 0;
         }
-        
+
         .-mobile-bottom-44px {
             bottom: 44px;
         }
@@ -6678,6 +6684,10 @@ empty:hover {
     height: 60px;
 }
 
+.height-640px, [data-height="640px"] {
+    height: 640px;
+}
+
 [data-height="70px"] {
     height: 70px;
 }
@@ -6839,8 +6849,12 @@ empty:hover {
 }
 
 @media screen and (max-width: 768px) {
-    .tablet-height-auto, [data-tablet-height="auto"] {
+    .-tablet-height-auto, .tablet-height-auto, [data-tablet-height="auto"] {
         height: auto;
+    }
+
+    .-tablet-height-180px {
+        height: 180px;
     }
 
     [data-tablet-height="100%"] {
@@ -8335,6 +8349,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     width: 250px;
 }
 
+.width-260px {
+    width: 260px;
+}
+
 [data-width="((100%-40px/3)*2)+20px"] {
     width: calc(20px + (((100% - 40px) / 3) * 2));
 }
@@ -8666,6 +8684,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
         width: 768px;
     }
 
+    .-tablet-width-260px {
+        width: 260px;
+    }
+
     .tablet-width-100px, [data-tablet-width="100px"] {
         width: 100px;
     }
@@ -8947,11 +8969,11 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     .-tablet-z-index-unset, [data-tablet-z-index="unset"] {
         z-index: unset;
     }
-    
+
     .-tablet-z-index-5, [data-tablet-z-index="5"] {
         z-index: 12345;
     }
-    
+
     .-tablet-z-index-6, [data-tablet-z-index="6"] {
         z-index: 123456;
     }
