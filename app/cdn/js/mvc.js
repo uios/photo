@@ -190,7 +190,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             var c = 0;
                             do {
                                 var comment = comments[c];
-                                html.find('picture img').dataset.src = cdn.endpoint+"/"+comment.user+"/avi.jpg";
+                                html.find('picture img').dataset.src = cdn.endpoint + "/" + comment.user + "/avi.jpg";
                                 html.all('text span')[0].textContent = comment.username;
                                 html.all('text span')[1].textContent = comment.comment;
                                 postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);
@@ -629,6 +629,61 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 };
                 var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
                 ajax(endpoint + "/v1/comments", {
+                    data,
+                    dataType: "POST"
+                }).then(a).catch(b);
+            }
+        }
+    },
+    convo: {
+        onkeydown: function(event) {
+            var keyCode = event.keyCode;
+            var target = event.target;
+            var submit = target.closest('form').find('[type="submit"]');
+            if (keyCode === 13) {
+                event.preventDefault();
+                submit.click();
+            } else {
+                const target = event.target;
+                target.style.height = 'auto';
+                target.style.height = target.scrollHeight + 'px';
+            }
+        },
+        onkeyup: function(event) {
+            var keyCode = event.keyCode;
+            var target = event.target;
+            var submit = target.closest('form').find('[type="submit"]');
+            if (target.value.length > 0) {
+                submit.removeAttribute('disabled');
+            } else {
+                submit.setAttribute('disabled', true);
+            }
+
+        },
+        onsubmit: async function(event) {
+            event.preventDefault();
+
+            const target = event.target;
+            var users = [];
+
+            if (users.length > 0) {
+                var data = new FormData();
+                data.append("ref", ref);
+                data.append("jwt", jwt);
+                data.append("text", text);
+
+                const a = function(d) {
+                    const data = JSON.parse(d);
+                    const comment = data.comment;
+                    console.log('POST comment', data);
+                    textarea.value = "";
+                };
+                const b = function(error) {
+                    console.log(error);
+                    alert(error.message);
+                };
+                var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                ajax(endpoint + "/v1/messages/" + users, {
                     data,
                     dataType: "POST"
                 }).then(a).catch(b);

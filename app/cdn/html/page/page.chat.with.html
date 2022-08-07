@@ -1,7 +1,7 @@
 <block class="height-100pc position-fixed top-0 width-100pc z-index-7" data-page="/chat/with/">
-    <form class="height-100pc padding-y-70px scroll-y">
+    <form class="-mobile-padding-y-0 height-100pc padding-y-70px scroll-y">
         <picture class="absolute absolute-full bg-black-1-2" data-href="/chat/"></picture>
-        <card class="-tablet-height-auto -tablet-max-height-auto -tablet-width-260px background-color-fff border-radius-10px height-640px margin-auto max-width-100pc-minus-40px width-400px font-size-14px line-height-50px">
+        <card class="-mobile-border-radius-0 -mobile-height-100pc -mobile-max-width-100pc -mobile-width-100pc -tablet-height-auto -tablet-max-height-auto -tablet-width-260px background-color-fff border-radius-10px height-640px margin-auto max-width-100pc-minus-40px width-400px font-size-14px line-height-50px">
             <column>
                 <box class="border-bottom-1px-solid border-color-db position-relative">
                     <row class="align-center justify-content-center left-0 position-relative space-between width-100pc">
@@ -17,7 +17,7 @@
                 <box class="border-bottom-1px-solid border-color-db padding-x-20px">
                     <row class="flex-start">
                         <text class="bolder">To:</text>
-                        <input class="flex-1 margin-x-20px" placeholder="Search">
+                        <input class="margin-x-20px" onkeydown="controller.convo.onkeydown(event)" onkeyup="controller.convo.onkeyup(event)" placeholder="Search">
                     </row>
                 </box>
             </column>

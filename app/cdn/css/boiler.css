@@ -1080,7 +1080,7 @@ empty > section {
     }
 
     @media screen and (max-width: 480px) {
-        .mobile-border-radius-0 {
+        .-mobile-border-radius-0, .mobile-border-radius-0 {
             border-radius: 0;
         }
 
@@ -1269,16 +1269,16 @@ empty > section {
     }
 
     @media screen and (max-width: 480px) {
-        .mobile-border-unset {
-            border: unset;
-        }
-
         .mobile-border-bottom-1px-solid {
             border-bottom: 1px solid;
         }
 
         .mobile-border-top-1px-solid {
             border-top: 1px solid;
+        }
+        
+        .-mobile-border-unset, .mobile-border-unset {
+            border: unset;
         }
     }
 
@@ -3665,7 +3665,7 @@ iframe[data-device="mobile"] {
 }
 
 @media screen and (max-width: 480px) {
-    .mobile-max-width-100pc {
+    .-mobile-max-width-100pc, .mobile-max-width-100pc {
         max-width: calc(100% - 0px);
     }
 
@@ -3799,55 +3799,6 @@ iframe[data-device="mobile"] {
     }
 }
 
-@media screen and (max-width: 480px) {
-    .mobile-height-100pc {
-        height: calc(100%);
-    }
-
-    .mobile-height-100pc-50px {
-        height: calc(100% - 50px);
-    }
-
-    .mobile-height-100pc-60px {
-        height: calc(100% - 60px);
-    }
-
-    .mobile-height-100pc-70px {
-        height: calc(100% - 70px);
-    }
-
-    .mobile-height-100pc-80px {
-        height: calc(100% - 80px);
-    }
-
-    .mobile-height-100pc-90px {
-        height: calc(100% - 90px);
-    }
-
-    [data-mobile-height="100%-20px"] {
-        height: calc(100% - 20px);
-    }
-
-    [data-mobile-height="100%-40px"] {
-        height: calc(100% - 40px);
-    }
-
-    [data-mobile-height="100%-10px"] {
-        height: calc(100% - 10px);
-    }
-
-    [data-mobile-height="100%-20px"] {
-        height: calc(100% - 20px);
-    }
-
-    [data-mobile-height="100%-40px"] {
-        height: calc(100% - 40px);
-    }
-
-    [data-mobile-height="100%-55px"] {
-        height: calc(100% - 55px);
-    }
-}
 
 .min-width-20px {
     min-width: 20px;
@@ -4329,6 +4280,11 @@ iframe[data-device="mobile"] {
     }
 
     @media screen and (max-width: 480px) {
+        .-mobile-padding-y-0 {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
         .mobile-padding-y-10px {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -6873,8 +6829,55 @@ empty:hover {
         margin: 0;
     }
 }
-
 @media screen and (max-width: 480px) {
+    .-mobile-height-100pc, .mobile-height-100pc {
+        height: calc(100%);
+    }
+
+    .mobile-height-100pc-50px {
+        height: calc(100% - 50px);
+    }
+
+    .mobile-height-100pc-60px {
+        height: calc(100% - 60px);
+    }
+
+    .mobile-height-100pc-70px {
+        height: calc(100% - 70px);
+    }
+
+    .mobile-height-100pc-80px {
+        height: calc(100% - 80px);
+    }
+
+    .mobile-height-100pc-90px {
+        height: calc(100% - 90px);
+    }
+
+    [data-mobile-height="100%-20px"] {
+        height: calc(100% - 20px);
+    }
+
+    [data-mobile-height="100%-40px"] {
+        height: calc(100% - 40px);
+    }
+
+    [data-mobile-height="100%-10px"] {
+        height: calc(100% - 10px);
+    }
+
+    [data-mobile-height="100%-20px"] {
+        height: calc(100% - 20px);
+    }
+
+    [data-mobile-height="100%-40px"] {
+        height: calc(100% - 40px);
+    }
+
+    [data-mobile-height="100%-55px"] {
+        height: calc(100% - 55px);
+    }
+    
     [data-mobile-height="100%-20px"] {
         height: calc(100% - 20px);
     }
@@ -8101,48 +8104,6 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     }
 }
 
-@media screen and (max-width: 480px) {
-    .mobile-margin-10px, [data-mobile-margin="10px"] {
-        margin: 10px;
-    }
-
-    .mobile-margin-20px, [data-mobile-margin="20px"] {
-        margin: 20px;
-    }
-
-    .mobile-margin-40px, [data-mobile-margin="40px"] {
-        margin: 40px;
-    }
-
-    .mobile-margin-y-50px {
-        margin: 50px 0;
-    }
-
-    .mobile-width-0 {
-        width: 0;
-    }
-
-    .mobile-width-100px, [data-mobile-width="100px"] {
-        width: 100px;
-    }
-
-    .mobile-width-100pc {
-        width: calc(100% - 0px);
-    }
-
-    .mobile-width-100pc-20px {
-        width: calc(100% - 20px);
-    }
-
-    .mobile-width-100pc-40px {
-        width: calc(100% - 40px);
-    }
-
-    .mobile-width-100pc {
-        width: calc(100% - 0px);
-    }
-}
-
 @media screen and (max-width: 768px) {
     .tablet-width-320px {
         width: 320px;
@@ -8714,6 +8675,48 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
 }
 
 @media screen and (max-width: 480px) {
+
+    .mobile-margin-10px, [data-mobile-margin="10px"] {
+        margin: 10px;
+    }
+
+    .mobile-margin-20px, [data-mobile-margin="20px"] {
+        margin: 20px;
+    }
+
+    .mobile-margin-40px, [data-mobile-margin="40px"] {
+        margin: 40px;
+    }
+
+    .mobile-margin-y-50px {
+        margin: 50px 0;
+    }
+
+    .mobile-width-0 {
+        width: 0;
+    }
+
+    .mobile-width-100px, [data-mobile-width="100px"] {
+        width: 100px;
+    }
+
+    .-mobile-width-100pc, .mobile-width-100pc {
+        width: calc(100% - 0px);
+    }
+
+    .mobile-width-100pc-20px {
+        width: calc(100% - 20px);
+    }
+
+    .mobile-width-100pc-40px {
+        width: calc(100% - 40px);
+    }
+
+    .mobile-width-100pc {
+        width: calc(100% - 0px);
+    }
+    
+    
     .mobile-translateX--100pc {
         transform: translateX(-100pc);
     }
@@ -8726,7 +8729,7 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
         width: calc(0%);
     }
 
-    .mobile-width-100pc, [data-mobile-width="100%"] {
+    .-mobile-width-100pc, .mobile-width-100pc, [data-mobile-width="100%"] {
         width: calc(100%);
     }
 
