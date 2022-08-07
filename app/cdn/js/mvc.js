@@ -644,11 +644,13 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             const search = form.find('[placeholder="Search"]');
             const uid = box.dataset.uid;
             const username = box.find('[placeholder="username"]').textContent;
+            const submit = form.find('[type="submit"]');
 
             if (checked) {
+                console.log(search.parentNode.all('[data-uid="' + uid + '"]'), search.parentNode);
                 if (search.parentNode.all('[data-uid="' + uid + '"]').length === 0) {
                     const text = document.createElement('text');
-                    text.className = "background-color-0096c7 border-radius-50px color-fff height-36px line-height-36px margin-x-10px margin-y-5px padding-x-10px";
+                    text.className = "background-color-0096c7 border-radius-50px color-fff height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
                     text.dataset.uid = uid;
                     text.textContent = username;
                     search.insertAdjacentHTML('beforebegin', text.outerHTML);
@@ -657,6 +659,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             } else {
                 $(search.parentNode.all('[data-uid="' + uid + '"]')).remove();
             }
+
+            submit.disabled = search.parentNode.all('[data-uid]').length === 0;
         },
         onkeydown: function(event) {
             var keyCode = event.keyCode;
