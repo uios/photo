@@ -6640,6 +6640,10 @@ empty:hover {
     height: 50px;
 }
 
+.height-55px, [data-height="55px"] {
+    height: 55px;
+}
+
 .height-60px, [data-height="60px"] {
     height: 60px;
 }
@@ -6756,6 +6760,10 @@ empty:hover {
     height: calc(100% - 40px);
 }
 
+[data-height="calc(100% - 55px)"] {
+    height: calc(100% - 55px);
+}
+
 [data-height="100%-0px"] {
     height: calc(100% - 0px);
 }
@@ -6791,6 +6799,10 @@ empty:hover {
 
     .dw1024px-height-480px, [data-1024px-height="480px"] {
         height: 480px;
+    }
+
+    [data-xga-height="calc(100% - 45px)"] {
+        height: calc(100% - 45px);
     }
 }
 
