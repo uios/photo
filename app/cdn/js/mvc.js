@@ -667,26 +667,24 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     const a = function(d) {
                         const data = JSON.parse(d);
                         const users = data.users;
-                        console.log('GET users', data);
 
                         if (users.length > 0) {
                             var template = vp.find('template').content.firstElementChild;
-                    results.innerHTML = "";
+                            results.innerHTML = "";
+                            var htm = "";
 
                             var u = 0;
                             do {
                                 const user = users[u];
-                                console.log(u, {
-                                    user
-                                });
                                 var html = template.cloneNode(true);
                                 html.classList.remove('hide');
-                                console.log(html.innerHTML);
                                 html.find('[placeholder="username"]').textContent = user.username;
                                 html.find('[placeholder="Full Name"]').textContent = user.fullname;
                                 results.insertAdjacentHTML('beforeend', html.outerHTML);
+                                htm += html.outerHTML;
                                 u++;
                             } while (u < users.length);
+                            results.innerHTML = htm;
                         }
                     };
                     const b = function(error) {
