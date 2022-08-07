@@ -637,8 +637,9 @@ window.mvc.c ? null : (window.mvc.c = controller = {
     },
     convo: {
         onchecked: function(target) {
-                const checkbox = target.find('checkbox input');
+                const form = target.closest('form');
                 const checked = target.checked;
+                const search = form.find('input[type="text"]');
                 alert(checked);
         },
         onkeydown: function(event) {
