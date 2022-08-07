@@ -646,12 +646,14 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             const username = box.find('[placeholder="username"]').textContent;
 
             if (checked) {
-                const text = document.createElement('text');
-                text.className = "background-color-0096c7 border-radius-50px color-fff height-20px line-height-20px margin-left-20px padding-x-10px";
-                text.dataset.uid = uid;
-                text.textContent = username;
-                search.insertAdjacentHTML('beforebegin', text.outerHTML);
-                search.value = "";
+                if (search.parentNode.all('[data-uid="' + uid + '"]').length === 0) {
+                    const text = document.createElement('text');
+                    text.className = "background-color-0096c7 border-radius-50px color-fff height-36px line-height-36px margin-x-10px margin-y-5px padding-x-10px";
+                    text.dataset.uid = uid;
+                    text.textContent = username;
+                    search.insertAdjacentHTML('beforebegin', text.outerHTML);
+                    search.value = "";
+                }
             } else {
                 $(search.parentNode.all('[data-uid="' + uid + '"]')).remove();
             }
@@ -693,12 +695,23 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                             results.innerHTML = "";
                             var htm = "";
 
+                            const form = target.closest('form');
+                            const search = form.find('[placeholder="Search"]');
+
                             var u = 0;
                             do {
                                 const user = users[u];
+                                const uid = user.uid;
+
                                 var html = template.cloneNode(true);
+
+                                const exists = search.parentNode.all('[data-uid="' + uid + '"]');
+                                if (exists.length > 0) {
+                                    html.find('[type="checkbox"]').setAttribute('checked', true)
+                                }
+
                                 html.classList.remove('hide');
-                                html.dataset.uid = user.uid;
+                                html.dataset.uid = uid;
                                 html.find('[placeholder="username"]').textContent = user.username;
                                 html.find('[placeholder="Full Name"]').textContent = user.fullname;
                                 results.insertAdjacentHTML('beforeend', html.outerHTML);

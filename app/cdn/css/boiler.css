@@ -5876,12 +5876,14 @@ empty:hover {
     margin-top: 0;
 }
 
-.margins-10px > * {
-    margin: 10px;
+.margin-y-5px {
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
-.margins-20px > * {
-    margin: 20px;
+.margin-y-7px {
+    margin-bottom: 7px;
+    margin-top: 7px;
 }
 
 @media screen and (max-width: 1320px) {
