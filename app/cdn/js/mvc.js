@@ -729,8 +729,15 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         console.log(error);
                         //alert(error.message);
                     };
+                        
+                    if (window.yield) {
+                        window.yield.abort();
+                    }  
+                    window.yield = new AbortController()
+                    window.signal = window.yield.signal;
+                        
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/search/users/" + username).then(a).catch(b);
+                    ajax(endpoint + "/v1/search/users/" + username, {signal}).then(a).catch(b);
                 }
             }
         },
