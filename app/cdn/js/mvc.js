@@ -636,6 +636,11 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     convo: {
+        onchecked: function(target) {
+                const checkbox = target.find('checkbox input');
+                const checked = checkbox.checked;
+                alert(checked);
+        },
         onkeydown: function(event) {
             var keyCode = event.keyCode;
             var target = event.target;
