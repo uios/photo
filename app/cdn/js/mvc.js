@@ -639,26 +639,64 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         onkeydown: function(event) {
             var keyCode = event.keyCode;
             var target = event.target;
-            var submit = target.closest('form').find('[type="submit"]');
             if (keyCode === 13) {
                 event.preventDefault();
-                submit.click();
-            } else {
-                const target = event.target;
-                target.style.height = 'auto';
-                target.style.height = target.scrollHeight + 'px';
             }
+
+            var vp = dom.body.find('page[data-page="/chat/with/"]');
+            var results = vp.find('[data-columns="1"]');
+            results.innerHTML = "";
         },
         onkeyup: function(event) {
             var keyCode = event.keyCode;
             var target = event.target;
-            var submit = target.closest('form').find('[type="submit"]');
-            if (target.value.length > 0) {
-                submit.removeAttribute('disabled');
-            } else {
-                submit.setAttribute('disabled', true);
-            }
+            var username = target.value;
 
+            if (keyCode === 13) {
+                event.preventDefault();
+            } else {
+                target.style.width = 'auto';
+                target.style.width = target.scrollWidth + 'px';
+
+                if (username.length > 0) {
+                    var data = new FormData();
+
+                    var vp = dom.body.find('page[data-page="/chat/with/"]');
+                    var results = vp.find('[data-columns="1"]');
+
+                    const a = function(d) {
+                        const data = JSON.parse(d);
+                        const users = data.users;
+                        console.log('GET users', data);
+
+                        if (users.length > 0) {
+                            var template = vp.find('template').content.firstElementChild;
+                    results.innerHTML = "";
+
+                            var u = 0;
+                            do {
+                                const user = users[u];
+                                console.log(u, {
+                                    user
+                                });
+                                var html = template.cloneNode(true);
+                                html.classList.remove('hide');
+                                console.log(html.innerHTML);
+                                html.find('[placeholder="username"]').textContent = user.username;
+                                html.find('[placeholder="Full Name"]').textContent = user.fullname;
+                                results.insertAdjacentHTML('beforeend', html.outerHTML);
+                                u++;
+                            } while (u < users.length);
+                        }
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        //alert(error.message);
+                    };
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/search/users/" + username).then(a).catch(b);
+                }
+            }
         },
         onsubmit: async function(event) {
             event.preventDefault();

@@ -28,14 +28,15 @@
                     </row>
                 </box>
             </column>
-            <column class="grid-gap-10px padding-y-10px" data-columns="1">
+            <column class="grid-gap-10px padding-y-10px" data-columns="1"></column>
+            <template>
                 <box class="flex-1 hide padding-x-20px">
                     <label class="align-center flex flex-direction-row space-between width-100pc">
                         <picture class="empty"></picture>
                         <picture class="bg-db border-radius-50pc empty-state" data-height="44px" data-width="44px">
                             <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
                         </picture>
-                        <text class="flex flex-direction-column margin-x-10px">
+                        <text class="align-left flex flex-direction-column margin-x-10px">
                             <span class="font-weight-bolder line-height-22px" placeholder="username"></span>
                             <span class="line-height-22px" placeholder="Full Name"></span>
                         </text>
@@ -47,25 +48,7 @@
                         </checkbox>
                     </label>
                 </box>
-                <box class="flex-1 padding-x-20px">
-                    <label class="align-center flex flex-direction-row space-between width-100pc">
-                        <picture class="empty"></picture>
-                        <picture class="bg-db border-radius-50pc empty-state" data-height="44px" data-width="44px">
-                            <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                        </picture>
-                        <text class="flex flex-direction-column margin-x-10px">
-                            <span class="font-weight-bolder line-height-22px" placeholder="username"></span>
-                            <span class="line-height-22px" placeholder="Full Name"></span>
-                        </text>
-                        <checkbox class="height-25px margin-left overflow-hidden position-relative width-25px">
-                            <input class="display-none" type="checkbox">
-                            <span class="-checked-background-color-0096c7 -checked-border-unset border-radius-50pct border-2px-solid border-color-000 border-radius-50pc box-sizing-border-box position-absolute absolute-full">
-                                <n class="absolute-center font-color-fff gg-check margin-auto position-absolute"></n>
-                            </span>
-                        </checkbox>
-                    </label>
-                </box>
-            </column>
+            </template>
         </card>
     </form>
 </block>
