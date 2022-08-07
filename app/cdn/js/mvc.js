@@ -637,10 +637,24 @@ window.mvc.c ? null : (window.mvc.c = controller = {
     },
     convo: {
         onchecked: function(target) {
-                const form = target.closest('form');
-                const checked = target.checked;
-                const search = form.find('input[type="text"]');
-                alert(checked);
+            console.log(target);
+            const box = target.closest('box');
+            const form = target.closest('form');
+            const checked = target.checked;
+            const search = form.find('[placeholder="Search"]');
+            const uid = box.dataset.uid;
+            const username = box.find('[placeholder="username"]').textContent;
+
+            if (checked) {
+                const text = document.createElement('text');
+                text.className = "background-color-0096c7 border-radius-50px color-fff height-20px line-height-20px margin-left-20px padding-x-10px";
+                text.dataset.uid = uid;
+                text.textContent = username;
+                search.insertAdjacentHTML('beforebegin', text.outerHTML);
+                search.value = "";
+            } else {
+                $(search.parentNode.all('[data-uid="' + uid + '"]')).remove();
+            }
         },
         onkeydown: function(event) {
             var keyCode = event.keyCode;
@@ -684,6 +698,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                                 const user = users[u];
                                 var html = template.cloneNode(true);
                                 html.classList.remove('hide');
+                                html.dataset.uid = user.uid;
                                 html.find('[placeholder="username"]').textContent = user.username;
                                 html.find('[placeholder="Full Name"]').textContent = user.fullname;
                                 results.insertAdjacentHTML('beforeend', html.outerHTML);
