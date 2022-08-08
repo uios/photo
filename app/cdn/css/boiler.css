@@ -5072,7 +5072,7 @@ empty:hover {
     white-space: normal;
 }
 
-.whitespace-nowrap, [data-whitespace="nowrap"] {
+.white-space-nowrap, .whitespace-nowrap, [data-whitespace="nowrap"] {
     white-space: nowrap;
 }
 
@@ -6514,6 +6514,10 @@ empty:hover {
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-overflow-ellipsis {
     text-overflow: ellipsis;
 }
 

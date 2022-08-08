@@ -79,20 +79,25 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                             do {
                                                 var user = users[u];
                                                 uids[u] = user.uid;
-                                                popping[u] = usernames[u] = user.username;
+                                                if (u < 4) {
+                                                    popping[u] = user.fullname;
+                                                }
+                                                usernames[u] = user.username;
                                                 u++;
                                             } while (u < users.length);
                                             var convo = "";
+                                            var popped = popping.pop();
+                                            convo = popping.join(", ");
                                             if (users.length > 1) {
-                                                var popped = popping.pop();
+                                                convo = convo + " and " + popped;
                                                 console.log(usernames);
-                                                convo = popping.join(", ") + " and " + popped;
                                                 console.log(89, {
                                                     convo,
                                                     popping,
                                                     usernames
                                                 });
                                             }
+                                            vp.find('[placeholder="Full Name"]').textContent = convo;
                                         }
                                     }
                                     const b = async function(error) {

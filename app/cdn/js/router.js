@@ -161,8 +161,7 @@ window.rout.e = (state,w)=>{
 }
 ;
 window.rout.ed = {
-    back: route=>{
-    }
+    back: route=>{}
     ,
     bang: route=>{
         return new Promise(async(resolve,reject)=>{
@@ -225,7 +224,7 @@ window.rout.ed = {
                 $('pages').removeClass("active");
                 $('[data-path]').removeClass("active");
                 $('[data-page]').removeClass("active");
-                //$('[data-root]').removeClass("active");
+                $('[data-root]').removeClass("active");
 
                 $(vp).addClass("active");
             } else {
@@ -234,7 +233,7 @@ window.rout.ed = {
                 $('body > pages page').removeClass("active");
                 $('body > :not(main) [data-path]').removeClass("active");
                 $('body > :not(main) [data-page]').removeClass("active");
-                //$('[data-root]').removeClass("active");
+                $('[data-root]').removeClass("active");
             }
 
             $('[data-path="' + route.path + '"]').addClass("active");
@@ -355,8 +354,7 @@ window.rout.ed = {
                         if (dom.body.dataset.path) {
                             var drc = rout.ed.dir(dom.body.dataset.path);
                             //alert(drc.length);
-                            if (drc.length > 1) {
-                            } else {
+                            if (drc.length > 1) {} else {
                                 dir = drc.join("/");
                             }
                         }
