@@ -85,19 +85,22 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 usernames[u] = user.username;
                                                 u++;
                                             } while (u < users.length);
-                                            var convo = "";
-                                            var popped = popping.pop();
-                                            convo = popping.join(", ");
+                                            var convo = popping[0];
                                             if (users.length > 1) {
+                                                var popped = popping.pop();
+                                                convo = popping.join(", ");
                                                 convo = convo + " and " + popped;
-                                                console.log(usernames);
-                                                console.log(89, {
-                                                    convo,
-                                                    popping,
-                                                    usernames
-                                                });
                                             }
+                                            console.log(usernames);
+                                            console.log(89, {
+                                                convo,
+                                                jwt,
+                                                popping,
+                                                usernames
+                                            });
                                             vp.find('[placeholder="Full Name"]').textContent = convo;
+                                            route = rout.e("/chat/with" + rout.ed.url(usernames));
+                                            resolve(route);
                                         }
                                     }
                                     const b = async function(error) {
@@ -111,15 +114,18 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     console.log(uri);
                                     ajax(uri).then(a).catch(b);
                                 }
+                            } else {
+                                resolve(route);
                             }
                         }
                     } else {
                         if (get[1] === "with") {}
+                        resolve(route);
                     }
                 } else {
                     byId('convos').dataset.zIndex = 2;
+                    resolve(route);
                 }
-                resolve(route);
             } else if (root === "find") {
                 if (get.length > 1) {} else {}
                 resolve(route);
