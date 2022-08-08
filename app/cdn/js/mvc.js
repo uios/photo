@@ -64,7 +64,48 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     if (get.length > 2) {
                         if (get[1] === "with") {
                             if (get.length > 2) {
-                                byId('convos').dataset.zIndex = 1;
+                                const jwt = auth.user() ? await auth.getIdToken() : null;
+                                if (jwt) {
+                                    byId('convos').dataset.zIndex = 1;
+                                    const a = async function(d) {
+                                        const data = JSON.parse(d);
+                                        const users = data.users;
+                                        console.log(data);
+                                        if (users.length > 0) {
+                                            var popping = [];
+                                            var usernames = [];
+                                            var uids = [];
+                                            var u = 0;
+                                            do {
+                                                var user = users[u];
+                                                uids[u] = user.uid;
+                                                popping[u] = usernames[u] = user.username;
+                                                u++;
+                                            } while (u < users.length);
+                                            var convo = "";
+                                            if (users.length > 1) {
+                                                var popped = popping.pop();
+                                                console.log(usernames);
+                                                convo = popping.join(", ") + " and " + popped;
+                                                console.log(89, {
+                                                    convo,
+                                                    popping,
+                                                    usernames
+                                                });
+                                            }
+                                        }
+                                    }
+                                    const b = async function(error) {
+                                        const message = error.message;
+                                        console.log(message);
+                                    }
+                                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                                    var convo = GET;
+                                    convo.splice(0, 2);
+                                    const uri = endpoint + "/v1/messages" + rout.ed.url(convo) + "?jwt=" + jwt;
+                                    console.log(uri);
+                                    ajax(uri).then(a).catch(b);
+                                }
                             }
                         }
                     } else {
