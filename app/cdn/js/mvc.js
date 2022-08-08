@@ -823,13 +823,16 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             const keyCode = event.keyCode;
             if (keyCode === 13) {
                 event.preventDefault();
-            } else {}
+            }
         },
         onkeyup: function(event) {
             const keyCode = event.keyCode;
             if (keyCode === 13) {
                 event.preventDefault();
-            } else {}
+                const form = event.target.closest('form');
+                const submit = form.find('[type="submit"]');
+                submit.click();
+            }
         },
         onsubmit: async function(event) {
             event.preventDefault();
@@ -840,25 +843,14 @@ window.mvc.c ? null : (window.mvc.c = controller = {
 
                 const form = event.target;
                 const search = form.find('[placeholder="Search"]');
-                const users = search.parentNode.all('[data-uid]');
+                const convo = rout.ed.dir(window.location.pathname);
+                convo.splice(0, 2);
                 console.log('controller.message.onsubmit', {
-                    jwt,
-                    users
+                    convo,
+                    jwt
                 });
 
-                if (users.length > 0) {
-                    var u = 0;
-                    var uids = [];
-                    do {
-                        var user = users[u];
-                        uids[u] = user.dataset.uid;
-                        u++;
-                    } while (u < users.length);
-                    const convo = rout.ed.url(uids);
-                    console.log({
-                        convo,
-                        uids
-                    });
+                if (convo.length > 0) {
 
                     var data = new FormData();
                     //data.append("ref", ref);
@@ -875,11 +867,10 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         alert(error.message);
                     };
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    //ajax(endpoint + "/v1/messages" + convo, {
-                    //data,
-                    //dataType: "POST"
-                    //}).then(a).catch(b);
-                    ("/chat/with" + convo).router();
+                    ajax(endpoint + "/v1/messages" + rout.ed.url(convo), {
+                        data,
+                        dataType: "POST"
+                    }).then(a).catch(b);
                 }
 
             }
