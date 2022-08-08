@@ -819,6 +819,18 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     message: {
+        onkeydown: function(event) {
+            const keyCode = event.keyCode;
+            if (keyCode === 13) {
+                event.preventDefault();
+            } else {}
+        },
+        onkeyup: function(event) {
+            const keyCode = event.keyCode;
+            if (keyCode === 13) {
+                event.preventDefault();
+            } else {}
+        },
         onsubmit: async function(event) {
             event.preventDefault();
 
@@ -829,7 +841,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 const form = event.target;
                 const search = form.find('[placeholder="Search"]');
                 const users = search.parentNode.all('[data-uid]');
-                console.log('controller.convo.onsubmit', {
+                console.log('controller.message.onsubmit', {
                     jwt,
                     users
                 });
