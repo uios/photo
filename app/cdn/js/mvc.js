@@ -56,14 +56,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 }
                 resolve(route);
             } else if (root === "chat") {
-                var vp = dom.body.find('[data-root="' + root + '"]');
+                var vp = dom.body.find('[data-pages="/chat/"]');
                 vp.dataset.zIndex = 9;
                 vp.dataset.mobileZIndex = 9;
 
                 if (get.length > 1) {
                     if (get.length > 2) {
                         if (get[1] === "with") {
-                            if (get[2]) {
+                            if (get.length > 2) {
                                 byId('convos').dataset.zIndex = 1;
                             }
                         }
@@ -729,45 +729,95 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         console.log(error);
                         //alert(error.message);
                     };
-                        
+
                     if (window.yield) {
                         window.yield.abort();
-                    }  
+                    }
                     window.yield = new AbortController()
                     window.signal = window.yield.signal;
-                        
+
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/search/users/" + username, {signal}).then(a).catch(b);
+                    ajax(endpoint + "/v1/search/users/" + username, {
+                        signal
+                    }).then(a).catch(b);
                 }
             }
         },
         onsubmit: async function(event) {
             event.preventDefault();
 
-            const target = event.target;
-            var users = [];
+            const form = event.target;
+            const search = form.find('[placeholder="Search"]');
+            const users = search.parentNode.all('[data-uid]');
+            console.log('controller.convo.onsubmit', {
+                users
+            });
 
             if (users.length > 0) {
-                var data = new FormData();
-                data.append("ref", ref);
-                data.append("jwt", jwt);
-                data.append("text", text);
+                var u = 0;
+                var uids = [];
+                do {
+                    var user = users[u];
+                    uids[u] = user.dataset.uid;
+                    u++;
+                } while (u < users.length);
+                const convo = rout.ed.url(uids);
+                ("/chat/with" + convo).router();
+            }
+        }
+    },
+    message: {
+        onsubmit: async function(event) {
+            event.preventDefault();
 
-                const a = function(d) {
-                    const data = JSON.parse(d);
-                    const comment = data.comment;
-                    console.log('POST comment', data);
-                    textarea.value = "";
-                };
-                const b = function(error) {
-                    console.log(error);
-                    alert(error.message);
-                };
-                var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/messages/" + users, {
-                    data,
-                    dataType: "POST"
-                }).then(a).catch(b);
+            const jwt = auth.user() ? await auth.getIdToken() : null;
+
+            if (jwt) {
+
+                const form = event.target;
+                const search = form.find('[placeholder="Search"]');
+                const users = search.parentNode.all('[data-uid]');
+                console.log('controller.convo.onsubmit', {
+                    jwt,
+                    users
+                });
+
+                if (users.length > 0) {
+                    var u = 0;
+                    var uids = [];
+                    do {
+                        var user = users[u];
+                        uids[u] = user.dataset.uid;
+                        u++;
+                    } while (u < users.length);
+                    const convo = rout.ed.url(uids);
+                    console.log({
+                        convo,
+                        uids
+                    });
+
+                    var data = new FormData();
+                    //data.append("ref", ref);
+                    data.append("jwt", jwt);
+                    //data.append("text", text);
+
+                    const a = function(d) {
+                        const data = JSON.parse(d);
+                        const comment = data.comment;
+                        console.log('POST comment', data);
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        alert(error.message);
+                    };
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    //ajax(endpoint + "/v1/messages" + convo, {
+                    //data,
+                    //dataType: "POST"
+                    //}).then(a).catch(b);
+                    ("/chat/with" + convo).router();
+                }
+
             }
         }
     },

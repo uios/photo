@@ -6586,27 +6586,27 @@ empty:hover {
     height: 100%;
 }
 
-[data-height="10px"] {
+.height-10px, [data-height="10px"] {
     height: 10px;
 }
 
-[data-height="11px"] {
+.height-11px, [data-height="11px"] {
     height: 11px;
 }
 
-[data-height="12px"] {
+.height-12px, [data-height="12px"] {
     height: 12px;
 }
 
-[data-height="13px"] {
+.height-13px, [data-height="13px"] {
     height: 13px;
 }
 
-[data-height="14px"] {
+.height-14px, [data-height="14px"] {
     height: 14px;
 }
 
-[data-height="15px"] {
+.height-15px, [data-height="15px"] {
     height: 15px;
 }
 
