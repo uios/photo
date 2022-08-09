@@ -842,7 +842,6 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             if (jwt) {
 
                 const form = event.target;
-                const search = form.find('[placeholder="Search"]');
                 const convo = rout.ed.dir(window.location.pathname);
                 convo.splice(0, 2);
                 console.log('controller.message.onsubmit', {
@@ -852,15 +851,17 @@ window.mvc.c ? null : (window.mvc.c = controller = {
 
                 if (convo.length > 0) {
 
+                    const message = form.find('textarea').value;
+
                     var data = new FormData();
                     //data.append("ref", ref);
                     data.append("jwt", jwt);
-                    //data.append("text", text);
+                    data.append("message", message);
 
                     const a = function(d) {
                         const data = JSON.parse(d);
                         const comment = data.comment;
-                        console.log('POST comment', data);
+                        console.log('POST message', data);
                     };
                     const b = function(error) {
                         console.log(error);
