@@ -70,13 +70,21 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const a = async function(d) {
                                         const data = JSON.parse(d);
                                         const users = data.users;
-                                        console.log(73,{data,users});
+                                        console.log(73, {
+                                            data,
+                                            users
+                                        });
                                         if (users.length > 0) {
+                                            const messages = data.messages;
                                             var popping = [];
                                             var usernames = [];
                                             var uids = [];
-                                            var u = 0; console.log(78,{users})
-                                            do { 
+                                            var u = 0;
+                                            console.log(78, {
+                                                messages,
+                                                users
+                                            })
+                                            do {
                                                 var user = users[u];
                                                 uids[u] = user.uid;
                                                 if (u < 4) {
@@ -85,7 +93,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 usernames[u] = user.username;
                                                 u++;
                                             } while (u < users.length);
-                                            console.log(87,usernames);
+                                            console.log(87, usernames);
                                             var convo = popping[0];
                                             if (users.length > 1) {
                                                 var popped = popping.pop();
@@ -99,6 +107,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 usernames
                                             });
                                             vp.find('[placeholder="Full Name"]').textContent = convo;
+
+                                            var chatWithUs = byId('chat-with-us');
+
                                             route = rout.e("/chat/with" + rout.ed.url(usernames));
                                             resolve(route);
                                         }
