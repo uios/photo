@@ -70,13 +70,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const a = async function(d) {
                                         const data = JSON.parse(d);
                                         const users = data.users;
-                                        console.log(data);
+                                        console.log(73,{data,users});
                                         if (users.length > 0) {
                                             var popping = [];
                                             var usernames = [];
                                             var uids = [];
-                                            var u = 0;
-                                            do {
+                                            var u = 0; console.log(78,{users})
+                                            do { 
                                                 var user = users[u];
                                                 uids[u] = user.uid;
                                                 if (u < 4) {
@@ -85,13 +85,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 usernames[u] = user.username;
                                                 u++;
                                             } while (u < users.length);
+                                            console.log(87,usernames);
                                             var convo = popping[0];
                                             if (users.length > 1) {
                                                 var popped = popping.pop();
                                                 convo = popping.join(", ");
                                                 convo = convo + " and " + popped;
                                             }
-                                            console.log(usernames);
                                             console.log(89, {
                                                 convo,
                                                 jwt,
