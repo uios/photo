@@ -128,7 +128,7 @@ function init() {
         if (user) {
             byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img onerror='model.error.image(this)' src='" + (cdn.endpoint + "/" + user.uid + "/avi.jpg") + "'>";
         } else {
-            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img onerror='model.error.image(this)' src='" + (cdn.endpoint + "/" + user.uid + "/avi.jpg") + "'>";
+            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
         }
         go ? null : (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router().then(go = true);
     }
