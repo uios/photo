@@ -874,7 +874,18 @@ window.mvc.c ? null : (window.mvc.c = controller = {
 
                 if (convo.length > 0) {
 
-                    const message = form.find('textarea').value;
+                    const textarea = form.find('textarea');
+                    const message = textarea.value;
+                    textarea.value = "";
+
+                    const template = byId('template-message').content;
+                    var elem = template.firstElementChild;
+                    elem.find('text').textContent = message;
+                    const html = elem.outerHTML;
+                    const chatWithUs = byId('chat-with-us');
+                    chatWithUs.insertAdjacentHTML('beforeend', html);
+                    const insert = chatWithUs.lastElementChild;
+                    insert.classList.add('opacity-50pc');
 
                     var data = new FormData();
                     //data.append("ref", ref);
@@ -883,8 +894,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
 
                     const a = function(d) {
                         const data = JSON.parse(d);
-                        const comment = data.comment;
                         console.log('POST message', data);
+                        insert.classList.remove('opacity-50pc');
                     };
                     const b = function(error) {
                         console.log(error);
