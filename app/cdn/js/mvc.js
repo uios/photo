@@ -110,7 +110,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                                             var chatWithUs = byId('chat-with-us');
 
-                                            route = rout.e("/chat/with" + rout.ed.url(usernames));
+                                            route = rout.e("/chat/with" + rout.ed.url(data.convo));
                                             resolve(route);
                                         }
                                     }
