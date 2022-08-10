@@ -180,8 +180,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 pic.className = "background-color-db border-radius-50pc height-36px left-0 position-absolute top-0 width-36px";
                                             }
                                         } else {
-                                            pic.className = "background-color-db border-radius-50pc";
+                                            pic.className = "background-color-db border-radius-50pc height-50px width-50px";
                                         }
+                                        img.className = "absolute bottom-0 height-75pc invert width-75pc";
                                         img.src = cdn.endpoint + "/" + convo[0] + "/avi.jpg";
                                         img.setAttribute("onerror", 'this.src = "/cdn/svg/user.svg"');
                                         pic.innerHTML = img.outerHTML;
