@@ -7264,7 +7264,7 @@ empty:hover {
         padding-top: 0;
     }
 
-    .tablet-padding-top-50px, [data-tablet-padding-top="50px"] {
+    .-tablet-padding-top-50px, .tablet-padding-top-50px, [data-tablet-padding-top="50px"] {
         padding-top: 50px;
     }
 }
