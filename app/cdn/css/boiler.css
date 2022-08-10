@@ -8646,7 +8646,7 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     }
 
     .dw960px-width-100pc {
-        width: 100pc;
+        width: 100%;
     }
 
     .dw960px-width-480px {
