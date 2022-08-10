@@ -1,179 +1,192 @@
 <wrap>
-  <blocks class="margin-auto padding-top-70px tablet-width-100pc width-100pc-40px">
-    <block class="margin-x-auto max-width-100pc tablet-max-width-100pc width-960px">
-      <section class="direction-row">
-        <card class="flex-1 min-height-160px padding-y-20px tablet-min-height-auto xga-padding-y-0">
-          <section class="direction-column">
-            <box class="absolute align-center cell flex justify-center left-0 margin-x-auto order-1 tablet-margin-left-20px tablet-width-77px width-150px">
-              <picture class="aspect-ratio-1x1 hide">
-                <img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png">                      
-              </picture>
-              <section>
-                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar"><img class="bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px" onerror="model.error.image(this)"></picture>
-                <picture class="absolute absolute-full bg-db border-radius-50pc empty-state flex width-100pc">
-                  <img class="absolute bottom-0 height-75pc width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                </picture>
-              </section>
-            </box>
-            <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-120px">
-              <section>
-                <text class="font-size-28px order-1" id="users-user-username" placeholder="username"></text>
-                <text class="bg-b bolder border-1px-solid border-color-b border-radius-3px fg-white font-size-14px hide line-height-30px margin-left-30px order-4 padding-x-20px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-height="30px" id="users-user-follow">Follow</text>
-                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-20px order-2 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-href="/my/account/edit/">Edit profile</text>
-                <line class="hide order-4 tablet-show" data-width="100%"></line>
-                <ico class="hide margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
-                  <n class="gg-more-alt"></n>
-                </ico>
-                <ico class="margin-left-10px order-4 tablet-order-3" data-href="/my/account/" data-width="30px" data-height="30px">
-                  <n class="gg-options"></n>
-                </ico>
-              </section>
-            </box>
-            <box class="border-color-dbdbdb font-size-16px margin-bottom-20px margin-left-170px order-3 padding-y-10px tablet-border-top-1px-solid tablet-margin-bottom-0 tablet-margin-x-0 tablet-order-5" id="users-user-count">
-              <section>
-                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b id="users-user-count-posts" placeholder="?">0</b> <rgb>posts</rgb></text>
-                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third"><b id="users-user-count-followers" placeholder="?">0</b> <rgb>followers</rgb></text>
-                <text class="tablet-direction-column tablet-flex tablet-width-one-third"><b id="users-user-count-following" placeholder="?">0</b> <rgb>following</rgb></text>                  
-              </section>
-            </box>
-            <box class="font-size-16px hide line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-margin-x-0 tablet-padding-x-20px">
-              <section class="direction-column">
-                <text class="bolder hide" id="users-user-fullname" placeholder="Full Name"></text>
-                <text class="color-8e hide" id="users-user-occupation" placeholder="Occupation"></text>
-                <text class="hide" id="users-user-bio" placeholder="Bio"><!--a certain set of skills<br>&#x2601;&#xFE0F; Web &#x1F3B5; Music &#x270F;&#xFE0F; Art<br>III™ 2022--></text>
-              </section>
-            </box>
-          </section>
-        </card>
-      </section>
-    </block>        
-    <block class="border-top-1px-solid border-color-dbdbdb color-8e margin-x-auto max-width-100pc width-960px">
-      <section>
-        <card>
-          <section class="align-center bolder flex font-size-12px justify-center line-height-50px uppercase" id="tabs-profile">
-            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/" id="tab-user-profile">
-              <section class="tablet-justify-center">
-                <ico>
-                  <n class="gg-view-grid"></n>
-                </ico>
-                <text class="tablet-hide">Posts</text>
-              </section>
-            </box>
-            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/feed/" id="tab-user-profile-feed">
-              <section class="tablet-justify-center">
-                <ico>
-                  <n class="gg-feed"></n>
-                </ico>
-                <text class="tablet-hide">Feed</text>
-              </section>
-            </box>
-            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/saved/" id="tab-user-profile-saved">
-              <section class="tablet-justify-center">
-                <ico>
-                  <n class="gg-bookmark"></n>
-                </ico>
-                <text class="tablet-hide">Saved</text>
-              </section>
-            </box>
-            <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/tagged/" id="tab-user-profile-tagged">
-              <section class="tablet-justify-center">
-                <ico>
-                  <n class="gg-tag"></n>
-                </ico>
-                <text class="tablet-hide">Tagged</text>
-              </section>
-            </box>
-          </section>
-        </card>
-      </section>
-    </block>
-  </blocks>
-  <page data-page="/users/*/">
-    <blocks class="margin-auto tablet-width-100pc width-100pc-40px">
-      <block class="margin-x-auto max-width-100pc width-960px">
-        <section class="grid-gap-30px tablet-grid-gap-3px" data-columns="3" id="users-user-posts"></section>
-        <section class="empty-state">
-          <card class="margin-y-50px padding-y-10px">
-            <section class="direction-column">
-              <box class="margin-x-auto max-width-100pc-40px width-350px">
-                <section class="align-center items direction-column justify-center">
-                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
-                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
-                  </picture>
-                  <text class="font-size-28px line-height-32px margin-y-24px">Share Photos</text>
-                  <text class="font-size-14px line-height-18px">When you share photos, they will appear on your profile.</text>
-                </section>
-              </box>
+    <blocks class="margin-auto padding-top-70px tablet-width-100pc width-100pc-40px">
+        <block class="margin-x-auto max-width-100pc tablet-max-width-100pc width-960px">
+            <section class="direction-row">
+                <card class="flex-1 min-height-160px padding-y-20px tablet-min-height-auto xga-padding-y-0">
+                    <section class="direction-column">
+                        <box class="absolute align-center cell flex justify-center left-0 margin-x-auto order-1 tablet-margin-left-20px tablet-width-77px width-150px">
+                            <picture class="aspect-ratio-1x1 hide">
+                                <img class="absolute absolute-full border-radius-50pc fit-contain spin-30s" data-src="https://cdn.endk.it/png/rainring.png">
+                            </picture>
+                            <section>
+                                <picture class="aspect-ratio-1x1 flex width-100pc-20px" id="users-user-avatar">
+                                    <img class="bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px" onerror="model.error.image(this)">
+                                </picture>
+                                <picture class="absolute absolute-full bg-db border-radius-50pc empty-state flex width-100pc">
+                                    <img class="absolute bottom-0 height-75pc width-75pc" src="/cdn/svg/user.svg">
+                                </picture>
+                            </section>
+                        </box>
+                        <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-120px">
+                            <section>
+                                <text class="font-size-28px order-1" id="users-user-username" placeholder="username"></text>
+                                <text class="bg-b bolder border-1px-solid border-color-b border-radius-3px fg-white font-size-14px hide line-height-30px margin-left-30px order-4 padding-x-20px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-height="30px" id="users-user-follow">Follow</text>
+                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-20px order-2 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-href="/my/account/edit/">Edit profile</text>
+                                <line class="hide order-4 tablet-show" data-width="100%"></line>
+                                <ico class="hide margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
+                                    <n class="gg-more-alt"></n>
+                                </ico>
+                                <ico class="margin-left-10px order-4 tablet-order-3" data-href="/my/account/" data-width="30px" data-height="30px">
+                                    <n class="gg-options"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="border-color-dbdbdb font-size-16px margin-bottom-20px margin-left-170px order-3 padding-y-10px tablet-border-top-1px-solid tablet-margin-bottom-0 tablet-margin-x-0 tablet-order-5" id="users-user-count">
+                            <section>
+                                <text class="tablet-direction-column tablet-flex tablet-width-one-third">
+                                    <b id="users-user-count-posts" placeholder="?">0</b>
+                                    <rgb>posts</rgb>
+                                </text>
+                                <text class="tablet-direction-column tablet-flex margin-x-50px tablet-margin-x-0 tablet-width-one-third">
+                                    <b id="users-user-count-followers" placeholder="?">0</b>
+                                    <rgb>followers</rgb>
+                                </text>
+                                <text class="tablet-direction-column tablet-flex tablet-width-one-third">
+                                    <b id="users-user-count-following" placeholder="?">0</b>
+                                    <rgb>following</rgb>
+                                </text>
+                            </section>
+                        </box>
+                        <box class="font-size-16px hide line-height-24px margin-bottom-20px margin-left-170px order-4 tablet-margin-x-0 tablet-padding-x-20px">
+                            <section class="direction-column">
+                                <text class="bolder hide" id="users-user-fullname" placeholder="Full Name"></text>
+                                <text class="color-8e hide" id="users-user-occupation" placeholder="Occupation"></text>
+                                <text class="hide" id="users-user-bio" placeholder="Bio">
+                                <!--a certain set of skills<br>&#x2601;&#xFE0F; Web &#x1F3B5; Music &#x270F;&#xFE0F; Art<br>III™ 2022-->
+                                </text>
+                            </section>
+                        </box>
+                    </section>
+                </card>
             </section>
-          </card>
-        </section>
-      </block>
-    </blocks>
-  </page>
-  <page data-page="/users/*/feed/">
-    <blocks>
-      <block class="margin-x-auto max-width-100pc width-960px">
-        <section data-columns="3"></section>
-        <section class="empty-state">
-          <card class="margin-y-50px padding-y-10px">
-            <section class="direction-column">
-              <box class="margin-x-auto max-width-100pc-40px width-350px">
-                <section class="align-center items direction-column justify-center">
-                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
-                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
-                  </picture>
-                  <text class="font-size-28px line-height-32px margin-y-24px">Share Photos</text>
-                  <text class="font-size-14px line-height-18px">When you share photos, they will appear on your profile.</text>
-                </section>
-              </box>
+        </block>
+        <block class="border-top-1px-solid border-color-dbdbdb color-8e margin-x-auto max-width-100pc width-960px">
+            <section>
+                <card>
+                    <section class="align-center bolder flex font-size-12px justify-center line-height-50px uppercase" id="tabs-profile">
+                        <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/" id="tab-user-profile">
+                            <section class="tablet-justify-center">
+                                <ico>
+                                    <n class="gg-view-grid"></n>
+                                </ico>
+                                <text class="tablet-hide">Posts</text>
+                            </section>
+                        </box>
+                        <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/feed/" id="tab-user-profile-feed">
+                            <section class="tablet-justify-center">
+                                <ico>
+                                    <n class="gg-feed"></n>
+                                </ico>
+                                <text class="tablet-hide">Feed</text>
+                            </section>
+                        </box>
+                        <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/saved/" id="tab-user-profile-saved">
+                            <section class="tablet-justify-center">
+                                <ico>
+                                    <n class="gg-bookmark"></n>
+                                </ico>
+                                <text class="tablet-hide">Saved</text>
+                            </section>
+                        </box>
+                        <box class="padding-x-20px tablet-padding-x-0 tablet-width-25pc" data-href="/users/:get/tagged/" id="tab-user-profile-tagged">
+                            <section class="tablet-justify-center">
+                                <ico>
+                                    <n class="gg-tag"></n>
+                                </ico>
+                                <text class="tablet-hide">Tagged</text>
+                            </section>
+                        </box>
+                    </section>
+                </card>
             </section>
-          </card>
-        </section>
-      </block>
+        </block>
     </blocks>
-  </page>
-  <page data-page="/users/*/saved/">
-    <blocks>
-      <block class="margin-x-auto max-width-100pc width-960px">
-        <section data-columns="3"></section>
-        <section class="empty-state">
-          <card class="margin-y-50px padding-y-10px">
-            <section class="direction-column">
-              <box class="margin-x-auto max-width-100pc-40px width-350px">
-                <section class="align-center items direction-column justify-center">
-                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
-                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
-                  </picture>
-                  <text class="font-size-28px line-height-32px margin-y-24px">Save</text>
-                  <text class="font-size-14px line-height-18px">Save photos and videos that you want to see again. No one is notified, and only you can see what you've saved.</text>
+    <page data-page="/users/*/">
+        <blocks class="margin-auto tablet-width-100pc width-100pc-40px">
+            <block class="margin-x-auto max-width-100pc width-960px">
+                <section class="grid-gap-30px tablet-grid-gap-3px" data-columns="3" id="users-user-posts"></section>
+                <section class="empty-state">
+                    <card class="margin-y-50px padding-y-10px">
+                        <section class="direction-column">
+                            <box class="margin-x-auto max-width-100pc-40px width-350px">
+                                <section class="align-center items direction-column justify-center">
+                                    <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                                        <img class="height-25px margin-5px fit-contain width-25px" src="/cdn/svg/camera.svg">
+                                    </picture>
+                                    <text class="font-size-28px line-height-32px margin-y-24px">Share Photos</text>
+                                    <text class="font-size-14px line-height-18px">When you share photos, they will appear on your profile.</text>
+                                </section>
+                            </box>
+                        </section>
+                    </card>
                 </section>
-              </box>
-            </section>
-          </card>
-        </section>
-      </block>
-    </blocks>
-  </page>
-  <page data-page="/users/*/tagged/">
-    <blocks>
-      <block class="margin-x-auto max-width-100pc width-960px">
-        <section data-columns="3"></section>
-        <section class="empty-state">
-          <card class="margin-y-50px padding-y-10px">
-            <section class="direction-column">
-              <box class="margin-x-auto max-width-100pc-40px width-350px">
-                <section class="align-center items direction-column justify-center">
-                  <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
-                    <img class="height-25px margin-5px fit-contain width-25px" src="https://share.uios.computer/cdn/svg/camera.svg">
-                  </picture>
-                  <text class="font-size-28px line-height-32px margin-y-24px">Photos of you</text>
-                  <text class="font-size-14px line-height-18px">When people tag you in photos, they'll appear here.</text>
+            </block>
+        </blocks>
+    </page>
+    <page data-page="/users/*/feed/">
+        <blocks>
+            <block class="margin-x-auto max-width-100pc width-960px">
+                <section data-columns="3"></section>
+                <section class="empty-state">
+                    <card class="margin-y-50px padding-y-10px">
+                        <section class="direction-column">
+                            <box class="margin-x-auto max-width-100pc-40px width-350px">
+                                <section class="align-center items direction-column justify-center">
+                                    <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                                        <img class="height-25px margin-5px fit-contain width-25px" src="/cdn/svg/camera.svg">
+                                    </picture>
+                                    <text class="font-size-28px line-height-32px margin-y-24px">Share Photos</text>
+                                    <text class="font-size-14px line-height-18px">When you share photos, they will appear on your profile.</text>
+                                </section>
+                            </box>
+                        </section>
+                    </card>
                 </section>
-              </box>
-            </section>
-          </card>
-        </section>
-      </block>
-    </blocks>
-  </page>
+            </block>
+        </blocks>
+    </page>
+    <page data-page="/users/*/saved/">
+        <blocks>
+            <block class="margin-x-auto max-width-100pc width-960px">
+                <section data-columns="3"></section>
+                <section class="empty-state">
+                    <card class="margin-y-50px padding-y-10px">
+                        <section class="direction-column">
+                            <box class="margin-x-auto max-width-100pc-40px width-350px">
+                                <section class="align-center items direction-column justify-center">
+                                    <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                                        <img class="height-25px margin-5px fit-contain width-25px" src="/cdn/svg/camera.svg">
+                                    </picture>
+                                    <text class="font-size-28px line-height-32px margin-y-24px">Save</text>
+                                    <text class="font-size-14px line-height-18px">Save photos and videos that you want to see again. No one is notified, and only you can see what you've saved.</text>
+                                </section>
+                            </box>
+                        </section>
+                    </card>
+                </section>
+            </block>
+        </blocks>
+    </page>
+    <page data-page="/users/*/tagged/">
+        <blocks>
+            <block class="margin-x-auto max-width-100pc width-960px">
+                <section data-columns="3"></section>
+                <section class="empty-state">
+                    <card class="margin-y-50px padding-y-10px">
+                        <section class="direction-column">
+                            <box class="margin-x-auto max-width-100pc-40px width-350px">
+                                <section class="align-center items direction-column justify-center">
+                                    <picture class="border-1px-solid border-radius-50pc height-60px margin-bottom-50px padding-5px width-60px">
+                                        <img class="height-25px margin-5px fit-contain width-25px" src="/cdn/svg/camera.svg">
+                                    </picture>
+                                    <text class="font-size-28px line-height-32px margin-y-24px">Photos of you</text>
+                                    <text class="font-size-14px line-height-18px">When people tag you in photos, they'll appear here.</text>
+                                </section>
+                            </box>
+                        </section>
+                    </card>
+                </section>
+            </block>
+        </blocks>
+    </page>
 </wrap>
