@@ -38,7 +38,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
         var root = get[0];
         GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
-        console.log(get, path);
+        //console.log(get, path);
 
         if (root) {
             if (root === "activity") {
@@ -70,20 +70,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const a = async function(d) {
                                         const data = JSON.parse(d);
                                         const users = data.users;
-                                        console.log(73, {
-                                            data,
-                                            users
-                                        });
                                         if (users.length > 0) {
-                                            const messages = data.messages;
                                             var popping = [];
                                             var usernames = [];
                                             var uids = [];
                                             var u = 0;
-                                            console.log(78, {
-                                                messages,
-                                                users
-                                            })
                                             do {
                                                 var user = users[u];
                                                 uids[u] = user.uid;
@@ -93,25 +84,35 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 usernames[u] = user.username;
                                                 u++;
                                             } while (u < users.length);
-                                            console.log(87, usernames);
+                                            //console.log(87, usernames);
                                             var convo = popping[0];
                                             if (users.length > 1) {
                                                 var popped = popping.pop();
                                                 convo = popping.join(", ");
                                                 convo = convo + " and " + popped;
                                             }
-                                            console.log(89, {
-                                                convo,
-                                                jwt,
-                                                popping,
-                                                usernames
-                                            });
                                             vp.find('[placeholder="Full Name"]').textContent = convo;
 
                                             var chatWithUs = byId('chat-with-us');
+                                            const messages = data.messages;
+                                            if (messages.length > 0) {
+                                                var m = 0;
+                                                do {
+                                                    //var elem = messages;
+                                                    //chatWithUs.insertAdjacentHTML('beforebegin', elem.outerHTML);
+                                                    m++;
+                                                } while (m < messages.length);
+                                            }
 
                                             route = rout.e("/chat/with" + rout.ed.url(data.convo));
                                             resolve(route);
+                                            console.log(89, {
+                                                convo,
+                                                jwt,
+                                                messages,
+                                                popping,
+                                                usernames
+                                            });
                                         }
                                     }
                                     const b = async function(error) {
