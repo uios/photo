@@ -98,8 +98,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                             if (messages.length > 0) {
                                                 var m = 0;
                                                 do {
-                                                    //var elem = messages;
-                                                    //chatWithUs.insertAdjacentHTML('beforebegin', elem.outerHTML);
+                                                    const template = byId('template-message').content;
+                                                    var html = template.firstElementChild.outerHTML;
+                                                    chatWithUs.firstElementChild.insertAdjacentHTML('afterend', html);
                                                     m++;
                                                 } while (m < messages.length);
                                             }
