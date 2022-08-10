@@ -9,7 +9,7 @@
                             <ico data-tap="rout.ed.close();">
                                 <n class="gg-chevron-left"></n>
                             </ico>
-                            <text class="bolder">username</text>
+                            <text class="bolder" placeholder="username"></text>
                             <picture data-height="50px" data-href="/chat/with/" data-width="50px">
                                 <img data-height="20px" data-width="20px" src="https://share.uios.computer/cdn/svg/compose.svg">
                             </picture>
@@ -17,7 +17,7 @@
                     </box>
                 </section>
             </card>
-            <card class="height-50px line-height-50px">
+            <card class="height-50px hide line-height-50px">
                 <section class="align-center justify-center">
                     <box class="line-height-50px padding-x-20px width-100pc">
                         <section class="justify-between">
@@ -27,8 +27,8 @@
                     </box>
                 </section>
             </card>
-            <card class="flex-1">
-                <section class="justify-left width-100pc">
+            <card class="flex-1 scroll-y">
+                <column class="grid-gap-20px justify-left padding-y-20px width-100pc" data-column="1">
                     <box class="line-height-50px padding-x-20px">
                         <section class="align-left width-100pc">
                             <picture class="bg-ef border-radius-50pc height-50px width-50px"></picture>
@@ -39,7 +39,27 @@
                             </span>
                         </section>
                     </box>
-                </section>
+                    <box class="line-height-50px padding-x-20px">
+                        <section class="align-left width-100pc">
+                            <picture class="bg-ef border-radius-50pc height-50px width-50px"></picture>
+                            <text class="empty"></text>
+                            <span class="align-left direction-column empty-state height-50px justify-center flex margin-left-10px">
+                                <div class="bg-ef border-radius-4px height-10px width-120px"></div>
+                                <div class="bg-ef border-radius-4px height-10px margin-top-10px width-90px"></div>
+                            </span>
+                        </section>
+                    </box>
+                    <box class="line-height-50px padding-x-20px">
+                        <section class="align-left width-100pc">
+                            <picture class="bg-ef border-radius-50pc height-50px width-50px"></picture>
+                            <text class="empty"></text>
+                            <span class="align-left direction-column empty-state height-50px justify-center flex margin-left-10px">
+                                <div class="bg-ef border-radius-4px height-10px width-120px"></div>
+                                <div class="bg-ef border-radius-4px height-10px margin-top-10px width-90px"></div>
+                            </span>
+                        </section>
+                    </box>
+                </column>
             </card>
         </section>
         <section></section>
