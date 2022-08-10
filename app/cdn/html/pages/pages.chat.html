@@ -28,25 +28,7 @@
                 </section>
             </card>
             <card class="flex-1 scroll-y">
-                <column class="empty grid-gap-20px justify-left padding-y-20px width-100pc" data-column="1">
-                    <box class="padding-x-20px">
-                        <row class="align-left width-100pc">
-                            <picture class="bg-ef border-radius-50pc empty height-50px overflow-hidden text-overflow-ellipsis white-space-nowrap width-50px"></picture>
-                            <picture class="bg-db border-radius-50pc empty-state height-50px overflow-hidden text-overflow-ellipsis white-space-nowrap width-50px">
-                                <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
-                            </picture>
-                            <column class="flex-1 height-50px justify-content-center margin-left-10px overflow-hidden">
-                                <div class="color-000 font-size-14px line-height-18px overflow-hidden white-space-nowrap" placeholder="Full Name"></div>
-                                <row class="color-8e">
-                                    <div class="display-flex flex-1 font-size-14px line-height-18px overflow-hidden">
-                                        <span class="overflow-hidden text-overflow-ellipsis white-space-nowrap" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae nisl non neque luctus fermentum et ut eros. In hac habitasse platea dictumst."></span>
-                                    </div>
-                                    <span class="font-size-14px line-height-18px margin-left-5px" placeholder="&#x00B7; 23m"></span>
-                                </row>
-                            </column>
-                        </row>
-                    </box>
-                </column>
+                <column class="empty grid-gap-20px justify-left padding-y-20px width-100pc" data-column="1" id="chat-convos"></column>
                 <column class="empty-state grid-gap-20px justify-left padding-y-20px width-100pc" data-column="1">
                     <box class="line-height-50px padding-x-20px">
                         <section class="align-left width-100pc">
@@ -79,6 +61,26 @@
                         </section>
                     </box>
                 </column>
+                <template id="template-convo">
+                    <box class="padding-x-20px">
+                        <row class="align-center justify-content-center width-100pc">
+                            <picture class="empty height-50px overflow-hidden text-overflow-ellipsis white-space-nowrap width-50px"></picture>
+                            <picture class="bg-db border-radius-50pc empty-state height-50px overflow-hidden text-overflow-ellipsis white-space-nowrap width-50px">
+                                <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
+                            </picture>
+                            <column class="flex-1 height-50px justify-content-center margin-left-10px overflow-hidden">
+                                <div class="color-000 font-size-14px line-height-18px overflow-hidden white-space-nowrap" placeholder="Full Name"></div>
+                                <row class="color-8e">
+                                    <div class="display-flex flex-1 font-size-14px line-height-18px overflow-hidden">
+                                        <span class="overflow-hidden text-overflow-ellipsis white-space-nowrap" placeholder="Lorem ipsum dolor"></span>
+                                    </div>
+                                    <span class="font-size-14px line-height-18px margin-left-5px" placeholder="&#x00B7; 23m"></span>
+                                </row>
+                            </column>
+                            <dot class="background-color-0096c7 border-radius-50pct hide margin-left-10px height-10px width-10px"></dot>
+                        </row>
+                    </box>
+                </template>
             </card>
         </section>
         <section></section>

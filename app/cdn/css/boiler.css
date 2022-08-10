@@ -973,7 +973,7 @@ empty > section {
         border-radius: 50px;
     }
 
-    .border-radius-50pc, .border-radius-50pct [data-border-radius="50pc"] {
+    .border-radius-50pc, .border-radius-50pct, [data-border-radius="50pc"] {
         border-radius: 50%;
     }
 
@@ -1684,7 +1684,7 @@ aside ~ main {
     background: #d2d2d2;
 }
 
-.bg-db {
+.background-color-db, .bg-db {
     background: #dbdbdb;
 }
 
