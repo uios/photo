@@ -98,8 +98,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                             if (messages.length > 0) {
                                                 var m = 0;
                                                 do {
+                                                    const row = messages[m];
+                                                    const message = row.message;
                                                     const template = byId('template-message').content;
-                                                    var html = template.firstElementChild.outerHTML;
+                                                    var elem = template.firstElementChild;
+                                                    elem.find('text').textContent = message;
+                                                    const html = elem.outerHTML;
                                                     chatWithUs.firstElementChild.insertAdjacentHTML('afterend', html);
                                                     m++;
                                                 } while (m < messages.length);
@@ -109,6 +113,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                             resolve(route);
                                             console.log(89, {
                                                 convo,
+                                                data,
                                                 jwt,
                                                 messages,
                                                 popping,
@@ -441,11 +446,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var fullname = json.user.fullname;
                         var username = get[1] = json.user.username;
 
-                        //var avi = document.createElement('img');
-                        //avi.onerror = e => model.error.image(avi);
                         var avi = byId('users-user-avatar');
-                        var img = avi.firstElementChild;
+                        var img = document.createElement('img');
+                        img.className = "bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px";
+                        img.onerror = e=>model.error.image(avi.firstElementChild);
                         img.src = cdn.endpoint + "/" + uid + "/avi.jpg";
+                        avi.innerHTML = img.outerHTML;
 
                         if (fullname) {
                             byId('users-user-fullname').textContent = fullname;
@@ -476,33 +482,37 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         } else {
                             byId('tab-user-profile').classList.add('color-000');
+                            byId('users-user-posts').innerHTML = "";
 
-                            var posts = json.posts;
-                            if (posts) {
-                                var html = await ajax('/cdn/html/template/template.post.card.grid.html');
-                                var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-                                byId('users-user-posts').innerHTML = "";
-                                var p = 0;
-                                do {
-                                    var post = posts[p];
-                                    var ext = post.format;
+                            ajax(endpoint + '/v1/posts/' + get[1]).then(async(j)=>{
+                                var json = JSON.parse(j);
+                                var posts = json.posts;
+                                if (posts) {
+                                    var html = await ajax('/cdn/html/template/template.post.card.grid.html');
+                                    var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                    var p = 0;
+                                    do {
+                                        var post = posts[p];
+                                        var ext = post.format;
 
-                                    var card = template.cloneNode(true);
-                                    var boxes = card.all('box');
+                                        var card = template.cloneNode(true);
+                                        var boxes = card.all('box');
 
-                                    var format = "";
-                                    if (['jpg'].includes(ext)) {
-                                        format = "photo";
-                                    } else if (['mp4'].includes(ext)) {
-                                        format = "video";
-                                    }
-                                    boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+                                        var format = "";
+                                        if (['jpg'].includes(ext)) {
+                                            format = "photo";
+                                        } else if (['mp4'].includes(ext)) {
+                                            format = "video";
+                                        }
+                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
 
-                                    byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
-                                    p++;
-                                } while (p < posts.length);
+                                        byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
+                                        p++;
+                                    } while (p < posts.length);
+                                }
+                                resolve(route);
                             }
-                            resolve(route);
+                            );
                         }
                     }
                     ).catch((e)=>{
