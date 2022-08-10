@@ -109,6 +109,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 } while (m < messages.length);
                                             }
 
+                                            chatWithUs.parentNode.scrollTop = chatWithUs.scrollHeight + chatWithUs.clientHeight;
+
                                             route = rout.e("/chat/with" + rout.ed.url(data.convo));
                                             resolve(route);
                                             console.log(89, {
