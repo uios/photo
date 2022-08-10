@@ -3497,60 +3497,7 @@ iframe[data-device="mobile"] {
     }
 }
 
-/*WIDTH*/
-@media screen {
-    .width-2px, [data-width="2px"] {
-        width: 2px;
-    }
-
-    .width-50px {
-        width: 50px;
-    }
-
-    .width-60px {
-        width: 60px;
-    }
-
-    .width-72px {
-        width: 72px;
-    }
-
-    .width-150px {
-        width: 150px;
-    }
-
-    .width-1440px {
-        width: 1440px;
-    }
-
-    .width-100pc--36px {
-        width: calc(100% - 36px);
-    }
-
-    .width-100pc--46px {
-        width: calc(100% - 46px);
-    }
-
-    .width-100pc--50px {
-        width: calc(100% - 50px);
-    }
-
-    .width-100pc--70px {
-        width: calc(100% - 70px);
-    }
-
-    .width-100pc--90px {
-        width: calc(100% - 90px);
-    }
-
-    .width-100pc--100px {
-        width: calc(100% - 100px);
-    }
-
-    .width-100pc--120px {
-        width: calc(100% - 120px);
-    }
-}
+/*MAX-WIDTH*/
 
 [data-max-width="100%"] {
     max-width: 100%;
@@ -9260,7 +9207,7 @@ error ~ * {
     display: none;
 }
 
-[data-display="flex"], .flex {
+.display-flex, .flex, [data-display="flex"] {
     display: flex;
     display: -webkit-flex;
     /*vertical-align: top;*/
