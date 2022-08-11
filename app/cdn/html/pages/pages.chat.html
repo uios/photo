@@ -118,7 +118,7 @@
                                 <picture class="bg-ef border-radius-50pc height-25px position-absolute width-25px"></picture>
                             </ico>
                             <text class="bolder flex-1 overflow-hidden text-overflow-ellipsis white-space-nowrap" placeholder="Full Name"></text>
-                            <ico class="margin-left">
+                            <ico class="margin-left" data-href="/chat/edit/:root/">
                                 <n class="gg-info"></n>
                             </ico>
                         </section>
@@ -161,6 +161,30 @@
                     </box>
                 </section>
             </form>
+        </pages>
+        <pages class="flex-1 width-100pct" data-pages="/chat/edit/*/" data-root="/chat/edit/*/">
+            <card class="-tablet-position-fixed background-color-fff border-bottom-1px-solid border-color-db color-000 height-50px line-height-50px top-0 width-100pc z-index-5">
+                <!--<card class="border-bottom-1px-solid border-color-db color-000 height-50px line-height-50px top--50px width-100pc" data-position="absolute">-->
+                <section class="align-center">
+                    <box data-width="100%">
+                        <section class="align-center justify-content space-between">
+                            <text class="bolder flex-1 overflow-hidden text-overflow-ellipsis white-space-nowrap" placeholder="Full Name"></text>
+                            <ico class="margin-left position-absolute right-0" data-href="/chat/with/:root/">
+                                <n class="gg-info"></n>
+                            </ico>
+                        </section>
+                    </box>
+                </section>
+            </card>
+            <card class="height-100pc scroll-y width-100pct">
+                <column class="-tablet-padding-top-50px empty padding-bottom-70px position-absolute" id="chat-with-us">
+                    <box class="hide padding-20px">
+                        <section>
+                            <text class="background-color-ef border-radius-50px color-000 margin-left padding-16px">Lorem ipsum dolor...</text>
+                        </section>
+                    </box>
+                </column>
+            </card>
         </pages>
     </block>
 </blocks>

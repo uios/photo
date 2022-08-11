@@ -329,6 +329,19 @@ window.rout.ed = {
                             //alert(1);
                         }
                     }
+                    if (dir === "root") {
+                        var drc = rout.ed.dir(dom.body.dataset.path);
+                        drc.splice(0, d);
+                        dir = null;
+                        tabs[d] = null;
+                        tabs = tabs.concat(drc);
+                        console.log({
+                            dir,
+                            drc,
+                            tabs
+                        });
+                        d = tabs.length;
+                    }
                     if (is.json(decodeURI(dir))) {
                         var str = decodeURI(dir);
                         var json = JSON.parse(decodeURI(str));

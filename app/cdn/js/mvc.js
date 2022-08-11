@@ -62,6 +62,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                 if (get.length > 1) {
                     if (get.length > 2) {
+                        if (get[1] === "edit") {
+                            resolve(route);
+                        }
                         if (get[1] === "with") {
                             if (get.length > 2) {
                                 const jwt = auth.user() ? await auth.getIdToken() : null;
