@@ -162,13 +162,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                     if (get.length > 2) {
                         if (get[1] === "edit") {
+                            byId('convos').dataset.zIndex = 1;
                             resolve(route);
                         }
                         if (get[1] === "with") {
                             if (get.length > 2) {
+                                byId('convos').dataset.zIndex = 1;
                                 const jwt = auth.user() ? await auth.getIdToken() : null;
                                 if (jwt) {
-                                    byId('convos').dataset.zIndex = 1;
                                     const a = async function(d) {
                                         const data = JSON.parse(d);
                                         const users = data.users;

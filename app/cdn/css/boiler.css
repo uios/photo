@@ -9349,7 +9349,7 @@ error ~ * {
 }
 
 @media screen and (max-width: 768px) {
-    .tablet-flex {
+    .-tablet-flex, .tablet-flex {
         display: flex;
         display: -webkit-flex;
     }
