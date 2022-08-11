@@ -40,10 +40,7 @@ window.onload = async()=>{
 
     dom.body.dataset.load = "ing";
 
-    window.db.name = "database";
-    window.db.schema = {};
-    window.db.version = 0;
-    window.db.version > 0 ? window.db.open(window.db.name, window.db.version, window.db.schema).then((e)=>init()) : init();
+    init();
 
     console.log('window.onload', {
         dom
