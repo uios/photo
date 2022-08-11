@@ -91,7 +91,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 convo = popping.join(", ");
                                                 convo = convo + " and " + popped;
                                             }
-                                            vp.find('[placeholder="Full Name"]').textContent = convo;
+                                            vp.find('[data-pages="/chat/with/*/"] [placeholder="Full Name"]').textContent = convo;
 
                                             var chatWithUs = byId('chat-with-us');
                                             const messages = data.messages;
@@ -163,8 +163,26 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const row = messages[m];
                                     const message = row.message;
                                     const convo = JSON.parse(row.convo).filter(e=>e !== user.uid);
-                                    console.log(row.convo, convo, user);
-                                    const users = convo;
+                                    const people = JSON.parse(row.people);
+                                    var popping = [];
+
+                                    var u = 0;
+                                    do {
+                                        if (u < 4) {
+                                            popping[u] = people[u];
+                                            console.log(u, people, people[u]);
+                                        }
+                                        u++;
+                                    } while (u < people.length);
+
+                                    if (people.length > 1) {
+                                        var popped = popping.pop();
+                                        group = popping.join(", ");
+                                        group = group + " and " + popped;
+                                    } else {
+                                        group = people[0]
+                                    }
+                                    console.log(row.convo, people, group, user);
 
                                     const template = byId('template-convo').content;
                                     var elem = template.firstElementChild.cloneNode(true);
@@ -173,7 +191,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     do {
                                         var pic = document.createElement('picture');
                                         var img = document.createElement('img');
-                                        if (convo.length > 1 && c < 2) {
+                                        if (people.length > 1 && c < 2) {
                                             if (c > 0) {
                                                 pic.className = "background-color-db border-2px-solid border-radius-50pc bottom-0 color-fff height-36px position-absolute right-0 width-36px";
                                             } else {
@@ -190,9 +208,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         avi.insertAdjacentHTML('beforeend', pic.outerHTML);
                                         //alert(c);
                                         c++;
-                                    } while (c < convo.length);
+                                    } while (c < people.length);
 
-                                    elem.find('[placeholder="Full Name"]').textContent = users;
+                                    elem.find('[placeholder="Full Name"]').textContent = group;
                                     elem.find('[placeholder="Lorem ipsum dolor"]').textContent = message;
                                     const html = elem.outerHTML;
                                     convos.insertAdjacentHTML('beforeend', html);
