@@ -247,10 +247,87 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 } else {
                     resolve(route);
                 }
-            }
-            else if (root === "find" || root === "photo") {
+            } else if (root === "photo") {
                 var vp = dom.body.find('[data-page="/photo/"]');
-                if (get.length > 1) {} else {
+                if (get.length > 1) {
+                    var vp = dom.body.find('pages[data-pages="' + route.root + '"]');
+                    console.log({
+                        vp,
+                        route
+                    });
+                    var uid = get[1];
+
+                    const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
+
+                    const jwt = auth.user() ? await auth.getIdToken() : null;
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    endpoint += '/v1/posts/' + uid;
+                    endpoint += (auth.user() ? '?jwt=' + jwt : '');
+                    ajax(endpoint).then(async function(d) {
+                        var data = JSON.parse(d);
+                        var comments = data.comments;
+                        var post = data.post;
+                        var user = data.user;
+                        var uid = post.uid;
+                        var ext = post.format;
+                        var liked = post.liked;
+                        var likes = post.likes;
+                        var username = post.username;
+
+                        var block = vp.find('block');
+                        block.dataset.uid = uid;
+
+                        var photoPost = byId('photo-post');
+                        var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
+                        photoPost.find('img').src = src;
+
+                        var profile = vp.find('[data-tablet-order="1"]');
+                        profile.all('box')[0].dataset.href = "/users/" + username + "/";
+                        profile.find('picture img').src = cdn.endpoint + "/" + user + "/avi.jpg";
+                        profile.find('[placeholder="username"]').textContent = username;
+
+                        if (postComments.find('[data-columns]').children.length === 1 && comments && comments.length > 0) {
+                            var template = postComments.find('[data-columns]').firstElementChild;
+                            var html = template.cloneNode(true);
+                            html.classList.remove('hide');
+                            var c = 0;
+                            do {
+                                var comment = comments[c];
+                                html.find('picture img').dataset.src = cdn.endpoint + "/" + comment.user + "/avi.jpg";
+                                html.all('text span')[0].textContent = comment.username;
+                                html.all('text span')[1].textContent = comment.comment;
+                                postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);
+                                c++;
+                            } while (c < comments.length);
+                        }
+
+                        var actions = vp.find('[data-order="3"]').all('box')[1];
+
+                        var like = actions.find('.gg-heart').closest('ico');
+                        if (liked > 0) {
+                            like.classList.add('color-ff3b30');
+                        } else {
+                            like.classList.remove('color-ff3b30');
+                        }
+
+                        var stats = vp.find('[data-order="3"]').all('box')[2];
+                        stats.find('span').textContent = likes;
+
+                        resolve(route);
+                    });
+
+                    const formComment = vp.find('[data-order="3"]').find('form');
+                    const postColumn = postComments.firstElementChild;
+                    if (get[2] === "comments") {
+                        postComments.className = "-tablet-background-color-fff -tablet-position-fixed -tablet-top-0 absolute height-100pc scroll-y width-100pc z-index-5";
+                        postColumn.className = "-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px";
+                        formComment.className = "-mobile-bottom-44px -tablet-background-color-fff -tablet-bottom-0 -tablet-position-fixed -tablet-z-index-6 border-color-db border-top-1px-solid margin-top-10px";
+                    } else {
+                        postComments.className = "-tablet-position-relative absolute";
+                        postColumn.className = "-nth-child-3-last-display-block grid-gap-20px padding-y-20px";
+                        formComment.className = "-tablet-display-none border-color-db border-top-1px-solid margin-top-10px";
+                    }
+                } else {
                     const jwt = auth.user() ? await auth.getIdToken() : null;
                     const a = function(d) {
                         const data = JSON.parse(d);
@@ -268,6 +345,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const post = posts[b];
                                     const uid = post.uid;
                                     const user = post.user;
+                                    box.dataset.href = "/photo/" + uid + "/";
                                     box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + ".jpg";
                                 } else {
                                     box.remove();
@@ -356,87 +434,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     }
                 }
                 resolve(route);
-            } else if (root === "photo") {
-                if (get.length > 1) {
-                    var vp = dom.body.find('pages[data-pages="' + route.root + '"]');
-                    console.log({
-                        vp,
-                        route
-                    });
-                    var uid = get[1];
-
-                    const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
-
-                    const jwt = auth.user() ? await auth.getIdToken() : null;
-                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    endpoint += '/v1/posts/' + uid;
-                    endpoint += (auth.user() ? '?jwt=' + jwt : '');
-                    ajax(endpoint).then(async function(d) {
-                        var data = JSON.parse(d);
-                        var comments = data.comments;
-                        var post = data.post;
-                        var user = data.user;
-                        var uid = post.uid;
-                        var ext = post.format;
-                        var liked = post.liked;
-                        var likes = post.likes;
-                        var username = post.username;
-
-                        var block = vp.find('block');
-                        block.dataset.uid = uid;
-
-                        var photoPost = byId('photo-post');
-                        var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
-                        photoPost.find('img').src = src;
-
-                        var profile = vp.find('[data-tablet-order="1"]');
-                        profile.all('box')[0].dataset.href = "/users/" + username + "/";
-                        profile.find('picture img').src = cdn.endpoint + "/" + user + "/avi.jpg";
-                        profile.find('[placeholder="username"]').textContent = username;
-
-                        if (postComments.find('[data-columns]').children.length === 1 && comments && comments.length > 0) {
-                            var template = postComments.find('[data-columns]').firstElementChild;
-                            var html = template.cloneNode(true);
-                            html.classList.remove('hide');
-                            var c = 0;
-                            do {
-                                var comment = comments[c];
-                                html.find('picture img').dataset.src = cdn.endpoint + "/" + comment.user + "/avi.jpg";
-                                html.all('text span')[0].textContent = comment.username;
-                                html.all('text span')[1].textContent = comment.comment;
-                                postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);
-                                c++;
-                            } while (c < comments.length);
-                        }
-
-                        var actions = vp.find('[data-order="3"]').all('box')[1];
-
-                        var like = actions.find('.gg-heart').closest('ico');
-                        if (liked > 0) {
-                            like.classList.add('color-ff3b30');
-                        } else {
-                            like.classList.remove('color-ff3b30');
-                        }
-
-                        var stats = vp.find('[data-order="3"]').all('box')[2];
-                        stats.find('span').textContent = likes;
-
-                        resolve(route);
-                    });
-
-                    const formComment = vp.find('[data-order="3"]').find('form');
-                    const postColumn = postComments.firstElementChild;
-                    if (get[2] === "comments") {
-                        postComments.className = "-tablet-background-color-fff -tablet-position-fixed -tablet-top-0 absolute height-100pc scroll-y width-100pc z-index-5";
-                        postColumn.className = "-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px";
-                        formComment.className = "-mobile-bottom-44px -tablet-background-color-fff -tablet-bottom-0 -tablet-position-fixed -tablet-z-index-6 border-color-db border-top-1px-solid margin-top-10px";
-                    } else {
-                        postComments.className = "-tablet-position-relative absolute";
-                        postColumn.className = "-nth-child-3-last-display-block grid-gap-20px padding-y-20px";
-                        formComment.className = "-tablet-display-none border-color-db border-top-1px-solid margin-top-10px";
-                    }
-                }
-            } else if (root === "post") {
+            } else if (root === "photo") {} else if (root === "post") {
                 var vp = dom.body.find('pages[data-root="' + root + '"]');
 
                 var post = byId('post');
