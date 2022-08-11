@@ -3297,6 +3297,12 @@ iframe[data-device="mobile"] {
     }
 }
 
+@media screen and (max-width: 1024px) {
+    xga-margin-right {
+        margin-right: auto;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .tablet-margin-auto {
         margin: auto;
@@ -3362,12 +3368,24 @@ iframe[data-device="mobile"] {
         margin-top: 25px;
     }
 
+    .tablet-margin-top-44px {
+        margin-top: 44px;
+    }
+
     .tablet-margin-top-50px {
         margin-top: 50px;
     }
 
     .tablet-margin-top-60px {
         margin-top: 60px;
+    }
+
+    .tablet-margin-top-64px {
+        margin-top: 64px;
+    }
+
+    .tablet-margin-top-70px {
+        margin-top: 70px;
     }
 
     .tablet-margin-top-100px {
@@ -3398,15 +3416,7 @@ iframe[data-device="mobile"] {
         margin-bottom: 70px;
         margin-top: 70px;
     }
-}
-
-@media screen and (max-width: 1024px) {
-    xga-margin-right {
-        margin-right: auto;
-    }
-}
-
-@media screen and (max-width: 768px) {
+    
     .tablet-margin-right-0 {
         margin-right: 0px !important;
     }
@@ -9151,13 +9161,13 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
 .cascade-left box:nth-child(3n + 1) {
     order: 1;
     width: calc((((100% - 40px) / 3) * 2) + 20px);
-    margin-right: 20px;
+    /* margin-right: 20px; */
     margin-bottom: 0px;
 }
 
 .cascade-left box:nth-child(3n + 2) {
     order: 1;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .cascade-right box {
