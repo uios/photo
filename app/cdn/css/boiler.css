@@ -577,17 +577,8 @@ box > section > video:not([data-height]) {
 }
 
 body text {
-    /* width: 100%; */
-    /* min-height: 50px; */
-    /* line-height: 50px; */
-    /* height: 100%; */
-    /*text-align: left;*/
-    /* min-width: 30px; */
-    /* padding: 0 10px; */
-    /* justify-content: center; */
     display: inline-block;
     align-items: center;
-    /* white-space: normal; */
 }
 
 textarea {
@@ -8237,6 +8228,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
 
 .width-50px {
     width: 50px;
+}
+
+.width-60px {
+    width: 60px;
 }
 
 .width-75px {
