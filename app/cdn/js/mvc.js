@@ -249,7 +249,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 }
             }
             else if (root === "find" || root === "photo") {
-                var vp = dom.body.find('[data-page="/find/"]');
+                var vp = dom.body.find('[data-page="/photo/"]');
                 if (get.length > 1) {} else {
                     const jwt = auth.user() ? await auth.getIdToken() : null;
                     const a = function(d) {
