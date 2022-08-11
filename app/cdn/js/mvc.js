@@ -158,6 +158,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                             if (messages.length > 0) {
                                 const convos = byId('chat-convos');
+                                convos.innerHTML = "";
+                                        
                                 var m = 0;
                                 do {
                                     const row = messages[m];
