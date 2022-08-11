@@ -247,8 +247,46 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 } else {
                     resolve(route);
                 }
-            } else if (root === "find") {
-                if (get.length > 1) {} else {}
+            }
+            else if (root === "find" || root === "photo") {
+                var vp = dom.body.find('[data-page="/find/"]');
+                if (get.length > 1) {} else {
+                    const jwt = auth.user() ? await auth.getIdToken() : null;
+                    const a = function(d) {
+                        const data = JSON.parse(d);
+                        console.log({
+                            data
+                        });
+                        const feed = byId('find-posts');
+                        const posts = data.posts;
+                        if (posts.length > 0) {
+                            var boxes = feed.all('box');
+                            var b = 0;
+                            do {
+                                const box = boxes[b];
+                                if (b < posts.length) {
+                                    const post = posts[b];
+                                    const uid = post.uid;
+                                    const user = post.user;
+                                    box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + ".jpg";
+                                } else {
+                                    box.remove();
+                                }
+                                b++;
+                            } while (b < boxes.length);
+                        }
+                    }
+                    const b = function(error) {
+                        const message = error.message;
+                        console.log(message);
+                    }
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    const uri = endpoint + "/v1/search/posts" + (jwt ? "?jwt=" + jwt : "");
+                    console.log({
+                        uri
+                    });
+                    ajax(uri).then(a).catch(b);
+                }
                 resolve(route);
             } else if (root === "my") {
                 if (get.length > 1) {
