@@ -178,10 +178,33 @@
             </card>
             <card class="height-100pc scroll-y width-100pct">
                 <column class="-tablet-padding-top-50px empty padding-bottom-70px position-absolute" id="chat-with-us">
-                    <box class="hide padding-20px">
-                        <section>
-                            <text class="background-color-ef border-radius-50px color-000 margin-left padding-16px">Lorem ipsum dolor...</text>
-                        </section>
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-20px width-100pc">
+                        <column>
+                            <label class="margin-bottom-5px">
+                                <input class="margin-right-5px" type="checkbox">
+                                <span class="bolder font-size-14px">Mute messages</span>
+                            </label>
+                        </column>
+                    </form>
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db hide padding-20px width-100pc">
+                        <column>
+                            <row class="align-center space-between width-100pc">
+                                <text class="font-size-16px">Move to General</text>
+                                <label class="align-center inline-flex space-between">
+                                    <input class="opacity-0 height-0 width-0" type="checkbox">
+                                    <text class="border-1px-solid border-color-db border-radius-5px color-000 font-size-16px padding-x-10px padding-y-5px">Move</text>
+                                </label>
+                            </row>
+                            <text class="color-8e font-size-14px line-height-18px margin-top-10px">The group won't know it's been moved. You can move the group back to Primary any time.</text>
+                        </column>
+                    </box>
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db color-ff3b30 font-size-14px line-height-18px padding-bottom-20px width-100pc">
+                        <column>
+                            <text class="margin-20px">Leave Chat</text>
+                            <text class="margin-20px">Delete Chat</text>
+                            <text class="margin-20px">Block</text>
+                            <text class="margin-20px">Report</text>
+                        </column>
                     </box>
                 </column>
             </card>
