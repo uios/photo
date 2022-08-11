@@ -159,13 +159,16 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             if (messages.length > 0) {
                                 const convos = byId('chat-convos');
                                 convos.innerHTML = "";
-                                        
+
                                 var m = 0;
                                 do {
                                     const row = messages[m];
                                     const message = row.message;
                                     const convo = JSON.parse(row.convo).filter(e=>e !== user.uid);
-                                    const people = JSON.parse(row.people);
+                                    const people = JSON.parse(row.people).filter((c, index) => {
+    return JSON.parse(row.people).indexOf(c) === index;
+});
+                                    const usernames = JSON.parse(row.usernames);
                                     var popping = [];
 
                                     var u = 0;
@@ -214,6 +217,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                                     elem.find('[placeholder="Full Name"]').textContent = group;
                                     elem.find('[placeholder="Lorem ipsum dolor"]').textContent = message;
+                                    elem.dataset.href = "/chat/with" + rout.ed.url(usernames);
                                     const html = elem.outerHTML;
                                     convos.insertAdjacentHTML('beforeend', html);
 
