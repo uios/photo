@@ -60,7 +60,106 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 vp.dataset.zIndex = 9;
                 vp.dataset.mobileZIndex = 9;
 
+                byId('convos').dataset.zIndex = 2;
+
+                const convos = byId('chat-convos');
+                const jwt = auth.user() ? await auth.getIdToken() : null;
+                if (convos.innerHTML === "" && jwt) {
+                    const a = async function(d) {
+                        const data = JSON.parse(d);
+                        console.log(150, {
+                            data
+                        });
+                        const messages = data.messages;
+                        const user = data.user;
+
+                        vp.find('[placeholder="username"]').textContent = user.username;
+
+                        if (messages.length > 0) {
+                            convos.innerHTML = "";
+
+                            var m = 0;
+                            do {
+                                const row = messages[m];
+                                const message = row.message;
+                                const convo = JSON.parse(row.convo).filter(e=>e !== user.uid);
+                                const people = JSON.parse(row.people).filter((c,index)=>{
+                                    return JSON.parse(row.people).indexOf(c) === index;
+                                }
+                                );
+                                const usernames = JSON.parse(row.usernames);
+                                var popping = [];
+
+                                var u = 0;
+                                do {
+                                    if (u < 4) {
+                                        popping[u] = people[u];
+                                        console.log(u, people, people[u]);
+                                    }
+                                    u++;
+                                } while (u < people.length);
+
+                                if (people.length > 1) {
+                                    var popped = popping.pop();
+                                    group = popping.join(", ");
+                                    group = group + " and " + popped;
+                                } else {
+                                    group = people[0]
+                                }
+                                console.log(row.convo, people, group, user);
+
+                                const template = byId('template-convo').content;
+                                var elem = template.firstElementChild.cloneNode(true);
+
+                                var c = 0;
+                                do {
+                                    var pic = document.createElement('picture');
+                                    var img = document.createElement('img');
+                                    if (people.length > 1 && c < 2) {
+                                        if (c > 0) {
+                                            pic.className = "background-color-db border-2px-solid border-radius-50pc bottom-0 color-fff height-36px position-absolute right-0 width-36px";
+                                        } else {
+                                            pic.className = "background-color-db border-radius-50pc height-36px left-0 position-absolute top-0 width-36px";
+                                        }
+                                    } else {
+                                        pic.className = "background-color-db border-radius-50pc height-50px width-50px";
+                                    }
+                                    img.className = "absolute bottom-0 height-75pc invert width-75pc";
+                                    img.src = cdn.endpoint + "/" + convo[0] + "/avi.jpg";
+                                    img.setAttribute("onerror", 'this.src = "/cdn/svg/user.svg"');
+                                    pic.innerHTML = img.outerHTML;
+                                    var avi = elem.find('picture');
+                                    avi.insertAdjacentHTML('beforeend', pic.outerHTML);
+                                    //alert(c);
+                                    c++;
+                                } while (c < people.length);
+
+                                elem.find('[placeholder="Full Name"]').textContent = group;
+                                elem.find('[placeholder="Lorem ipsum dolor"]').textContent = message;
+                                elem.dataset.href = "/chat/with" + rout.ed.url(usernames);
+                                const html = elem.outerHTML;
+                                convos.insertAdjacentHTML('beforeend', html);
+
+                                m++;
+                            } while (m < messages.length);
+                        }
+
+                        const template = byId('template-message').content;
+                        var elem = template.firstElementChild;
+                    }
+                    const b = async function(error) {
+                        const message = error.message;
+                        console.log(message);
+                    }
+
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    const uri = endpoint + "/v1/messages?jwt=" + jwt;
+                    console.log(uri);
+                    ajax(uri).then(a).catch(b);
+                }
+
                 if (get.length > 1) {
+
                     if (get.length > 2) {
                         if (get[1] === "edit") {
                             resolve(route);
@@ -97,6 +196,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                             vp.find('[data-pages="/chat/with/*/"] [placeholder="Full Name"]').textContent = convo;
 
                                             var chatWithUs = byId('chat-with-us');
+                                            chatWithUs.innerHTML = "";
                                             const messages = data.messages;
                                             if (messages.length > 0) {
                                                 var m = 0;
@@ -107,7 +207,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                     var elem = template.firstElementChild;
                                                     elem.find('text').textContent = message;
                                                     const html = elem.outerHTML;
-                                                    chatWithUs.firstElementChild.insertAdjacentHTML('afterend', html);
+                                                    chatWithUs.insertAdjacentHTML('beforeend', html);
                                                     m++;
                                                 } while (m < messages.length);
                                             }
@@ -141,112 +241,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         }
                     } else {
-                        if (get[1] === "with") {}
                         resolve(route);
                     }
                 } else {
-                    byId('convos').dataset.zIndex = 2;
-
-                    const jwt = auth.user() ? await auth.getIdToken() : null;
-                    if (jwt) {
-                        const a = async function(d) {
-                            const data = JSON.parse(d);
-                            console.log(150, {
-                                data
-                            });
-                            const messages = data.messages;
-                            const user = data.user;
-
-                            vp.find('[placeholder="username"]').textContent = user.username;
-
-                            if (messages.length > 0) {
-                                const convos = byId('chat-convos');
-                                convos.innerHTML = "";
-
-                                var m = 0;
-                                do {
-                                    const row = messages[m];
-                                    const message = row.message;
-                                    const convo = JSON.parse(row.convo).filter(e=>e !== user.uid);
-                                    const people = JSON.parse(row.people).filter((c,index)=>{
-                                        return JSON.parse(row.people).indexOf(c) === index;
-                                    }
-                                    );
-                                    const usernames = JSON.parse(row.usernames);
-                                    var popping = [];
-
-                                    var u = 0;
-                                    do {
-                                        if (u < 4) {
-                                            popping[u] = people[u];
-                                            console.log(u, people, people[u]);
-                                        }
-                                        u++;
-                                    } while (u < people.length);
-
-                                    if (people.length > 1) {
-                                        var popped = popping.pop();
-                                        group = popping.join(", ");
-                                        group = group + " and " + popped;
-                                    } else {
-                                        group = people[0]
-                                    }
-                                    console.log(row.convo, people, group, user);
-
-                                    const template = byId('template-convo').content;
-                                    var elem = template.firstElementChild.cloneNode(true);
-
-                                    var c = 0;
-                                    do {
-                                        var pic = document.createElement('picture');
-                                        var img = document.createElement('img');
-                                        if (people.length > 1 && c < 2) {
-                                            if (c > 0) {
-                                                pic.className = "background-color-db border-2px-solid border-radius-50pc bottom-0 color-fff height-36px position-absolute right-0 width-36px";
-                                            } else {
-                                                pic.className = "background-color-db border-radius-50pc height-36px left-0 position-absolute top-0 width-36px";
-                                            }
-                                        } else {
-                                            pic.className = "background-color-db border-radius-50pc height-50px width-50px";
-                                        }
-                                        img.className = "absolute bottom-0 height-75pc invert width-75pc";
-                                        img.src = cdn.endpoint + "/" + convo[0] + "/avi.jpg";
-                                        img.setAttribute("onerror", 'this.src = "/cdn/svg/user.svg"');
-                                        pic.innerHTML = img.outerHTML;
-                                        var avi = elem.find('picture');
-                                        avi.insertAdjacentHTML('beforeend', pic.outerHTML);
-                                        //alert(c);
-                                        c++;
-                                    } while (c < people.length);
-
-                                    elem.find('[placeholder="Full Name"]').textContent = group;
-                                    elem.find('[placeholder="Lorem ipsum dolor"]').textContent = message;
-                                    elem.dataset.href = "/chat/with" + rout.ed.url(usernames);
-                                    const html = elem.outerHTML;
-                                    convos.insertAdjacentHTML('beforeend', html);
-
-                                    m++;
-                                } while (m < messages.length);
-                            }
-
-                            const template = byId('template-message').content;
-                            var elem = template.firstElementChild;
-
-                            resolve(route);
-                        }
-                        const b = async function(error) {
-                            const message = error.message;
-                            console.log(message);
-                            resolve(route);
-                        }
-
-                        var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                        const uri = endpoint + "/v1/messages?jwt=" + jwt;
-                        console.log(uri);
-                        ajax(uri).then(a).catch(b);
-                    } else {
-                        resolve(route);
-                    }
+                    resolve(route);
                 }
             } else if (root === "find") {
                 if (get.length > 1) {} else {}
