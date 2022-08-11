@@ -165,9 +165,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const row = messages[m];
                                     const message = row.message;
                                     const convo = JSON.parse(row.convo).filter(e=>e !== user.uid);
-                                    const people = JSON.parse(row.people).filter((c, index) => {
-    return JSON.parse(row.people).indexOf(c) === index;
-});
+                                    const people = JSON.parse(row.people).filter((c,index)=>{
+                                        return JSON.parse(row.people).indexOf(c) === index;
+                                    }
+                                    );
                                     const usernames = JSON.parse(row.usernames);
                                     var popping = [];
 
@@ -334,7 +335,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var data = JSON.parse(d);
                         var comments = data.comments;
                         var post = data.post;
-                        var user = post.user;
+                        var user = data.user;
                         var uid = post.uid;
                         var ext = post.format;
                         var liked = post.liked;
@@ -584,35 +585,32 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             byId('tab-user-profile').classList.add('color-000');
                             byId('users-user-posts').innerHTML = "";
 
-                            ajax(endpoint + '/v1/posts/' + get[1]).then(async(j)=>{
-                                var json = JSON.parse(j);
-                                var posts = json.posts;
-                                if (posts) {
-                                    var html = await ajax('/cdn/html/template/template.post.card.grid.html');
-                                    var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-                                    var p = 0;
-                                    do {
-                                        var post = posts[p];
-                                        var ext = post.format;
+                            var posts = json.posts;
+                            if (posts) {
+                                var html = await ajax('/cdn/html/template/template.post.card.grid.html');
+                                var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                var p = 0;
+                                do {
+                                    var post = posts[p];
+                                    var ext = post.format;
 
-                                        var card = template.cloneNode(true);
-                                        var boxes = card.all('box');
+                                    var card = template.cloneNode(true);
+                                    var boxes = card.all('box');
 
-                                        var format = "";
-                                        if (['jpg'].includes(ext)) {
-                                            format = "photo";
-                                        } else if (['mp4'].includes(ext)) {
-                                            format = "video";
-                                        }
-                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+                                    var format = "";
+                                    if (['jpg'].includes(ext)) {
+                                        format = "photo";
+                                    } else if (['mp4'].includes(ext)) {
+                                        format = "video";
+                                    }
+                                    boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
 
-                                        byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
-                                        p++;
-                                    } while (p < posts.length);
-                                }
-                                resolve(route);
+                                    byId('users-user-posts').insertAdjacentHTML('afterbegin', card.outerHTML);
+                                    p++;
+                                } while (p < posts.length);
                             }
-                            );
+                            resolve(route);
+
                         }
                     }
                     ).catch((e)=>{
