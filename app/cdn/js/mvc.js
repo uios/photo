@@ -52,7 +52,59 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         if (get[2] === "alerts") {//byId('tab-activity-alerts').classList.add('color-000');
                         }
                     }
-                } else {//byId('tab-activity').classList.add('color-000');          
+                } else {
+                    //byId('tab-activity').classList.add('color-000');
+                    const a = async function(d) {
+                        var json = JSON.parse(d);
+                        var activity = json.activity;
+                        if (activity.length > 0) {
+                            const feed = byId('activity-feed');
+                            feed.innerHTML = "";
+                            var a = 0;
+                            do {
+                                var row = activity[a];
+                                const ref = row.ref;
+                                const owner = row.owner;
+                                const type = row.type;
+                                const username = row.username;
+                                const user = row.user;
+
+                                const template = vp.find('#feed-activity-' + type).content;
+                                const elem = template.firstElementChild.cloneNode(true);
+                                var img = document.createElement('img');
+                                img.className = "absolute bottom-0 height-75pc invert width-75pc";
+                                img.src = cdn.endpoint + '/' + user + '/avi.jpg';
+                                img.setAttribute("onerror", 'this.remove()');
+                                elem.find('picture').innerHTML = img.outerHTML;
+                                elem.find('[placeholder="username"]').textContent = username;
+
+                                if (type === "like") {
+                                    var img = document.createElement('img');
+                                    //img.className = "bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px";
+                                    //img.onerror = e=>model.error.image(avi.firstElementChild);
+                                    img.src = cdn.endpoint + "/" + owner + "/photo/" + ref + ".jpg";
+                                    elem.all('picture')[2].innerHTML = img.outerHTML;
+                                }
+
+                                console.log(vp, elem, feed, '#feed-activity-' + type);
+
+                                feed.insertAdjacentHTML('beforeend', elem.outerHTML);
+                                a++;
+                            } while (a < activity.length);
+                        }
+                        console.log({
+                            json
+                        });
+                    }
+                    const b = async function(e) {
+                        console.log(e);
+                    }
+
+                    const jwt = auth.user() ? await auth.getIdToken() : null;
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    const uri = endpoint + "/v1/activity/?jwt=" + jwt;
+                    console.log(uri);
+                    ajax(uri).then(a).catch(b);
                 }
                 resolve(route);
             } else if (root === "chat") {
@@ -283,7 +335,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         var profile = vp.find('[data-tablet-order="1"]');
                         profile.all('box')[0].dataset.href = "/users/" + username + "/";
-                        profile.find('picture img').src = cdn.endpoint + "/" + user + "/avi.jpg";
+                        profile.find('picture img').dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
                         profile.find('[placeholder="username"]').textContent = username;
 
                         if (postComments.find('[data-columns]').children.length === 1 && comments && comments.length > 0) {
@@ -293,7 +345,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             var c = 0;
                             do {
                                 var comment = comments[c];
-                                html.find('picture img').dataset.src = cdn.endpoint + "/" + comment.user + "/avi.jpg";
+                                html.find('picture img').dataset.src = html.find('picture img').src = cdn.endpoint + "/" + comment.user + "/avi.jpg";
                                 html.all('text span')[0].textContent = comment.username;
                                 html.all('text span')[1].textContent = comment.comment;
                                 postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);

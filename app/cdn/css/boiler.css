@@ -3435,6 +3435,12 @@ iframe[data-device="mobile"] {
     }
 }
 
+@media screen and (max-width: 640px) {   
+    .-vga-margin-top-70px {
+        margin-top: 70px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .mobile-margin-left-unset {
         margin-left: unset;

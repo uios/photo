@@ -280,7 +280,7 @@ window.is = {
     }
 };
 function ajax(url, settings) {
-    ;var dir = window.location.href.split(url);
+    var dir = window.location.href.split(url);
     return new Promise((resolve,reject)=>{
         var req;
         var data = {};
