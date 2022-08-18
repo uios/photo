@@ -3435,7 +3435,11 @@ iframe[data-device="mobile"] {
     }
 }
 
-@media screen and (max-width: 640px) {   
+@media screen and (max-width: 640px) {
+    .-vga-margin-top-50px {
+        margin-top: 50px;
+    }
+    
     .-vga-margin-top-70px {
         margin-top: 70px;
     }
@@ -4903,7 +4907,7 @@ empty:hover {
         }
     }
 
-    @media screen and (max-width: 480px) {
+    @media (max-width: 480px) {
         .-mobile-top-0 {
             top: 0;
         }

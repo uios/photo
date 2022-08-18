@@ -78,6 +78,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 elem.find('picture').innerHTML = img.outerHTML;
                                 elem.find('[placeholder="username"]').textContent = username;
 
+                                if (type === "follow") {
+                                    row.following ? elem.find('text:last-child').textContent = "Following" : null;
+                                }
+
                                 if (type === "like") {
                                     var img = document.createElement('img');
                                     //img.className = "bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px";
@@ -86,7 +90,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     elem.all('picture')[2].innerHTML = img.outerHTML;
                                 }
 
-                                console.log(vp, elem, feed, '#feed-activity-' + type);
+                                //console.log(vp, elem, feed, '#feed-activity-' + type);
 
                                 feed.insertAdjacentHTML('beforeend', elem.outerHTML);
                                 a++;
