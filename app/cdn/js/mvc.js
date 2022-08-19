@@ -649,11 +649,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         avi.innerHTML = img.outerHTML;
 
                         if (uid === auth.user().uid) {
-                            byId('users-uid-edit').classList.remove('hide');
-                            byId('users-uid-follow').classList.add('hide');
+                            byId('users-user-edit').classList.remove('hide');
+                            byId('users-user-follow').classList.add('hide');
                         } else {
-                            byId('users-uid-edit').classList.add('hide');
-                            byId('users-uid-follow').classList.remove('hide');
+                            byId('users-user-edit').classList.add('hide');
+                            byId('users-user-follow').classList.remove('hide');
                         }
 
                         if (fullname) {
