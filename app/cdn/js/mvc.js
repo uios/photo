@@ -75,7 +75,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 img.className = "absolute bottom-0 height-75pc invert width-75pc";
                                 img.src = cdn.endpoint + '/' + user + '/avi.jpg';
                                 img.setAttribute("onerror", 'this.remove()');
-                                elem.find('picture').innerHTML = img.outerHTML;
+                                const avi = elem.find('picture');
+                                avi.innerHTML = img.outerHTML;
+                                avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + row.user + "/";
                                 elem.find('[placeholder="username"]').textContent = username;
 
                                 if (type === "follow") {
