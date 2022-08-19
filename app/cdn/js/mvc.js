@@ -648,6 +648,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         img.src = cdn.endpoint + "/" + uid + "/avi.jpg";
                         avi.innerHTML = img.outerHTML;
 
+                        if (uid === auth.user().uid) {
+                            byId('users-uid-edit').classList.remove('hide');
+                            byId('users-uid-follow').classList.add('hide');
+                        } else {
+                            byId('users-uid-edit').classList.add('hide');
+                            byId('users-uid-follow').classList.remove('hide');
+                        }
+
                         if (fullname) {
                             byId('users-user-fullname').textContent = fullname;
                             byId('users-user-fullname').classList.remove('hide');
