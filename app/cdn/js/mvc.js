@@ -632,7 +632,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 if (get.length > 1) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                    ajax(endpoint + '/v1/users/' + get[1]).then(async(user)=>{
+                    const jwt = auth.user() ? await auth.getIdToken() : "";
+                    const uri = endpoint + '/v1/users/' + get[1] + (jwt ? "?jwt="+jwt : "");
+                    ajax(uri).then(async(user)=>{
                         var error = v.find('error');
                         error ? error.remove() : null;
 
