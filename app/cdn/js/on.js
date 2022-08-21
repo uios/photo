@@ -486,71 +486,10 @@ window.on["submit"] = {
     }
   },
 
-  video: {
-    create: async (event) => {
-      event.preventDefault();
-      return new Promise(async (resolve, reject) => {
-        var text = event.target.find("textarea").value;
-        var jwt = await auth.getIdToken();
-        var data = { jwt, text };
-        ajax(api.endpoint + "/v1/notes/create", {
-          data,
-          dataType: "POST"
-        }).then((d, data = JSON.parse(d)) => {
-          console.log("data", { data });
-          "/".router();
-          resolve(data);
-        });
-      });
+  find: {
+    query: async(event) => {
+      console.log(event);
     }
   }
 };
 
-window.iii = {
-  llips: {
-    is: (target) => {
-      var elem = target;
-      var type = elem.dataset.iii;
-      if (type === "llipsis") {
-        var llipsis = elem.children;
-        var l = 0;
-        do {
-          var lps = llipsis[l];
-          lps.dataset.width = "30px";
-          lps.dataset.height = "30px";
-          var span = lps.firstElementChild;
-          span ? span.classList.remove("hide") : null;
-          lps.dataset.background = "transparent";
-          l++;
-        } while (l < llipsis.length);
-      }
-    },
-
-    isnt: (target) => {
-      el = document.body.all("[data-iii]");
-      if (el.length > 0) {
-        var m = 0;
-        do {
-          var elem = el[m];
-          var type = elem.dataset.iii;
-          if (type === "llipsis") {
-            var llipsis = elem.children;
-            var l = 0;
-            do {
-              if (elem !== target.closest("[data-iii]")) {
-                var lps = llipsis[l];
-                lps.dataset.width = "10px";
-                lps.dataset.height = "10px";
-                var span = lps.firstElementChild;
-                span ? span.classList.add("hide") : null;
-                lps.removeAttribute("data-background");
-              }
-              l++;
-            } while (l < llipsis.length);
-          }
-          m++;
-        } while (m < el.length);
-      }
-    }
-  }
-};
