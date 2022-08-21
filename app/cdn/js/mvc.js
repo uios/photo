@@ -1414,5 +1414,13 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             //alert(href);
             href.router();
         }
+        ,
+        unfollow: target=>{
+            const a = function(ppp) {
+                const avi = ppp.find('picture');
+                avi.innerHTML = byId('users-user-avatar').innerHTML;
+            }
+            modal.card(byId('template-users-user-unfollow').content.firstElementChild.innerHTML).then(a);
+        }
     }
 });
