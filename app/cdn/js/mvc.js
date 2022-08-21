@@ -633,7 +633,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
-                    const uri = endpoint + '/v1/users/' + get[1] + (jwt ? "?jwt="+jwt : "");
+                    const uri = endpoint + '/v1/users/' + get[1] + (jwt ? "?jwt=" + jwt : "");
                     ajax(uri).then(async(user)=>{
                         var error = v.find('error');
                         error ? error.remove() : null;
@@ -655,9 +655,17 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         if (uid === auth.user().uid) {
                             byId('users-user-edit').classList.remove('hide');
                             byId('users-user-follow').classList.add('hide');
+                            byId('users-user-unfollow').classList.add('hide');
                         } else {
+                            var friend = json.user.friend;
+                            if (friend > 0) {
+                                byId('users-user-follow').classList.add('hide');
+                                byId('users-user-unfollow').classList.remove('hide');
+                            } else {
+                                byId('users-user-follow').classList.remove('hide');
+                                byId('users-user-unfollow').classList.add('hide');
+                            }
                             byId('users-user-edit').classList.add('hide');
-                            byId('users-user-follow').classList.remove('hide');
                         }
 
                         if (fullname) {
@@ -669,6 +677,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             about.classList.remove('hide');
                         }
                         byId('users-user-username').textContent = username;
+
+                        byId('users-user-count-posts').textContent = json.stats.posts;
+                        byId('users-user-count-followers').textContent = json.stats.followers;
+                        byId('users-user-count-following').textContent = json.stats.following;
 
                         route = rout.e(rout.ed.url(get));
 
