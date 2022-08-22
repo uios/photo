@@ -230,7 +230,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 if (jwt) {
                                     const a = async function(d) {
                                         const data = JSON.parse(d);
-                                        const users = data.users;
+                                        const users = data.users; 
                                         if (users.length > 0) {
                                             var popping = [];
                                             var usernames = [];
@@ -257,7 +257,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                             var chatWithUs = byId('chat-with-us');
                                             chatWithUs.innerHTML = "";
                                             const messages = data.messages;
-                                            if (messages.length > 0) {
+                                            if (messages && messages.length > 0) {
                                                 var m = 0;
                                                 do {
                                                     const row = messages[m];
@@ -672,6 +672,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             byId('users-user-edit').classList.add('hide');
                             byId('users-user-message').classList.remove('hide');
                             byId('users-user-more').classList.remove('hide');
+
+                            byId('users-user-message').dataset.href = "/chat/with/" + username;
                         }
 
                         if (fullname) {
