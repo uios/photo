@@ -653,8 +653,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         avi.innerHTML = img.outerHTML;
 
                         if (uid === auth.user().uid) {
+                            byId('users-user-account').classList.remove('hide');
                             byId('users-user-edit').classList.remove('hide');
                             byId('users-user-follow').classList.add('hide');
+                            byId('users-user-message').classList.add('hide');
+                            byId('users-user-more').classList.add('hide');
                             byId('users-user-unfollow').classList.add('hide');
                         } else {
                             var friend = json.user.friend;
@@ -665,7 +668,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 byId('users-user-follow').classList.remove('hide');
                                 byId('users-user-unfollow').classList.add('hide');
                             }
+                            byId('users-user-account').classList.add('hide');
                             byId('users-user-edit').classList.add('hide');
+                            byId('users-user-message').classList.remove('hide');
+                            byId('users-user-more').classList.remove('hide');
                         }
 
                         if (fullname) {

@@ -5181,7 +5181,7 @@ empty:hover {
     }
 
     [data-columns="2"] {
-        grid-template-columns: auto 320px;
+        grid-template-columns: auto auto;
     }
 
     [data-columns="3"] {
