@@ -39,19 +39,30 @@
             <div class="bouncing bounce2 bg-g"></div>
             <div class="bouncing bounce3 bg-b"></div>
         </boot>
-        <header class="bg-white border-bottom-1px-solid border-color-dbdbdb margin-x-auto" data-position="fixed" data-width="100%" data-top="0" data-z-index="5">
+        <header class="bg-white box-sizing-border-box border-bottom-1px-solid border-color-dbdbdb margin-x-auto" data-position="fixed" data-width="100%" data-top="0" data-z-index="5">
             <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
             <section>
                 <card class="align-center border-radius-50px height-44px justify-center line-height-44px margin-auto margin-y-5px mobile-padding-x-0 mobile-shadow-none vga-padding-x-10px xga-border-radius-0 xga-padding-x-20px" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
-                    <section>
+                    <section class="align-items-center">
                         <box class="bolder height-100pc margin-right mobile-padding-x-10px padding-x-20px vga-padding-x-10px xga-padding-x-0" data-href="/">
                             <section>
                                 <text>Share</text>
                             </section>
                         </box>
-                        <form class="hide">
-                            <input type="text">
-                            <input type="submit">
+                        <form class="-tablet-display-none height-36px margin-left position-relative" onsubmit="on.submit.search(event)">
+                            <card class="align-items-center width-100pct">
+                                <section class="justify-center width-100pct">
+                                    <box class="background-color-db border-radius-8px height-36px line-height-36px width-268px">
+                                        <section class="align-center justify-center width-100pct">
+                                            <ico class="opacity-50pc">
+                                                <n class="gg-search"></n>
+                                            </ico>
+                                            <input class="flex-1 height-100pct height-100pct width-100pct" placeholder="Search" type="text">
+                                            <input type="submit">
+                                        </section>
+                                    </box>
+                                </section>
+                            </card>
                         </form>
                         <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/">
                             <section>
@@ -77,7 +88,8 @@
                         <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/photo/">
                             <section>
                                 <ico data-height="44px">
-                                    <n class="gg-search"></n>
+                                    <n class="-tablet-display-none gg-globe-alt"></n>
+                                    <n class="-tablet-display-flex gg-search hide"></n>
                                 </ico>
                             </section>
                         </box>
@@ -105,12 +117,23 @@
                     </section>
                 </card>
             </section>
-            <form class="position-absolute" onsubmit="on.submit.search(event)">
-                <card>
-                    <section>
-                        <box>
-                            <section>
-                                <input type="text">
+            <form class="-tablet-position-fixed background-color-fff height-44px hide justify-center line-height-44px tablet-flex z-index-5" data-pages="/photo/" data-root="/photo/" onsubmit="on.submit.search(event)">
+                <card class="align-items-center">
+                    <section class="align-center justify-center width-100pct">
+                        <box class="mobile-hide">
+                            <section class="align-center justify-center width-100pct">
+                                <ico>
+                                    <n class="gg-arrow-left"></n>
+                                </ico>
+                            </section>
+                        </box>
+                        <box class="background-color-db border-radius-8px flex-1 height-36px line-height-36px margin-right-10px mobile-margin-left-20px mobile-margin-right-20px">
+                            <section class="align-center justify-center width-100pct">
+                                <ico class="opacity-50pc">
+                                    <n class="gg-search"></n>
+                                </ico>
+                                <input class="flex-1 height-100pct height-100pct width-100pct" placeholder="Search" type="text">
+                                <input type="submit">
                             </section>
                         </box>
                     </section>
