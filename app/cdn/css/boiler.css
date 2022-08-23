@@ -1679,6 +1679,10 @@ aside ~ main {
     background: #d2d2d2;
 }
 
+.background-color-rgba-0-0-0-50pct {
+    background-color: rgba(0,0,0,0.5);   
+}
+
 .background-color-db, .bg-db {
     background: #dbdbdb;
 }

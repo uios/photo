@@ -820,10 +820,18 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 }
                                 resolve(route);
                             }
+                            if ($get[2] === "followers") {
+                                resolve(route);
+                            }
+                            if ($get[2] === "following") {
+                                resolve(route);
+                            }
                             if (get[2] === "saved") {
                                 byId('tab-user-profile-saved').classList.add('color-000');
+                                resolve(route);
                             } else if (get[2] === "tagged") {
                                 byId('tab-user-profile-tagged').classList.add('color-000');
+                                resolve(route);
                             }
                         } else {
                             byId('tab-user-profile').classList.add('color-000');

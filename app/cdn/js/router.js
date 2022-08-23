@@ -247,7 +247,9 @@ window.rout.ed = {
             if (rs.length > 0) {
                 var i = 0;
                 do {
+                    const rsi = rs[i];
                     route.page.includes(rs[i].dataset.root) ? rs[i].classList.add('active') : null;
+                    rsi.innerHTML === "" && rsi.dataset.fetch ? rsi.innerHTML = await ajax(rsi.dataset.fetch) : null;
                     i++;
                 } while (i < rs.length)
             }
