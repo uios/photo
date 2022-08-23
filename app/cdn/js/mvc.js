@@ -788,7 +788,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 if (posts && posts.length > 0) {
                                     var html = await ajax('/cdn/html/template/template.post.card.column.html');
                                     var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-                                    media.innerHTML = "";
                                     var p = 0;
                                     do {
                                         var post = posts[p];
