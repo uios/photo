@@ -713,7 +713,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         error ? error.remove() : null;
 
                         var json = JSON.parse(user);
-                        console.log('mvc.v users user /v1/users/'+get[1],{json,route});
+                        console.log('mvc.v users user /v1/users/' + get[1], {
+                            json,
+                            route
+                        });
 
                         var uid = json.user.uid;
                         var fullname = json.user.fullname;
@@ -777,6 +780,35 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         if (get.length > 2) {
                             if (get[2] === "feed") {
                                 byId('tab-user-profile-feed').classList.add('color-000');
+                                        
+                                byId('tab-user-profile').classList.add('color-000');
+                                byId('users-user-posts').innerHTML = "";
+
+                                var posts = json.posts;
+                                if (posts) {
+                                    var html = await ajax('/cdn/html/template/template.post.card.column.html');
+                                    var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                    var p = 0;
+                                    do {
+                                        var post = posts[p];
+                                        var ext = post.format;
+
+                                        var card = template.cloneNode(true);
+                                        var boxes = card.all('box');
+
+                                        var format = "";
+                                        if (['jpg'].includes(ext)) {
+                                            format = "photo";
+                                        } else if (['mp4'].includes(ext)) {
+                                            format = "video";
+                                        }
+                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+
+                                        byId('users-user-feed').insertAdjacentHTML('afterbegin', card.outerHTML);
+                                        p++;
+                                    } while (p < posts.length);
+                                }
+                                resolve(route);
                             }
                             if (get[2] === "saved") {
                                 byId('tab-user-profile-saved').classList.add('color-000');
@@ -1494,10 +1526,10 @@ window.mvc.c ? null : (window.mvc.c = controller = {
     },
     users: {
         more: target=>{
-            const a = function(ppp) {
-            }
+            const a = function(ppp) {}
             modal.card(byId('template-users-user-more').content.firstElementChild.innerHTML).then(a);
-        },
+        }
+        ,
         profile: ()=>{
             var href = (auth.user() ? '/users/' + auth.user().uid + "/" : '/my/');
             //alert(href);
