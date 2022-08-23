@@ -713,7 +713,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         error ? error.remove() : null;
 
                         var json = JSON.parse(user);
-                        //console.log('mvc.v users user /v1/users/'+get[1],{json,route});
+                        console.log('mvc.v users user /v1/users/'+get[1],{json,route});
 
                         var uid = json.user.uid;
                         var fullname = json.user.fullname;
@@ -728,7 +728,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         img.src = cdn.endpoint + "/" + uid + "/avi.jpg";
                         avi.innerHTML = img.outerHTML;
 
-                        if (uid === auth.user().uid) {
+                        if (auth.user() && uid === auth.user().uid) {
                             byId('users-user-account').classList.remove('hide');
                             byId('users-user-edit').classList.remove('hide');
                             byId('users-user-follow').classList.add('hide');
