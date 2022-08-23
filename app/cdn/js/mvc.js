@@ -782,12 +782,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 byId('tab-user-profile-feed').classList.add('color-000');
 
                                 byId('tab-user-profile').classList.add('color-000');
-                                byId('users-user-posts').innerHTML = "";
+                                byId('users-user-feed').innerHTML = "";
 
                                 var posts = json.posts;
-                                if (posts) {
+                                if (posts && posts.length > 0) {
                                     var html = await ajax('/cdn/html/template/template.post.card.column.html');
                                     var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                    media.innerHTML = "";
                                     var p = 0;
                                     do {
                                         var post = posts[p];
