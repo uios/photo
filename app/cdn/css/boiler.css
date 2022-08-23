@@ -2761,6 +2761,10 @@ iframe[data-device="mobile"] {
     margin-right: auto;
 }
 
+.margin-right-10px {
+    margin-right: 10px;
+}
+
 .margin-left-0 {
     margin-left: 0;
 }
@@ -3338,6 +3342,10 @@ iframe[data-device="mobile"] {
 
     .tablet-margin-bottom-250px {
         margin-bottom: 250px;
+    }
+
+    .-tablet-margin-left-0 {
+        margin-left: 0;
     }
 
     .tablet-margin-left-30px {

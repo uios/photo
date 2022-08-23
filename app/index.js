@@ -40,6 +40,9 @@ window.onload = async()=>{
 
     dom.body.dataset.load = "ing";
 
+    window.global = {};
+    window.global.app = "c829e5bc-f583-452b-8dbd-db3b0a6a5b07";
+
     init();
 
     console.log('window.onload', {

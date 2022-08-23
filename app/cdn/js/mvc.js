@@ -27,6 +27,78 @@ window.mvc.m ? null : (window.mvc.m = model = {
             const formatted = isNaN(daysDifference) ? "" : rtf.format(daysDifference, 'day');
             return formatted;
         }
+    },
+    users: {
+        follow: async(target)=>{
+            const uid = target.closest('[data-uid]').dataset.uid;
+            console.log(uid);
+            const a = function(d) {
+                const data = JSON.parse(d);
+                console.log({
+                    data
+                });
+                byId('users-user-follow').classList.add('hide');
+                byId('users-user-unfollow').classList.remove('hide');
+            }
+            const b = function(error) {
+                console.log(error);
+            }
+
+            const jwt = auth.user() ? await auth.getIdToken() : null;
+
+            if (jwt) {
+                const data = new FormData();
+                data.append("app", window.global.app);
+                data.append("jwt", jwt);
+                data.append("ref", target.closest('[data-uid]').dataset.uid);
+                data.append("type", "follow");
+                const query = '?' + new URLSearchParams(data).toString();
+
+                const uid = target.closest('card').dataset.uid;
+                var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                const uri = endpoint + "/v1/activity";
+                console.log(uri, {
+                    data
+                });
+                ajax(uri, {
+                    data,
+                    dataType: "POST"
+                }).then(a).catch(b);
+            }
+        }
+        ,
+        unfollow: async(target)=>{
+            const uid = target.closest('[data-uid]').dataset.uid;
+            console.log(uid);
+            const a = function(d) {
+                const data = JSON.parse(d);
+                console.log({
+                    data
+                });
+                modal.exit(target);
+                byId('users-user-unfollow').classList.add('hide');
+                byId('users-user-follow').classList.remove('hide');
+            }
+            const b = function(error) {
+                console.log(error);
+            }
+            const data = {
+                type: "follow",
+                uid
+            };
+            const query = '?' + new URLSearchParams(data).toString();
+
+            const jwt = auth.user() ? await auth.getIdToken() : null;
+            if (jwt) {
+                const uid = target.closest('card').dataset.uid;
+                var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                const uri = endpoint + "/v1/activity/follow/" + uid + "?app=" + window.global.app + "&jwt=" + jwt;
+                console.log(uri);
+                ajax(uri, {
+                    dataType: "DELETE"
+                }).then(a).catch(b);
+            }
+        }
     }
 });
 
@@ -230,7 +302,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 if (jwt) {
                                     const a = async function(d) {
                                         const data = JSON.parse(d);
-                                        const users = data.users; 
+                                        const users = data.users;
                                         if (users.length > 0) {
                                             var popping = [];
                                             var usernames = [];
@@ -644,6 +716,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var uid = json.user.uid;
                         var fullname = json.user.fullname;
                         var username = get[1] = json.user.username;
+
+                        v.find('wrap').dataset.uid = uid;
 
                         var avi = byId('users-user-avatar');
                         var img = document.createElement('img');
@@ -1425,8 +1499,9 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         ,
         unfollow: target=>{
             const a = function(ppp) {
-                const avi = ppp.find('picture');
-                avi.innerHTML = byId('users-user-avatar').innerHTML;
+                ppp.find('card').dataset.uid = target.closest('wrap[data-uid]').dataset.uid
+                ppp.find('picture').innerHTML = byId('users-user-avatar').innerHTML;
+                ppp.find('[placeholder="@username"]').textContent = "@" + GET[1];
             }
             modal.card(byId('template-users-user-unfollow').content.firstElementChild.innerHTML).then(a);
         }

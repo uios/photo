@@ -20,9 +20,9 @@
                         <box class="margin-bottom-20px margin-left-170px order-2 tablet-margin-left-120px">
                             <section>
                                 <text class="font-size-28px order-1" id="users-user-username" placeholder="username"></text>
-                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-30px order-4 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-href="/my/account/edit/" id="users-user-message">Message</text>
-                                <text class="bg-b bolder border-1px-solid border-color-b border-radius-3px fg-white font-size-14px hide line-height-30px margin-left-10px order-4 padding-x-20px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-height="30px" id="users-user-follow">Follow</text>
-                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px hide line-height-30px margin-left-10px order-4 padding-x-20px tablet-margin-top-10px tablet-order-5" data-height="30px" data-tap="controller.users.unfollow(event.target)" id="users-user-unfollow">
+                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px hide line-height-30px -tablet-margin-left-0 margin-left-30px margin-right-10px order-4 padding-x-10px tablet-margin-top-10px tablet-order-5" data-href="/my/account/edit/" id="users-user-message">Message</text>
+                                <text class="bg-b bolder border-1px-solid border-color-b border-radius-3px fg-white font-size-14px hide line-height-30px order-4 padding-x-20px tablet-margin-top-10px tablet-order-5" data-height="30px" data-tap="model.users.follow(event.target)" id="users-user-follow">Follow</text>
+                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px hide line-height-30px order-4 padding-x-20px tablet-margin-top-10px tablet-order-5" data-height="30px" data-tap="controller.users.unfollow(event.target)" id="users-user-unfollow">
                                     <ico data-height="30px" data-width="30px">
                                         <n class="gg-user-remove"></n>
                                     </ico>
@@ -38,8 +38,7 @@
                                                             <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
                                                         </picture>
                                                         <text>
-                                                            <span>Leave</span>
-                                                            <span placeholder="@username"></span>
+                                                            <span>Leave</span> <span placeholder="@username"></span><span>?</span>
                                                         </text>
                                                     </column>
                                                 </box>
@@ -57,7 +56,7 @@
                                         </card>
                                     </template>
                                 </text>
-                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-30px order-2 padding-x-10px tablet-margin-top-10px tablet-margin-x-0 tablet-order-5" data-href="/my/account/edit/" id="users-user-edit">Edit profile</text>
+                                <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-30px order-2 padding-x-10px -tablet-margin-left-0 tablet-margin-top-10px tablet-order-5" data-href="/my/account/edit/" id="users-user-edit">Edit profile</text>
                                 <line class="hide order-4 tablet-show" data-width="100%"></line>
                                 <ico class="hide margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
                                     <n class="gg-more-alt"></n>
