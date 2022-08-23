@@ -39,6 +39,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 });
                 byId('users-user-follow').classList.add('hide');
                 byId('users-user-unfollow').classList.remove('hide');
+                byId('users-user-count-followers').textContent = parseInt(byId('users-user-count-followers').textContent) + 1;
             }
             const b = function(error) {
                 console.log(error);
@@ -78,6 +79,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 modal.exit(target);
                 byId('users-user-unfollow').classList.add('hide');
                 byId('users-user-follow').classList.remove('hide');
+                byId('users-user-count-followers').textContent = parseInt(byId('users-user-count-followers').textContent) - 1;
             }
             const b = function(error) {
                 console.log(error);
