@@ -780,7 +780,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         if (get.length > 2) {
                             if (get[2] === "feed") {
                                 byId('tab-user-profile-feed').classList.add('color-000');
-                                        
+
                                 byId('tab-user-profile').classList.add('color-000');
                                 byId('users-user-posts').innerHTML = "";
 
@@ -796,13 +796,23 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         var card = template.cloneNode(true);
                                         var boxes = card.all('box');
 
+                                        var profile = boxes[0].find('span');
+                                        var avi = boxes[0].find('picture img');
+                                        var owner = boxes[0].find('text');
+                                        profile.dataset.href = "/users/" + post.username + "/";
+                                        avi.dataset.src = cdn.endpoint + "/" + post.user + "/avi.jpg";
+                                        owner.textContent = username;
+
+                                        var media = boxes[1].find('media');
+                                        var content = document.createElement('img');
                                         var format = "";
-                                        if (['jpg'].includes(ext)) {
-                                            format = "photo";
-                                        } else if (['mp4'].includes(ext)) {
-                                            format = "video";
+                                        if (["jpg"].includes(ext)) {
+                                            var format = "photo";
+                                        } else if (["mp4"].includes(ext)) {
+                                            var format = "video";
                                         }
-                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+                                        content.dataset.src = cdn.endpoint + "/" + post.user + "/" + format + "/" + post.uid + "." + ext;
+                                        media.insertAdjacentHTML("beforeend", content.outerHTML);
 
                                         byId('users-user-feed').insertAdjacentHTML('afterbegin', card.outerHTML);
                                         p++;
