@@ -26,6 +26,37 @@
                                     <ico data-height="30px" data-width="30px">
                                         <n class="gg-user-remove"></n>
                                     </ico>
+                                    <template id="template-users-user-more">
+                                        <card>
+                                            <column class="font-size-14px line-height-50px max-width-100pc width-360px">
+                                                <box class="border-color-db border-top-1px-solid padding-x-40px" data-tap="model.users.unfollow(event.target)">
+                                                    <section class="justify-center">
+                                                        <text class="color-ff3b30 font-weight-bolder">Block</text>
+                                                    </section>
+                                                </box>
+                                                <box class="border-color-db border-top-1px-solid adding-x-40px" data-tap="modal.exit(event.target)">
+                                                    <section class="justify-center">
+                                                        <text class="color-ff3b30 font-weight-bolder">Restrict</text>
+                                                    </section>
+                                                </box>
+                                                <box class="border-color-db border-top-1px-solid adding-x-40px" data-tap="modal.exit(event.target)">
+                                                    <section class="justify-center">
+                                                        <text class="color-ff3b30 font-weight-bolder">Report</text>
+                                                    </section>
+                                                </box>
+                                                <box class="border-color-db border-top-1px-solid adding-x-40px" data-tap="modal.exit(event.target)">
+                                                    <section class="justify-center">
+                                                        <text>Embed</text>
+                                                    </section>
+                                                </box>
+                                                <box class="border-color-db border-top-1px-solid adding-x-40px" data-tap="modal.exit(event.target)">
+                                                    <section class="justify-center">
+                                                        <text>Cancel</text>
+                                                    </section>
+                                                </box>
+                                            </column>
+                                        </card>
+                                    </template>
                                     <template id="template-users-user-unfollow">
                                         <card>
                                             <column class="font-size-14px line-height-50px max-width-100pc width-360px">
@@ -58,14 +89,11 @@
                                 </text>
                                 <text class="bolder border-1px-solid border-color-db border-radius-3px font-size-14px line-height-30px margin-left-30px order-2 padding-x-10px -tablet-margin-left-0 tablet-margin-top-10px tablet-order-5" data-href="/my/account/edit/" id="users-user-edit">Edit profile</text>
                                 <line class="hide order-4 tablet-show" data-width="100%"></line>
-                                <ico class="hide margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px">
+                                <ico class="hide margin-left-10px order-4 tablet-order-3" data-height="30px" data-tap="controller.users.more(event.target)" data-width="30px" id="users-user-more">
                                     <n class="gg-more-alt"></n>
                                 </ico>
                                 <ico class="margin-left-10px order-4 tablet-order-3" data-href="/my/account/" data-width="30px" data-height="30px" id="users-user-account">
                                     <n class="gg-options"></n>
-                                </ico>
-                                <ico class="hide margin-left-10px order-4 tablet-order-3" data-width="30px" data-height="30px" id="users-user-more">
-                                    <n class="gg-more-alt"></n>
                                 </ico>
                             </section>
                         </box>

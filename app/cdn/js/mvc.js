@@ -1493,6 +1493,11 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     users: {
+        more: target=>{
+            const a = function(ppp) {
+            }
+            modal.card(byId('template-users-user-more').content.firstElementChild.innerHTML).then(a);
+        },
         profile: ()=>{
             var href = (auth.user() ? '/users/' + auth.user().uid + "/" : '/my/');
             //alert(href);
