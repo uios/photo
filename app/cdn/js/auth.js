@@ -121,18 +121,18 @@ window.auth = {
             var email = form.find('[placeholder="Email"]').value
               , password = form.find('input[type="password"]').value;
             return new Promise((resolve,reject)=>{
-                var data = {
-                    email,
-                    username,
-                    password,
-                    displayName
-                };
+                const data = new FormData();
+                data.append('email', email);
+                data.append('username', username);
+                data.append('password', password);
+                data.append('displayName', displayName);
                 console.log("auth.account.setup", {
                     data
                 });
                 if (displayName && username && email && password) {
                     if (auth.isEmail(email)) {
-                        ajax(api.endpoint + '/v1/users', {
+                        var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                        ajax(endpoint + '/v1/users', {
                             dataType: "POST",
                             data
                         }).then(e=>{
