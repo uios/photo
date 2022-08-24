@@ -102,7 +102,7 @@ function init() {
     dom.body.addEventListener("touchstart", function(e) {
         window.touch.ing = true;
         touch.handler(event);
-        console.log(e.type);
+        //console.log(e.type);
     }, {
         passive: true
     });
@@ -113,7 +113,7 @@ function init() {
     dom.body.addEventListener("touchend", function(e) {
         //window.touch.ing = false;
         touch.handler(event);
-        console.log(e.type);
+        //console.log(e.type);
     });
 
     var go = false;

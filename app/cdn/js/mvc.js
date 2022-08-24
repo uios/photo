@@ -382,7 +382,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "photo") {
                 var vp = dom.body.find('[data-page="/photo/"]');
                 if (get.length > 1) {
-                    var vp = dom.body.find('pages[data-pages="' + route.root + '"]');
+                    var vp = dom.body.find('pages[data-pages="/photo/*/"]');
                     console.log({
                         vp,
                         route
