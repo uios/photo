@@ -1021,6 +1021,34 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             var v = dom.body.find('page[data-page="/"]');
             const jwt = auth.user() ? await auth.getIdToken() : null;
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+
+            var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+            ajax(endpoint + '/v1/users?filter=suggested').then(async(d)=>{
+                var data = JSON.parse(d);
+                console.log({
+                    data
+                });
+                const users = data.users;
+                if (users.length > 0) {
+                    const feedSuggestedUsers = byId("index-suggested-users");
+                    var u = 0;
+                    do {
+                        const user = users[u];
+
+                        var img = document.createElement('img');
+                        img.setAttribute("onerror", 'this.remove()');
+                        img.src = cdn.endpoint + "/" + user.uid + '/avi.jpg';
+
+                        const child = feedSuggestedUsers.children[u];
+                        child.find('picture').innerHTML = img.outerHTML;
+                        child.find('[placeholder="username"]').textContent = user.username;
+
+                        u++;
+                    } while (u < users.length);
+                }
+            }
+            );
+
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
             ajax(endpoint).then(async(d)=>{
