@@ -1,26 +1,32 @@
-<block class="align-items-center background-color-rgba-0-0-0-50pct height-100pc justify-content-center overflow-x-hidden width-100pc" data-tap="rout.ed.close(event.target)">
+<block class="align-items-center background-color-rgba-0-0-0-50pct height-100pc justify-content-center overflow-x-hidden width-100pc" data-href="/users/:get/">
     <row class="justify-content-center width-100pct">
-        <card class="background-color-fff border-radius-10px font-size-14px line-height-50px max-width-100pc-40px width-400px">
+        <card class="background-color-fff border-radius-10px font-size-14px height-250px line-height-50px max-width-100pc-40px width-400px">
             <column>
                 <box class="border-bottom-1px-solid border-color-db padding-x-20px">
                     <row class="align-center justify-center">
                         <text class="bolder">Followers</text>
-                        <ico class="position-absolute right-0" data-tap="rout.ed.close(event.target)">
+                        <ico class="position-absolute right-0" data-href="/users/:get/">
                             <n class="gg-close"></n>
                         </ico>
                     </row>
                 </box>
-                <box class="border-bottom-1px-solid border-color-db color-ff3b30 padding-x-20px">
-                    <row class="align-center justify-center">
-                        <text class="bolder">Unfollow</text>
-                    </row>
-                </box>
-                <box class="padding-x-20px">
-                    <row class="align-center justify-center">
-                        <text>Add to favorites</text>
-                    </row>
-                </box>
             </column>
+            <column class="empty align-items-flex-start grid-gap-10px height-200px overflow-x-hidden padding-y-10px" data-columns="1" id="feed-users-user-followers"></column>
         </card>
     </row>
+    <template id="template-users-user-followers">
+        <box class="flex-1 hide padding-x-20px">
+            <row class="align-items-center justify-content-space-between width-100pc">
+                <picture class="empty"></picture>
+                <picture class="bg-db border-radius-50pc empty-state" data-height="44px" data-width="44px">
+                    <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
+                </picture>
+                <text class="align-left flex flex-1 flex-direction-column margin-x-10px">
+                    <span class="font-weight-bolder line-height-22px" placeholder="username"></span>
+                    <span class="color-8e line-height-22px" placeholder="Full Name"></span>
+                </text>
+                <text class="border-1px-solid border-color-db border-radius-5px color-000 font-size-14px font-weight-bolder hide line-height-20px padding-x-10px padding-y-5px" id="feed-users-user-friends-unfollow">Remove</text>
+            </row>
+        </box>
+    </template>
 </block>

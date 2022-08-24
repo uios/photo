@@ -821,9 +821,83 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 }
                                 resolve(route);
                             } else if (get[2] === "followers") {
+
+                                const feed = byId('feed-users-user-followers');
+                                feed.innerHTML = "";
+
+                                const followers = json.followers;
+                                if (followers && followers.length > 0) {
+                                    const template = byId('template-users-user-followers').content.firstElementChild;
+                                    var u = 0;
+                                    do {
+                                        const user = followers[u];
+                                        const uid = user.uid;
+
+                                        var html = template.cloneNode(true);
+
+                                        html.dataset.href = "/users/" + user.username + "/";
+                                        html.classList.remove('hide');
+                                        html.dataset.uid = uid;
+                                        html.find('[placeholder="username"]').textContent = user.username;
+                                        html.find('[placeholder="Full Name"]').textContent = user.fullname;
+
+                                        if (auth.user()) {
+                                            const button = html.find("#feed-users-user-friends-unfollow");
+                                            if (auth.user().uid === uid) {
+                                                button.classList.add('hide');
+                                            } else {
+                                                button.classList.remove('hide');
+                                                if (user.friend) {
+                                                    button.textContent = "Following";
+                                                } else {
+                                                    button.textContent = "Follow";
+                                                }
+                                            }
+                                        }
+
+                                        feed.insertAdjacentHTML('beforeend', html.outerHTML);
+                                        htm += html.outerHTML;
+                                        u++;
+                                    } while (u < users.length);
+                                }
                                 resolve(route);
+
                             } else if (get[2] === "following") {
+
+                                const feed = byId('feed-users-user-following');
+                                feed.innerHTML = "";
+
+                                const followers = json.following;
+                                if (followers && followers.length > 0) {
+                                    const template = byId('template-users-user-following').content.firstElementChild;
+                                    var u = 0;
+                                    do {
+                                        const user = followers[u];
+                                        const uid = user.uid;
+
+                                        var html = template.cloneNode(true);
+
+                                        html.dataset.href = "/users/" + user.username + "/";
+                                        html.classList.remove('hide');
+                                        html.dataset.uid = uid;
+                                        html.find('[placeholder="username"]').textContent = user.username;
+                                        html.find('[placeholder="Full Name"]').textContent = user.fullname;
+
+                                        if (auth.user()) {
+                                            if (auth.user().uid === uid) {
+                                                html.find("#feed-users-user-friends-unfollow").classList.add('hide');
+                                            } else {
+                                                html.find("#feed-users-user-friends-unfollow").classList.remove('hide');
+                                            }
+                                        }
+
+                                        feed.insertAdjacentHTML('beforeend', html.outerHTML);
+                                        htm += html.outerHTML;
+                                        u++;
+                                    } while (u < users.length);
+                                }
                                 resolve(route);
+
                             } else if (get[2] === "saved") {
                                 byId('tab-user-profile-saved').classList.add('color-000');
                                 byId('users-user-saved').innerHTML = "";
@@ -966,6 +1040,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var username = post.username;
                         var liked = post.liked;
                         var likes = post.likes;
+                        var saved = post.saved;
 
                         var card = html.firstElementChild.cloneNode(true);
                         var boxes = card.all('box');
@@ -993,6 +1068,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             var actions = boxes[2];
                             var like = actions.find('.gg-heart').closest('ico');
                             like.classList.add('color-ff3b30');
+                        }
+
+                        if (saved > 0) {
+                            var actions = boxes[2];
+                            var saved = actions.find('.gg-bookmark').closest('ico');
+                            saved.classList.add('color-ff3b30');
                         }
 
                         if (likes > 0) {
@@ -1416,7 +1497,47 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
             modal.card(html.outerHTML);
         },
-        save: function() {},
+        save: async function(target) {
+            if (auth.user()) {
+                const post = target.closest('[data-uid]');
+                const save = post.find('.gg-bookmark').closest('ico');
+                const jwt = await auth.getIdToken();
+                //console.log({jwt});
+                if (save.classList.contains('color-ff3b30')) {
+                    const a = function(data) {
+                        save.classList.remove('color-ff3b30')
+                        console.log('activity.save', data);
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        alert(error.message);
+                    };
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/activity/save/" + post.dataset.uid + '?app=c829e5bc-f583-452b-8dbd-db3b0a6a5b07&jwt=' + jwt, {
+                        dataType: "DELETE"
+                    }).then(a).catch(b);
+                } else {
+                    const a = function(data) {
+                        save.classList.add('color-ff3b30')
+                        console.log('activity.save', data);
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        alert(error.message);
+                    };
+                    var data = new FormData();
+                    data.append("app", "c829e5bc-f583-452b-8dbd-db3b0a6a5b07");
+                    data.append("jwt", jwt);
+                    data.append("ref", post.dataset.uid);
+                    data.append("type", "save");
+                    var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/activity", {
+                        data,
+                        dataType: "POST"
+                    }).then(a).catch(b);
+                }
+            }
+        },
         share: function() {}
     },
     post: {
