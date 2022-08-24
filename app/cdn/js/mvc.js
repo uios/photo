@@ -707,7 +707,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');
                     var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
-                    const uri = endpoint + '/v1/users/' + get[1] + (jwt ? "?jwt=" + jwt : "");
+                    var resource = rout.ed.url(rout.ed.dir(route.path)).replace(/\/+$/, '');
+                    const uri = endpoint + '/v1' + resource + (jwt ? "?jwt=" + jwt : "");
                     ajax(uri).then(async(user)=>{
                         var error = v.find('error');
                         error ? error.remove() : null;
@@ -819,18 +820,69 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     } while (p < posts.length);
                                 }
                                 resolve(route);
-                            }
-                            if ($get[2] === "followers") {
+                            } else if (get[2] === "followers") {
                                 resolve(route);
-                            }
-                            if ($get[2] === "following") {
+                            } else if (get[2] === "following") {
                                 resolve(route);
-                            }
-                            if (get[2] === "saved") {
+                            } else if (get[2] === "saved") {
                                 byId('tab-user-profile-saved').classList.add('color-000');
+                                byId('users-user-saved').innerHTML = "";
+
+                                var posts = json.posts;
+                                if (posts) {
+                                    var html = await ajax('/cdn/html/template/template.post.card.grid.html');
+                                    var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                    var p = 0;
+                                    do {
+                                        var post = posts[p];
+                                        var ext = post.format;
+
+                                        var card = template.cloneNode(true);
+                                        var boxes = card.all('box');
+
+                                        var format = "";
+                                        if (['jpg'].includes(ext)) {
+                                            format = "photo";
+                                        } else if (['mp4'].includes(ext)) {
+                                            format = "video";
+                                        }
+                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+
+                                        byId('users-user-saved').insertAdjacentHTML('afterbegin', card.outerHTML);
+                                        p++;
+                                    } while (p < posts.length);
+                                }
+
                                 resolve(route);
                             } else if (get[2] === "tagged") {
                                 byId('tab-user-profile-tagged').classList.add('color-000');
+                                byId('users-user-tagged').innerHTML = "";
+
+                                var posts = json.posts;
+                                if (posts) {
+                                    var html = await ajax('/cdn/html/template/template.post.card.grid.html');
+                                    var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                                    var p = 0;
+                                    do {
+                                        var post = posts[p];
+                                        var ext = post.format;
+
+                                        var card = template.cloneNode(true);
+                                        var boxes = card.all('box');
+
+                                        var format = "";
+                                        if (['jpg'].includes(ext)) {
+                                            format = "photo";
+                                        } else if (['mp4'].includes(ext)) {
+                                            format = "video";
+                                        }
+                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+
+                                        byId('users-user-tagged').insertAdjacentHTML('afterbegin', card.outerHTML);
+                                        p++;
+                                    } while (p < posts.length);
+                                }
+
                                 resolve(route);
                             }
                         } else {
