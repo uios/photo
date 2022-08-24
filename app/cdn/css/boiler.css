@@ -3820,6 +3820,10 @@ iframe[data-device="mobile"] {
     overflow: hidden;
 }
 
+.overflow-x-hidden, [data-overflow-x="hidden"] {
+    overflow-x: hidden;
+}
+
 .scroll-x, [data-scroll="x"], [data-scroll="horizontal"] {
     overflow-y: hidden;
 }
@@ -8544,7 +8548,7 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     width: calc(100% - 20px);
 }
 
-.width-100pc-40px, .width-100pc--40px, .width-100pc-minus-40px {
+.width-100pc-40px, .width-100pc--40px, .width-100pc-minus-40px, .width-100pct-minus-40px {
     width: calc(100% - 40px);
 }
 

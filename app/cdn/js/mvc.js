@@ -853,7 +853,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 button.classList.add('hide');
                                             } else {
                                                 button.classList.remove('hide');
-                                                if (user.friend) {
+                                                if (parseInt(user.friend) > 0) {
                                                     button.textContent = "Following";
                                                 } else {
                                                     button.textContent = "Follow";
@@ -862,9 +862,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         }
 
                                         feed.insertAdjacentHTML('beforeend', html.outerHTML);
-                                        htm += html.outerHTML;
                                         u++;
-                                    } while (u < users.length);
+                                    } while (u < followers.length);
                                 }
                                 resolve(route);
 
@@ -898,9 +897,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         }
 
                                         feed.insertAdjacentHTML('beforeend', html.outerHTML);
-                                        htm += html.outerHTML;
                                         u++;
-                                    } while (u < users.length);
+                                    } while (u < following.length);
                                 }
                                 resolve(route);
 
