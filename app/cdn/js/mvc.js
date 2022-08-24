@@ -404,6 +404,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var ext = post.format;
                         var liked = post.liked;
                         var likes = post.likes;
+                        var saved = post.saved;
                         var username = post.username;
 
                         var block = vp.find('block');
@@ -415,7 +416,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         var profile = vp.find('[data-tablet-order="1"]');
                         profile.all('box')[0].dataset.href = "/users/" + username + "/";
-                        profile.find('picture img').dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
+                        profile.find('picture img').src = profile.find('picture img').dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
                         profile.find('[placeholder="username"]').textContent = username;
 
                         if (postComments.find('[data-columns]').children.length === 1 && comments && comments.length > 0) {
@@ -440,6 +441,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             like.classList.add('color-ff3b30');
                         } else {
                             like.classList.remove('color-ff3b30');
+                        }
+
+                        if (saved > 0) {
+                            var save = actions.find('.gg-bookmark').closest('ico');
+                            save.classList.add('color-ff3b30');
                         }
 
                         var stats = vp.find('[data-order="3"]').all('box')[2];
@@ -973,6 +979,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     var ext = post.format;
 
                                     var card = template.cloneNode(true);
+                                    card.dataset.href = "/photo/" + post.uid + "/";
+
                                     var boxes = card.all('box');
 
                                     var format = "";
