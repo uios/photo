@@ -56,7 +56,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 const query = '?' + new URLSearchParams(data).toString();
 
                 const uid = target.closest('card').dataset.uid;
-                var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                 const uri = endpoint + "/v1/activity";
                 console.log(uri, {
                     data
@@ -93,7 +93,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
             const jwt = auth.user() ? await auth.getIdToken() : null;
             if (jwt) {
                 const uid = target.closest('card').dataset.uid;
-                var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                 const uri = endpoint + "/v1/activity/follow/" + uid + "?app=" + window.global.app + "&jwt=" + jwt;
                 console.log(uri);
                 ajax(uri, {
@@ -181,7 +181,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     }
 
                     const jwt = auth.user() ? await auth.getIdToken() : null;
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const uri = endpoint + "/v1/activity/?jwt=" + jwt;
                     console.log(uri);
                     ajax(uri).then(a).catch(b);
@@ -284,7 +284,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         console.log(message);
                     }
 
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const uri = endpoint + "/v1/messages?jwt=" + jwt;
                     console.log(uri);
                     ajax(uri).then(a).catch(b);
@@ -363,7 +363,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         const message = error.message;
                                         console.log(message);
                                     }
-                                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                                     var convo = GET;
                                     convo.splice(0, 2);
                                     const uri = endpoint + "/v1/messages" + rout.ed.url(convo) + "?jwt=" + jwt;
@@ -392,7 +392,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
 
                     const jwt = auth.user() ? await auth.getIdToken() : null;
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     endpoint += '/v1/posts/' + uid;
                     endpoint += (auth.user() ? '?jwt=' + jwt : '');
                     ajax(endpoint).then(async function(d) {
@@ -496,7 +496,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         const message = error.message;
                         console.log(message);
                     }
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const uri = endpoint + "/v1/search/posts" + (jwt ? "?jwt=" + jwt : "");
                     console.log({
                         uri
@@ -621,7 +621,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             cameraFlip.classList.add('hide');
                             cameraPermissions.className = "hide";
 
-                            var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                             ajax(endpoint + "/v1/posts/" + uid).then(function(d) {
                                 var data = JSON.parse(d);
                                 var post = data.post;
@@ -711,7 +711,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "users") {
                 if (get.length > 1) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
                     var resource = rout.ed.url(rout.ed.dir(route.path)).replace(/\/+$/, '');
                     const uri = endpoint + '/v1' + resource + (jwt ? "?jwt=" + jwt : "");
@@ -1020,7 +1020,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         } else {
             var v = dom.body.find('page[data-page="/"]');
             const jwt = auth.user() ? await auth.getIdToken() : null;
-            var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
 
             const indexMyUser = byId('index-my-user');
             if (auth.user()) {
@@ -1028,7 +1028,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 img.setAttribute("onerror", 'this.remove()');
                 img.src = cdn.endpoint + "/" + auth.user().uid + '/avi.jpg';
                 indexMyUser.find('picture').innerHTML = img.outerHTML;
-                var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                 const mine = async(d)=>{
                     const json = JSON.parse(d);
                     indexMyUser.find('[placeholder="username"]').textContent = json.user.username;
@@ -1040,7 +1040,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 indexMyUser.parentNode.classList.add('hide');
             }
 
-            var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
             const active = async(d)=>{
                 var data = JSON.parse(d);
                 console.log({
@@ -1071,7 +1071,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
             ajax(endpoint + '/v1/users?filter=active').then(active);
 
-            var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
             const suggested = async(d)=>{
                 var data = JSON.parse(d);
                 console.log({
@@ -1096,7 +1096,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (u < users.length);
                 }
             }
-            ajax(endpoint + '/v1/users?filter=suggested'+(jwt ? '&jwt=' + jwt : '')).then(suggested);
+            ajax(endpoint + '/v1/users?filter=suggested' + (jwt ? '&jwt=' + jwt : '')).then(suggested);
 
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
@@ -1268,7 +1268,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     console.log(error);
                     alert(error.message);
                 };
-                var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                 ajax(endpoint + "/v1/comments", {
                     data,
                     dataType: "POST"
@@ -1377,7 +1377,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     window.yield = new AbortController()
                     window.signal = window.yield.signal;
 
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/search/users/" + username, {
                         signal
                     }).then(a).catch(b);
@@ -1467,7 +1467,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         console.log(error);
                         alert(error.message);
                     };
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/messages" + rout.ed.url(convo), {
                         data,
                         dataType: "POST"
@@ -1475,6 +1475,12 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 }
 
             }
+        }
+    },
+    modal: {
+        login: async()=>{
+            const template = await ajax('/cdn/html/template/template.login.html');
+            modal.card(template);
         }
     },
     my: {
@@ -1495,7 +1501,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         ,
         login: (event,f)=>{
             event.preventDefault();
-            auth.account.login(event).then(e=>(f?f:'/').router()).catch(e=>{
+            auth.account.login(event).then(e=>(f ? f : '/').router()).catch(e=>{
                 var code = e.code;
                 var message = e.message;
                 alert(message);
@@ -1546,7 +1552,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         console.log(error);
                         alert(error.message);
                     };
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/activity/like/" + post.dataset.uid + '?app=photo&jwt=' + jwt, {
                         dataType: "DELETE"
                     }).then(a).catch(b);
@@ -1564,7 +1570,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     data.append("jwt", jwt);
                     data.append("ref", post.dataset.uid);
                     data.append("type", "like");
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/activity", {
                         data,
                         dataType: "POST"
@@ -1595,7 +1601,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         console.log(error);
                         alert(error.message);
                     };
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/activity/save/" + post.dataset.uid + '?app=c829e5bc-f583-452b-8dbd-db3b0a6a5b07&jwt=' + jwt, {
                         dataType: "DELETE"
                     }).then(a).catch(b);
@@ -1613,7 +1619,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     data.append("jwt", jwt);
                     data.append("ref", post.dataset.uid);
                     data.append("type", "save");
-                    var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/activity", {
                         data,
                         dataType: "POST"
