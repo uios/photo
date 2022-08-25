@@ -9238,10 +9238,6 @@ error ~ * {
     display: none;
 }
 
-.hide, [data-display="none"] {
-    display: none;
-}
-
 .hover-show {
     display: block;
 }
@@ -9352,6 +9348,10 @@ error ~ * {
 
 .flex-wrap-unset {
     flex-wrap: unset !important;
+}
+
+.hide, [data-display="none"] {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {

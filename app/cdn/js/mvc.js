@@ -399,7 +399,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var data = JSON.parse(d);
                         var comments = data.comments;
                         var post = data.post;
-                        var user = data.user;
+                        var user = post.user;
                         var uid = post.uid;
                         var ext = post.format;
                         var liked = post.liked;
@@ -1023,17 +1023,22 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
 
             const indexMyUser = byId('index-my-user');
-            var img = document.createElement('img');
-            img.setAttribute("onerror", 'this.remove()');
-            img.src = cdn.endpoint + "/" + auth.user().uid + '/avi.jpg';
-            indexMyUser.find('picture').innerHTML = img.outerHTML;
-            var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-            const mine = async(d)=>{
-                const json = JSON.parse(d);
-                indexMyUser.find('[placeholder="username"]').textContent = json.user.username;
-                indexMyUser.find('[placeholder="Full Name"]').textContent = json.user.fullname;
+            if (auth.user()) {
+                var img = document.createElement('img');
+                img.setAttribute("onerror", 'this.remove()');
+                img.src = cdn.endpoint + "/" + auth.user().uid + '/avi.jpg';
+                indexMyUser.find('picture').innerHTML = img.outerHTML;
+                var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                const mine = async(d)=>{
+                    const json = JSON.parse(d);
+                    indexMyUser.find('[placeholder="username"]').textContent = json.user.username;
+                    indexMyUser.find('[placeholder="Full Name"]').textContent = json.user.fullname;
+                }
+                ajax(endpoint + '/v1/users?filter=mine&jwt=' + jwt).then(mine);
+                indexMyUser.parentNode.classList.remove('hide');
+            } else {
+                indexMyUser.parentNode.classList.add('hide');
             }
-            ajax(endpoint + '/v1/users?filter=mine&jwt=' + jwt).then(mine);
 
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
             const active = async(d)=>{
