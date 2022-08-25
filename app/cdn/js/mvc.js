@@ -1044,6 +1044,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 const users = data.users;
                 if (users.length > 0) {
                     const feedActiveUsers = byId("index-active-users");
+                    feedActiveUsers.innerHTML = "";
                     const child = feedActiveUsers.nextElementSibling.content.firstElementChild.cloneNode(true);
                     var u = 0;
                     do {
@@ -1053,6 +1054,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         img.setAttribute("onerror", 'this.remove()');
                         img.src = cdn.endpoint + "/" + user.uid + '/avi.jpg';
 
+                        child.dataset.href = '/users/' + user.uid + '/';
                         child.find('picture').innerHTML = img.outerHTML;
                         child.find('[placeholder="username"]').textContent = user.username;
 
@@ -1089,7 +1091,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (u < users.length);
                 }
             }
-            ajax(endpoint + '/v1/users?filter=suggested').then(suggested);
+            ajax(endpoint + '/v1/users?filter=suggested&jwt=' + jwt).then(suggested);
 
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
