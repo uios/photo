@@ -1118,6 +1118,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         var post = posts[p];
                         var caption = post.caption;
+                        var comment = post.comment;
+                        var comments = parseInt(post.comments);
                         var created = post.created;
                         var ext = post.format;
                         var uid = post.uid;
@@ -1171,6 +1173,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             about.find('b').textContent = username;
                             about.find('span').textContent = caption;
                             about.classList.remove('hide');
+                        }
+
+                        if (comments > 0) {
+                            boxes[5].classList.remove('hide');
+                            boxes[5].find('text').dataset.href = "/photo/"+post.uid+"/comments/";
+                            boxes[5].find('text').textContent = "View " + (comments > 1 ? " all " : "") + comments + " comment" + (comments > 1 ? "s" : "");
                         }
 
                         var date = boxes[6].find('text');

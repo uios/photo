@@ -3,7 +3,9 @@
         <box class="fg-black" data-height="50px" data-width="100%">
             <section>
                 <span>
-                    <picture class="empty" data-height="50px" data-width="50px"><img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)"></picture>
+                    <picture class="empty" data-height="50px" data-width="50px">
+                        <img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)">
+                    </picture>
                     <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
                         <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
                     </picture>
@@ -47,16 +49,17 @@
             </section>
         </box>
         <box class="color-000 hide margin-bottom-5px padding-x-10px">
-            <section>
+            <column></column>
+            <template>
                 <text>
-                    <b>username</b>
-                    <span>Lorem ipsum dolor sit amet</span>
+                    <b placeholder="username"></b>
+                    <span placeholder="Lorem ipsum dolor..."></span>
                 </text>
-            </section>
+            </template>
         </box>
         <box class="color-8e font-size-14px hide margin-bottom-10px padding-x-10px">
             <section>
-                <text>View all 999 comments</text>
+                <text placeholder="View all comments"></text>
             </section>
         </box>
         <box class="color-8e font-size-10px padding-x-10px tablet-margin-bottom-10px">
