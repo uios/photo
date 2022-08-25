@@ -20,7 +20,7 @@
             </card>
         </section>
     </header>
-    <blocks class="height-100pc">
+    <blocks class="height-100pc isauth">
         <block class="-vga-margin-top-50px margin-x-auto max-width-100pc width-960px">
             <section class="empty">
                 <card>
@@ -44,7 +44,63 @@
             </section>
         </block>
     </blocks>
+    <blocks class="height-100pc noauth">
+        <block class="-vga-margin-top-50px margin-x-auto max-width-100pc width-960px">
+            <section class="padding-top-10px">
+                <card>
+                    <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth padding-y-10px width-300px" id="my-login" onsubmit="controller.my.login(event,window.location.pathname)">
+                        <box class="bg-white border-radius-5px margin-bottom-10px shadow width-100pc">
+                            <section>
+                                <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">
+                            </section>
+                        </box>
+                        <box class="bg-white border-radius-5px margin-bottom-10px shadow width-100pc">
+                            <section class="direction-row flex">
+                                <input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password">
+                                <input class="height-36px invert ui-bg-key width-36px" type="submit">
+                            </section>
+                        </box>
+                        <box class="width-100pc">
+                            <section class="direction-row flex-wrap-unset">
+                                <span class="bg-white border-radius-5px inline-flex shadow width-50pc">
+                                    <ico class="absolute left-0 invert" data-height="36px" data-width="36px">
+                                        <n class="ui-bg-google"></n>
+                                    </ico>
+                                    <text class="flex-1 line-height-36px text-align-center" data-submit="my-login">Log In</text>
+                                    <input type="submit">
+                                </span>
+                                <span class="bg-white border-radius-5px inline-flex margin-left-10px shadow width-50pc" data-href="/my/account/">
+                                    <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                        <n class="ui-bg-email"></n>
+                                    </ico>
+                                    <text class="flex-1 line-height-36px text-align-center">Sign Up</text>
+                                </span>
+                            </section>
+                        </box>
+                        <box class="bg-white border-radius-5px margin-top-36px shadow width-100pc" data-href="/">
+                            <section>
+                                <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                    <n class="ui-bg-email"></n>
+                                </ico>
+                                <text class="flex-1 line-height-36px text-align-center">Continue as Guest</text>
+                            </section>
+                        </box>
+                        <box class="padding--10px width-100pc" data-href="/my/account/password/">
+                            <section>
+                                <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
+                                    <n class="ui-bg-incognito"></n>
+                                </ico>
+                                <text class="flex-1 line-height-50px text-align-center">Forgot Password?</text>
+                            </section>
+                        </box>
+                    </form>
+                </card>
+            </section>
+        </block>
+    </blocks>
 </wrap>
+s
+
 <template id="feed-activity-follow">
     <box class="padding-10px">
         <row class="align-items-center justify-content-space-between width-100pc">

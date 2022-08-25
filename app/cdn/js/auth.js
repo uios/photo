@@ -78,7 +78,7 @@ window.auth = {
             return new Promise((resolve,reject)=>{
                 firebase.auth().signOut().then((d)=>{
                     dom.body.removeAttribute("data-uid");
-                    window.location.pathname.router();
+                    '/'.router();
                     resolve(d);
                 }
                 ).catch((error)=>{
