@@ -1,4 +1,4 @@
-<wrap class="backdrop-blur-10px bg-fa flex min-height-100pc relative scroll-y width-100pc" id="post">
+<wrap class="backdrop-blur-10px bg-fa flex min-height-100pc isauth relative scroll-y width-100pc" id="post">
     <header class="bg-white border-bottom-1px-solid border-color-db hide mobile-flex position-fixed top-0 width-100pc z-index-5" id="media-header">
         <row class="align-center justify-center relative width-100pc">
             <ico class="absolute left-0" data-tap="rout.ed.back()">
@@ -59,7 +59,7 @@
                             <box class="absolute color-fff webcam-show" data-api="webcam" data-method="control" data-resource="stop" id="camera-disable">
                                 <section>
                                     <picture class="height-36px invert width-36px">
-                                        <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/power.svg">
+                                        <img class="height-20px fit-contain width-20px" src="/cdn/svg/power.svg">
                                     </picture>
                                     <text class="line-height-36px">Disable</text>
                                 </section>
@@ -68,7 +68,7 @@
                                 <section>
                                     <text class="line-height-36px">Flip</text>
                                     <picture class="height-36px invert width-36px">
-                                        <img class="height-20px fit-contain width-20px" src="https://share.uios.computer/cdn/svg/flip.svg">
+                                        <img class="height-20px fit-contain width-20px" src="/cdn/svg/flip.svg">
                                     </picture>
                                 </section>
                             </box>
@@ -121,7 +121,7 @@
                             <box class="absolute bottom-0 dark-invert left-0 margin-auto mobile-fixed right-0 top-0 webcam-show" data-api="controller" data-height="120px" data-method="post" data-mobile-top="calc(100vw + 50px)" data-resource="snap" data-tap=" controller.post.snap(event.target)" data-width="120px" data-z-index="5">
                                 <section>
                                     <picture id="camera-shutter">
-                                        <img src="https://share.uios.computer/cdn/svg/shutter.svg">
+                                        <img src="/cdn/svg/shutter.svg">
                                     </picture>
                                     <ico class="absolute absolute-full hide" data-height="100%" data-width="100%" id="camcorder-shutter">
                                         <n class="absolute border-2px-solid border-color-000 border-radius-50pc dark-border-color-fff" data-height="calc(100% - 4px)" data-width="calc(100% - 4px)"></n>
@@ -240,4 +240,58 @@
             </page>
         </blocks>
     </form>
+</wrap>
+<wrap class="bg-fa flex min-height-100pc noauth relative scroll-y width-100pc">
+    <block>
+        <column>
+            <card>
+                <form class="border-radius-20px direction-column flex-unset font-size-13px margin-x-auto noauth padding-y-10px width-300px" id="my-login" onsubmit="controller.my.login(event,window.location.pathname)">
+                    <box class="bg-white border-radius-5px margin-bottom-10px shadow width-100pc">
+                        <section>
+                            <input class="line-height-36px padding-x-10px width-100pc" placeholder="Email" type="text">
+                        </section>
+                    </box>
+                    <box class="bg-white border-radius-5px margin-bottom-10px shadow width-100pc">
+                        <section class="direction-row flex">
+                            <input class="flex-1 line-height-36px padding-x-10px" placeholder="Password" type="password">
+                            <input class="height-36px invert ui-bg-key width-36px" type="submit">
+                        </section>
+                    </box>
+                    <box class="width-100pc">
+                        <section class="direction-row flex-wrap-unset">
+                            <span class="bg-white border-radius-5px inline-flex shadow width-50pc">
+                                <ico class="absolute left-0 invert" data-height="36px" data-width="36px">
+                                    <n class="ui-bg-google"></n>
+                                </ico>
+                                <text class="flex-1 line-height-36px text-align-center" data-submit="my-login">Log In</text>
+                                <input type="submit">
+                            </span>
+                            <span class="bg-white border-radius-5px fg-black inline-flex margin-left-10px shadow width-50pc" data-href="/my/account/">
+                                <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                    <n class="ui-bg-email"></n>
+                                </ico>
+                                <text class="flex-1 line-height-36px text-align-center">Sign Up</text>
+                            </span>
+                        </section>
+                    </box>
+                    <box class="bg-white border-radius-5px fg-black margin-top-36px shadow width-100pc" data-href="/">
+                        <section>
+                            <ico class="absolute height-36px left-0 width-36px" data-height="36px" data-width="36px">
+                                <n class="ui-bg-email"></n>
+                            </ico>
+                            <text class="flex-1 line-height-36px text-align-center">Continue as Guest</text>
+                        </section>
+                    </box>
+                    <box class="padding--10px width-100pc" data-href="/my/account/password/">
+                        <section>
+                            <ico class="absolute height-50px invert left-0 width-36px" data-height="50px" data-width="36px">
+                                <n class="ui-bg-incognito"></n>
+                            </ico>
+                            <text class="flex-1 line-height-50px text-align-center">Forgot Password?</text>
+                        </section>
+                    </box>
+                </form>
+            </card>
+        </column>
+    </block>
 </wrap>

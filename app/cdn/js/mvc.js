@@ -1096,7 +1096,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (u < users.length);
                 }
             }
-            ajax(endpoint + '/v1/users?filter=suggested&jwt=' + jwt).then(suggested);
+            ajax(endpoint + '/v1/users?filter=suggested'+(jwt ? '&jwt=' + jwt : '')).then(suggested);
 
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
@@ -1493,9 +1493,9 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             );
         }
         ,
-        login: event=>{
+        login: (event,f)=>{
             event.preventDefault();
-            auth.account.login(event).then(e=>'/'.router()).catch(e=>{
+            auth.account.login(event).then(e=>(f?f:'/').router()).catch(e=>{
                 var code = e.code;
                 var message = e.message;
                 alert(message);
