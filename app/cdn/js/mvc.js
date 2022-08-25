@@ -1089,7 +1089,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         img.src = cdn.endpoint + "/" + user.uid + '/avi.jpg';
 
                         const child = feedSuggestedUsers.children[u];
+                        child.find('box').dataset.href = '/users/' + user.uid + '/';
                         child.find('picture').innerHTML = img.outerHTML;
+                        child.find('[placeholder="username"]').dataset.href = '/users/' + user.uid + '/';
                         child.find('[placeholder="username"]').textContent = user.username;
 
                         u++;
