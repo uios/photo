@@ -368,6 +368,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     convo.splice(0, 2);
                                     const uri = endpoint + "/v1/messages" + rout.ed.url(convo) + "?jwt=" + jwt;
                                     ajax(uri).then(a).catch(b);
+                                } else {
+                                    resolve(route);
                                 }
                             } else {
                                 resolve(route);
@@ -1177,7 +1179,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         if (comments > 0) {
                             boxes[5].classList.remove('hide');
-                            boxes[5].find('text').dataset.href = "/photo/"+post.uid+"/comments/";
+                            boxes[5].find('text').dataset.href = "/photo/" + post.uid + "/comments/";
                             boxes[5].find('text').textContent = "View " + (comments > 1 ? " all " : "") + comments + " comment" + (comments > 1 ? "s" : "");
                         }
 
