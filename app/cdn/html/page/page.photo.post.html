@@ -16,7 +16,9 @@
                 <row>
                     <box class="margin-10px">
                         <row>
-                            <picture class="empty"><img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)"></picture>
+                            <picture class="empty">
+                                <img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)">
+                            </picture>
                             <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
                                 <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
                             </picture>
@@ -40,10 +42,13 @@
                 <column class="-tablet-padding-0 flex-1 padding-top-50px">
                     <box class="flex-1 justify-content-flex-start scroll-y width-100pct" data-order="1" data-tablet-order="4">
                         <column class="-tablet-position-relative absolute">
-                            <section class="-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px" data-columns="1">
+                            <section class="-mobile-margin-bottom-90px -tablet-margin-bottom-45px -tablet-margin-top-45px grid-gap-20px padding-y-20px" data-columns="1"></section>
+                            <template>
                                 <row class="hide">
                                     <ico class="margin-x-10px" data-height="30px" data-width="30px">
-                                        <picture class="empty"><img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)"></picture>
+                                        <picture class="empty">
+                                            <img class="bg-black border-radius-50pc" data-height="30px" data-width="30px" onerror="model.error.image(this)">
+                                        </picture>
                                         <picture class="bg-db border-radius-50pc empty-state" data-height="30px" data-width="30px">
                                             <img class="absolute bottom-0 height-75pc invert width-75pc" src="https://share.uios.computer/cdn/svg/user.svg">
                                         </picture>
@@ -53,7 +58,7 @@
                                         <span></span>
                                     </text>
                                 </row>
-                            </section>
+                            </template>
                         </column>
                     </box>
                     <box class="border-color-db border-top-1px-solid fg-black margin-bottom-5px margin-top-auto" data-height="50px" data-order="2" data-width="100%">

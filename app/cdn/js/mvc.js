@@ -421,8 +421,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         profile.find('picture img').src = profile.find('picture img').dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
                         profile.find('[placeholder="username"]').textContent = username;
 
-                        if (postComments.find('[data-columns]').children.length === 1 && comments && comments.length > 0) {
-                            var template = postComments.find('[data-columns]').firstElementChild;
+                        if (comments && comments.length > 0) {
+                            const feedComments = postComments.find('[data-columns]');
+                            feedComments.innerHTML = "";
+                            var template = feedComments.nextElementSibling.content.firstElementChild;
                             var html = template.cloneNode(true);
                             html.classList.remove('hide');
                             var c = 0;
@@ -431,7 +433,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 html.find('picture img').dataset.src = html.find('picture img').src = cdn.endpoint + "/" + comment.user + "/avi.jpg";
                                 html.all('text span')[0].textContent = comment.username;
                                 html.all('text span')[1].textContent = comment.comment;
-                                postComments.find('[data-columns]').insertAdjacentHTML('beforeend', html.outerHTML);
+                                feedComments.insertAdjacentHTML('beforeend', html.outerHTML);
                                 c++;
                             } while (c < comments.length);
                         }
