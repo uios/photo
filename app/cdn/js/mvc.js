@@ -1022,6 +1022,19 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             const jwt = auth.user() ? await auth.getIdToken() : null;
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
 
+            const indexMyUser = byId('index-my-user');
+            var img = document.createElement('img');
+            img.setAttribute("onerror", 'this.remove()');
+            img.src = cdn.endpoint + "/" + auth.user().uid + '/avi.jpg';
+            indexMyUser.find('picture').innerHTML = img.outerHTML;
+            var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+            const mine = async(d)=>{
+                const json = JSON.parse(d);
+                indexMyUser.find('[placeholder="username"]').textContent = json.user.username;
+                indexMyUser.find('[placeholder="Full Name"]').textContent = json.user.fullname;
+            }
+            ajax(endpoint + '/v1/users?filter=mine&jwt=' + jwt).then(mine);
+
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
             const active = async(d)=>{
                 var data = JSON.parse(d);
@@ -1060,8 +1073,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 const users = data.users;
                 if (users.length > 0) {
                     const feedSuggestedUsers = byId("index-suggested-users");
-
-                    const child = feedSuggestedUsers.nextElementSibling.content.firstElementChild.cloneNode(true);
                     var u = 0;
                     do {
                         const user = users[u];
@@ -1070,7 +1081,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         img.setAttribute("onerror", 'this.remove()');
                         img.src = cdn.endpoint + "/" + user.uid + '/avi.jpg';
 
-                        const child = feedActiveUsers.children[u];
+                        const child = feedSuggestedUsers.children[u];
                         child.find('picture').innerHTML = img.outerHTML;
                         child.find('[placeholder="username"]').textContent = user.username;
 
