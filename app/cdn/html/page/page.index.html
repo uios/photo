@@ -2,18 +2,19 @@
     <section class="flex margin-bottom-100px" data-sxga-flex-direction="column-reverse" data-width="100%">
         <block class="fg-ddd margin-right-20px width-480px margin-auto max-width-100pc-20px mobile-max-width-100pc" data-flex="1" data-width="100%">
             <section>
-                <card class="bg-white border-radius-10px box-shadow-0-0-0-1px color-black font-size-12px margin-bottom-20px mobile-bg-unset mobile-border-bottom-1px-solid mobile-border-radius-0 mobile-margin-0 mobile-shadow-unset" data-width="100%">
-                    <section class="direction-column">
-                        <box class="overflow-hidden padding-10px" data-width="50px">
-                            <section>
-                                <picture class="absolute absolute-full bg-black border-radius-50pc empty" id="pic"></picture>
+                <card class="bg-white border-radius-10px box-shadow-0-0-0-1px color-black font-size-12px margin-bottom-20px mobile-bg-unset mobile-border-bottom-1px-solid mobile-border-radius-0 mobile-margin-0 mobile-shadow-unset overflow-y-hidden" data-width="100%">
+                    <row class="width-auto" id="index-active-users"></row>
+                    <template>
+                        <box class="flex-shrink-0 overflow-hidden padding-10px" data-width="50px">
+                            <section class="justify-content-center">
+                                <picture class="border-radius-50pc empty" data-height="50px" data-width="50px"></picture>
                                 <picture class="bg-db border-radius-50pc empty-state" data-height="50px" data-width="50px">
                                     <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
                                 </picture>
-                                <text class="fg-black margin-top-8px">username</text>
+                                <text class="fg-black margin-top-8px overflow-hidden text-align-center text-overflow-ellipsis" placeholder="username"></text>
                             </section>
                         </box>
-                    </section>
+                    </template>
                 </card>
             </section>
             <section data-columns="1" id="feed-index-posts"></section>

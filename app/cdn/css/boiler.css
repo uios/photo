@@ -3824,6 +3824,10 @@ iframe[data-device="mobile"] {
     overflow-x: hidden;
 }
 
+.overflow-y-hidden, [data-overflow-y="hidden"] {
+    overflow-y: hidden;
+}
+
 .scroll-x, [data-scroll="x"], [data-scroll="horizontal"] {
     overflow-y: hidden;
 }
@@ -8226,10 +8230,6 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     }
 }
 
-.width-auto {
-    width: auto;
-}
-
 .width-0 {
     width: 0;
 }
@@ -8610,6 +8610,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
 
 [data-width="100%-320px"], [data-width="calc(100%-320px)"], [data-width="calc(100% - 320px)"] {
     width: calc(100% - 320px);
+}
+
+.width-auto {
+    width: auto;
 }
 
 @media screen and (orientation: landscape) {
@@ -9283,6 +9287,10 @@ error ~ * {
 
 .flex-grow-1, [data-flex-grow="1"] {
     flex-grow: 1;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
 }
 
 .align-left {

@@ -1023,14 +1023,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
 
             var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-            ajax(endpoint + '/v1/users?filter=suggested').then(async(d)=>{
+            const active = async(d)=>{
                 var data = JSON.parse(d);
                 console.log({
                     data
                 });
                 const users = data.users;
                 if (users.length > 0) {
-                    const feedSuggestedUsers = byId("index-suggested-users");
+                    const feedActiveUsers = byId("index-active-users");
+                    const child = feedActiveUsers.nextElementSibling.content.firstElementChild.cloneNode(true);
                     var u = 0;
                     do {
                         const user = users[u];
@@ -1039,7 +1040,37 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         img.setAttribute("onerror", 'this.remove()');
                         img.src = cdn.endpoint + "/" + user.uid + '/avi.jpg';
 
-                        const child = feedSuggestedUsers.children[u];
+                        child.find('picture').innerHTML = img.outerHTML;
+                        child.find('[placeholder="username"]').textContent = user.username;
+
+                        feedActiveUsers.insertAdjacentHTML('beforeend', child.outerHTML);
+
+                        u++;
+                    } while (u < users.length);
+                }
+            }
+            ajax(endpoint + '/v1/users?filter=active').then(active);
+
+            var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+            const suggested = async(d)=>{
+                var data = JSON.parse(d);
+                console.log({
+                    data
+                });
+                const users = data.users;
+                if (users.length > 0) {
+                    const feedSuggestedUsers = byId("index-suggested-users");
+
+                    const child = feedSuggestedUsers.nextElementSibling.content.firstElementChild.cloneNode(true);
+                    var u = 0;
+                    do {
+                        const user = users[u];
+
+                        var img = document.createElement('img');
+                        img.setAttribute("onerror", 'this.remove()');
+                        img.src = cdn.endpoint + "/" + user.uid + '/avi.jpg';
+
+                        const child = feedActiveUsers.children[u];
                         child.find('picture').innerHTML = img.outerHTML;
                         child.find('[placeholder="username"]').textContent = user.username;
 
@@ -1047,7 +1078,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (u < users.length);
                 }
             }
-            );
+            ajax(endpoint + '/v1/users?filter=suggested').then(suggested);
 
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
