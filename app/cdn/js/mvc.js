@@ -1097,6 +1097,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         child.find('picture').innerHTML = img.outerHTML;
                         child.find('[placeholder="username"]').dataset.href = '/users/' + user.uid + '/';
                         child.find('[placeholder="username"]').textContent = user.username;
+                        child.all('box')[2].all('text')[1].dataset.href = '/users/' + user.uid + '/';
 
                         u++;
                     } while (u < users.length);
