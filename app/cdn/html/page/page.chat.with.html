@@ -15,13 +15,13 @@
             </column>
             <column>
                 <box class="border-bottom-1px-solid border-color-db padding-x-20px">
-                    <row class="align-center flex-start flex-wrap-wrap padding-left-20px position-relative">
+                    <row class="align-center flex-start flex-wrap-wrap padding-left-20px position-relative" id="chat-with-them">
                         <text class="absolute bolder left-0 top-0">To:</text>
                         <input class="height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px" onkeydown="controller.convo.onkeydown(event)" onkeyup="controller.convo.onkeyup(event)" placeholder="Search" type="text">
                     </row>
                 </box>
             </column>
-            <column class="empty grid-gap-10px padding-y-10px" data-columns="1"></column>
+            <column class="empty grid-gap-10px padding-y-10px" data-columns="1" id="chat-with-whom"></column>
             <column class="empty-state">
                 <box class="flex-1 padding-x-20px">
                     <row>
