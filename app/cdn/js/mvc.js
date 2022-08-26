@@ -1162,6 +1162,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             like.classList.add('color-ff3b30');
                         }
 
+                        boxes[2].find('.gg-comment').closest('ico').dataset.href = '/photo/' + uid + '/comments/';
+
                         if (saved > 0) {
                             var actions = boxes[2];
                             var saved = actions.find('.gg-bookmark').closest('ico');
