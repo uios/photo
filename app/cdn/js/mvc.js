@@ -379,7 +379,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         if (get[1] === "with") {
                             console.log(route.page, route.path);
                             $(byId('chat-with-them').all('text:not(:first-child)')).remove();
-                            $(byId('chat-with-whom')).innerHTML = "";
+                            byId('chat-with-whom').innerHTML = "";
                         }
                         resolve(route);
                     }
