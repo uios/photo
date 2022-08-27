@@ -47,8 +47,8 @@ window.webcam = {
                         constraints = webcam.constraints.horizontal;
                     }
 
-                    window.stream = await navigator.mediaDevices.getUserMedia(constraints);
-                    video.srcObject = window.stream;
+                    webcam.stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    video.srcObject = webcam.stream;
                     dom.body.dataset.webcam = true;
                     $(camera).addClass('playing')[0].find('video').play();
                     camera.dataset.mode = 'camera';
@@ -62,14 +62,15 @@ window.webcam = {
         ,
         stop: (paths)=>{
             return new Promise((resolve,reject)=>{
-                if (webcam.stream) {
+                //if (webcam.stream) {
                     var camera = byId('camera');
                     var video = byId('webcam');
                     var cam = byId('video');
                     webcam.stream.getTracks().forEach(track=>track.stop());
+                    webcam.stream = null;
                     $(camera).removeClass('playing');
                     dom.body.dataset.webcam = false;
-                }
+                //}
             }
             );
         }

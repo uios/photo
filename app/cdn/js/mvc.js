@@ -115,6 +115,21 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         //console.log(get, path);
 
         if (root) {
+            if (root === "post") {
+                if (get.length > 1) {
+                    webcam.control.stop();
+                } else {
+                    webcam.control.play();
+                }
+            } else {
+                webcam.control.stop();
+            }
+        } else {
+            webcam.control.stop();
+        }
+
+        if (root) {
+
             if (root === "activity") {
                 var vp = dom.body.find('[data-page="' + page + '"]');
                 vp.dataset.zIndex = 9;
