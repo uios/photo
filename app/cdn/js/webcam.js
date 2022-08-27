@@ -37,7 +37,7 @@ window.webcam = {
     },
     control: {
         play: (paths)=>{
-            return new Promise((resolve,reject)=>{
+            return new Promise(async(resolve,reject)=>{
                 var camera = byId('camera');
                 if (camera) {
                     var video = camera.find("video");
@@ -46,31 +46,15 @@ window.webcam = {
                     } else {
                         constraints = webcam.constraints.horizontal;
                     }
-                    navigator.mediaDevices.getUserMedia(constraints).then(async stream=>{
-                        var track = stream.getVideoTracks()[0];
-                        video.srcObject = webcam.stream = stream;
-                        video.onloadedmetadata = data=>{
-                            console.log({
-                                video,
-                                track
-                            });
-                            dom.body.dataset.webcam = true;
-                            $(camera).addClass('playing')[0].find('video').play();
-                            camera.dataset.mode = 'camera';
-                            resolve({
-                                paths
-                            });
-                        }
-                    }
-                    ).catch(err=>{
-                        $(camera).removeClass('playing');
-                        dom.body.dataset.cam = false;
-                        resolve({
-                            paths,
-                            err
-                        });
-                    }
-                    );
+
+                    window.stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    video.srcObject = window.stream;
+                    dom.body.dataset.webcam = true;
+                    $(camera).addClass('playing')[0].find('video').play();
+                    camera.dataset.mode = 'camera';
+                    resolve({
+                        paths
+                    });
                 }
             }
             );
