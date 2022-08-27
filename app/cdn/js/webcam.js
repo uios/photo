@@ -62,7 +62,7 @@ window.webcam = {
         ,
         stop: (paths)=>{
             return new Promise((resolve,reject)=>{
-                //if (webcam.stream) {
+                if (webcam.stream) {
                     var camera = byId('camera');
                     var video = byId('webcam');
                     var cam = byId('video');
@@ -70,7 +70,7 @@ window.webcam = {
                     webcam.stream = null;
                     $(camera).removeClass('playing');
                     dom.body.dataset.webcam = false;
-                //}
+                }
             }
             );
         }
