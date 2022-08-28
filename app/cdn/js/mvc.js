@@ -732,6 +732,44 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 cameraBack.className = "bottom-0 fixed hide left-0";
                 cameraNext.className = "bottom-0 fixed hide right-0";
                 resolve(route);
+            } else if (root === "search") {
+                const jwt = auth.user() ? await auth.getIdToken() : null;
+                const a = function(d) {
+                    const data = JSON.parse(d);
+                    console.log({
+                        data
+                    });
+                    const feed = byId('find-posts');
+                    const posts = data.posts;
+                    if (posts.length > 0) {
+                        var boxes = feed.all('box');
+                        var b = 0;
+                        do {
+                            const box = boxes[b];
+                            if (b < posts.length) {
+                                const post = posts[b];
+                                const uid = post.uid;
+                                const user = post.user;
+                                box.dataset.href = "/photo/" + uid + "/";
+                                box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + ".jpg";
+                            } else {
+                                box.remove();
+                            }
+                            b++;
+                        } while (b < boxes.length);
+                    }
+                }
+                const b = function(error) {
+                    const message = error.message;
+                    console.log(message);
+                }
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                const uri = endpoint + "/v1/search/posts" + (jwt ? "?jwt=" + jwt : "");
+                console.log({
+                    uri
+                });
+                ajax(uri).then(a).catch(b);
+                resolve(route);
             } else if (root === "users") {
                 if (get.length > 1) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');

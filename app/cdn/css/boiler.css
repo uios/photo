@@ -1680,7 +1680,7 @@ aside ~ main {
 }
 
 .background-color-rgba-0-0-0-50pct {
-    background-color: rgba(0,0,0,0.5);   
+    background-color: rgba(0,0,0,0.5);
 }
 
 .background-color-db, .bg-db {
@@ -3432,7 +3432,7 @@ iframe[data-device="mobile"] {
         margin-bottom: 70px;
         margin-top: 70px;
     }
-    
+
     .tablet-margin-right-0 {
         margin-right: 0px !important;
     }
@@ -3455,7 +3455,7 @@ iframe[data-device="mobile"] {
     .-vga-margin-top-50px {
         margin-top: 50px;
     }
-    
+
     .-vga-margin-top-70px {
         margin-top: 70px;
     }
@@ -3530,7 +3530,6 @@ iframe[data-device="mobile"] {
 }
 
 /*MAX-WIDTH*/
-
 [data-max-width="100%"] {
     max-width: 100%;
 }
@@ -3869,7 +3868,7 @@ iframe[data-device="mobile"] {
     .padding-16px {
         padding: 16px;
     }
-    
+
     .padding-30px {
         padding: 30px;
     }
@@ -8159,10 +8158,6 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
         width: 320px;
     }
 
-    .tablet-hide, .-tablet-display-none {
-        display: none;
-    }
-
     .tablet-height-70px {
         height: 70px;
     }
@@ -9212,6 +9207,24 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     /* margin-bottom: 20px; */
 }
 
+@media screen and (max-width: 768px) {
+    .cascade-left box {
+    width: calc( (((100% - 6px) / 3) * 1) - 0px );
+    }
+
+    .cascade-left box:nth-child(3n + 1) {
+        order: 1;
+        width: calc((((100% - 6px) / 3) * 2) + 3px);
+        /* margin-right: 20px; */
+        margin-bottom: 0px;
+    }
+
+    .cascade-left box:nth-child(3n + 2) {
+        order: 1;
+        /* margin-bottom: 20px; */
+    }
+}
+
 .cascade-right box {
     /* position: relative; */
     width: calc( (((100% - 40px) / 3) * 1) - 0px );
@@ -9258,12 +9271,16 @@ error ~ * {
     /* flex-direction: row; */
     /* flex-wrap: wrap; */
 }
-@media screen and (max-width: 768px) {   
+
+.hide, [data-display="none"] {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
     .-tablet-display-flex {
         display: flex;
     }
 }
-
 
 [data-align-items="flex-end"] {
     align-items: flex-end;
@@ -9350,13 +9367,13 @@ error ~ * {
     flex-wrap: unset !important;
 }
 
-.hide, [data-display="none"] {
-    display: none;
-}
-
 @media screen and (max-width: 768px) {
     .tablet-justify-center {
         justify-content: center;
+    }
+
+    .tablet-hide, .-tablet-display-none {
+        display: none;
     }
 }
 

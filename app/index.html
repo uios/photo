@@ -65,24 +65,30 @@
                             </card>
                             <card class="display-none position-fixed top-50px width-375px">
                                 <picture class="height-100pct left-0 position-fixed top-0 width-100pct z-index-8" data-backdrop-blur="10px" data-tap="on.focus.out.search(event)"></picture>
-                                <column class="background-color-fff border-radius-8px padding-10px position-relative shadow width-auto z-index-9">
+                                <column class="background-color-fff border-radius-8px empty padding-10px position-relative shadow width-auto z-index-9">
                                     <box>
                                         <section class="justify-content-space-between">
                                             <text class="font-weight-bolder">Recent</text>
                                             <text class="font-weight-bolder fg-b">Clear All</text>
                                         </section>
                                     </box>
-                                    <box>
-                                        <row>
+                                    <box class="empty"></box>
+                                    <box class="empty-after">
+                                        <section>
+                                            <text class="font-weight-bolder">No recent searches.</text>
+                                        </section>
+                                    </box>
+                                    <template>
+                                        <row class="justify-content-space-between">
                                             <ico>
                                                 <n class="gg-search"></n>
                                             </ico>
-                                            <text class="font-weight-bolder fg-b">keyword</text>
+                                            <text class="font-weight-bolder fg-b margin-right-auto">keyword</text>
                                             <ico>
                                                 <n class="gg-close"></n>
                                             </ico>
                                         </row>
-                                    </box>
+                                    </template>
                                 </column>
                             </card>
                         </form>
@@ -178,6 +184,7 @@
             <page data-fetch="/cdn/html/page/page.index.html" data-page="/"></page>
             <page data-fetch="/cdn/html/page/page.photo.html" data-page="/photo/"></page>
             <pages data-fetch="/cdn/html/page/page.photo.post.html" data-pages="/photo/*/" data-root="/photo/*/"></pages>
+            <page data-fetch="/cdn/html/page/page.photo.html" data-page="/search/"></page>
             <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
         </main>
         <pages class="bottom-0 fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.chat.html" data-height="calc(100% - 55px)" data-pages="/chat/" data-root="/chat/" data-tablet-height="100%" data-xga-height="calc(100% - 45px)"></pages>
