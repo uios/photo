@@ -412,9 +412,18 @@ window.on.touch = {
     }
   });
 
-window.on["focus"] = {
-  in: {},
-  out: {}
+window.on.focus = {};
+window.on.focus.in = {};
+window.on.focus.in.search = (event) => {
+  const target = event.target;
+  const result = target.closest('card').nextElementSibling;
+  result.classList.remove('display-none');
+};
+window.on.focus.out = {};
+window.on.focus.out.search = (event) => {
+  const target = event.target;
+  const result = target.closest('card');
+  result.classList.add('display-none');
 };
 
 window.on["change"] = {

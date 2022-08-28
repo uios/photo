@@ -9326,7 +9326,7 @@ error ~ * {
     justify-content: flex-end;
 }
 
-.justify-between {
+.justify-between, .justify-content-space-between {
     justify-content: space-between;
 }
 

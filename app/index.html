@@ -49,19 +49,41 @@
                                 <text>Share</text>
                             </section>
                         </box>
-                        <form class="-tablet-display-none height-36px margin-left position-relative" onsubmit="on.submit.search(event)">
-                            <card class="align-items-center width-100pct">
-                                <section class="justify-center width-100pct">
+                        <form class="-tablet-display-none align-items-center flex height-36px margin-left position-relative z-index-7" onsubmit="on.submit.search(event)">
+                            <card class="align-items-center width-268px z-index-5">
+                                <section class="justify-center width-100pct z-index-5">
                                     <box class="background-color-db border-radius-8px height-36px line-height-36px width-268px">
                                         <section class="align-center justify-center width-100pct">
                                             <ico class="opacity-50pc">
                                                 <n class="gg-search"></n>
                                             </ico>
-                                            <input class="flex-1 height-100pct height-100pct width-100pct" placeholder="Search" type="text">
+                                            <input class="flex-1 height-100pct height-100pct width-100pct" onfocus="on.focus.in.search(event)" placeholder="Search" type="text">
                                             <input type="submit">
                                         </section>
                                     </box>
                                 </section>
+                            </card>
+                            <card class="display-none position-fixed top-50px width-375px">
+                                <picture class="height-100pct left-0 position-fixed top-0 width-100pct z-index-8" data-backdrop-blur="10px" data-tap="on.focus.out.search(event)"></picture>
+                                <column class="background-color-fff border-radius-8px padding-10px position-relative shadow width-auto z-index-9">
+                                    <box>
+                                        <section class="justify-content-space-between">
+                                            <text class="font-weight-bolder">Recent</text>
+                                            <text class="font-weight-bolder fg-b">Clear All</text>
+                                        </section>
+                                    </box>
+                                    <box>
+                                        <row>
+                                            <ico>
+                                                <n class="gg-search"></n>
+                                            </ico>
+                                            <text class="font-weight-bolder fg-b">keyword</text>
+                                            <ico>
+                                                <n class="gg-close"></n>
+                                            </ico>
+                                        </row>
+                                    </box>
+                                </column>
                             </card>
                         </form>
                         <box class="cell align-center flex height-100pc justify-center mobile-hide" data-href="/">
