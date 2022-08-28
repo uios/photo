@@ -119,7 +119,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 if (get.length > 1) {
                     webcam.control.stop();
                 } else {
-                    webcam.control.play();
+                    webcam.control[auth.user() ? 'play' : 'stop']();
                 }
             } else {
                 webcam.control.stop();
