@@ -130,7 +130,7 @@ function init() {
         } else {
             byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
         }
-        go ? null : (dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname).router().then(go = true);
+        go ? null : ((dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname)+(window.location.search)+(window.location.hash)).router().then(go = true);
     }
 
     firebase.auth().onAuthStateChanged(onAuthStateChanged);

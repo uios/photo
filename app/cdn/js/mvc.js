@@ -105,14 +105,25 @@ window.mvc.m ? null : (window.mvc.m = model = {
 });
 
 window.mvc.v ? null : (window.mvc.v = view = function(route) {
-    console.log(route);
+    console.log(108, {
+        route
+    });
     return new Promise(async function(resolve, reject) {
         var page = route.page;
         var path = route.path;
         var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
         var root = get[0];
         GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
-        //console.log(get, path);
+        console.log(get, path, route);
+
+        if (route.search) {
+            const input = byId('keywords')
+            const query = route.search;
+            const params = new URLSearchParams(query);
+            const keywords = params.get('keywords');
+            input.value = keywords;
+            on.focus.in.search(input);
+        }
 
         if (root) {
             if (root === "post") {
@@ -127,6 +138,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         } else {
             webcam.control.stop();
         }
+        console.log(136, {
+            route
+        })
 
         if (root) {
 
@@ -772,6 +786,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 resolve(route);
             } else if (root === "users") {
                 if (get.length > 1) {
+                    console.log(route);
                     var v = dom.body.find('pages[data-root="' + root + '"]');
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
@@ -846,7 +861,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         byId('users-user-count-followers').textContent = json.stats.followers;
                         byId('users-user-count-following').textContent = json.stats.following;
 
-                        route = rout.e(rout.ed.url(get));
+                        //route = rout.e(rout.ed.url(get));
 
                         console.log('mvc.v users user route', {
                             route,
@@ -1063,6 +1078,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     p++;
                                 } while (p < posts.length);
                             }
+                            console.log(1075, {
+                                route
+                            })
                             resolve(route);
 
                         }
@@ -1203,14 +1221,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var card = html.firstElementChild.cloneNode(true);
                         var boxes = card.all('box');
                         card.dataset.uid = uid;
-                                    
+
                         var img = document.createElement('img');
                         img.src = cdn.endpoint + '/' + user + '/avi.jpg';
                         img.setAttribute("onerror", 'this.remove()');
                         const avi = boxes[0].find('picture');
                         avi.innerHTML = img.outerHTML;
                         avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + user + "/";
-                                    
+
                         var profile = boxes[0].find('span');
                         var owner = boxes[0].find('text');
                         profile.dataset.href = "/users/" + username + "/";

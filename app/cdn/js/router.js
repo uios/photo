@@ -20,7 +20,7 @@ String.prototype.router = async function(params) {
     }
 
     //Process URL Logic
-    var uri = this.toString();
+    var uri = this.toString(); console.log(uri);
     var path = uri ? uri : a.href;
     var toURL = new URL(path,location.origin);
     path = toURL.pathname + toURL.search + toURL.hash;
@@ -42,11 +42,11 @@ String.prototype.router = async function(params) {
     return new Promise(async function(resolve, reject) {
         if (route) {
 
-            //console.log('truly',route,GET.length);
+            console.log('truly',route,GET.length);
 
             var page = GET[GET.length - 1];
 
-            mvc.v(route).then(async(route)=>{
+            mvc.v(route).then(async(route)=>{ console.log('falsy',route,GET.length);
 
                 route.root = getRoot($('pages[data-pages]'));
 
@@ -68,7 +68,7 @@ String.prototype.router = async function(params) {
 
                 if (!pop) {
                     if (!["blob:"].includes(window.location.protocol)) {
-                        var link = route.path;
+                        var link = (route.search ? route.path.replace(/\/+$/, '') : route.path) + (route.search ? '?'+route.search : '');  console.log({a,uri,route,paths});
                         history.pushState(link, '', link);
                     }
                 }
@@ -196,7 +196,7 @@ window.rout.ed = {
                 });
                 vp.innerHTML === "" && vp.dataset.fetch ? vp.innerHTML = await ajax(vp.dataset.fetch) : null;
                 //$(vp).addClass('active');
-                vp.dataset.path = paths.path + (paths.search ? "?" + paths.search : "");
+                vp.dataset.path = paths.path;// + (paths.search ? "?" + paths.search : "");
 
                 var fet = vp.all('[data-fetch]:empty');
                 if (fet.length > 0) {
@@ -233,7 +233,7 @@ window.rout.ed = {
                 $('body > pages page').removeClass("active");
                 $('body > :not(main) [data-path]').removeClass("active");
                 $('body > :not(main) [data-page]').removeClass("active");
-                $('[data-root]').removeClass("active");
+                //$('[data-root]').removeClass("active");
             }
 
             $('[data-path="' + route.path + '"]').addClass("active");
@@ -262,7 +262,8 @@ window.rout.ed = {
     ,
     close: ()=>{
         var active = document.body.find('main page.active');
-        (active ? active.dataset.path : '/').router();
+        const goto = (active ? active.dataset.path : '/'); //alert(goto);
+        goto.router();
     }
     ,
     dir: (url,num,g=[])=>{
@@ -421,7 +422,7 @@ window.rout.ed = {
 
                 vp.innerHTML === "" && vp.dataset.fetch ? vp.innerHTML = await ajax(vp.dataset.fetch) : null;
                 //$(vp).addClass('active');
-                vp.dataset.path = paths.path + (paths.search ? "?" + paths.search : "");
+                vp.dataset.path = paths.path;// + (paths.search ? "?" + paths.search : "");
 
                 var fet = vp.all('[data-fetch]:empty');
                 if (fet.length > 0) {

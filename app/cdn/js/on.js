@@ -414,17 +414,27 @@ window.on.touch = {
 
 window.on.focus = {};
 window.on.focus.in = {};
-window.on.focus.in.search = (event) => {
-  const target = event.target;
+window.on.focus.in.search = (target) => {
   const result = target.closest('card').nextElementSibling;
   result.classList.remove('display-none');
+  const keywords = byId('keywords').value;
+  var goto = (window.location.pathname+'?keywords')+(keywords.length>0 ? '='+keywords : '');
+  history.pushState(goto,'',goto);
 };
 window.on.focus.out = {};
 window.on.focus.out.search = (event) => {
   const target = event.target;
   const result = target.closest('card');
   result.classList.add('display-none');
+  rout.ed.close();
 };
+
+window.on.keyup = {};
+window.on.keyup.search = (target) => {
+  const keywords = byId('keywords').value;
+  var goto = (window.location.pathname+'?keywords')+(keywords.length>0 ? '='+keywords : '');
+  history.pushState(goto,'',goto);
+}
 
 window.on["change"] = {
   file: (event, s) => {
