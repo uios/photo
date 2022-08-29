@@ -1745,8 +1745,9 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 const photo = camera.find('#camera-photo');
                 const elem = photo.find('img');
                 elem.dataset.type = type;
-                elem.src = file;
-                //controller.post.shot
+                //elem.src = file;
+                //controller.post.shot                        
+                elem.src = byId('camera-canvas').toDataURL("image/jpeg", 1);
                 controller.post.skip();
             }
             );
