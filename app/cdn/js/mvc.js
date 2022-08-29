@@ -788,6 +788,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         });
 
                         var uid = json.user.uid;
+                        var bio = json.user.bio;
                         var fullname = json.user.fullname;
                         var username = get[1] = json.user.username;
 
@@ -833,6 +834,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             about.classList.remove('hide');
                         }
                         byId('users-user-username').textContent = username;
+
+                        if (bio) {
+                            byId('users-user-bio').classList.remove('hide');
+                            byId('users-user-bio').innerText = bio;
+                        } else {
+                            byId('users-user-bio').classList.add('hide');                                        
+                        }
 
                         byId('users-user-count-posts').textContent = json.stats.posts;
                         byId('users-user-count-followers').textContent = json.stats.followers;
