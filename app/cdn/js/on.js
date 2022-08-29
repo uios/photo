@@ -418,7 +418,7 @@ window.on.focus.in.search = (target) => {
   const result = target.closest('card').nextElementSibling;
   result.classList.remove('display-none');
   const keywords = byId('keywords').value;
-  var goto = (window.location.pathname+'?keywords')+(keywords.length>0 ? '='+keywords : '');
+  var goto = (window.location.pathname+'?keywords')+(keywords.length>0 ? '='+keywords : '')+(window.location.hash ? '#'+window.location.hash : '');
   history.pushState(goto,'',goto);
 };
 window.on.focus.out = {};
@@ -426,7 +426,9 @@ window.on.focus.out.search = (event) => {
   const target = event.target;
   const result = target.closest('card');
   result.classList.add('display-none');
-  rout.ed.close();
+  //rout.ed.close();
+  var goto = (window.location.pathname)+(window.location.hash ? '#'+window.location.hash : '');
+  history.pushState(goto,'',goto);
 };
 
 window.on.keyup = {};
