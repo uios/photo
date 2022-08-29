@@ -1200,12 +1200,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                 if (lastPostId > lastFeedId && posts.length > 0) {
                     //var html = '';
-                    var p = 0;
+                    var template = await ajax('/cdn/html/template/template.post.card.column.html');
+                    var html = new DOMParser().parseFromString(template, "text/html").body;
+                    var pp = 0;
                     do {
-                        var template = await ajax('/cdn/html/template/template.post.card.column.html');
-                        var html = new DOMParser().parseFromString(template, "text/html").body;
 
-                        var post = posts[p];
+                        var post = posts[pp];
                         var caption = post.caption;
                         var comment = post.comment;
                         var comments = parseInt(post.comments);
@@ -1283,8 +1283,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         //html += card.outerHTML;
                         feed.insertAdjacentHTML('afterbegin', card.outerHTML);
-                        p++;
-                    } while (p < posts.length);
+                        pp++;
+                    } while (pp < posts.length);
                     //feed.innerHTML = html;
                 }
 
