@@ -839,7 +839,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             byId('users-user-bio').classList.remove('hide');
                             byId('users-user-bio').innerText = bio;
                         } else {
-                            byId('users-user-bio').classList.add('hide');                                        
+                            byId('users-user-bio').classList.add('hide');
                         }
 
                         byId('users-user-count-posts').textContent = json.stats.posts;
@@ -883,7 +883,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         var media = boxes[1].find('media');
                                         var content = document.createElement('img');
                                         var format = "";
-                                        if (["jpg"].includes(ext)) {
+                                        if (["jpg", "jpeg", "png"].includes(ext)) {
                                             var format = "photo";
                                         } else if (["mp4"].includes(ext)) {
                                             var format = "video";
@@ -989,7 +989,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         var boxes = card.all('box');
 
                                         var format = "";
-                                        if (['jpg'].includes(ext)) {
+                                        if (["jpg", "jpeg", "png"].includes(ext)) {
                                             format = "photo";
                                         } else if (['mp4'].includes(ext)) {
                                             format = "video";
@@ -1019,7 +1019,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         var boxes = card.all('box');
 
                                         var format = "";
-                                        if (['jpg'].includes(ext)) {
+                                        if (["jpg", "jpeg", "png"].includes(ext)) {
                                             format = "photo";
                                         } else if (['mp4'].includes(ext)) {
                                             format = "video";
@@ -1052,7 +1052,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     var boxes = card.all('box');
 
                                     var format = "";
-                                    if (['jpg'].includes(ext)) {
+                                    if (["jpg", "jpeg", "png"].includes(ext)) {
                                         format = "photo";
                                     } else if (['mp4'].includes(ext)) {
                                         format = "video";
@@ -1203,9 +1203,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var card = html.firstElementChild.cloneNode(true);
                         var boxes = card.all('box');
                         card.dataset.uid = uid;
-
+                                    
+                        var img = document.createElement('img');
+                        img.src = cdn.endpoint + '/' + user + '/avi.jpg';
+                        img.setAttribute("onerror", 'this.remove()');
+                        const avi = boxes[0].find('picture');
+                        avi.innerHTML = img.outerHTML;
+                        avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + user + "/";
+                                    
                         var profile = boxes[0].find('span');
-                        var avi = boxes[0].find('picture img');
                         var owner = boxes[0].find('text');
                         profile.dataset.href = "/users/" + username + "/";
                         avi.dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
@@ -1214,7 +1220,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         var media = boxes[1].find('media');
                         var content = document.createElement('img');
                         var format = "";
-                        if (["jpg"].includes(ext)) {
+                        if (["jpg", "jpeg", "png"].includes(ext)) {
                             var format = "photo";
                         } else if (["mp4"].includes(ext)) {
                             var format = "video";
@@ -1722,7 +1728,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 const elem = photo.find('img');
                 elem.dataset.type = type;
                 elem.src = file;
-                controller.post.shot();
+                //controller.post.shot
+                controller.post.skip();
             }
             );
         }
@@ -1741,11 +1748,12 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             var format = tab.dataset.format;
             if (['audio', 'merch', 'pages', 'photo'].includes(format)) {
                 webcam.snap('photo');
-                controller.post.shot();
+                //controller.post.shot();
             } else if (['video'].includes(format)) {
                 webcam.record.er && webcam.record.er.state === "recording" ? webcam.record.ed() : webcam.record.ing();
-                controller.post.shot();
+                //controller.post.shot();
             }
+            controller.post.skip();
         }
         ,
         shot: ()=>{
@@ -1792,14 +1800,14 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 const card = byId("post-" + format + "-metadata");
                 if (format === "photo") {
                     const file = byId('post-file').files[0];
-                    //const img = byId('camera-photo').find('img');
-                    //const src = img.src;
-                    if (file) {
+                    const img = byId('camera-photo').find('img');
+                    const src = img.src;
+                    if (file || src) {
                         var data = new FormData();
                         var elem = null;
 
-                        //data.append('base64', src);            
-                        data.append('file', file);
+                        data.append('base64', src);
+                        file ? data.append('file', file) : null;
 
                         //elem = card.find("#post-photo-metadata-title input");
                         //elem.value === "" ? null : data.append("title", elem.value);
@@ -1821,9 +1829,10 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                             data.append("tags", tags);
                         }
 
-                        data.append("jwt", await auth.getIdToken())
+                        data.append("jwt", await auth.getIdToken());
 
-                        const url = api.endpoint + "/v1/posts";
+                        var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                        const url = endpoint + "/v1/posts";
                         //const url = "https://api.uios.tld"+"/v1/posts";
                         var settings = {
                             data,

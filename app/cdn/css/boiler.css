@@ -8908,8 +8908,8 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     right: 0;
     bottom: 0;
     margin: auto;
-    /* width: 100%; */
-    /* height: 100%; */
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (max-width: 1280px) {

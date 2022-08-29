@@ -228,7 +228,7 @@ window.webcam = {
         }
         ,
         down: target=>{
-            target.href = canvas.toDataURL('image/png');
+            target.href = canvas.toDataURL('image/jpeg');
         }
     },
     record: {
@@ -469,7 +469,7 @@ window.webcam = {
                 webcam.global.height = photo.height = canvas.height = height = vid.videoHeight / (vid.videoWidth / width);
                 context.drawImage(vid, 0, 0, width, height);
                 if (width && height) {
-                    var image = canvas.toDataURL('image/png');
+                    var image = canvas.toDataURL('image/jpeg');
                     photo.find('img').src = image;
                     console.log('width:' + width + ", height:" + height);
                 }
