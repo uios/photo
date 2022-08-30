@@ -1009,7 +1009,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         } else if (['mp4'].includes(ext)) {
                                             format = "video";
                                         }
-                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + uid + "/" + format + "/" + post.uid + "." + ext;
+                                        boxes[0].find('picture img').dataset.src = cdn.endpoint + "/" + post.user + "/" + format + "/" + post.uid + "." + ext;
 
                                         byId('users-user-saved').insertAdjacentHTML('afterbegin', card.outerHTML);
                                         p++;
