@@ -422,8 +422,7 @@ window.on.focus.in.search = (target) => {
   history.pushState(goto,'',goto);
 };
 window.on.focus.out = {};
-window.on.focus.out.search = (event) => {
-  const target = event.target;
+window.on.focus.out.search = (target) => {
   const result = target.closest('card');
   result.classList.add('display-none');
   //rout.ed.close();

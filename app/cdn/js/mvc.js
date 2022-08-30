@@ -116,13 +116,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
         console.log(get, path, route);
 
+        const input = byId('keywords')
         if (route.search) {
-            const input = byId('keywords')
             const query = route.search;
             const params = new URLSearchParams(query);
             const keywords = params.get('keywords');
             input.value = keywords;
             on.focus.in.search(input);
+        } else {
+            on.focus.out.search(dom.header.find('[data-tap="on.focus.out.search(event)"]'))
         }
 
         if (root) {
@@ -137,14 +139,16 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
 
             if (root === "photo") {
-                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).addClass('hide');
+                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).addClass('-tablet-display-none');
                 dom.header.find('form').classList.remove('-tablet-display-none');
             } else {
-                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('hide');
+                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('-tablet-display-none');
                 dom.header.find('form').classList.add('-tablet-display-none');
             }
         } else {
             webcam.control.stop();
+            $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('hide');
+            dom.header.find('form').classList.add('-tablet-display-none');
         }
         console.log(136, {
             route
@@ -1196,9 +1200,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
             ajax(endpoint + '/v1/users?filter=suggested' + (jwt ? '&jwt=' + jwt : '')).then(suggested);
 
-            endpoint += '/v1/posts';
-            endpoint += (auth.user() ? '?jwt=' + jwt : '');
-            ajax(endpoint).then(async(d)=>{
+            const f = async(d)=>{
                 var data = JSON.parse(d);
                 var posts = data.posts;
                 var feed = byId('feed-index-posts');
@@ -1294,17 +1296,18 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (pp < posts.length);
                     //feed.innerHTML = html;
                 }
-
-                resolve(route);
             }
-            ).catch((e)=>{
+            const c = (e)=>{
                 console.log('mvc.v users user /v1/users/:user catch', {
                     e
                 });
                 model.error.code(e, v);
-                resolve(route);
             }
-            );
+            endpoint += '/v1/posts';
+            endpoint += (auth.user() ? '?jwt=' + jwt : '');
+            ajax(endpoint).then(f).catch(c);
+
+            resolve(route);
         }
     }
     );
