@@ -35,7 +35,8 @@ window.onload = async()=>{
 
     window.dom = {
         body: document.body,
-        boot: byId('boot')
+        boot: byId('boot'),
+        header: byId('body-header')
     };
 
     dom.body.dataset.load = "ing";

@@ -135,6 +135,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else {
                 webcam.control.stop();
             }
+
+            if (root === "photo") {
+                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).addClass('hide');
+                dom.header.find('form').classList.remove('-tablet-display-none');
+            } else {
+                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('hide');
+                dom.header.find('form').classList.add('-tablet-display-none');
+            }
         } else {
             webcam.control.stop();
         }
@@ -522,7 +530,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const uid = post.uid;
                                     const user = post.user;
                                     box.dataset.href = "/photo/" + uid + "/";
-                                    box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + "."+post.format;
+                                    box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + post.format;
                                 } else {
                                     box.remove();
                                 }
@@ -859,7 +867,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         route.path = rout.e(rout.ed.url(get)).path;
 
-                        1<0 ? console.log('mvc.v users user route', {
+                        1 < 0 ? console.log('mvc.v users user route', {
                             route,
                             paths
                         }) : null;
@@ -979,7 +987,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                                         feed.insertAdjacentHTML('beforeend', html.outerHTML);
                                         u++;
-                                    } while (u < following.length); console.log({following})
+                                    } while (u < following.length);
+                                    console.log({
+                                        following
+                                    })
                                 }
                                 resolve(route);
 
