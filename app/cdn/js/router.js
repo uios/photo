@@ -42,12 +42,13 @@ String.prototype.router = async function(params) {
     return new Promise(async function(resolve, reject) {
         if (route) {
 
-            console.log('truly',route,GET.length);
+            //console.log('truly',route,GET.length);
 
             var page = GET[GET.length - 1];
 
-            mvc.v(route).then(async(route)=>{ console.log('falsy',route,GET.length);
-
+            mvc.v(route).then(async(route)=>{ 
+                
+                //console.log('falsy',route,GET.length);
                 route.root = getRoot($('pages[data-pages]'));
 
                 var state = s ? s : route;
@@ -191,9 +192,9 @@ window.rout.ed = {
                 } else {
                     dom.body.setAttribute('data-ppp', paths.page);
                 }
-                console.log(186, {
+                1<0 ? console.log(186, {
                     vp
-                });
+                }) : null;
                 vp.innerHTML === "" && vp.dataset.fetch ? vp.innerHTML = await ajax(vp.dataset.fetch) : null;
                 //$(vp).addClass('active');
                 vp.dataset.path = paths.path;// + (paths.search ? "?" + paths.search : "");

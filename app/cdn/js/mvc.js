@@ -797,10 +797,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         error ? error.remove() : null;
 
                         var json = JSON.parse(user);
-                        console.log('mvc.v users user /v1/users/' + get[1], {
-                            json,
-                            route
-                        });
 
                         var uid = json.user.uid;
                         var bio = json.user.bio;
@@ -861,12 +857,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         byId('users-user-count-followers').textContent = json.stats.followers;
                         byId('users-user-count-following').textContent = json.stats.following;
 
-                        //route = rout.e(rout.ed.url(get));
+                        route.path = rout.e(rout.ed.url(get)).path;
 
-                        console.log('mvc.v users user route', {
+                        1<0 ? console.log('mvc.v users user route', {
                             route,
                             paths
-                        });
+                        }) : null;
 
                         $('#tabs-profile > *').removeClass('color-000');
                         if (get.length > 2) {
