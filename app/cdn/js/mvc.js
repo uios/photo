@@ -447,7 +447,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         block.dataset.uid = uid;
 
                         var photoPost = byId('photo-post');
-                        var src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + ext;
+                        var src = cdn.endpoint + "/" + post.user + "/photo/" + uid + "." + ext;
                         photoPost.find('img').src = src;
 
                         var profile = vp.find('[data-tablet-order="1"]');
@@ -522,7 +522,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const uid = post.uid;
                                     const user = post.user;
                                     box.dataset.href = "/photo/" + uid + "/";
-                                    box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + ".jpg";
+                                    box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + "."+post.format;
                                 } else {
                                     box.remove();
                                 }

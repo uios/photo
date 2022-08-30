@@ -533,7 +533,7 @@ box > section > picture {
     /* padding-top: 100%; */
 }
 
-box > section > picture > img {
+box > section > * > img {
     width: 100%;
     height: 100%;
 }
