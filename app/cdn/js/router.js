@@ -171,12 +171,12 @@ window.rout.ed = {
             var pages = dom.body.find('pages[data-root="' + route.root + '"]');
             var page = dom.body.find('page[data-page="' + route.page + '"]');
             var vp = page ? page : pages;
-            console.log('bang', {
+            1<0 ? console.log('bang', {
                 route,
                 page,
                 pages,
                 vp
-            });
+            }) : null;
 
             if (vp) {
 

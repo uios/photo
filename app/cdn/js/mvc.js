@@ -957,12 +957,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 const feed = byId('feed-users-user-following');
                                 feed.innerHTML = "";
 
-                                const followers = json.following;
-                                if (followers && followers.length > 0) {
+                                const following = json.following;
+                                if (following && following.length > 0) {
                                     const template = byId('template-users-user-following').content.firstElementChild;
                                     var u = 0;
                                     do {
-                                        const user = followers[u];
+                                        const user = following[u];
                                         const uid = user.uid;
 
                                         var html = template.cloneNode(true);
@@ -983,7 +983,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                                         feed.insertAdjacentHTML('beforeend', html.outerHTML);
                                         u++;
-                                    } while (u < following.length);
+                                    } while (u < following.length); console.log({following})
                                 }
                                 resolve(route);
 
