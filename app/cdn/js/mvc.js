@@ -1297,6 +1297,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         pp++;
                     } while (pp < posts.length);
                     //feed.innerHTML = html;
+
+                    resolve(route);
                 }
             }
             const c = (e)=>{
@@ -1308,8 +1310,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
             ajax(endpoint).then(f).catch(c);
-
-            resolve(route);
         }
     }
     );
