@@ -116,15 +116,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
         console.log(get, path, route);
 
-        const input = byId('keywords')
         if (route.search) {
             const query = route.search;
             const params = new URLSearchParams(query);
             const keywords = params.get('keywords');
+            const input = byId('keywords')
             input.value = keywords;
-            on.focus.in.search(input);
+            on.focus.in.search(byId('keywords'));
         } else {
-            on.focus.out.search(dom.header.find('[data-tap="on.focus.out.search(event)"]'))
+            on.focus.out.search(byId('results-blur'))
         }
 
         if (root) {
@@ -147,7 +147,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
         } else {
             webcam.control.stop();
-            $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('hide');
+            $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('-tablet-display-none');
             dom.header.find('form').classList.add('-tablet-display-none');
         }
         console.log(136, {
