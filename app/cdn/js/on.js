@@ -435,6 +435,7 @@ window.on.focus.in.search = (target)=>{
     const result = target.closest('card').nextElementSibling;
     result.classList.remove('display-none');
     byId('cancel-results').classList.remove('display-none');
+    const feed = byId('feed-results');
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
     history.pushState(goto, '', goto);
@@ -442,8 +443,6 @@ window.on.focus.in.search = (target)=>{
     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
     const t = (d)=>{
         const data = JSON.parse(d);
-
-        const feed = byId('feed-results');
         feed.innerHTML = "";
 
         const users = data.users;
@@ -465,14 +464,11 @@ window.on.focus.in.search = (target)=>{
                 feed.insertAdjacentHTML('beforeend', html.outerHTML);
                 u++;
             } while (u < users.length);
-        } else {
-            //feed.innerHTML = "";
+        } else {//feed.innerHTML = "";
         }
         resolve(route);
     }
-    const c = ()=>{
-        const feed = byId('feed-results');
-        //feed.innerHTML = "";
+    const c = ()=>{//feed.innerHTML = "";
     }
     ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
 }
@@ -481,6 +477,10 @@ window.on.focus.out.search = (target)=>{
     console.log(target);
     const result = target.closest('card');
     result.classList.add('display-none');
+    const keywords = byId('keywords');
+    keywords.value = "";
+    const feed = byId('feed-results');
+    feed.innerHTML = "";
     byId('cancel-results').classList.add('display-none');
     //rout.ed.close();
     var goto = (window.location.pathname) + (window.location.hash ? '#' + window.location.hash : '');
@@ -489,6 +489,7 @@ window.on.focus.out.search = (target)=>{
 
 window.on.keyup = {};
 window.on.keyup.search = async(target)=>{
+    const feed = byId('feed-results');
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '');
     history.pushState(goto, '', goto);
@@ -497,7 +498,6 @@ window.on.keyup.search = async(target)=>{
     const t = (d)=>{
         const data = JSON.parse(d);
 
-        const feed = byId('feed-results');
         feed.innerHTML = "";
 
         const users = data.users;
@@ -519,13 +519,11 @@ window.on.keyup.search = async(target)=>{
                 feed.insertAdjacentHTML('beforeend', html.outerHTML);
                 u++;
             } while (u < users.length);
-        } else {
-            //feed.innerHTML = "";
+        } else {//feed.innerHTML = "";
         }
         resolve(route);
     }
     const c = ()=>{
-        //var feed = byId('feed-results');
         //feed.innerHTML = "";
     }
     ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
