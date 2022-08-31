@@ -295,6 +295,7 @@ function ajax(url, settings) {
             } else {
                 req = url;
             }
+            settings.signal ? data.signal = signal : null;
         } else {
             req = url;
         }

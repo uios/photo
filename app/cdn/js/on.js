@@ -498,7 +498,15 @@ function searchResults(keywords) {
             resolve(route);
         }
         const c = ()=>{}
-        ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
+
+        if (window.abort) {
+            console.log("abosrting");
+            window.abort.abort()
+        }
+        window.abort = new AbortController()
+        window.signal = window.abort.signal
+
+        ajax(endpoint + '/v1/search?keywords=' + keywords, {signal}).then(t).catch(c);
     } else {
         feed.innerHTML = "";
     }
