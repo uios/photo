@@ -123,8 +123,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             const input = byId('keywords')
             input.value = keywords;
             on.focus.in.search(byId('keywords'));
+            byId('line-header').classList.add('display-none');
         } else {
-            on.focus.out.search(byId('results-blur'))
+            on.focus.out.search(byId('results-blur'));
+            byId('line-header').classList.remove('display-none');
         }
 
         if (root) {
@@ -138,7 +140,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 webcam.control.stop();
             }
 
-            if (root === "photo") {
+            if (root === "photo" && GET.length == 1) {
                 $(dom.header.find('form').parentNode.all('header > section > card > section > box')).addClass('-tablet-display-none');
                 dom.header.find('form').classList.remove('-tablet-display-none');
             } else {
