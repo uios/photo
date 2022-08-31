@@ -5,8 +5,8 @@
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
         <meta name='apple-mobile-web-app-capable' content='yes'>
         <meta name='apple-mobile-web-app-status-bar-style' content='#021025'>
-        <meta name="apple-mobile-web-app-title" content="Share">
-        <meta name="application-name" content="Share">
+        <meta name="apple-mobile-web-app-title" content="Photo">
+        <meta name="application-name" content="Photo">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name='theme-color' content='#021025'>
         <link rel="shortcut icon" href="/favicon.ico">
@@ -72,15 +72,16 @@
                             </card>
                             <card class="-tablet-height-100pct -tablet-width-100pct -tablet-top-0 display-none position-fixed top-50px width-375px">
                                 <picture class="height-100pct left-0 position-fixed top-0 width-100pct z-index-8" data-backdrop-blur="10px" data-tap="on.focus.out.search(event.target)" id="results-blur"></picture>
-                                <column class="-tablet-border-radius-0 background-color-fff border-radius-8px empty height-100pct padding-10px position-relative shadow width-auto z-index-9">
-                                    <box class="-tablet-padding-top-50px">
-                                        <section class="justify-content-space-between">
+                                <column class="-tablet-border-radius-0 -tablet-padding-x-20px background-color-fff border-radius-8px empty height-100pct padding-x-10px position-relative shadow width-auto z-index-9">
+                                    <box class="-tablet-padding-top-44px">
+                                        <section class="-tablet-display-none justify-content-space-between">
                                             <text class="font-weight-bolder">Recent</text>
                                             <text class="display-none font-weight-bolder fg-b">Clear All</text>
                                         </section>
+                                        <section class="-tablet-display-flex display-none padding-top-20px"></section>
                                     </box>
-                                    <box class="empty"></box>
-                                    <box class="empty-after min-height-240px">
+                                    <box class="empty" id="feed-results"></box>
+                                    <box class="empty-state min-height-240px">
                                         <section class="align-items-center justify-content-center">
                                             <text class="color-8e font-size-14px font-weight-bolder">No recent searches.</text>
                                         </section>
@@ -95,6 +96,21 @@
                                                 <n class="gg-close"></n>
                                             </ico>
                                         </row>
+                                    </template>
+                                    <template id="template-results-user">
+                                        <box class="margin-bottom-20px width-100pct-minus-40px">
+                                            <row class="align-items-center justify-content-space-between width-100pc">
+                                                <picture class="empty"></picture>
+                                                <picture class="bg-db border-radius-50pc empty-state" data-height="44px" data-width="44px">
+                                                    <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
+                                                </picture>
+                                                <text class="align-left flex flex-1 flex-direction-column margin-x-10px">
+                                                    <span class="font-weight-bolder line-height-22px" placeholder="username"></span>
+                                                    <span class="color-8e line-height-22px" placeholder="Full Name"></span>
+                                                </text>
+                                                <text class="border-1px-solid border-color-db border-radius-5px color-000 font-size-14px font-weight-bolder hide line-height-20px padding-x-10px padding-y-5px" id="feed-users-user-friends-unfollow">Remove</text>
+                                            </row>
+                                        </box>
                                     </template>
                                 </column>
                             </card>

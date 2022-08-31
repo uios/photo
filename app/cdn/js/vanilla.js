@@ -320,7 +320,8 @@ function ajax(url, settings) {
         }
         ).then(response=>resolve(response)).catch(error=>{
             console.log('vanilla.js ajax.fetch catch', error.message);
-            var message = JSON.parse(error.message);
+            const isJSON = is.json(error.message);
+            var message = isJSON ? JSON.parse(error.message) : error.message;
             reject(message);
         }
         );

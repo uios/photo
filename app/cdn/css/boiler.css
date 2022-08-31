@@ -4274,6 +4274,15 @@ iframe[data-device="mobile"] {
     }
 
     @media screen and (max-width: 768px) {
+        .-tablet-padding-top-44px {
+            padding-top: 44px;
+        }
+        
+        .-tablet-padding-x-20px {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
         .tablet-padding-y-50px {
             padding-top: 50px;
             padding-bottom: 50px;
@@ -9225,7 +9234,7 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
 
 @media screen and (max-width: 768px) {
     .cascade-left box {
-    width: calc( (((100% - 6px) / 3) * 1) - 0px );
+        width: calc( (((100% - 6px) / 3) * 1) - 0px );
     }
 
     .cascade-left box:nth-child(3n + 1) {
@@ -9535,7 +9544,7 @@ error ~ * {
     .-tablet-height-50px, .tablet-height-50px {
         height: 50px;
     }
-    
+
     .tablet-height-100pc {
         height: calc(100%);
     }

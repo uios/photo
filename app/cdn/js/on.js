@@ -438,6 +438,43 @@ window.on.focus.in.search = (target)=>{
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
     history.pushState(goto, '', goto);
+
+    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+    const t = (d)=>{
+        const data = JSON.parse(d);
+
+        const feed = byId('feed-results');
+        feed.innerHTML = "";
+
+        const users = data.users;
+        if (users && users.length > 0) {
+            const template = byId('template-results-user').content.firstElementChild;
+            var u = 0;
+            do {
+                const user = users[u];
+                const uid = user.uid;
+
+                var html = template.cloneNode(true);
+
+                html.dataset.href = "/users/" + user.username + "/";
+                html.classList.remove('hide');
+                html.dataset.uid = uid;
+                html.find('[placeholder="username"]').textContent = user.username;
+                html.find('[placeholder="Full Name"]').textContent = user.fullname;
+
+                feed.insertAdjacentHTML('beforeend', html.outerHTML);
+                u++;
+            } while (u < users.length);
+        } else {
+            //feed.innerHTML = "";
+        }
+        resolve(route);
+    }
+    const c = ()=>{
+        const feed = byId('feed-results');
+        //feed.innerHTML = "";
+    }
+    ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
 }
 window.on.focus.out = {};
 window.on.focus.out.search = (target)=>{
@@ -451,15 +488,47 @@ window.on.focus.out.search = (target)=>{
 }
 
 window.on.keyup = {};
-window.on.keyup.search = (target)=>{
+window.on.keyup.search = async(target)=>{
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '');
     history.pushState(goto, '', goto);
+
     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-    ajax(endpoint + "/v1/search?keywords=" + keywords).then(d => {
-        const data = JSOSN.parse(d);
-        console.log({data});
-    });
+    const t = (d)=>{
+        const data = JSON.parse(d);
+
+        const feed = byId('feed-results');
+        feed.innerHTML = "";
+
+        const users = data.users;
+        if (users && users.length > 0) {
+            const template = byId('template-results-user').content.firstElementChild;
+            var u = 0;
+            do {
+                const user = users[u];
+                const uid = user.uid;
+
+                var html = template.cloneNode(true);
+
+                html.dataset.href = "/users/" + user.username + "/";
+                html.classList.remove('hide');
+                html.dataset.uid = uid;
+                html.find('[placeholder="username"]').textContent = user.username;
+                html.find('[placeholder="Full Name"]').textContent = user.fullname;
+
+                feed.insertAdjacentHTML('beforeend', html.outerHTML);
+                u++;
+            } while (u < users.length);
+        } else {
+            //feed.innerHTML = "";
+        }
+        resolve(route);
+    }
+    const c = ()=>{
+        //var feed = byId('feed-results');
+        //feed.innerHTML = "";
+    }
+    ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
 }
 
 window.on["change"] = {
