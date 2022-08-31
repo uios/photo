@@ -449,13 +449,17 @@ window.on.focus.out.search = (target)=>{
     var goto = (window.location.pathname) + (window.location.hash ? '#' + window.location.hash : '');
     history.pushState(goto, '', goto);
 }
-;
 
 window.on.keyup = {};
 window.on.keyup.search = (target)=>{
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '');
     history.pushState(goto, '', goto);
+    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+    ajax(endpoint + "/v1/search?keywords=" + keywords).then(d => {
+        const data = JSOSN.parse(d);
+        console.log({data});
+    });
 }
 
 window.on["change"] = {
