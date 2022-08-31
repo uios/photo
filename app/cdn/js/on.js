@@ -435,42 +435,10 @@ window.on.focus.in.search = (target)=>{
     const result = target.closest('card').nextElementSibling;
     result.classList.remove('display-none');
     byId('cancel-results').classList.remove('display-none');
-    const feed = byId('feed-results');
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
     history.pushState(goto, '', goto);
-
-    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-    const t = (d)=>{
-        const data = JSON.parse(d);
-        feed.innerHTML = "";
-
-        const users = data.users;
-        if (users && users.length > 0) {
-            const template = byId('template-results-user').content.firstElementChild;
-            var u = 0;
-            do {
-                const user = users[u];
-                const uid = user.uid;
-
-                var html = template.cloneNode(true);
-
-                html.dataset.href = "/users/" + user.username + "/";
-                html.classList.remove('hide');
-                html.dataset.uid = uid;
-                html.find('[placeholder="username"]').textContent = user.username;
-                html.find('[placeholder="Full Name"]').textContent = user.fullname;
-
-                feed.insertAdjacentHTML('beforeend', html.outerHTML);
-                u++;
-            } while (u < users.length);
-        } else {//feed.innerHTML = "";
-        }
-        resolve(route);
-    }
-    const c = ()=>{//feed.innerHTML = "";
-    }
-    ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
+    searchResults(keywords);
 }
 window.on.focus.out = {};
 window.on.focus.out.search = (target)=>{
@@ -493,40 +461,47 @@ window.on.keyup.search = async(target)=>{
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '');
     history.pushState(goto, '', goto);
+    searchResults(keywords);
+}
 
-    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-    const t = (d)=>{
-        const data = JSON.parse(d);
+function searchResults(keywords) {
+    const feed = byId('feed-results');
+    if (keywords) {
+        var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+        const t = (d)=>{
+            const data = JSON.parse(d);
 
-        feed.innerHTML = "";
+            feed.innerHTML = "";
 
-        const users = data.users;
-        if (users && users.length > 0) {
-            const template = byId('template-results-user').content.firstElementChild;
-            var u = 0;
-            do {
-                const user = users[u];
-                const uid = user.uid;
+            const users = data.users;
+            if (users && users.length > 0) {
+                const template = byId('template-results-user').content.firstElementChild;
+                var u = 0;
+                do {
+                    const user = users[u];
+                    const uid = user.uid;
 
-                var html = template.cloneNode(true);
+                    var html = template.cloneNode(true);
 
-                html.dataset.href = "/users/" + user.username + "/";
-                html.classList.remove('hide');
-                html.dataset.uid = uid;
-                html.find('[placeholder="username"]').textContent = user.username;
-                html.find('[placeholder="Full Name"]').textContent = user.fullname;
+                    html.dataset.href = "/users/" + user.username + "/";
+                    html.classList.remove('hide');
+                    html.dataset.uid = uid;
+                    html.find('[placeholder="username"]').textContent = user.username;
+                    html.find('[placeholder="Full Name"]').textContent = user.fullname;
 
-                feed.insertAdjacentHTML('beforeend', html.outerHTML);
-                u++;
-            } while (u < users.length);
-        } else {//feed.innerHTML = "";
+                    feed.insertAdjacentHTML('beforeend', html.outerHTML);
+                    u++;
+                } while (u < users.length);
+            } else {
+                feed.innerHTML = "";
+            }
+            resolve(route);
         }
-        resolve(route);
+        const c = ()=>{}
+        ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
+    } else {
+        feed.innerHTML = "";
     }
-    const c = ()=>{
-        //feed.innerHTML = "";
-    }
-    ajax(endpoint + '/v1/search?keywords=' + keywords).then(t).catch(c);
 }
 
 window.on["change"] = {
