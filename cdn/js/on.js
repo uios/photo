@@ -436,13 +436,12 @@ window.on.focus.in.search = (target)=>{
     result.classList.remove('display-none');
     byId('cancel-results').classList.remove('display-none');
     const keywords = byId('keywords').value;
-    var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
+    var goto = ('/photo/?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
     searchResults(keywords);
     history.pushState(goto, '', goto);
 }
 window.on.focus.out = {};
 window.on.focus.out.search = (target)=>{
-    console.log(target);
     const result = target.closest('card');
     result.classList.add('display-none');
     const keywords = byId('keywords');

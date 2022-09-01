@@ -90,10 +90,10 @@
         </boot>
         <header class="bg-white box-sizing-border-box margin-x-auto" data-position="fixed" data-width="100%" data-top="0" data-z-index="5" id="body-header">
             <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
-            <section>
-                <card class="-tablet-width-100pt -tablet-padding-0 align-center border-radius-50px height-44px justify-center line-height-44px margin-auto margin-y-5px mobile-padding-x-0 mobile-shadow-none position-relative vga-padding-x-10 xga-border-radius-0 xga-padding-x-20" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
+            <section class="z-index-5">
+                <picture class="-tablet-display-flex background-color-db bottom-0 display-none height-1px position-absolute width-100pct z-index-3" id="line-header"></picture>
+                <card class="-tablet-width-100pt -tablet-padding-0 align-center border-radius-50px height-44px justify-center line-height-44px margin-auto margin-y-5px mobile-padding-x-0 mobile-shadow-none position-relative vga-padding-x-10 xga-border-radius-0 xga-padding-x-20 z-index-5" data-display="flex" data-flex-direction="row" data-mobile-justify-content="space-between" data-width="960px" data-xga-1-border-radius="0" data-xga-1-margin="0" data-xga-1-width="100%" data-z-index="12">
                     <section class="align-items-center">
-                        <picture class="-tablet-display-flex background-color-db bottom-0 display-none height-1px position-absolute width-100pct z-index-6" id="line-header"></picture>
                         <box class="bolder height-100pc margin-right mobile-padding-x-10px padding-x-20px vga-padding-x-10px xga-padding-x-20px" data-href="/">
                             <section>
                                 <text>Share</text>
@@ -272,7 +272,7 @@
         </footer>
     </body>
     <script>
-        var pre = global.domains.domain === "github" ? "" :  "/";
+        var pre = global.domains.domain === "github" ? "" : "/";
         Links([{
             "href": pre + "favicon.ico",
             "rel": "shortcut icon"

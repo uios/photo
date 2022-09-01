@@ -116,7 +116,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         var root = get[0] || gut[0];
 
         window.GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
-        console.log(119, {get, gut, root, path, route});
+        console.log(119, {
+            get,
+            gut,
+            root,
+            path,
+            route
+        });
 
         //var page = route.page = rout.ed.url(gut);
 
@@ -156,9 +162,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('-tablet-display-none');
             dom.header.find('form').classList.add('-tablet-display-none');
         }
-        console.log(136, {
-            route
-        })
 
         if (root) {
 
@@ -805,7 +808,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "users") {
                 if (get.length > 1) {
                     var v = dom.body.find('pages[data-root="' + root + '"]');
-                    console.log(route,v);
+                    console.log(route, v);
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
                     var resource = rout.ed.url(rout.ed.dir(route.path)).replace(/\/+$/, '');
@@ -1148,9 +1151,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
             const active = async(d)=>{
                 var data = JSON.parse(d);
-                console.log({
-                    data
-                });
                 const users = data.users;
                 if (users.length > 0) {
                     const feedActiveUsers = byId("index-active-users");
@@ -1179,9 +1179,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
             const suggested = async(d)=>{
                 var data = JSON.parse(d);
-                console.log({
-                    data
-                });
                 const users = data.users;
                 if (users.length > 0) {
                     const feedSuggestedUsers = byId("index-suggested-users");
@@ -1724,25 +1721,32 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         },
         more: async function(target) {
             var template = await ajax('/cdn/html/template/template.post.more.html');
-            var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'firstElementChild'];
+            var html = new DOMParser().parseFromString(template, 'text/html').body.firstElementChild; console.log({html});
             var boxes = html.all('box');
             const card = target.closest('[data-uid]');
             const src = card.find('media [src]').src;
             const dir = rout.ed.dir(src);
             const key = dir[dir.length - 1];
-            console.log({
-                key,
-                src,
-                dir
-            });
             const uid = key.split('.')[0];
-            dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
-            const ppp = await modal.card(html.outerHTML);
             const user = rout.ed.dir(target.closest('[data-uid]').find('picture').dataset.href)[1];
-            if (auth.user() && auth.user().uid === user) {
-                ppp.find('column').dataset.key = key;
-                ppp.find('box').classList.remove('display-none');
+            html.dataset.key = key;
+            boxes[2].dataset.uid = user;
+            dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
+            if (auth.user()) {
+                if (auth.user().uid === user) {
+                    boxes[0].classList.remove('display-none');
+                    boxes[1].classList.add('display-none');
+                    boxes[2].classList.add('display-none');
+                } else {
+                    boxes[0].classList.add('display-none');
+                    boxes[1].classList.remove('display-none');
+                    boxes[2].classList.remove('display-none');
+                }
+            } else {
+                boxes[0].classList.add('display-none');
+                boxes[2].classList.add('display-none');
             }
+            const ppp = await modal.card(html.outerHTML);
         },
         save: async function(target) {
             if (auth.user()) {
