@@ -503,7 +503,6 @@ function searchResults(keywords) {
             const c = ()=>{}
 
             if (window.yield) {
-                console.log("abosrting");
                 window.yield.abort()
             }
             window.yield = new AbortController()

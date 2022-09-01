@@ -1490,11 +1490,9 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         //alert(error.message);
                     };
 
-                    if (window.yield) {
-                        window.yield.abort();
-                    }
+                    window.yield ? window.yield.abort() : null;
                     window.yield = new AbortController()
-                    window.signal = window.yield.signal;
+                    window.signal = window.yield.signal
 
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     ajax(endpoint + "/v1/search/users/" + username, {
@@ -1656,6 +1654,28 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     feed: {
+        delete: async function(target) {
+            if (auth.user()) {
+                const key = target.closest('[data-key]').dataset.key;
+
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                const t = async(d)=>{
+                    const data = JSON.parse(d);
+                    const sel = '[data-uid="' + key.split('.')[0] + '"]';
+                    $(sel).remove();
+                    modal.exit(target);
+                    console.log(data);
+                }
+                const c = async(e)=>{
+                    console.log(e);
+                }
+
+                const jwt = await auth.getIdToken();
+                ajax(endpoint + '/v1/posts/' + key + '?jwt=' + jwt, {
+                    dataType: "DELETE"
+                }).then(t).catch(c);
+            }
+        },
         like: async function(target) {
             if (auth.user()) {
                 const post = target.closest('[data-uid]');
@@ -1701,9 +1721,23 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             var template = await ajax('/cdn/html/template/template.post.more.html');
             var html = new DOMParser().parseFromString(template, 'text/html').body[auth.user() ? 'firstElementChild' : 'firstElementChild'];
             var boxes = html.all('box');
-            const uid = target.closest('[data-uid]').dataset.uid;
+            const card = target.closest('[data-uid]');
+            const src = card.find('media [src]').src;
+            const dir = rout.ed.dir(src);
+            const key = dir[dir.length - 1];
+            console.log({
+                key,
+                src,
+                dir
+            });
+            const uid = key.split('.')[0];
             dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
-            modal.card(html.outerHTML);
+            const ppp = await modal.card(html.outerHTML);
+            const user = rout.ed.dir(target.closest('[data-uid]').find('picture').dataset.href)[1];
+            if (auth.user() && auth.user().uid === user) {
+                ppp.find('column').dataset.key = key;
+                ppp.find('box').classList.remove('display-none');
+            }
         },
         save: async function(target) {
             if (auth.user()) {
