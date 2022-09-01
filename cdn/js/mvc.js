@@ -1656,6 +1656,17 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     feed: {
+        copy: function(target) {
+            const key = target.closest('[data-key]').dataset.key;
+            const uid = key.split('.')[0];
+            const link = window.location.protocol + '//' + window.location.host + '/photo/' + uid + '/';
+            navigator.clipboard.writeText(link);
+            modal.exit(target);
+            byId('notification').classList.remove('transform-translateY-100pct');
+            var load = setTimeout(function() {
+                byId('notification').classList.add('transform-translateY-100pct');
+            }, 5000)
+        },
         delete: async function(target) {
             if (auth.user()) {
                 const key = target.closest('[data-key]').dataset.key;
@@ -1721,7 +1732,10 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         },
         more: async function(target) {
             var template = await ajax('/cdn/html/template/template.post.more.html');
-            var html = new DOMParser().parseFromString(template, 'text/html').body.firstElementChild; console.log({html});
+            var html = new DOMParser().parseFromString(template, 'text/html').body.firstElementChild;
+            console.log({
+                html
+            });
             var boxes = html.all('box');
             const card = target.closest('[data-uid]');
             const src = card.find('media [src]').src;

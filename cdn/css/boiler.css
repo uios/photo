@@ -1808,6 +1808,10 @@ aside ~ main {
     background: whitesmoke;
 }
 
+.background-color-26 {
+    background: #262626;
+}
+
 .bg-333 {
     background: #333;
 }
@@ -3328,6 +3332,10 @@ iframe[data-device="mobile"] {
         margin: auto;
     }
 
+    .-tablet-margin-right-auto {
+        margin-right: auto;
+    }
+
     .tablet-margin-bottom-0 {
         margin-bottom: 0;
     }
@@ -4281,7 +4289,7 @@ iframe[data-device="mobile"] {
         .-tablet-padding-top-44px {
             padding-top: 44px;
         }
-        
+
         .-tablet-padding-x-20px {
             padding-left: 20px;
             padding-right: 20px;
@@ -4983,12 +4991,16 @@ empty:hover {
     }
 }
 
-.transition-0-3s {
-    transition: 0.3s all;
+[data-transition="transform 0.2s"], .transition-0-2s {
+    transition: 0.2s all;
 }
 
 .transition-1s {
     transition: 1s all;
+}
+
+.transition-1s-ease-out {
+    transition: 1s all ease-out;
 }
 
 .transition-left-0-3s {
@@ -5041,8 +5053,12 @@ empty:hover {
     transform: translateY(-50%);
 }
 
-.translateY--100pc {
+.transform-translateY-minus-100pct, .translateY--100pc {
     transform: translateY(-100%);
+}
+
+.transform-translateY-100pct {
+    transform: translateY(100%);
 }
 
 .active.active-translateY-0 {
@@ -9575,5 +9591,35 @@ error ~ * {
 @media screen and (max-width: 480px) {
     .mobile-hide {
         display: none;
+    }
+}
+
+.-keyframes-slideDown {
+    animation-name: slideDown;
+    animation-duration: .2s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.-keyframes-slideUp {
+    animation-name: slideUp;
+    animation-duration: .2s;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
     }
 }
