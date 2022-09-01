@@ -9,12 +9,6 @@
         <meta name="application-name" content="Photo">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name='theme-color' content='#021025'>
-        <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
         <script id="eruda" src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js"></script>
         <script id="firebase-app" src="https://cdn.endk.it/js/firebase-app.js"></script>
         <script id="firebase-auth" src="https://cdn.endk.it/js/firebase-auth.js"></script>
@@ -26,6 +20,27 @@
                     subdomain: domains.length > 2 ? domains[domains.length - 3] : null,
                     tld: domains[domains.length - 1]
                 }
+            }
+            function Links(links) {
+                var f = 0;
+                do {
+                    var l = links[f];
+                    if (l) {
+                        var href = ``;
+                        var script = document.createElement("link");
+                        if (l.href) {
+                            href += (href.includes('https:') ? `` : (href.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
+                            href += l.href;
+                        }
+                        script.href = href;
+                        script.rel = l.rel;
+                        l.color ? script.color = l.color : null;
+                        l.sizes ? script.sizes = l.sizes : null;
+                        l.type ? script.type = l.type : null;
+                        document.head.appendChild(script);
+                    }
+                    f++;
+                } while (f < links.length);
             }
             function Scripts(links) {
                 var f = 0;
@@ -257,7 +272,31 @@
         </footer>
     </body>
     <script>
-        var pre = global.domains.domain === "github" ? "" : "/";
+        var pre = global.domains.domain === "github" ? "" :  "/";
+        Links([{
+            "href": pre + "favicon.ico",
+            "rel": "shortcut icon"
+        }, {
+            "href": pre + "apple-touch-icon.png",
+            "rel": "apple-touch-icon"
+        }, {
+            "href": pre + "favicon-32x32.png",
+            "rel": "icon",
+            "sizes": "32x32",
+            "type": "image/png"
+        }, {
+            "href": pre + "favicon-16x16.png",
+            "rel": "icon",
+            "sizes": "16x16",
+            "type": "image/png"
+        }, {
+            "href": pre + "site.webmanifest",
+            "rel": "manifest"
+        }, {
+            "href": pre + "safari-pinned-tab.svg",
+            "rel": "mask-icon",
+            "color": "#5bbad5"
+        }]);
         Scripts([{
             "link": pre + "cdn/js/vanilla.js"
         }, {
