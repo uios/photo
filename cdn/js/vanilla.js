@@ -278,9 +278,18 @@ window.is = {
     touch: ()=>{
         return (('ontouchstart'in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
     }
+    ,
+    absoluteURI: str=>{
+        return new RegExp('^(?:[a-z]+:)?//','i').test(str)
+    }
 };
 function ajax(url, settings) {
     var dir = window.location.href.split(url);
+    if (!RegExp('^(?:[a-z]+:)?//', 'i').test(url)) {
+        if (window.global.domains.subdomain === "uios") {
+            url = '/photo' + url;
+        }
+    }
     return new Promise((resolve,reject)=>{
         var req;
         var data = {};

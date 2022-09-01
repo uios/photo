@@ -31,7 +31,7 @@ window.webcam = {
                 aspectRatio: {
                     ideal: 1.7777777778
                 },
-                facingMode: 'environment'
+                facingMode: 'self'
             }
         }
     },

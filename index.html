@@ -15,23 +15,57 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/png/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="mask-icon" href="/cdn/svg/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="stylesheet" href="https://cdn.endk.it/css/theme.css">
-        <link rel="stylesheet" href="https://cdn.endk.it/css/modal.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
-        <link rel="stylesheet" href="/cdn/css/boiler.css">
-        <link rel="stylesheet" href="/index.css">
         <script id="eruda" src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js"></script>
-        <script id="firebase-app" src="/cdn/js/firebase-app.js"></script>
-        <script id="firebase-auth" src="/cdn/js/firebase-auth.js"></script>
-        <script id="script-vanilla" src="/cdn/js/vanilla.js"></script>
-        <script id="script-auth" src="/cdn/js/auth.js"></script>
-        <script id="script-mvc" src="/cdn/js/mvc.js"></script>
-        <script id="script-on" src="/cdn/js/on.js"></script>
-        <script id="script-modal" src="/cdn/js/modal.js"></script>
-        <script id="script-router" src="/cdn/js/router.js"></script>
-        <script id="script-touch" src="/cdn/js/touch.js"></script>
-        <script id="script-webcam" src="/cdn/js/webcam.js"></script>
-        <script id="script-index" src="/index.js"></script>
+        <script id="firebase-app" src="https://cdn.endk.it/js/firebase-app.js"></script>
+        <script id="firebase-auth" src="https://cdn.endk.it/js/firebase-auth.js"></script>
+        <script>
+            var domains = window.location.host.split('.');
+            window.global = {
+                domains: {
+                    domain: domains.length > 1 ? domains[domains.length - 2] : null,
+                    subdomain: domains.length > 2 ? domains[domains.length - 3] : null,
+                    tld: domains[domains.length - 1]
+                }
+            }
+            function Scripts(links) {
+                var f = 0;
+                do {
+                    var l = links[f];
+                    if (l) {
+                        var link = ``;
+                        var script = document.createElement("script");
+                        script.type = "text/javascript";
+                        if (l.link) {
+                            link += (link.includes('https:') ? `` : (link.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
+                            link += l.link;
+                        } else {
+                            link += (link.includes('https:') ? `` : (link.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
+                            link += l.cdn;
+                        }
+                        script.src = link;
+                        l && l.async ? script.async = true : null;
+                        document.head.appendChild(script);
+                    }
+                    f++;
+                } while (f < links.length);
+            }
+            function Styles(links) {
+                var f = 0;
+                do {
+                    var l = links[f].link;
+                    var cdn = links[f].link;
+                    var sync = links[f].async;
+                    var link = ``;
+                    link += (l.includes('https:') ? `` : (l.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
+                    link += links[f].link;
+                    var sync = links[f].sync ? links[f].sync : ``;
+                    var script = ``;
+                    script = `<link rel="stylesheet" href="` + link + `" ` + sync + `>`;
+                    document.head.insertAdjacentHTML('beforeend', script);
+                    f++;
+                } while (f < links.length);
+            }
+        </script>
     </head>
     <body class="bg-fa noselect" data-load="ing">
         <boot class="boot" id="boot">
@@ -189,7 +223,7 @@
             <pages data-fetch="/cdn/html/pages/pages.users.html" data-pages="/users/" data-root="users"></pages>
         </main>
         <pages class="bottom-0 fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.chat.html" data-height="calc(100% - 55px)" data-pages="/chat/" data-root="/chat/" data-tablet-height="100%" data-xga-height="calc(100% - 45px)"></pages>
-        <pages class="fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.post.html" data-pages="/post/" data-root="post"></pages>
+        <pages class="fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.post.html" data-pages="/post/" data-root="/post/"></pages>
         <pages class="fixed height-100pc scroll-y" data-fetch="/cdn/html/pages/pages.my.account.html" data-mobile-height="calc(100% - 50px)" data-min-height="100pc" data-mobile-z-index="5" data-pages="/my/account/" data-root="/my/account/" data-tablet-width="100%" data-tablet-z-index="3" data-z-index="3"></pages>
         <footer class="bg-white hide mobile-flex" data-bottom="0" data-position="fixed" data-right="0" data-width="100%" data-xga-max-width="100%" data-z-index="5">
             <picture class="absolute absolute-full border-color-db border-top-1px-solid height-100pc--1px hide mobile-show"></picture>
@@ -222,4 +256,37 @@
             </card>
         </footer>
     </body>
+    <script>
+        var pre = global.domains.domain === "github" ? "" : "/";
+        Scripts([{
+            "link": pre + "cdn/js/vanilla.js"
+        }, {
+            "link": pre + "cdn/js/auth.js"
+        }, {
+            "link": pre + "cdn/js/mvc.js"
+        }, {
+            "link": pre + "cdn/js/on.js"
+        }, {
+            "link": pre + "cdn/js/modal.js"
+        }, {
+            "link": pre + "cdn/js/router.js"
+        }, {
+            "link": pre + "cdn/js/touch.js"
+        }, {
+            "link": pre + "cdn/js/webcam.js"
+        }, {
+            "link": pre + "index.js"
+        }]);
+        Styles([{
+            "link": pre + "index.css"
+        }, {
+            "link": "https://cdn.jsdelivr.net/npm/css.gg/icons/all.css"
+        }, {
+            "link": pre + "cdn/css/boiler.css"
+        }, {
+            "link": "https://cdn.endk.it/css/theme.css"
+        }, {
+            "link": "https://cdn.endk.it/css/modal.css"
+        }]);
+    </script>
 </html>

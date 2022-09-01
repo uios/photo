@@ -1,3 +1,4 @@
+window.auth ? null : window.auth = {};
 auth.config = {
     apiKey: "AIzaSyBxGXe52WtXo_B5iKBo9BQZSfAwYFhLRO8",
     authDomain: "uios-83649.firebaseapp.com",
@@ -29,7 +30,7 @@ window.is = {
     }
 }
 
-window.webcam.constraints.horizontal.video['facingMode'] = "self";
+//window.webcam.constraints.horizontal.video['facingMode'] = "self";
 
 window.onload = async()=>{
 
@@ -39,10 +40,17 @@ window.onload = async()=>{
         header: byId('body-header')
     };
 
-    dom.body.dataset.load = "ing";
+    var domains = window.location.host.split('.');
+    window.global = {
+        app: "c829e5bc-f583-452b-8dbd-db3b0a6a5b07",
+        domains: {
+            domain: domains.length > 1 ? domains[domains.length - 2] : null,
+            subdomain: domains.length > 2 ? domains[domains.length - 3] : null,
+            tld: domains[domains.length - 1]
+        }
+    }
 
-    window.global = {};
-    window.global.app = "c829e5bc-f583-452b-8dbd-db3b0a6a5b07";
+    dom.body.dataset.load = "ing";
 
     init();
 
@@ -117,6 +125,15 @@ function init() {
         //console.log(e.type);
     });
 
+    var url = window.location.pathname;
+    if (window.global.domains.subdomain === "uios") {
+        var dir = rout.ed.dir(window.location.pathname);
+        dir.splice(0, 1)
+        var url = rout.ed.url(dir);
+    }
+
+    var uri = ((dom.boot.dataset.path ? dom.boot.dataset.path : url) + (window.location.search + window.location.hash));
+    
     var go = false;
     const onAuthStateChanged = function(user) {
         const authChange = function(e) {
@@ -131,7 +148,7 @@ function init() {
         } else {
             byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
         }
-        go ? null : ((dom.boot.dataset.path ? dom.boot.dataset.path : window.location.pathname)+(window.location.search)+(window.location.hash)).router().then(go = true);
+        go ? null : uri.router().then(go = true);
     }
 
     firebase.auth().onAuthStateChanged(onAuthStateChanged);

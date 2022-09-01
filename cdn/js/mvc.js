@@ -111,10 +111,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
     return new Promise(async function(resolve, reject) {
         var page = route.page;
         var path = route.path;
-        var get = route ? route.GOT : rout.ed.dir(dom.body.dataset.path);
-        var root = get[0];
-        GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
-        console.log(get, path, route);
+        var gut = route.hash ? rout.ed.dir(route.hash.split('#')[1]) : [];
+        var get = (route ? route.GOT : rout.ed.dir(dom.body.dataset.path)).concat(gut);
+        var root = get[0] || gut[0];
+
+        window.GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
+        console.log(119, {get, gut, root, path, route});
+
+        //var page = route.page = rout.ed.url(gut);
 
         if (route.search) {
             const query = route.search;
@@ -800,8 +804,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 resolve(route);
             } else if (root === "users") {
                 if (get.length > 1) {
-                    console.log(route);
                     var v = dom.body.find('pages[data-root="' + root + '"]');
+                    console.log(route,v);
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
                     var resource = rout.ed.url(rout.ed.dir(route.path)).replace(/\/+$/, '');

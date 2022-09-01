@@ -39,7 +39,7 @@ a:visited {
     display: -webkit-flex;
 }
 
-script ~ {
+script {
     display: none;
 }
 
