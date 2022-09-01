@@ -435,8 +435,9 @@ window.on.focus.in.search = (target)=>{
     const result = target.closest('card').nextElementSibling;
     result.classList.remove('display-none');
     byId('cancel-results').classList.remove('display-none');
+    byId('exit-search').classList.add('-tablet-display-none');
     const keywords = byId('keywords').value;
-    var goto = ('/photo/?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
+    var goto = ('?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
     searchResults(keywords);
     history.pushState(goto, '', goto);
 }
@@ -445,6 +446,7 @@ window.on.focus.out.search = (target)=>{
     const result = target.closest('card');
     result.classList.add('display-none');
     const keywords = byId('keywords');
+    byId('exit-search').classList.remove('-tablet-display-none');
     keywords.value = "";
     const feed = byId('feed-results');
     feed.innerHTML = "";

@@ -3482,6 +3482,10 @@ iframe[data-device="mobile"] {
         margin-left: auto;
     }
 
+    .-mobile-margin-auto {
+        margin: auto;
+    }
+
     .mobile-margin-10px {
         margin: 10px;
     }
@@ -8126,7 +8130,7 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     }
 
     .-tablet-width-100pc-40px, .tablet-width-100pc-40px {
-        width: calc(100% - 40px) !important;
+        width: calc(100% - 40px);
     }
 }
 
@@ -8677,6 +8681,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
         width: 100%;
     }
 
+    .-tablet-width-100pc-20px, .tablet-width-100pc-20px, .tablet-width-100pc--20px {
+        width: calc(100% - 20px);
+    }
+
     .-tablet-width-100pc-40px, .tablet-width-100pc-40px, .tablet-width-100pc--40px {
         width: calc(100% - 40px);
     }
@@ -8748,6 +8756,10 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     }
 
     .mobile-width-100pc-40px {
+        width: calc(100% - 40px);
+    }
+
+    .-mobile-width-100pct-minus-40px {
         width: calc(100% - 40px);
     }
 
@@ -9405,6 +9417,10 @@ error ~ * {
 @media screen and (max-width: 480px) {
     .mobile-justify-evenly {
         justify-content: space-evenly;
+    }
+
+    .-mobile-display-none {
+        display: none;
     }
 }
 
