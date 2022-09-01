@@ -1206,10 +1206,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 var data = JSON.parse(d);
                 var posts = data.posts;
                 var feed = byId('feed-index-posts');
+                feed.innerHTML = "";
                 var lastFeedId = feed.innerHTML === "" ? 0 : parseInt(feed.firstElementChild.dataset.id);
                 var lastPostId = parseInt(posts[posts.length - 1].id);
 
-                if ((1>0 || lastPostId > lastFeedId) && posts.length > 0) {
+                if ((1 > 0 || lastPostId > lastFeedId) && posts.length > 0) {
                     //var html = '';
                     var template = await ajax('/cdn/html/template/template.post.card.column.html');
                     var html = new DOMParser().parseFromString(template, "text/html").body;
