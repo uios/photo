@@ -5,7 +5,7 @@ String.prototype.router = async function(params) {
     var tabs = await rout.ed.vars(rout.ed.dir(url.hash ? url.hash.split('#')[1] : uri));
     var goto = rout.ed.url(tabs);
     var route = window.paths = window.route = rout.e(url.hash ? url.hash.split('#')[1] : goto + url.search + url.hash);
-    console.log(route,getRoot());
+    console.log(url,route,getRoot());
 
     var pages = dom.body.find('pages[data-root="' + getRoot() + '"]');
     var page = dom.body.find('page[data-page="' + route.page + '"]');
@@ -32,12 +32,12 @@ String.prototype.router = async function(params) {
             if (!pop && !["blob:"].includes(window.location.protocol)) {
                 const hash = global.domains.domain === "github" ? "/#" : "";
                 var goto = window.global.domains.subdomain === "uios" ? '/photo' : '';
-                const link = hash.length > 0 ? goto + hash + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) + route.search : goto + route.path + route.search + route.hash;
+                const link = hash.length > 0 ? goto + route.search + hash + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) : goto + route.path + route.search + route.hash;
                 console.log({
                     hash,
                     route,
                     link
-                }, route.hash.split('#')[1]);
+                });
                 history.pushState(link, '', link);
             }
 

@@ -116,13 +116,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         var root = get[0] || gut[0];
 
         window.GET = window.GET ? GET : rout.ed.dir(dom.body.dataset.path);
-        console.log(119, {
-            get,
-            gut,
-            root,
-            path,
-            route
-        });
 
         //var page = route.page = rout.ed.url(gut);
         $('aside').remove();
@@ -441,10 +434,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 var vp = dom.body.find('[data-page="/photo/"]');
                 if (get.length > 1) {
                     var vp = dom.body.find('pages[data-pages="/photo/*/"]');
-                    console.log({
-                        vp,
-                        route
-                    });
                     var uid = get[1];
 
                     const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
