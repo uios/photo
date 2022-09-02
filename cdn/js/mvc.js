@@ -622,7 +622,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 }
                 resolve(route);
             } else if (root === "photo") {} else if (root === "post") {
-                var vp = dom.body.find('pages[data-root="' + root + '"]');
+                var vp = dom.body.find('pages[data-pages="' + getRoot() + '"]');
 
                 var post = byId('post');
                 var postEr = byId('post-er');
@@ -690,6 +690,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             mediaHeader.classList.remove('mobile-flex');
                         }
                     } else {
+                                console.log({vp});
                         vp.dataset.zIndex = 9;
                         vp.dataset.vgaZIndex = 9;
                         vp.dataset.mobileZIndex = 9;
