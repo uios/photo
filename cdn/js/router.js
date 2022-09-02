@@ -88,9 +88,9 @@ window.rout.e = state=>{
 
 window.rout.ed = {};
 window.rout.ed.bang = async(route)=>{
-    var pages = dom.body.find('pages[data-pages="' + route.root + '"]');
+    var pages = dom.body.find('pages[data-pages="' + getRoot()+ '"]');
     var page = dom.body.find('page[data-page="' + route.page + '"]');
-    var vp = page ? page : pages;
+    var vp = page ? page : pages; console.log({vp,route},getRoot());
 
     $('[data-hide]').attr("data-active", true);
     $(':not(page)[data-pages]').removeAttr("data-active");

@@ -125,6 +125,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
         });
 
         //var page = route.page = rout.ed.url(gut);
+        $('aside').remove();
 
         if (route.search) {
             const query = route.search;
@@ -308,7 +309,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     }
                                     img.className = "absolute bottom-0 height-75pc invert width-75pc";
                                     img.src = cdn.endpoint + "/" + convo[0] + "/avi.jpg";
-                                    img.setAttribute("onerror", 'this.src = "/cdn/svg/user.svg"');
+                                    img.setAttribute("onerror", 'this.src = "cdn/svg/user.svg"');
                                     pic.innerHTML = img.outerHTML;
                                     var avi = elem.find('picture');
                                     avi.insertAdjacentHTML('beforeend', pic.outerHTML);
@@ -1745,7 +1746,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             const user = rout.ed.dir(target.closest('[data-uid]').find('picture').dataset.href)[1];
             html.dataset.key = key;
             boxes[2].dataset.uid = user;
-            dom.body.dataset.page === "/photo/*/" ? boxes[3].classList.add('hide') : boxes[3].dataset.tap = '("/photo/' + uid + '").router().then(modal.exit(event.target))';
+            route.page === "/photo/*/" ? boxes[4].classList.add('hide') : null;
+            boxes[4].dataset.href = '/photo/' + uid + '/';
             if (auth.user()) {
                 if (auth.user().uid === user) {
                     boxes[0].classList.remove('display-none');

@@ -21,6 +21,9 @@
                     tld: domains[domains.length - 1]
                 }
             }
+            const base = document.createElement("base");
+            base.href = window.location.protocol + "//" + (global.domains.subdomain ? global.domains.subdomain + "." : "") + global.domains.domain + "." + global.domains.tld + (global.domains.domain === "github" ? "/photo" : "") + "/index.html";
+            document.head.appendChild(base);
             function Links(links) {
                 var f = 0;
                 do {
