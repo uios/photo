@@ -96,11 +96,11 @@ window.auth = {
               , form = target.closest("form");
             var email = form.find('input[type="text"]').value
               , password = form.find('input[type="password"]').value;
-            console.log({
-                email,
-                password
-            });
             return new Promise((resolve,reject)=>{
+                console.log(100, {
+                    email,
+                    password
+                });
                 firebase.auth().signInWithEmailAndPassword(email, password).then(e=>{
                     dom.body.dataset.uid = e.user.uid;
                     resolve(e.user);

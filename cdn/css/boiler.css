@@ -264,7 +264,7 @@ card {
 card > column, card > row, card > section {
     position: relative;
     z-index: 123;
-    display: -webkit-flex;
+    /* display: -webkit-flex; */
     width: 100%;
     font-size: inherit;
     overflow: visible;
@@ -1716,7 +1716,7 @@ aside ~ main {
     color: #fff;
 }
 
-.bg-black-0-5 {
+.background-rgba-0-0-0-50pct, .bg-black-0-5 {
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -4387,7 +4387,7 @@ iframe[data-device="mobile"] {
     opacity: 0.25;
 }
 
-.opacity-50pc {
+.opacity-50pc, .opacity-50pct {
     opacity: 0.5;
 }
 

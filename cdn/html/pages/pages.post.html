@@ -162,18 +162,29 @@
                                             <input class="dark-color-fff" placeholder="Enter a title">
                                         </section>
                                     </box>
-                                    <box class="border-1px-solid border-radius-20px font-size-18px margin-bottom-20px padding-10px width-100pc-20px" id="post-photo-metadata-details">
+                                    <box class="border-1px-solid border-radius-20px font-size-18px padding-10px width-100pc-20px" id="post-photo-metadata-details">
                                         <section>
                                             <textarea class="dark-color-fff min-height-100px" placeholder="Briefly describe the content in the photo. Feel free to add any credits and legal notes."></textarea>
                                         </section>
                                     </box>
-                                    <box class="width-100pc" id="post-photo-metadata-tags">
+                                    <box class="line-height-50px width-100pc" data-people="[]" data-tap="controller.post.tags(event.target)" id="post-photo-metadata-people">
+                                        <row class="justify-content-space-between">
+                                            <text>Tag people</text>
+                                            <span class="flex flex-direction-row opacity-50pct">
+                                                <text></text>
+                                                <ico>
+                                                    <n class="gg-chevron-right"></n>
+                                                </ico>
+                                            </span>
+                                        </row>
+                                    </box>
+                                    <box class="display-none width-100pc" id="post-photo-metadata-tags">
                                         <section>
                                             <span class="align-center border-1px-solid border-radius-20px font-size-18px height-36px justify-center line-height-36px padding-x-10px">
                                                 <ico data-height="20px" data-width="20px">
                                                     <n class="gg-math-plus"></n>
                                                 </ico>
-                                                <text class="margin-left-5px" contenteditable="true" placeholder="Add Tag"></text>
+                                                <text class="margin-left-5px" contenteditable="false" data-tap="controller.post.tags" placeholder="Add Tag"></text>
                                             </span>
                                         </section>
                                     </box>
@@ -183,15 +194,15 @@
                                 <section class="grid-gap-10px" data-columns="2" data-mobile-columns="1">
                                     <box class="bg-black border-1px-solid border-color-000 border-radius-50px dark-border-color-fff font-size-18px height-36px line-height-36px text-align-center" data-submit="post-form">
                                         <section class="justify-center">
-                                            <input class="color-fff dark-color-000" type="submit" value="Post It">
+                                            <input class="color-fff dark-color-000" on type="submit" value="Post It">
                                         </section>
                                     </box>
-                                    <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
+                                    <box class="border-1px-solid border-radius-50px display-none font-size-18px height-36px line-height-36px text-align-center">
                                         <section class="justify-center">
                                             <text>Preview</text>
                                         </section>
                                     </box>
-                                    <box class="border-1px-solid border-radius-50px font-size-18px height-36px line-height-36px text-align-center">
+                                    <box class="border-1px-solid border-radius-50px display-none font-size-18px height-36px line-height-36px text-align-center">
                                         <section class="justify-center">
                                             <text>Save Draft</text>
                                         </section>

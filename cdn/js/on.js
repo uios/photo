@@ -597,5 +597,35 @@ window.on["submit"] = {
         query: async(event)=>{
             console.log(event);
         }
+    },
+
+    post: {
+        tags: async(event)=>{
+            event.preventDefault();
+            const form = event.target;
+            const search = form.find('[placeholder="Search"]');
+            const users = search.parentNode.all('[data-uid]');
+            var uids = [];
+
+            if (users.length > 0) {
+                var u = 0;
+                var html = '';
+                do {
+                    var user = users[u];
+                    var span = document.createElement('span');
+                    uids[u] = {};
+                    uids[u].uid = user.dataset.uid;
+                    uids[u].username = user.textContent;
+                    u++;
+                } while (u < users.length);
+                byId('post-photo-metadata-people').dataset.people = JSON.stringify(uids);
+                byId('post-photo-metadata-people').find('span > text').textContent = uids.length > 1 ? (uids.length + ' people') : uids[0].username;
+                modal.exit(event.target);
+            }
+            console.log('on.submit.post.tags', {
+                users,
+                uids
+            });
+        }
     }
 };

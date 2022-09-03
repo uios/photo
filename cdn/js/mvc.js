@@ -690,7 +690,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             mediaHeader.classList.remove('mobile-flex');
                         }
                     } else {
-                                console.log({vp});
+                        console.log({
+                            vp
+                        });
                         vp.dataset.zIndex = 9;
                         vp.dataset.vgaZIndex = 9;
                         vp.dataset.mobileZIndex = 9;
@@ -1422,8 +1424,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 event.preventDefault();
             }
 
-            var vp = dom.body.find('page[data-page="/chat/with/"]');
-            var results = vp.find('[data-columns="1"]');
+            const form = target.closest('form');
+            var results = form.find('[data-columns="1"]');
             results.innerHTML = "";
         },
         onkeyup: function(event) {
@@ -1440,19 +1442,20 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 if (username.length > 0) {
                     var data = new FormData();
 
+                    const form = target.closest('form');
                     var vp = dom.body.find('page[data-page="/chat/with/"]');
-                    var results = vp.find('[data-columns="1"]');
+                    var results = form.find('[data-columns="1"]');
 
                     const a = function(d) {
                         const data = JSON.parse(d);
                         const users = data.users;
 
                         if (users.length > 0) {
-                            var template = vp.find('template').content.firstElementChild;
+                            const form = target.closest('form');
+                            var template = form.find('template').content.firstElementChild;
                             results.innerHTML = "";
                             var htm = "";
 
-                            const form = target.closest('form');
                             const search = form.find('[placeholder="Search"]');
 
                             var u = 0;
@@ -1893,21 +1896,25 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         //elem.value === "" ? null : data.append("title", elem.value);
 
                         elem = card.find("#post-photo-metadata-details textarea");
-                        elem.value === "" ? null : data.append("caption", elem.value);
+                        caption = elem.value;
+                        elem.value === "" ? null : data.append("caption", caption);
 
-                        var tags = null;
+                        var people = null;
                         const elems = card.all("#post-photo-metadata-tags section > text");
                         if (elems.length > 0) {
-                            tags = [];
+                            people = [];
                             var e = 0;
                             do {
                                 var elem = elems[e];
-                                var tag = elem.textContent;
-                                tags[e] = tag;
+                                var person = elem.textContent;
+                                people[e] = person;
                                 e++;
                             } while (e < elems.length);
-                            data.append("tags", tags);
+                            data.append("people", people);
                         }
+
+                        const tags = card.find("#post-photo-metadata-details textarea").value.split(' ').filter(tag=>tag.startsWith("#"));
+                        data.append('tags', JSON.stringify(tags));
 
                         data.append("jwt", await auth.getIdToken());
 
@@ -1927,7 +1934,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                             var data = JSON.parse(d);
                             submit.disabled = false;
                             //'/post/photo/'+data.uid+'/'.router();
-                            '/'.router();
+                            //'/'.router();
                         }
                         ).catch(error=>{
                             console.log({
@@ -1945,6 +1952,30 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 alert("Format not supported.");
                 submit.disabled = false;
             }
+        }
+        ,
+        tags: async(target)=>{
+            var template = await ajax('/cdn/html/template/template.post.photo.tags.html');
+            var html = new DOMParser().parseFromString(template, 'text/html').body.firstElementChild;
+            var people = JSON.parse(target.closest('[data-people]').dataset.people);
+            if (people.length > 0) {
+                const search = html.find('[placeholder="Search"]');
+                var p = 0;
+                do {
+                    const person = people[p];
+                    const uid = person.uid;
+                    const username = person.username;
+                    const text = document.createElement('text');
+                    text.className = "background-color-0096c7 border-radius-50px color-fff height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
+                    text.dataset.uid = uid;
+                    text.textContent = username;
+                    search.insertAdjacentHTML('beforebegin', text.outerHTML);
+                    p++;
+                } while (p < people.length);
+            }
+            const ppp = await modal.page(html.outerHTML);
+            ppp.className = "align-items-center background-rgba-0-0-0-50pct flex justify-content-center height-100pct overflow-x-hidden position-fixed top-0 width-100pct";
+            //ppp.firstElementChild.className = ppp.find('form > card').className;
         }
         ,
         type: target=>{
