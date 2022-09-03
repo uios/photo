@@ -1405,9 +1405,11 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 console.log(search.parentNode.all('[data-uid="' + uid + '"]'), search.parentNode);
                 if (search.parentNode.all('[data-uid="' + uid + '"]').length === 0) {
                     const text = document.createElement('text');
-                    text.className = "background-color-0096c7 border-radius-50px color-fff height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
+                    text.className = "background-color-0096c7 border-radius-50px color-fff flex flex-direction-row height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
                     text.dataset.uid = uid;
                     text.textContent = username;
+                    text.dataset.tap = `event.target.closest("text").remove(); $('[data-uid="`+uid+`"] label').length > 0 ? $('[data-uid="`+uid+`"] label')[0].click() : null`;
+                    text.insertAdjacentHTML('beforeend', '<n class="gg-close"></n>')
                     search.insertAdjacentHTML('beforebegin', text.outerHTML);
                     search.value = "";
                 }
@@ -1966,9 +1968,11 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     const uid = person.uid;
                     const username = person.username;
                     const text = document.createElement('text');
-                    text.className = "background-color-0096c7 border-radius-50px color-fff height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
+                    text.className = "background-color-0096c7 border-radius-50px color-fff flex flex-direction-row height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
                     text.dataset.uid = uid;
                     text.textContent = username;
+                    text.dataset.tap = `event.target.closest("text").remove(); $('[data-uid="`+uid+`"] label').length > 0 ? $('[data-uid="`+uid+`"] label')[0].click() : null`;
+                    text.insertAdjacentHTML('beforeend', '<n class="gg-close"></n>')
                     search.insertAdjacentHTML('beforebegin', text.outerHTML);
                     p++;
                 } while (p < people.length);

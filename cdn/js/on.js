@@ -601,8 +601,9 @@ window.on["submit"] = {
 
     post: {
         tags: async(event)=>{
-            event.preventDefault();
-            const form = event.target;
+            console.log(event);
+            event.type === "submit" ? event.preventDefault() : null;
+            const form = event.target.closest('form');
             const search = form.find('[placeholder="Search"]');
             const users = search.parentNode.all('[data-uid]');
             var uids = [];
@@ -618,10 +619,10 @@ window.on["submit"] = {
                     uids[u].username = user.textContent;
                     u++;
                 } while (u < users.length);
-                byId('post-photo-metadata-people').dataset.people = JSON.stringify(uids);
-                byId('post-photo-metadata-people').find('span > text').textContent = uids.length > 1 ? (uids.length + ' people') : uids[0].username;
-                modal.exit(event.target);
             }
+            byId('post-photo-metadata-people').dataset.people = JSON.stringify(uids);
+            byId('post-photo-metadata-people').find('span > text').textContent = uids.length > 1 ? (uids.length + ' people') : (uids.length > 0 ? uids[0].username : "");
+            modal.exit(event.target);
             console.log('on.submit.post.tags', {
                 users,
                 uids
