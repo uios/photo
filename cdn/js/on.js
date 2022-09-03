@@ -636,6 +636,9 @@ window.on["submit"] = {
     search: {
         query: async(event) => {
             event.preventDefault();
+            const keywords = new URLSearchParams(window.location.search).get('keywords');
+            //on.focus.out.search(byId('results-blur'));
+            ('/search/' + keywords + '/').router();
         }
     }
 };

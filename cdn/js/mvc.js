@@ -767,25 +767,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     console.log({
                         data
                     });
-                    const feed = byId('find-posts');
-                    const posts = data.posts;
-                    if (posts.length > 0) {
-                        var boxes = feed.all('box');
-                        var b = 0;
-                        do {
-                            const box = boxes[b];
-                            if (b < posts.length) {
-                                const post = posts[b];
-                                const uid = post.uid;
-                                const user = post.user;
-                                box.dataset.href = "/photo/" + uid + "/";
-                                box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + ".jpg";
-                            } else {
-                                box.remove();
-                            }
-                            b++;
-                        } while (b < boxes.length);
-                    }
                 }
                 const b = function(error) {
                     const message = error.message;
