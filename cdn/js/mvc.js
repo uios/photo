@@ -1391,7 +1391,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     convo: {
-        onchecked: function(target) {
+        onchecked: async function(target) {
             console.log(target);
             const box = target.closest('box');
             const form = target.closest('form');
@@ -1408,7 +1408,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     text.className = "background-color-0096c7 border-radius-50px color-fff flex flex-direction-row height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
                     text.dataset.uid = uid;
                     text.textContent = username;
-                    text.dataset.tap = `event.target.closest("text").remove(); $('[data-uid="`+uid+`"] label').length > 0 ? $('[data-uid="`+uid+`"] label')[0].click() : null`;
+                    text.dataset.tap = `event.target.closest("text").remove(); $('[data-uid="` + uid + `"] label').length > 0 ? $('[data-uid="` + uid + `"] label')[0].click() : null`;
                     text.insertAdjacentHTML('beforeend', '<n class="gg-close"></n>')
                     search.insertAdjacentHTML('beforebegin', text.outerHTML);
                     search.value = "";
@@ -1967,13 +1967,12 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     const person = people[p];
                     const uid = person.uid;
                     const username = person.username;
-                    const text = document.createElement('text');
-                    text.className = "background-color-0096c7 border-radius-50px color-fff flex flex-direction-row height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px";
-                    text.dataset.uid = uid;
-                    text.textContent = username;
-                    text.dataset.tap = `event.target.closest("text").remove(); $('[data-uid="`+uid+`"] label').length > 0 ? $('[data-uid="`+uid+`"] label')[0].click() : null`;
-                    text.insertAdjacentHTML('beforeend', '<n class="gg-close"></n>')
-                    search.insertAdjacentHTML('beforebegin', text.outerHTML);
+
+                    var template = html.all('template')[1].content.firstElementChild.cloneNode(true);
+                    template.dataset.uid = uid;
+                    template.find('[placeholder="username"]').textContent = username;
+                    const list = html.find('#photo-tags-people');
+                    list.insertAdjacentHTML('beforeend', template.outerHTML);
                     p++;
                 } while (p < people.length);
             }
@@ -2007,6 +2006,122 @@ window.mvc.c ? null : (window.mvc.c = controller = {
 
                     optionsAspect.classList.remove('aspect-ratio-16x9');
                     optionsAspect.classList.add('aspect-ratio-1x1');
+                }
+            }
+        }
+        ,
+        untag: (target)=>{
+            const box = target.closest('box');
+            const uid = box.dataset.uid;
+            $('[data-uid="' + uid + '"] label').length > 0 ? $('[data-uid="' + uid + '"] label')[0].click() : null;
+            console.log(uid, $('[data-uid="' + uid + '"] label'));
+            box.remove();
+        }
+    },
+    tags: {
+        onchecked: async function(target) {
+            console.log(target);
+            const box = target.closest('box');
+            const form = target.closest('form');
+            const checked = target.checked;
+            const search = form.find('[placeholder="Search"]');
+            const uid = box.dataset.uid;
+            const username = box.find('[placeholder="username"]').textContent;
+            const submit = form.find('[type="submit"]');
+            const list = form.find('#photo-tags-people');
+
+            if (checked) {
+                console.log(list.all('[data-uid="' + uid + '"]'));
+                if (list.all('[data-uid="' + uid + '"]').length === 0) {
+                    var doc = await ajax('/cdn/html/template/template.post.photo.tags.html');
+                    var template = new DOMParser().parseFromString(doc, 'text/html').body.all("template")[1].content.firstElementChild.cloneNode(true);
+                    template.dataset.uid = uid;
+                    template.find('[placeholder="username"]').textContent = username;
+                    list.insertAdjacentHTML('beforeend', template.outerHTML);
+                }
+            } else {
+                $(list.all('[data-uid="' + uid + '"]')).remove();
+            }
+
+            //submit.disabled = search.parentNode.all('[data-uid]').length === 0;
+        },
+        onkeydown: function(event) {
+            var keyCode = event.keyCode;
+            var target = event.target;
+            if (keyCode === 13) {
+                event.preventDefault();
+            }
+
+            const form = target.closest('form');
+            var results = form.find('[data-columns="1"]');
+            results.innerHTML = "";
+        },
+        onkeyup: function(event) {
+            var keyCode = event.keyCode;
+            var target = event.target;
+            var username = target.value;
+
+            if (keyCode === 13) {
+                event.preventDefault();
+            } else {
+                //target.style.width = 'auto';
+                //target.style.width = target.scrollWidth + 'px';
+
+                if (username.length > 0) {
+                    var data = new FormData();
+
+                    const form = target.closest('form');
+                    var vp = dom.body.find('page[data-page="/chat/with/"]');
+                    var results = form.find('[data-columns="1"]');
+
+                    const a = function(d) {
+                        const data = JSON.parse(d);
+                        const users = data.users;
+
+                        if (users.length > 0) {
+                            const form = target.closest('form');
+                            var template = form.find('template').content.firstElementChild;
+                            results.innerHTML = "";
+                            var htm = "";
+
+                            const search = form.find('[placeholder="Search"]');
+
+                            var u = 0;
+                            do {
+                                const user = users[u];
+                                const uid = user.uid;
+
+                                var html = template.cloneNode(true);
+
+                                const exists = search.parentNode.all('[data-uid="' + uid + '"]');
+                                if (exists.length > 0) {
+                                    html.find('[type="checkbox"]').setAttribute('checked', true)
+                                }
+
+                                html.classList.remove('hide');
+                                html.dataset.uid = uid;
+                                html.find('[placeholder="username"]').textContent = user.username;
+                                html.find('[placeholder="Full Name"]').textContent = user.fullname;
+                                results.insertAdjacentHTML('beforeend', html.outerHTML);
+                                htm += html.outerHTML;
+                                u++;
+                            } while (u < users.length);
+                            results.innerHTML = htm;
+                        }
+                    };
+                    const b = function(error) {
+                        console.log(error);
+                        //alert(error.message);
+                    };
+
+                    window.yield ? window.yield.abort() : null;
+                    window.yield = new AbortController()
+                    window.signal = window.yield.signal
+
+                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                    ajax(endpoint + "/v1/search/users/" + username, {
+                        signal
+                    }).then(a).catch(b);
                 }
             }
         }

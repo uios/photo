@@ -604,8 +604,8 @@ window.on["submit"] = {
             console.log(event);
             event.type === "submit" ? event.preventDefault() : null;
             const form = event.target.closest('form');
-            const search = form.find('[placeholder="Search"]');
-            const users = search.parentNode.all('[data-uid]');
+            const search = form.find('#photo-tags-people');
+            const users = search.all('[data-uid]');
             var uids = [];
 
             if (users.length > 0) {
@@ -616,7 +616,7 @@ window.on["submit"] = {
                     var span = document.createElement('span');
                     uids[u] = {};
                     uids[u].uid = user.dataset.uid;
-                    uids[u].username = user.textContent;
+                    uids[u].username = user.find('[placeholder="username"]').textContent;
                     u++;
                 } while (u < users.length);
             }

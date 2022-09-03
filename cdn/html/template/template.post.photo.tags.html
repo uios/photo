@@ -3,19 +3,21 @@
         <column>
             <box class="border-bottom-1px-solid border-color-db position-relative">
                 <row class="align-center justify-content-center left-0 position-relative space-between width-100pc">
-                    <ico class="left-0 position-absolute" data-tap="on.submit.post.tags(event)">
-                        <n class="gg-close"></n>
-                    </ico>
                     <text class="bolder line-height-50px">Edit tags</text>
-                    <input class="-disabled-opacity-50pct bolder fg-b font-size-16px line-height-50px padding-x-20px position-absolute right-0" disabled type="submit" value="Done">
+                    <input class="-disabled-opacity-50pct bolder fg-b font-size-16px line-height-50px padding-x-20px position-absolute right-0" type="submit" value="Done">
                 </row>
             </box>
         </column>
         <column>
-            <box class="border-bottom-1px-solid border-color-db padding-x-20px">
-                <row class="align-center flex-start flex-wrap-wrap padding-left-20px position-relative" id="chat-with-them">
-                    <text class="absolute bolder left-0 top-0">To:</text>
-                    <input class="height-36px line-height-36px margin-x-10px margin-y-7px padding-x-10px" onkeydown="controller.convo.onkeydown(event)" onkeyup="controller.convo.onkeyup(event)" placeholder="Search" type="text">
+            <box class="padding-x-0">
+                <column class="align-center border-bottom-1px-solid border-color-db empty flex-start flex-wrap-wrap padding-left-0px position-relative" id="photo-tags-people"></column>
+            </box>
+        </column>
+        <column>
+            <box class="border-bottom-1px-solid border-color-db padding-x-0">
+                <row class="align-center flex-start flex-wrap-wrap padding-left-0px position-relative" id="chat-with-them">
+                    <text class="absolute bolder display-none left-0 top-0">To:</text>
+                    <input class="height-36px line-height-36px margin-x-10px margin-y-7px padding-x-0 width-100pct" onkeydown="controller.tags.onkeydown(event)" onkeyup="controller.tags.onkeyup(event)" placeholder="Search" type="text">
                 </row>
             </box>
         </column>
@@ -44,12 +46,29 @@
                         <span class="color-8e line-height-22px" placeholder="Full Name"></span>
                     </text>
                     <checkbox class="height-25px margin-left overflow-hidden position-relative width-25px">
-                        <input class="display-none" onchange="controller.convo.onchecked(event.target)" type="checkbox">
+                        <input class="display-none" onchange="controller.tags.onchecked(event.target)" type="checkbox">
                         <span class="-checked-background-color-0096c7 -checked-border-unset border-radius-50pct border-2px-solid border-color-000 border-radius-50pc box-sizing-border-box position-absolute absolute-full">
                             <n class="absolute-center font-color-fff gg-check margin-auto position-absolute"></n>
                         </span>
                     </checkbox>
                 </label>
+            </box>
+        </template>
+        <template>
+            <box class="flex-1 width-100pct">
+                <row class="align-center flex flex-direction-row space-between width-100pc">
+                    <picture class="empty"></picture>
+                    <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
+                        <img class="absolute bottom-0 height-75pc invert width-75pc" src="cdn/svg/user.svg">
+                    </picture>
+                    <text class="align-left flex flex-direction-column margin-right-auto">
+                        <span class="font-weight-bolder line-height-22px" placeholder="username"></span>
+                        <span class="color-8e line-height-22px" placeholder="Full Name"></span>
+                    </text>
+                    <ico data-tap="controller.post.untag(event.target)">
+                        <n class="gg-close"></n>
+                    </ico>
+                </row>
             </box>
         </template>
     </card>
