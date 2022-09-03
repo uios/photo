@@ -270,7 +270,7 @@ window.is = {
         return true;
     }
     ,
-    local: href=>href.contains(['127.0.0.1', 'about:', 'blob:', 'file:', 'localhost']),
+    local: href=>href.contains(['127.0.0.1', 'about:', 'blob:', 'file:', 'localhost', 'tld']),
     mobile: ()=>{
         return ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod'].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend"in document)
     }

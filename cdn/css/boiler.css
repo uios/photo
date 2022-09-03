@@ -264,7 +264,7 @@ card {
 card > column, card > row, card > section {
     position: relative;
     z-index: 123;
-    /* display: -webkit-flex; */
+    display: -webkit-flex;
     width: 100%;
     font-size: inherit;
     overflow: visible;
