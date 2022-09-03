@@ -9299,6 +9299,28 @@ body[data-webcam="true"] .webcam-hide, body:not([data-webcam="true"]) .webcam-sh
     margin-left: 20px;
 }
 
+@media screen and (max-width: 768px) {
+    .cascade-right box {
+        /* position: relative; */         width: calc( (((100% - 6px) / 3) * 1) - 0px );
+        /* padding-top: calc((100% - 40px)/3); */
+        margin: 0;
+        display: inline-block;
+        height: auto;
+        vertical-align: top;
+        /* box-shadow: 0 0 10px -3px; */
+    }
+
+    .cascade-right box:nth-child(3n + 1) {
+        margin-bottom: 3px;
+    }
+
+    .cascade-right box:nth-child(3n + 2) {
+        order: 2;
+        width: calc((((100% - 6px) / 3) * 2) + 3px);
+        margin-left: 3px;
+    }
+}
+
 /*Cascading*/
 error ~ * {
     display: none;
