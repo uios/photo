@@ -145,15 +145,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
 
             if (root === "photo" && GET.length == 1) {
-                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).addClass('-tablet-display-none');
+                $(dom.header.find('form').parentNode.all('header > section > card > row > box')).addClass('-tablet-display-none');
                 dom.header.find('form').classList.remove('-tablet-display-none');
             } else {
-                $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('-tablet-display-none');
+                $(dom.header.find('form').parentNode.all('header > section > card > row > box')).removeClass('-tablet-display-none');
                 dom.header.find('form').classList.add('-tablet-display-none');
             }
         } else {
             webcam.control.stop();
-            $(dom.header.find('form').parentNode.all('header > section > card > section > box')).removeClass('-tablet-display-none');
+            $(dom.header.find('form').parentNode.all('header > section > card > row > box')).removeClass('-tablet-display-none');
             dom.header.find('form').classList.add('-tablet-display-none');
         }
 
