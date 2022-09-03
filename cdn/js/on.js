@@ -457,12 +457,21 @@ window.on.focus.out.search = (target)=>{
 }
 
 window.on.keyup = {};
-window.on.keyup.search = async(target)=>{
+window.on.keyup.search = async(event)=>{
     const feed = byId('feed-results');
     const keywords = byId('keywords').value;
     var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '');
     searchResults(keywords);
-    history.pushState(goto, '', goto);
+    event.keyCode === 13 ? null : history.pushState(goto, '', goto);
+}
+
+window.on.keydown = {};
+window.on.keydown.search = async(target)=>{
+    const feed = byId('feed-results');
+    const keywords = byId('keywords').value;
+    var goto = (window.location.pathname + '?keywords') + (keywords.length > 0 ? '=' + keywords : '');
+    //searchResults(keywords);
+    //history.pushState(goto, '', goto);
 }
 
 function searchResults(keywords) {
