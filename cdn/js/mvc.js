@@ -1901,19 +1901,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         caption = elem.value;
                         elem.value === "" ? null : data.append("caption", caption);
 
-                        var people = null;
-                        const elems = card.all("#post-photo-metadata-tags section > text");
-                        if (elems.length > 0) {
-                            people = [];
-                            var e = 0;
-                            do {
-                                var elem = elems[e];
-                                var person = elem.textContent;
-                                people[e] = person;
-                                e++;
-                            } while (e < elems.length);
-                            data.append("people", people);
-                        }
+                        const people = byId("post-photo-metadata-people").dataset.people;
+                        data.append("people", people);
 
                         const tags = card.find("#post-photo-metadata-details textarea").value.split(' ').filter(tag=>tag.startsWith("#"));
                         data.append('tags', JSON.stringify(tags));
@@ -1936,7 +1925,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                             var data = JSON.parse(d);
                             submit.disabled = false;
                             //'/post/photo/'+data.uid+'/'.router();
-                            //'/'.router();
+                            '/'.router();
                         }
                         ).catch(error=>{
                             console.log({
@@ -1959,7 +1948,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         tags: async(target)=>{
             var template = await ajax('/cdn/html/template/template.post.photo.tags.html');
             var html = new DOMParser().parseFromString(template, 'text/html').body.firstElementChild;
-            var people = JSON.parse(target.closest('[data-people]').dataset.people);
+            var people = JSON.parse(target.closest('[data-json]').dataset.json);
             if (people.length > 0) {
                 const search = html.find('[placeholder="Search"]');
                 var p = 0;

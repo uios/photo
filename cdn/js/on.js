@@ -607,6 +607,7 @@ window.on["submit"] = {
             const search = form.find('#photo-tags-people');
             const users = search.all('[data-uid]');
             var uids = [];
+            var ppl = [];
 
             if (users.length > 0) {
                 var u = 0;
@@ -614,13 +615,15 @@ window.on["submit"] = {
                 do {
                     var user = users[u];
                     var span = document.createElement('span');
+                    ppl[u] = user.dataset.uid;
                     uids[u] = {};
                     uids[u].uid = user.dataset.uid;
                     uids[u].username = user.find('[placeholder="username"]').textContent;
                     u++;
                 } while (u < users.length);
             }
-            byId('post-photo-metadata-people').dataset.people = JSON.stringify(uids);
+            byId('post-photo-metadata-people').dataset.json= JSON.stringify(uids);
+            byId('post-photo-metadata-people').dataset.people= JSON.stringify(ppl);
             byId('post-photo-metadata-people').find('span > text').textContent = uids.length > 1 ? (uids.length + ' people') : (uids.length > 0 ? uids[0].username : "");
             modal.exit(event.target);
             console.log('on.submit.post.tags', {
