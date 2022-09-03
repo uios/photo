@@ -437,7 +437,7 @@ window.on.focus.in.search = (target)=>{
     byId('cancel-results').classList.remove('display-none');
     byId('exit-search').classList.add('-tablet-display-none');
     const keywords = byId('keywords').value;
-    var goto = ('?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
+    var goto = window.location.pathname + ('?keywords') + (keywords.length > 0 ? '=' + keywords : '') + (window.location.hash ? '#' + window.location.hash : '');
     searchResults(keywords);
     history.pushState(goto, '', goto);
 }
@@ -630,6 +630,12 @@ window.on["submit"] = {
                 users,
                 uids
             });
+        }
+    },
+
+    search: {
+        query: async(event) => {
+            event.preventDefault();
         }
     }
 };
