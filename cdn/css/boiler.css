@@ -3486,6 +3486,10 @@ iframe[data-device="mobile"] {
         margin-right: unset;
     }
 
+    .-mobile-margin-bottom-44px {
+        margin-bottom: 44px;
+    }
+
     .mobile-margin-left {
         margin-left: auto;
     }
@@ -3500,6 +3504,10 @@ iframe[data-device="mobile"] {
 
     .mobile-margin-top {
         margin-top: auto;
+    }
+
+    .-mobile-margin-top-44px {
+        margin-top: 44px;
     }
 
     .mobile-margin-top-10px {
