@@ -144,7 +144,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 webcam.control.stop();
             }
 
-            if (root === "photo" && GET.length == 1) {
+            if ((root === "photo" && GET.length == 1) || (root === "search")) {
                 $(dom.header.find('form').parentNode.all('header > section > card > row > box')).addClass('-tablet-display-none');
                 dom.header.find('form').classList.remove('-tablet-display-none');
             } else {
@@ -189,13 +189,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                                 const template = vp.find('#feed-activity-' + type).content;
                                 const elem = template.firstElementChild.cloneNode(true);
+                                const avi = elem.find('picture');
+
                                 var img = document.createElement('img');
-                                img.className = "absolute bottom-0 height-75pc invert width-75pc";
                                 img.src = cdn.endpoint + '/' + user + '/avi.jpg';
                                 img.setAttribute("onerror", 'this.remove()');
-                                const avi = elem.find('picture');
                                 avi.innerHTML = img.outerHTML;
-                                avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + row.user + "/";
+                                avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + user + "/";
                                 elem.find('[placeholder="username"]').textContent = username;
 
                                 if (type === "follow") {
@@ -1927,7 +1927,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                             var data = JSON.parse(d);
                             submit.disabled = false;
                             //'/post/photo/'+data.uid+'/'.router();
-                            //'/'.router();
+                            '/'.router();
                         }
                         ).catch(error=>{
                             console.log({

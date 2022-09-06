@@ -99,7 +99,6 @@
         </block>
     </blocks>
 </wrap>
-
 <template id="feed-activity-follow">
     <box class="padding-10px">
         <row class="align-items-center justify-content-space-between width-100pc">
@@ -107,11 +106,13 @@
             <picture class="bg-db border-radius-50pc empty-state" data-height="50px" data-width="50px">
                 <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
             </picture>
-            <text class="display-flex flex-1 margin-x-10px">
-                <b placeholder="username"></b>
-                <span>started following you.</span>
+            <text class="flex flex-1 margin-x-10px">
+                <div>
+                    <b placeholder="username"></b>
+                    <span>started following you.</span>
+                </div>
             </text>
-            <text class="border-1px-solid border-color-db border-radius-5px color-000 font-size-16px padding-x-10px padding-y-5px">Follow Back</text>
+            <text class="border-1px-solid border-color-db border-radius-5px color-000 font-size-16px padding-x-10px padding-y-5px white-space-nowrap">Follow Back</text>
         </row>
     </box>
 </template>
@@ -122,9 +123,11 @@
             <picture class="bg-db border-radius-50pc empty-state" data-height="50px" data-width="50px">
                 <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
             </picture>
-            <text class="flex-1 margin-x-10px">
-                <b placeholder="username"></b>
-                <span>liked your photo.</span>
+            <text class="flex flex-1 margin-x-10px">
+                <div>
+                    <b placeholder="username"></b>
+                    <span>liked your photo.</span>
+                </div>
             </text>
             <picture class="background-color-8e border-1px-solid border-color-db border-radius-5px color-000 height-50px width-50px"></picture>
         </row>
@@ -137,10 +140,29 @@
             <picture class="bg-db border-radius-50pc empty-state" data-height="50px" data-width="50px">
                 <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
             </picture>
-            <text class="flex-1 margin-x-10px">
-                <b placeholder="username"></b>
-                <span>shared 11 photos.</span>
+            <text class="flex flex-1 margin-x-10px">
+                <div>
+                    <b placeholder="username"></b>
+                    <span>shared 11 photos.</span>
+                </div>
             </text>
+        </row>
+    </box>
+</template>
+<template id="feed-activity-tag">
+    <box class="padding-10px">
+        <row class="align-items-center justify-content-space-between width-100pc">
+            <picture class="border-radius-50pc empty" data-height="50px" data-width="50px"></picture>
+            <picture class="bg-db border-radius-50pc empty-state margin-10px" data-height="30px" data-width="30px">
+                <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
+            </picture>
+            <text class="flex flex-1 margin-x-10px">
+                <div>
+                    <b placeholder="username"></b>
+                    <span>tagged you in a photo.</span>
+                </div>
+            </text>
+            <text class="border-1px-solid border-color-db border-radius-5px color-000 font-size-16px padding-x-10px padding-y-5px white-space-nowrap">Follow Back</text>
         </row>
     </box>
 </template>
