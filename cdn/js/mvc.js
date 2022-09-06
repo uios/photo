@@ -198,15 +198,27 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + user + "/";
                                 elem.find('[placeholder="username"]').textContent = username;
 
+                                if (type === "comment") {
+                                    var img = document.createElement('img');
+                                    img.className = "height-100pct position-absolute top-0 width-100pct";
+                                    //img.className = "bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px";
+                                    //img.onerror = e=>model.error.image(avi.firstElementChild);
+                                    img.src = cdn.endpoint + "/" + owner + "/photo/" + ref + ".jpg";
+                                    elem.all('picture')[2].dataset.href = "/photo/" + ref + "/";
+                                    elem.all('picture')[2].innerHTML = img.outerHTML;
+                                }
+
                                 if (type === "follow") {
                                     row.following ? elem.find('text:last-child').textContent = "Following" : null;
                                 }
 
                                 if (type === "like") {
                                     var img = document.createElement('img');
+                                    img.className = "height-100pct position-absolute top-0 width-100pct";
                                     //img.className = "bg-black border-radius-50pc border-5px-solid border-color-fff height-100pc-10px width-100pc-10px";
                                     //img.onerror = e=>model.error.image(avi.firstElementChild);
                                     img.src = cdn.endpoint + "/" + owner + "/photo/" + ref + ".jpg";
+                                    elem.all('picture')[2].dataset.href = "/photo/" + ref + "/";
                                     elem.all('picture')[2].innerHTML = img.outerHTML;
                                 }
 

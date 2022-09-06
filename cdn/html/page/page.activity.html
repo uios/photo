@@ -99,6 +99,23 @@
         </block>
     </blocks>
 </wrap>
+<template id="feed-activity-comment">
+    <box class="padding-10px">
+        <row class="align-items-center justify-content-space-between width-100pc">
+            <picture class="bg-black border-radius-50pc empty" data-height="50px" data-width="50px"></picture>
+            <picture class="bg-db border-radius-50pc empty-state" data-height="50px" data-width="50px">
+                <img class="absolute bottom-0 height-75pc invert width-75pc" src="/cdn/svg/user.svg">
+            </picture>
+            <text class="flex flex-1 margin-x-10px">
+                <div>
+                    <b placeholder="username"></b>
+                    <span>commented on your post</span>
+                </div>
+            </text>
+            <picture class="background-color-8e border-1px-solid border-color-db border-radius-5px color-000 height-50px width-50px"></picture>
+        </row>
+    </box>
+</template>
 <template id="feed-activity-follow">
     <box class="padding-10px">
         <row class="align-items-center justify-content-space-between width-100pc">
