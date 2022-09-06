@@ -769,9 +769,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         const posts = data.posts;
                         var html = await ajax('/cdn/html/template/template.feed.cascading.html');
                         var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-                        feed.innerHTML = template.outerHTML;
-                        var boxes = $(feed.all('box'));
                         if (posts.length > 0) {
+                            feed.innerHTML = template.outerHTML;
+                            var boxes = $(feed.all('box'));
                             var b = 0;
                             do {
                                 const box = boxes[b];
@@ -787,7 +787,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 }
                                 b++;
                             } while (b < boxes.length);
-                        }
+                        } else {}
                     }
                     const b = function(error) {
                         const message = error.message;
