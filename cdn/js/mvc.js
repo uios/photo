@@ -763,15 +763,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             } else if (root === "search") {
                 if (get.length > 1) {
                     const jwt = auth.user() ? await auth.getIdToken() : null;
-                    const a = function(d) {
+                    const a = async function(d) {
                         const data = JSON.parse(d);
-                        console.log({
-                            data
-                        });
                         const feed = byId('search-posts');
                         const posts = data.posts;
+                        var html = await ajax('/cdn/html/template/template.feed.cascading.html');
+                        var template = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                        feed.innerHTML = template.outerHTML;
+                        var boxes = $(feed.all('box'));
                         if (posts.length > 0) {
-                            var boxes = feed.all('box');
                             var b = 0;
                             do {
                                 const box = boxes[b];
@@ -779,10 +779,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     const post = posts[b];
                                     const uid = post.uid;
                                     const user = post.user;
+                                    box.classList.remove('hide');
                                     box.dataset.href = "/photo/" + uid + "/";
                                     box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + post.format;
-                                } else {
-                                    box.remove();
+                                } else {// /box.classList.add('hide');
                                 }
                                 b++;
                             } while (b < boxes.length);
