@@ -782,7 +782,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     box.classList.remove('hide');
                                     box.dataset.href = "/photo/" + uid + "/";
                                     box.find('img').src = cdn.endpoint + "/" + user + "/photo/" + uid + "." + post.format;
-                                } else {// /box.classList.add('hide');
+                                } else {
+                                    box.remove();
                                 }
                                 b++;
                             } while (b < boxes.length);
