@@ -647,7 +647,7 @@ window.on["submit"] = {
             event.preventDefault();
             const keywords = new URLSearchParams(window.location.search).get('keywords');
             //on.focus.out.search(byId('results-blur'));
-            ('/search/' + keywords + '/').router();
+            ('/search/' + keywords + '/').router().then(byId('keywords').blur());
         }
     }
 };
