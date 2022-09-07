@@ -9,12 +9,9 @@
         <meta name="application-name" content="Photo">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name='theme-color' content='#021025'>
-        <script id="eruda" src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js"></script>
-        <script id="firebase-app" src="https://cdn.endk.it/js/firebase-app.js"></script>
-        <script id="firebase-auth" src="https://cdn.endk.it/js/firebase-auth.js"></script>
         <script>
             var domains = window.location.host.split('.');
-            window.global = {
+            window.globals = {
                 domains: {
                     domain: domains.length > 1 ? domains[domains.length - 2] : null,
                     subdomain: domains.length > 2 ? domains[domains.length - 3] : null,
@@ -22,68 +19,24 @@
                 }
             }
             const base = document.createElement("base");
-            base.href = window.location.protocol + "//" + (global.domains.subdomain ? global.domains.subdomain + "." : "") + global.domains.domain + "." + global.domains.tld + (global.domains.domain === "github" ? "/photo" : "") + "/index.html";
+            base.href =  (globals.domains.domain === "github" ? "/photo" : "") + "/";
             document.head.appendChild(base);
-            function Links(links) {
-                var f = 0;
-                do {
-                    var l = links[f];
-                    if (l) {
-                        var href = ``;
-                        var script = document.createElement("link");
-                        if (l.href) {
-                            href += (href.includes('https:') ? `` : (href.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
-                            href += l.href;
-                        }
-                        script.href = href;
-                        script.rel = l.rel;
-                        l.color ? script.color = l.color : null;
-                        l.sizes ? script.sizes = l.sizes : null;
-                        l.type ? script.type = l.type : null;
-                        document.head.appendChild(script);
-                    }
-                    f++;
-                } while (f < links.length);
-            }
-            function Scripts(links) {
-                var f = 0;
-                do {
-                    var l = links[f];
-                    if (l) {
-                        var link = ``;
-                        var script = document.createElement("script");
-                        script.type = "text/javascript";
-                        if (l.link) {
-                            link += (link.includes('https:') ? `` : (link.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
-                            link += l.link;
-                        } else {
-                            link += (link.includes('https:') ? `` : (link.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
-                            link += l.cdn;
-                        }
-                        script.src = link;
-                        l && l.async ? script.async = true : null;
-                        document.head.appendChild(script);
-                    }
-                    f++;
-                } while (f < links.length);
-            }
-            function Styles(links) {
-                var f = 0;
-                do {
-                    var l = links[f].link;
-                    var cdn = links[f].link;
-                    var sync = links[f].async;
-                    var link = ``;
-                    link += (l.includes('https:') ? `` : (l.charAt(0) !== "." && window.location.protocol === "file:" ? `.` : ``));
-                    link += links[f].link;
-                    var sync = links[f].sync ? links[f].sync : ``;
-                    var script = ``;
-                    script = `<link rel="stylesheet" href="` + link + `" ` + sync + `>`;
-                    document.head.insertAdjacentHTML('beforeend', script);
-                    f++;
-                } while (f < links.length);
-            }
         </script>
+        <link href="index.css" rel="stylesheet">
+        <link href="cdn/css/boiler.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css" rel="stylesheet">
+        <link href="https://cdn.endk.it/css/theme.css" rel="stylesheet">
+        <script id="firebase-app" src="https://cdn.endk.it/js/firebase-app.js"></script>
+        <script id="firebase-auth" src="https://cdn.endk.it/js/firebase-auth.js"></script>
+        <script id="script-vanilla" src="cdn/js/vanilla.js"></script>
+        <script id="script-auth" src="cdn/js/auth.js"></script>
+        <script id="script-mvc" src="cdn/js/mvc.js"></script>
+        <script id="script-on" src="cdn/js/on.js"></script>
+        <script id="script-modal" src="cdn/js/modal.js"></script>
+        <script id="script-router" src="cdn/js/router.js"></script>
+        <script id="script-touch" src="cdn/js/touch.js"></script>
+        <script id="script-webcam" src="cdn/js/webcam.js"></script>
+        <script src="index.js"></script>
     </head>
     <body class="bg-fa noselect" data-load="ing">
         <boot class="boot" id="boot">
@@ -286,61 +239,4 @@
             </section>
         </popup>
     </body>
-    <script>
-        var pre = global.domains.domain === "github" ? "" : "/";
-        Links([{
-            "href": pre + "favicon.ico",
-            "rel": "shortcut icon"
-        }, {
-            "href": pre + "apple-touch-icon.png",
-            "rel": "apple-touch-icon"
-        }, {
-            "href": pre + "favicon-32x32.png",
-            "rel": "icon",
-            "sizes": "32x32",
-            "type": "image/png"
-        }, {
-            "href": pre + "favicon-16x16.png",
-            "rel": "icon",
-            "sizes": "16x16",
-            "type": "image/png"
-        }, {
-            "href": pre + "site.webmanifest",
-            "rel": "manifest"
-        }, {
-            "href": pre + "safari-pinned-tab.svg",
-            "rel": "mask-icon",
-            "color": "#5bbad5"
-        }]);
-        Scripts([{
-            "link": pre + "cdn/js/vanilla.js"
-        }, {
-            "link": pre + "cdn/js/auth.js"
-        }, {
-            "link": pre + "cdn/js/mvc.js"
-        }, {
-            "link": pre + "cdn/js/on.js"
-        }, {
-            "link": pre + "cdn/js/modal.js"
-        }, {
-            "link": pre + "cdn/js/router.js"
-        }, {
-            "link": pre + "cdn/js/touch.js"
-        }, {
-            "link": pre + "cdn/js/webcam.js"
-        }, {
-            "link": pre + "index.js"
-        }]);
-        Styles([{
-            "link": pre + "index.css"
-        }, {
-            "link": "https://cdn.jsdelivr.net/npm/css.gg/icons/all.css"
-        }, {
-            "link": pre + "cdn/css/boiler.css"
-        }, {
-            "link": "https://cdn.endk.it/css/theme.css"
-        }, {
-            "link": "https://cdn.endk.it/css/modal.css"
-        }]);
-    </script>
 </html>

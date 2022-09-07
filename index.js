@@ -30,8 +30,6 @@ window.is = {
     }
 }
 
-//window.webcam.constraints.horizontal.video['facingMode'] = "self";
-
 window.onload = async()=>{
 
     window.dom = {
@@ -76,19 +74,15 @@ window.onpopstate = (event)=>{
     }
     console.log(event, "location: " + document.location + ", state: " + JSON.stringify(state));
 }
-;
 
 function init() {
-
-    //eruda.init();
-
     console.log("Initializing...");
 
     window.rout.ing = function(href, GOT, n, m=GOT[n], root=GOT[0]) {
         return m.includes("#") || (root === 'chat' && n > 1) || (root === 'my' && GOT[1] === "account" && n > 1) || (root === 'photo' && n === 1) || (root === 'post' && GOT[1] === 'photo' && n === 2) || (root === 'users' && n === 1);
     }
 
-    firebase.initializeApp(auth.config);
+    dom.body.dataset.load = "ed";
 
     touch.events = {
         dbltap: on.touch.dbltap,
@@ -125,6 +119,13 @@ function init() {
         //console.log(e.type);
     });
 
+    const authChange = function(e) {
+        const load = function(e) {
+            dom.body.dataset.load = "ed";
+        };
+        dom.body.dataset.load = "ed";
+    };
+
     var url = window.location.pathname;
     if (window.global.domains.subdomain === "uios") {
         var dir = rout.ed.dir(window.location.pathname);
@@ -133,26 +134,23 @@ function init() {
     }
 
     var uri = ((dom.boot.dataset.path ? dom.boot.dataset.path : url) + (window.location.search + window.location.hash));
-    
+
     var go = false;
-    const onAuthStateChanged = function(user) {
-        const authChange = function(e) {
-            const load = function(e) {
-                dom.body.dataset.load = "ed";
-            };
-            dom.body.dataset.load = "ed";
+    if (window.firebase) {
+        firebase.initializeApp(auth.config);
+        const onAuthStateChanged = function(user) {
+            auth.change(user).then(authChange);
+            if (user) {
+                byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img onerror='model.error.image(this)' src='" + (cdn.endpoint + "/" + user.uid + "/avi.jpg") + "'>";
+            } else {
+                byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
+            }
         }
-        auth.change(user).then(authChange);
-        if (user) {
-            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img onerror='model.error.image(this)' src='" + (cdn.endpoint + "/" + user.uid + "/avi.jpg") + "'>";
-        } else {
-            byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
-        }
+        firebase.auth().onAuthStateChanged(onAuthStateChanged);
         go ? null : uri.router().then(go = true);
+    } else {
+        uri.router().then(authChange);
     }
 
-    firebase.auth().onAuthStateChanged(onAuthStateChanged);
-
     console.log("Initialized");
-
 }
