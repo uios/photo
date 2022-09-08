@@ -7,6 +7,7 @@
         <meta name='apple-mobile-web-app-status-bar-style' content='#021025'>
         <meta name="apple-mobile-web-app-title" content="Photo">
         <meta name="application-name" content="Photo">
+        <meta name="application-shortname" content="photo">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name='theme-color' content='#021025'>
         <script>
@@ -19,7 +20,7 @@
                 }
             }
             const base = document.createElement("base");
-            base.href =  (globals.domains.domain === "github" ? "/photo" : "") + "/";
+            base.href =  (globals.domains.domain === "github" ? "/"+document.head.querySelector('[name="application-shortname"]').content : "") + "/";
             document.head.appendChild(base);
         </script>
         <link href="index.css" rel="stylesheet">

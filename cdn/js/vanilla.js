@@ -287,7 +287,7 @@ function ajax(url, settings) {
     var dir = window.location.href.split(url);
     if (!RegExp('^(?:[a-z]+:)?//', 'i').test(url)) {
         if (window.global.domains.subdomain === "uios") {
-            url = '/photo' + url;
+            url = '/' + document.head.querySelector('[name="application-shortname"]').content + url;
         }
     }
     return new Promise((resolve,reject)=>{
