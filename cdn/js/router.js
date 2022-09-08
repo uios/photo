@@ -32,9 +32,7 @@ String.prototype.router = async function(params) {
             if (!pop && !["blob:"].includes(window.location.protocol)) {
                 const hash = global.domains.domain === "github" ? "/#" : "";
                 var goto = window.global.domains.subdomain === "uios" ? '/' + document.head.querySelector('[name="application-shortname"]').content : '';
-                const link = hash.length > 0 ? 
-                    goto + route.search + '#' + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) : 
-                    goto + route.path + route.search + route.hash;
+                const link = hash.length > 0 ? goto + hash + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) + route.search : goto + route.path + route.search + route.hash;
                 console.log({
                     hash,
                     route,
@@ -97,6 +95,7 @@ window.rout.ed.bang = async(route)=>{
     $('[data-hide]').attr("data-active", true);
     $(':not(page)[data-pages]').removeAttr("data-active");
     $(':not(page)[data-page]').removeAttr("data-active");
+    $('[data-path]').removeAttr("data-active");
 
     if (vp && vp.closest('main')) {
         $('pages[data-pages]').removeAttr("data-active");
@@ -110,6 +109,7 @@ window.rout.ed.bang = async(route)=>{
 
     $('[data-hide="' + route.page + '"]').attr("data-active", false);
     $('[data-page="' + route.page + '"]').attr("data-active", true);
+    $('[data-path="' + route.path + '"]').attr("data-active", true);
 
     var rs = $('[data-pages]');
     if (rs.length > 0) {
