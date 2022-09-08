@@ -341,7 +341,7 @@ function ajax(url, settings) {
 function getFilename(str) {
     return str.trim('/').split('/')[0].split('-').join('.').toLowerCase();
 }
-function lazyLoad(images, vp) {
+function lazyLoad(images) {
     if (images.length > 0) {
         var doc = images[0].ownerDocument;
         var win = doc.defaultView;
