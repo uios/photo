@@ -27,6 +27,11 @@ window.mvc.m ? null : (window.mvc.m = model = {
             const formatted = isNaN(daysDifference) ? "" : rtf.format(daysDifference, 'day');
             return formatted;
         }
+        ,
+        line: ()=>{
+            return new Promise((resolve,reject)=>{}
+            );
+        }
     },
     users: {
         follow: async(target)=>{
@@ -1160,7 +1165,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 indexMyUser.parentNode.classList.add('hide');
             }
 
-            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios." + window.globals.domains.tld : api.endpoint;
             const active = async(d)=>{
                 var data = JSON.parse(d);
                 const users = data.users;
@@ -1215,16 +1220,16 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
             }
             ajax(endpoint + '/v1/users?filter=suggested' + (jwt ? '&jwt=' + jwt : '')).then(suggested);
 
+            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios." + window.globals.domains.tld : api
             const f = async(d)=>{
                 var data = JSON.parse(d);
                 var posts = data.posts;
                 var feed = byId('feed-index-posts');
-                feed.innerHTML = "";
                 var lastFeedId = feed.innerHTML === "" ? 0 : parseInt(feed.firstElementChild.dataset.id);
                 var lastPostId = parseInt(posts[posts.length - 1].id);
 
-                if ((1 > 0 || lastPostId > lastFeedId) && posts.length > 0) {
-                    //var html = '';
+                if ((lastPostId > lastFeedId) && posts.length > 0) {
+                    feed.innerHTML = "";
                     var template = await ajax('/cdn/html/template/template.post.card.column.html');
                     var html = new DOMParser().parseFromString(template, "text/html").body;
                     var pp = 0;
@@ -1245,6 +1250,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                         var card = html.firstElementChild.cloneNode(true);
                         var boxes = card.all('box');
+                        card.dataset.id = post.id;
                         card.dataset.uid = uid;
 
                         var img = document.createElement('img');
@@ -1311,15 +1317,15 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         pp++;
                     } while (pp < posts.length);
                     //feed.innerHTML = html;
-
-                    resolve(route);
                 }
+
+                resolve(route);
             }
             const c = (e)=>{
                 console.log('mvc.v users user /v1/users/:user catch', {
                     e
                 });
-                model.error.code(e, v);
+                //model.error.code(e, v);
             }
             endpoint += '/v1/posts';
             endpoint += (auth.user() ? '?jwt=' + jwt : '');
