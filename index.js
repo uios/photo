@@ -145,9 +145,9 @@ function init() {
             } else {
                 byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
             }
+            go ? null : uri.router().then(go = true);
         }
         firebase.auth().onAuthStateChanged(onAuthStateChanged);
-        go ? null : uri.router().then(go = true);
     } else {
         uri.router().then(authChange);
     }

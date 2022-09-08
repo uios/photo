@@ -237,10 +237,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     }
 
                     const jwt = auth.user() ? await auth.getIdToken() : null;
-                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    const uri = endpoint + "/v1/activity/?jwt=" + jwt;
-                    console.log(uri);
-                    ajax(uri).then(a).catch(b);
+                    if (jwt) {
+                        var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                        const uri = endpoint + "/v1/activity/?jwt=" + jwt;
+                        console.log(uri);
+                        ajax(uri).then(a).catch(b);
+                    }
                 }
                 resolve(route);
             } else if (root === "chat") {
