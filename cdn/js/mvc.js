@@ -755,10 +755,20 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menus.classList.add('hide');
                             menus.classList.add('tablet-hide');
                         }
+                        if (get[2] === "edit") {
+                        }
+                        if (get[2] === "password") {
+                        }
+                        if (get[2] === "notifications") {
+                        }
+                        if (get[2] === "privacy") {
+                        }
+                        if (get[2] === "theme") {
+                        }
                     }
                 }
                 resolve(route);
-            } else if (root === "photo") {} else if (root === "post") {
+            } else if (root === "post") {
                 var vp = dom.body.find('pages[data-pages="' + getRoot() + '"]');
 
                 var post = byId('post');
