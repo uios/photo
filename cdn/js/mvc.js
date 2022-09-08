@@ -39,7 +39,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                     var lastPostId = parseInt(posts[posts.length - 1].id);
 
                     if ((lastPostId > lastFeedId) && posts.length > 0) {
-                        feed.innerHTML = "";
+                        //feed.innerHTML = "";
                         var template = await ajax('/cdn/html/template/template.post.card.column.html');
                         var html = new DOMParser().parseFromString(template, "text/html").body;
                         var pp = 0;
