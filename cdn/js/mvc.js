@@ -143,7 +143,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 lastFeedId > 0 ? obj.last = lastFeedId : null;
                 const params = new URLSearchParams(obj);
                 endpoint += '/v1/posts';
-                endpoint += '?'+params.toString();
+                endpoint += '?' + params.toString();
                 ajax(endpoint).then(f).catch(c);
             }
             );
@@ -1258,8 +1258,10 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                 model.error.code(e, v);
                 resolve(route);
             }
-        } else {
+        }
+        if (!root || (root === "activity" && $("main pages[data-active='true']").length === 0)) {
             var v = dom.body.find('page[data-page="/"]');
+            v.dataset.active = true;
             const jwt = auth.user() ? await auth.getIdToken() : null;
             var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
 
