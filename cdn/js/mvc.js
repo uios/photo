@@ -36,97 +36,99 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 const f = async(d)=>{
                     var data = JSON.parse(d);
                     var posts = data.posts;
-                    var lastPostId = parseInt(posts[posts.length - 1].id);
+                    if (posts && posts.length > 0) {
+                        var lastPostId = parseInt(posts[posts.length - 1].id);
 
-                    if ((lastPostId > lastFeedId) && posts.length > 0) {
-                        //feed.innerHTML = "";
-                        var template = await ajax('/cdn/html/template/template.post.card.column.html');
-                        var html = new DOMParser().parseFromString(template, "text/html").body;
-                        var pp = 0;
-                        do {
-                            var post = posts[pp];
-                            var caption = post.caption;
-                            var comment = post.comment;
-                            var comments = parseInt(post.comments);
-                            var created = post.created;
-                            var ext = post.format;
-                            var uid = post.uid;
-                            var user = post.user;
-                            var username = post.username;
-                            var liked = post.liked;
-                            var likes = post.likes;
-                            var saved = post.saved;
+                        if ((lastPostId > lastFeedId) && posts.length > 0) {
+                            //feed.innerHTML = "";
+                            var template = await ajax('/cdn/html/template/template.post.card.column.html');
+                            var html = new DOMParser().parseFromString(template, "text/html").body;
+                            var pp = 0;
+                            do {
+                                var post = posts[pp];
+                                var caption = post.caption;
+                                var comment = post.comment;
+                                var comments = parseInt(post.comments);
+                                var created = post.created;
+                                var ext = post.format;
+                                var uid = post.uid;
+                                var user = post.user;
+                                var username = post.username;
+                                var liked = post.liked;
+                                var likes = post.likes;
+                                var saved = post.saved;
 
-                            var card = html.firstElementChild.cloneNode(true);
-                            var boxes = card.all('box');
-                            card.dataset.id = post.id;
-                            card.dataset.uid = uid;
+                                var card = html.firstElementChild.cloneNode(true);
+                                var boxes = card.all('box');
+                                card.dataset.id = post.id;
+                                card.dataset.uid = uid;
 
-                            var img = document.createElement('img');
-                            img.src = cdn.endpoint + '/' + user + '/avi.jpg';
-                            img.setAttribute("onerror", 'this.remove()');
-                            const avi = boxes[0].find('picture');
-                            avi.innerHTML = img.outerHTML;
-                            avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + user + "/";
+                                var img = document.createElement('img');
+                                img.src = cdn.endpoint + '/' + user + '/avi.jpg';
+                                img.setAttribute("onerror", 'this.remove()');
+                                const avi = boxes[0].find('picture');
+                                avi.innerHTML = img.outerHTML;
+                                avi.dataset.href = avi.nextElementSibling.dataset.href = "/users/" + user + "/";
 
-                            var profile = boxes[0].find('span');
-                            var owner = boxes[0].find('text');
-                            profile.dataset.href = "/users/" + username + "/";
-                            avi.dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
-                            owner.textContent = username;
+                                var profile = boxes[0].find('span');
+                                var owner = boxes[0].find('text');
+                                profile.dataset.href = "/users/" + username + "/";
+                                avi.dataset.src = cdn.endpoint + "/" + user + "/avi.jpg";
+                                owner.textContent = username;
 
-                            var media = boxes[1].find('media');
-                            var content = document.createElement('img');
-                            var format = "";
-                            if (["jpg", "jpeg", "png"].includes(ext)) {
-                                var format = "photo";
-                            } else if (["mp4"].includes(ext)) {
-                                var format = "video";
-                            }
-                            content.dataset.src = cdn.endpoint + "/" + user + "/" + format + "/" + uid + "." + ext;
-                            media.insertAdjacentHTML("beforeend", content.outerHTML);
+                                var media = boxes[1].find('media');
+                                var content = document.createElement('img');
+                                var format = "";
+                                if (["jpg", "jpeg", "png"].includes(ext)) {
+                                    var format = "photo";
+                                } else if (["mp4"].includes(ext)) {
+                                    var format = "video";
+                                }
+                                content.dataset.src = cdn.endpoint + "/" + user + "/" + format + "/" + uid + "." + ext;
+                                media.insertAdjacentHTML("beforeend", content.outerHTML);
 
-                            if (liked > 0) {
-                                var actions = boxes[2];
-                                var like = actions.find('.gg-heart').closest('ico');
-                                like.classList.add('color-ff3b30');
-                            }
+                                if (liked > 0) {
+                                    var actions = boxes[2];
+                                    var like = actions.find('.gg-heart').closest('ico');
+                                    like.classList.add('color-ff3b30');
+                                }
 
-                            boxes[2].find('.gg-comment').closest('ico').dataset.href = '/photo/' + uid + '/comments/';
+                                boxes[2].find('.gg-comment').closest('ico').dataset.href = '/photo/' + uid + '/comments/';
 
-                            if (saved > 0) {
-                                var actions = boxes[2];
-                                var saved = actions.find('.gg-bookmark').closest('ico');
-                                saved.classList.add('color-ff3b30');
-                            }
+                                if (saved > 0) {
+                                    var actions = boxes[2];
+                                    var saved = actions.find('.gg-bookmark').closest('ico');
+                                    saved.classList.add('color-ff3b30');
+                                }
 
-                            if (likes > 0) {
-                                var stats = boxes[3].find('text');
-                                stats.textContent = likes + " like" + (likes > 1 ? "s" : "");
-                            }
+                                if (likes > 0) {
+                                    var stats = boxes[3].find('text');
+                                    stats.textContent = likes + " like" + (likes > 1 ? "s" : "");
+                                }
 
-                            if (caption) {
-                                var about = boxes[4];
-                                about.find('b').textContent = username;
-                                about.find('span').textContent = caption;
-                                about.classList.remove('hide');
-                            }
+                                if (caption) {
+                                    var about = boxes[4];
+                                    about.find('b').textContent = username;
+                                    about.find('span').textContent = caption;
+                                    about.classList.remove('hide');
+                                }
 
-                            if (comments > 0) {
-                                boxes[5].classList.remove('hide');
-                                boxes[5].find('text').dataset.href = "/photo/" + post.uid + "/comments/";
-                                boxes[5].find('text').textContent = "View " + (comments > 1 ? " all " : "") + comments + " comment" + (comments > 1 ? "s" : "");
-                            }
+                                if (comments > 0) {
+                                    boxes[5].classList.remove('hide');
+                                    boxes[5].find('text').dataset.href = "/photo/" + post.uid + "/comments/";
+                                    boxes[5].find('text').textContent = "View " + (comments > 1 ? " all " : "") + comments + " comment" + (comments > 1 ? "s" : "");
+                                }
 
-                            var date = boxes[6].find('text');
-                            date.textContent = model.time.date(new Date(created).getTime());
+                                var date = boxes[6].find('text');
+                                date.textContent = model.time.date(new Date(created).getTime());
 
-                            //html += card.outerHTML;
-                            feed.insertAdjacentHTML('afterbegin', card.outerHTML);
-                            pp++;
-                        } while (pp < posts.length);
-                        //feed.innerHTML = html;
-                        lazyLoad(feed.all('[data-src]'))
+                                //html += card.outerHTML;
+                                feed.insertAdjacentHTML('afterbegin', card.outerHTML);
+                                pp++;
+                            } while (pp < posts.length);
+                            //feed.innerHTML = html;
+                            lazyLoad(feed.all('[data-src]'))
+                        }
                     }
 
                     resolve(route);
