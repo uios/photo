@@ -1,0 +1,23 @@
+<column class="max-width-100pc width-400px">
+    <box class="border-bottom-1px-solid border-color-db font-size-18px line-height-24px padding-x-20px padding-y-30px">
+        <row class="align-items-center justify-center">
+            <text class="font-weight-bolder">Change Profile Picture</text>
+        </row>
+    </box>
+    <box class="border-bottom-1px-solid border-color-db color-0094f6 font-size-14px line-height-50px padding-x-20px" data-file="upload-avatar">
+        <row class="align-items-center justify-center">
+            <text class="font-weight-bolder">Upload Photo</text>
+            <input accept="image/*" id="upload-avatar" onchange="on.change.my.avatar(event)" type="file">
+        </row>
+    </box>
+    <box class="border-bottom-1px-solid border-color-db color-ff3b30 font-size-14px line-height-50px padding-x-20px" data-tap="mvc.c.my.avatar('delete')">
+        <row class="align-items-center justify-center">
+            <text class="font-weight-bolder">Remove Current Photo</text>
+        </row>
+    </box>
+    <box class="border-color-db font-size-14px line-height-50px padding-x-20px" data-tap="modal.exit(event.target)">
+        <row class="align-items-center justify-center">
+            <text>Cancel</text>
+        </row>
+    </box>
+</column>

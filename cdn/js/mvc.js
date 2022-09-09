@@ -756,15 +756,17 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menus.classList.add('tablet-hide');
                         }
                         if (get[2] === "edit") {
+                            const avatar = byId('my-avatar');
+                            const picture = avatar.find('picture');
+                            const img = document.createElement('img');
+                            img.setAttribute("onerror", 'this.remove()');
+                            img.src = cdn.endpoint + "/" + auth.user().uid + "/avi.jpg";
+                            picture.innerHTML = img.outerHTML;
                         }
-                        if (get[2] === "password") {
-                        }
-                        if (get[2] === "notifications") {
-                        }
-                        if (get[2] === "privacy") {
-                        }
-                        if (get[2] === "theme") {
-                        }
+                        if (get[2] === "password") {}
+                        if (get[2] === "notifications") {}
+                        if (get[2] === "privacy") {}
+                        if (get[2] === "theme") {}
                     }
                 }
                 resolve(route);
@@ -1646,6 +1648,28 @@ window.mvc.c ? null : (window.mvc.c = controller = {
         }
     },
     my: {
+        avatar: async(method)=>{
+            if (method === "update") {
+                const html = await ajax('/cdn/html/template/template.avatar.html');
+                modal.card(html);
+            }
+            if (method === "delete") {
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                const jwt = auth.user() ? await auth.getIdToken() : null;
+                if (jwt) {
+                    const a = (d)=>{
+                        const data = JSON.parse(d);
+                        console.log({
+                            data
+                        });
+                    }
+                    ajax(endpoint + "/v1/account/avatar?jwt=" + jwt, {
+                        dataType: "DELETE"
+                    }).then(a)
+                }
+            }
+        }
+        ,
         forgot: event=>{
             event.preventDefault();
             const form = event.target;

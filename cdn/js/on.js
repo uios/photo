@@ -321,7 +321,7 @@ window.on.touch = {
     if (elem) {
         console.log("data-file", elem, elem.find("input"));
         var file = elem.find("input");
-        //console.log(file,elem.dataset.input);
+        console.log(file, elem.dataset.input);
         if (file) {
             file.dataset.elem = elem.dataset.file;
             elem.dataset.accept ? (file.accept = elem.dataset.accept) : null;
@@ -580,9 +580,66 @@ window.on["change"] = {
         }
         );
     }
+    ,
+    my: {
+        avatar: e=>{
+            const card = e.target.closest('card');
+            on.change.file(e).then((result)=>{
+                console.log('my.avatar', {
+                    result
+                });
+                const avatar = byId('my-avatar');
+                const canvas = avatar.find('canvas');
+                var context = canvas.getContext('2d');
+                var image = new Image();
+                image.onload = async function() {
+                    const jpg = canvas.toDataURL("image/jpeg", 1);
+                    const jwt = auth.user() ? await auth.getIdToken() : null;
+                    if (jwt) {
+                        var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                        var data = new FormData();
+                        data.append('base64', result);
+                        data.append('jwt', jwt);
+                        ajax(endpoint + "/v1/account/avatar", {
+                            data,
+                            dataType: "POST"
+                        }).then((d)=>{
+                            const data = JSON.parse(d);
+                            console.log(data);
+
+                            const picture = avatar.find('picture');
+                            const img = document.createElement('img');
+                            img.src = result;
+                            picture.innerHTML = img.outerHTML;
+
+                            modal.exit(card);
+                        }
+                        );
+                    }
+                }
+                image.src = result;
+            }
+            );
+        }
+    }
 };
 
 window.on["submit"] = {
+    account: {
+        edit: (event) => {
+            event.preventDefault();
+        },
+        password: (event) => {
+            event.preventDefault();
+        },
+        notifications: (event) => {
+            event.preventDefault();
+        },
+        privacy: (event) => {
+            
+        }
+    },
+    
     my: {
         login: async(event)=>{
             event.preventDefault();
@@ -631,8 +688,8 @@ window.on["submit"] = {
                     u++;
                 } while (u < users.length);
             }
-            byId('post-photo-metadata-people').dataset.json= JSON.stringify(uids);
-            byId('post-photo-metadata-people').dataset.people= JSON.stringify(ppl);
+            byId('post-photo-metadata-people').dataset.json = JSON.stringify(uids);
+            byId('post-photo-metadata-people').dataset.people = JSON.stringify(ppl);
             byId('post-photo-metadata-people').find('span > text').textContent = uids.length > 1 ? (uids.length + ' people') : (uids.length > 0 ? uids[0].username : "");
             modal.exit(event.target);
             console.log('on.submit.post.tags', {
@@ -643,7 +700,7 @@ window.on["submit"] = {
     },
 
     search: {
-        query: async(event) => {
+        query: async(event)=>{
             event.preventDefault();
             const keywords = new URLSearchParams(window.location.search).get('keywords');
             //on.focus.out.search(byId('results-blur'));

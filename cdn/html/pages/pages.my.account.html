@@ -134,20 +134,22 @@
         </blocks>
     </wrap>
     <block class="bg-white flex-1 flex-start mobile-padding-y-50px" data-page="/my/account/*/" data-z-index="1">
-        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right margin-top-30px max-width-100pc mobile-width-100pc tablet-grid-gap-10px tablet-margin-top-20px tablet-width-360px" data-columns="1" data-path="/my/account/edit/" id="form-my-account-edit">
+        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right margin-top-30px max-width-100pc mobile-width-100pc tablet-grid-gap-10px tablet-margin-top-20px tablet-width-360px" data-columns="1" data-path="/my/account/edit/" onsubmit="on.submit.account.edit(event)" id="form-my-account-edit">
             <card>
                 <section class="flex flex-direction-row">
-                    <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
+                    <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px" data-tap="mvc.c.my.avatar('update')" id="my-avatar">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
-                            <picture class="bg-db border-radius-50pc empty margin-7px" data-height="30px" data-width="30px"></picture>
-                            <picture class="bg-db border-radius-50pc empty-state margin-left-auto tablet-margin-0" data-height="30px" data-width="30px">
+                            <picture class="bg-db border-radius-50pc empty margin-7px" data-height="36px" data-width="36px"></picture>
+                            <picture class="bg-db border-radius-50pc empty-state margin-left-auto tablet-margin-0" data-height="36px" data-width="36px">
                                 <img class="absolute bottom-0 height-75pc invert width-75pc" src="cdn/svg/user.svg">
                             </picture>
+                            <canvas class="display-none">
                         </section>
                     </box>
                     <box class="flex-basis-360px padding-right-60px -tablet-flex-0">
                         <column>
                             <text class="font-size-24px">username</text>
+                            <text class="color-0096c7 font-size-14px font-weight-bolder white-space-nowrap" data-tap="mvc.c.my.avatar('update')">Change profile picture</text>
                         </column>
                     </box>
                 </section>
@@ -168,7 +170,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-username">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -186,7 +188,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-website">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -200,7 +202,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-bio">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -225,7 +227,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-email">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -239,7 +241,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-phone">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -253,7 +255,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-gender">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
