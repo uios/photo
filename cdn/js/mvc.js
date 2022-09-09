@@ -762,6 +762,20 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             img.setAttribute("onerror", 'this.remove()');
                             img.src = cdn.endpoint + "/" + auth.user().uid + "/avi.jpg";
                             picture.innerHTML = img.outerHTML;
+                            const a = function(d) {
+                                const data = JSON.parse(d);
+                                console.log({
+                                    data
+                                });
+                                const user = data.user;
+                                const name = byId('edit-name').find('[placeholder="Name"]');
+                                name.value = user.fullname;
+                            }
+                            const jwt = auth.user() ? await auth.getIdToken() : null;
+                            if (jwt) {
+                                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                                ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                            }
                         }
                         if (get[2] === "password") {}
                         if (get[2] === "notifications") {}
