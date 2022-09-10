@@ -1954,6 +1954,9 @@ aside ~ main {
 .color-000 {
     color: #000;
 }
+body[data-theme="dark"] .color-000 {
+   color: #fff; 
+}
 
 .color-262626 {
     color: #262626;
