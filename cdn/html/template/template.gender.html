@@ -1,0 +1,36 @@
+<form class="max-width-100pc width-400px" onsubmit="on.submit.my.gender(event)">
+    <box class="border-bottom-1px-solid border-color-db font-size-14px line-height-50px padding-x-20px">
+        <row class="align-items-center justify-center">
+            <text>Gender</text>
+            <ico class="position-absolute right-0" data-tap="modal.exit(event.target)">
+                <n class="gg-close"></n>
+            </ico>
+        </row>
+    </box>
+    <box class="border-color-db font-size-14px line-height-50px padding-x-20px" data-tap="mvc.c.my.avatar('delete')">
+        <column>
+            <label class="font-size-16px margin-bottom-5px margin-top-10px padding-x-10px">
+                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                <span>Male</span>
+            </label>
+            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                <span>Female</span>
+            </label>
+            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                <span>Other</span>
+            </label>
+            <label class="font-size-16ox margin-bottom-5px padding-x-10px">
+                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                <span>Prefer not to say</span>
+            </label>
+        </column>
+    </box>
+    <box class="background-color-0096c7 border-radius-3px color-fff font-size-14px line-height-50px margin-20px padding-x-20px" data-tap="modal.exit(event.target)">
+        <row class="align-items-center justify-center">
+            <text>Done</text>
+            <input type="submit">
+        </row>
+    </box>
+</form>

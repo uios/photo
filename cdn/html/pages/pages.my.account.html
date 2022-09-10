@@ -262,7 +262,7 @@
                             <text class="bolder tablet-margin-bottom-5px width-100pc">Gender</text>
                         </section>
                     </box>
-                    <box class="flex-basis-360px padding-right-60px -tablet-flex-0 tablet-padding-x-20px">
+                    <box class="flex-basis-360px padding-right-60px -tablet-flex-0 tablet-padding-x-20px" data-tap="mvc.c.my.gender()">
                         <column>
                             <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-30px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" placeholder="Gender" readonly type="text">
                         </column>
@@ -675,20 +675,20 @@
                     <form class="box-sizing-border-box padding-bottom-20px width-100pc">
                         <column>
                             <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">Auto</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                                <span class="text-transform-capitalize font-size-16px" data-before="auto"></span>
+                                <input class="margin-right-5px" name="account-theme" onchange="on.change.my.theme(event.target)" type="radio">
                             </label>
                             <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">Light</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                                <span class="text-transform-capitalize font-size-16px" data-before="light"></span>
+                                <input class="margin-right-5px" name="account-theme" onchange="on.change.my.theme(event.target)" type="radio">
                             </label>
                             <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">Dark</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                                <span class="text-transform-capitalize font-size-16px" data-before="dark"></span>
+                                <input class="margin-right-5px" name="account-theme" onchange="on.change.my.theme(event.target)" type="radio">
                             </label>
                             <label class="flex margin-bottom-5px align-center padding-top-10px space-between width-100pc">
-                                <span class="font-size-16px">System</span>
-                                <input class="margin-right-5px" name="account-theme" type="radio">
+                                <span class="text-transform-capitalize font-size-16px" data-before="system"></span>
+                                <input class="margin-right-5px" name="account-theme" onchange="on.change.my.theme(event.target)" type="radio">
                             </label>
                         </column>
                     </form>

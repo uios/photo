@@ -756,31 +756,60 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             menus.classList.add('tablet-hide');
                         }
                         if (get[2] === "edit") {
-                            const avatar = byId('my-avatar');
-                            const picture = avatar.find('picture');
-                            const img = document.createElement('img');
-                            img.setAttribute("onerror", 'this.remove()');
-                            img.src = cdn.endpoint + "/" + auth.user().uid + "/avi.jpg";
-                            picture.innerHTML = img.outerHTML;
-                            const a = function(d) {
-                                const data = JSON.parse(d);
-                                console.log({
-                                    data
-                                });
-                                const user = data.user;
-                                const name = byId('edit-name').find('[placeholder="Name"]');
-                                name.value = user.fullname;
-                            }
-                            const jwt = auth.user() ? await auth.getIdToken() : null;
-                            if (jwt) {
-                                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                            const u = auth.user();
+                            if (u) {
+                                const avatar = byId('my-avatar');
+                                const picture = avatar.find('picture');
+                                const img = document.createElement('img');
+                                img.setAttribute("onerror", 'this.remove()');
+                                img.src = cdn.endpoint + "/" + u.uid + "/avi.jpg";
+                                picture.innerHTML = img.outerHTML;
+                                const email = byId('edit-email').find('[placeholder="Email"]');
+                                email.value = u.email;
+                                const phone = byId('edit-phone').find('[placeholder="Phone number"]');
+                                phone.value = u.phoneNumber;
+                                const a = function(d) {
+                                    const data = JSON.parse(d);
+                                    console.log({
+                                        data
+                                    });
+                                    const user = data.user;
+                                    const name = byId('edit-name').find('[placeholder="Name"]');
+                                    name.value = user.fullname;
+                                    const username = byId('edit-username').find('[placeholder="Username"]');
+                                    username.value = user.username;
+                                    const website = byId('edit-website').find('[placeholder="Website"]');
+                                    website.value = user.website;
+                                    const bio = byId('edit-bio').find('textarea');
+                                    bio.value = user.bio;
+                                }
+                                const jwt = await auth.getIdToken();
+                                if (jwt) {
+                                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                                    ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                                }
                             }
                         }
                         if (get[2] === "password") {}
                         if (get[2] === "notifications") {}
                         if (get[2] === "privacy") {}
-                        if (get[2] === "theme") {}
+                        if (get[2] === "theme") {
+                            const a = function(d) {
+                                const data = JSON.parse(d);
+                                console.log({
+                                    data
+                                });
+                                const settings = data.settings;
+                                const json = settings.json;
+                                const theme = json.theme;
+                                byId('form-my-account-theme').find('[data-before="' + theme + '"]').nextElementSibling.setAttribute('checked', true);
+                            }
+                            const jwt = await auth.getIdToken();
+                            if (jwt) {
+                                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                                ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                            }
+                        }
                     }
                 }
                 resolve(route);
@@ -1699,6 +1728,11 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             );
         }
         ,
+        gender: async()=>{
+            const html = await ajax('/cdn/html/template/template.gender.html');
+            modal.card(html);
+        }
+        ,
         login: (event,f)=>{
             event.preventDefault();
             auth.account.login(event).then(e=>(f ? f : '/').router()).catch(e=>{
@@ -2090,6 +2124,35 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             $('[data-uid="' + uid + '"] label').length > 0 ? $('[data-uid="' + uid + '"] label')[0].click() : null;
             console.log(uid, $('[data-uid="' + uid + '"] label'));
             box.remove();
+        }
+    },
+    system: {
+        theme: type=>{
+            if (type === "auto") {
+                document.body.dataset.theme = "auto";
+            } else if (type === "light") {
+                document.body.removeAttribute('data-theme');
+            } else if (type === "dark") {
+                document.body.dataset.theme = "dark";
+            }
+
+            window.tS = event=>{
+                if (event.matches) {
+                    document.body.dataset.theme = "dark";
+                } else {
+                    document.body.removeAttribute('data-theme');
+                }
+            }
+            if (type === "system") {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.dataset.theme = "dark";
+                } else {
+                    document.body.removeAttribute('data-theme');
+                }
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', tS);
+            } else {
+                window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', tS);
+            }
         }
     },
     tags: {

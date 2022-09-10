@@ -17,8 +17,13 @@
     margin-top: 20px;
 }
 
-/*padding*/
+/*PADDING*/
 .padding-y-30px {
     padding-bottom: 30px;
     padding-top: 30px;
+}
+
+/*TEXT TRANSFORM*/
+.text-transform-capitalize {
+    text-transform: capitalize;
 }
