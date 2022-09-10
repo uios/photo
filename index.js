@@ -127,12 +127,12 @@ function init() {
     var uri = ((dom.boot.dataset.path ? dom.boot.dataset.path : url) + (window.location.search + window.location.hash));
 
     var go = false;
-        const authChange = function(e) {
-            const load = function(e) {
-                dom.body.dataset.load = "ed";
-            };
+    const authChange = function(e) {
+        const load = function(e) {
             dom.body.dataset.load = "ed";
         };
+        dom.body.dataset.load = "ed";
+    };
     if (window.firebase) {
         firebase.initializeApp(auth.config);
         const onAuthStateChanged = async function(user) {
@@ -144,9 +144,11 @@ function init() {
             const a = function(d) {
                 const data = JSON.parse(d);
                 const settings = data.settings;
-                const json = settings.json;
-                const theme = json.theme;
-                controller.system.theme(theme);
+                if (settings) {
+                    const json = settings.json;
+                    const theme = json.theme;
+                    controller.system.theme(theme);
+                }
                 auth.change(user).then(authChange);
             }
             const jwt = await auth.getIdToken();

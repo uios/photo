@@ -624,31 +624,6 @@ window.on["change"] = {
         ,
         theme: async(target)=>{
             const type = target.previousElementSibling.dataset.before;
-            if (type === "auto") {
-                document.body.dataset.theme = "auto";
-            } else if (type === "light") {
-                document.body.removeAttribute('data-theme');
-            } else if (type === "dark") {
-                document.body.dataset.theme = "dark";
-            }
-
-            window.tS = event=>{
-                if (event.matches) {
-                    document.body.dataset.theme = "dark";
-                } else {
-                    document.body.removeAttribute('data-theme');
-                }
-            }
-            if (type === "system") {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.body.dataset.theme = "dark";
-                } else {
-                    document.body.removeAttribute('data-theme');
-                }
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', tS);
-            } else {
-                window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', tS);
-            }
             if (auth.user()) {
                 const jwt = await auth.getIdToken();
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
@@ -657,6 +632,7 @@ window.on["change"] = {
                 }).then(d=>{
                     const data = JSON.parse(d);
                     console.log(data);
+                    controller.system.theme(type);
                 }
                 );
             }

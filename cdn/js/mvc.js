@@ -800,8 +800,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     data
                                 });
                                 const settings = data.settings;
-                                const json = settings.json;
-                                const theme = json.theme;
+                                var theme = "light";
+                                if (settings) {
+                                    const json = settings.json;
+                                    theme = json.theme;
+                                }
                                 byId('form-my-account-theme').find('[data-before="' + theme + '"]').nextElementSibling.setAttribute('checked', true);
                             }
                             const jwt = await auth.getIdToken();
@@ -2128,14 +2131,6 @@ window.mvc.c ? null : (window.mvc.c = controller = {
     },
     system: {
         theme: type=>{
-            if (type === "auto") {
-                document.body.dataset.theme = "auto";
-            } else if (type === "light") {
-                document.body.removeAttribute('data-theme');
-            } else if (type === "dark") {
-                document.body.dataset.theme = "dark";
-            }
-
             window.tS = event=>{
                 if (event.matches) {
                     document.body.dataset.theme = "dark";
@@ -2152,6 +2147,41 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', tS);
             } else {
                 window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', tS);
+            }
+
+            if (type === "auto") {
+                controller.system.time();
+            } else {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                    window.timer = 0;
+                }
+            }
+
+            if (type === "light") {
+                document.body.removeAttribute('data-theme');
+            }
+
+            if (type === "dark") {
+                document.body.dataset.theme = "dark";
+            }
+        }
+        ,
+        time: function(io) {
+            const today = new Date();
+            let h = today.getHours();
+            let hr = h > 12 ? h - 12 : (h ? h : 12);
+            let m = checkTime(today.getMinutes());
+            let s = checkTime(today.getSeconds());
+            let ap = h < 12 ? "a" : "p";
+            let t = hr + ":" + m + ":" + s;
+
+            h > 6 && h < 18 ? document.body.removeAttribute('data-theme') : document.body.dataset.theme = "dark";
+
+            window.timer = setTimeout(controller.system.time, 1000);
+
+            function checkTime(i) {
+                return (i = i < 10 ? "0" + i : i);
             }
         }
     },
