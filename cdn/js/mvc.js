@@ -800,6 +800,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         website.value = user.website;
                                         const bio = byId('edit-bio').find('textarea');
                                         bio.value = user.bio;
+                                        const gender = byId('edit-gender').find('input');
+                                        gender.value = user.gender;
                                     }
                                 }
                                 const jwt = await auth.getIdToken();
