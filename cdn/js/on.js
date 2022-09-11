@@ -666,6 +666,7 @@ window.on["submit"] = {
                 data.append("gender", gender);
                 const a = function(d) {
                     const data = JSON.parse(d);
+                    auth.user().reload();
                     console.log({data});
                 }
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
@@ -700,6 +701,14 @@ window.on["submit"] = {
                 alert("Authentication Failed");
             }
             );
+        },
+        gender: (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const checked = form.find(':checked').nextElementSibling;
+            const gender = checked.textContent;
+            byId('edit-gender').find('input').value = gender;
+            modal.exit(form);
         }
     },
 
