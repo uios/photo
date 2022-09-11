@@ -773,15 +773,34 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     console.log({
                                         data
                                     });
+                                    const settings = data.settings;
+                                    if (settings) {
+                                        const json = settings.json;
+                                        if (json) {
+                                            const account = json.account;
+                                            if (account) {
+                                                const name = byId('edit-name').find('[placeholder="Name"]');
+                                                name.value = account.name;
+                                                const username = byId('edit-username').find('[placeholder="Username"]');
+                                                username.value = account.username;
+                                                const website = byId('edit-website').find('[placeholder="Website"]');
+                                                website.value = account.website;
+                                                const bio = byId('edit-bio').find('textarea');
+                                                bio.value = account.bio;
+                                            }
+                                        }
+                                    }
                                     const user = data.user;
-                                    const name = byId('edit-name').find('[placeholder="Name"]');
-                                    name.value = user.fullname;
-                                    const username = byId('edit-username').find('[placeholder="Username"]');
-                                    username.value = user.username;
-                                    const website = byId('edit-website').find('[placeholder="Website"]');
-                                    website.value = user.website;
-                                    const bio = byId('edit-bio').find('textarea');
-                                    bio.value = user.bio;
+                                    if (user) {
+                                        const name = byId('edit-name').find('[placeholder="Name"]');
+                                        name.value = user.fullname;
+                                        const username = byId('edit-username').find('[placeholder="Username"]');
+                                        username.value = user.username;
+                                        const website = byId('edit-website').find('[placeholder="Website"]');
+                                        website.value = user.website;
+                                        const bio = byId('edit-bio').find('textarea');
+                                        bio.value = user.bio;
+                                    }
                                 }
                                 const jwt = await auth.getIdToken();
                                 if (jwt) {

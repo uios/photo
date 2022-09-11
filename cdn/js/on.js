@@ -642,8 +642,35 @@ window.on["change"] = {
 
 window.on["submit"] = {
     account: {
-        edit: (event)=>{
+        edit: async(event)=>{
             event.preventDefault();
+            alert("Account Edit");
+            if(auth.user()) {
+                const jwt = await auth.getIdToken();
+                const name = byId('edit-name').find('[placeholder="Name"]').value;
+                const username = byId('edit-username').find('[placeholder="Username"]').value;
+                const website = byId('edit-website').find('[placeholder="Website"]').value;
+                const bio = byId('edit-bio').find('textarea').value;
+                const email = byId('edit-email').find('[placeholder="Email"]').value;
+                const phone = parseInt(byId('edit-phone').find('[placeholder="Phone number"]').value);
+                const gender = byId('edit-gender').find('[placeholder="Gender"]').value;
+                //const data = {name, username, website, bio, email, phone, gender};
+                const data = new FormData();
+                data.append("jwt", jwt);
+                data.append("name", name);
+                data.append("username", username);
+                data.append("website", website);
+                data.append("bio", bio);
+                data.append("email", email);
+                data.append("phone", phone);
+                data.append("gender", gender);
+                const a = function(d) {
+                    const data = JSON.parse(d);
+                    console.log({data});
+                }
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                ajax(endpoint + "/v1/account/edit/", {data, dataType: "POST"}).then(a);
+            }
         }
         ,
         password: (event)=>{
