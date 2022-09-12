@@ -782,7 +782,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                 const name = byId('edit-name').find('[placeholder="Name"]');
                                                 name.value = account.name;
                                                 const username = byId('edit-username').find('[placeholder="Username"]');
-                                                username.value = account.username;
+                                                byId('form-my-account-edit').find('text').textContent = username.value = account.username;
                                                 const website = byId('edit-website').find('[placeholder="Website"]');
                                                 website.value = account.website;
                                                 const bio = byId('edit-bio').find('textarea');
@@ -813,13 +813,34 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         }
                         if (get[2] === "password") {
-                            const oldPassword = byId('edit-old-password').find('input');
-                            const newPassword = byId('edit-new-password').find('input');
-                            const confirmPassword = byId('edit-confirm-password').find('input');
-                            oldPassword.value = "";
-                            newPassword.value = "";
-                            confirmPassword.value = "";
-                            resolve(route);
+                            const user = auth.user();
+                            if (user) {
+                                const oldPassword = byId('edit-old-password').find('input');
+                                const newPassword = byId('edit-new-password').find('input');
+                                const confirmPassword = byId('edit-confirm-password').find('input');
+                                oldPassword.value = "";
+                                newPassword.value = "";
+                                confirmPassword.value = "";
+                                const jwt = await auth.getIdToken();
+                                if (jwt) {
+                                    const a = function(d) {
+                                        const data = JSON.parse(d);
+                                        console.log({
+                                            data
+                                        });
+                                        const img = document.createElement('img');
+                                        img.src = cdn.endpoint + "/" + user.uid + "/avi.jpg";
+                                        byId("form-my-account-password").find('picture').innerHTML = img.outerHTML;
+                                        const username = byId("form-my-account-password").find('[placeholder="username"]');
+                                        username.textContent = data.user.username;
+                                        resolve(route);
+                                    }
+                                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                                    ajax(endpoint + "/v1/users/" + (user.uid) + "?jwt=" + jwt).then(a);
+                                }
+                            } else {
+                                resolve(route);
+                            }
                         }
                         if (get[2] === "notifications") {
                             resolve(route);
