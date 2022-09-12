@@ -681,14 +681,17 @@ window.on["submit"] = {
         ,
         reset: async()=>{
             const user = auth.user();
-            if(user) {
-                firebase.auth().sendPasswordResetEmail(user.email).then(()=>{
-                    alert("Password email sent!");
-                }
-                ).catch((error)=>{
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    alert(errorMessage);
+            if (user) {
+                modal.confirm("Are you sure you want to send a pasword reset link to " + user.email + "?", ["Yes", "No"], ()=>{
+                    firebase.auth().sendPasswordResetEmail(user.email).then(()=>{
+                        alert("Password email sent!");
+                    }
+                    ).catch((error)=>{
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        alert(errorMessage);
+                    }
+                    )
                 }
                 );
             }

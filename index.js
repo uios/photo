@@ -147,17 +147,21 @@ function init() {
                         controller.system.theme(theme);
                     }
                     auth.change(user).then(authChange);
+                    go ? null : uri.router().then(function() {
+                        go = true;
+                        authChange();
+                    });
                 }
                 const jwt = await auth.getIdToken();
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                 ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
             } else {
                 byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
+                go ? null : uri.router().then(function() {
+                    go = true;
+                    authChange();
+                });
             }
-            go ? null : uri.router().then(function() {
-                go = true;
-                authChange();
-            });
         }
         firebase.auth().onAuthStateChanged(onAuthStateChanged);
     } else {

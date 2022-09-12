@@ -803,6 +803,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         const gender = byId('edit-gender').find('input');
                                         gender.value = user.gender;
                                     }
+                                    resolve(route);
                                 }
                                 const jwt = await auth.getIdToken();
                                 if (jwt) {
@@ -818,9 +819,14 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             oldPassword.value = "";
                             newPassword.value = "";
                             confirmPassword.value = "";
+                            resolve(route);
                         }
-                        if (get[2] === "notifications") {}
-                        if (get[2] === "privacy") {}
+                        if (get[2] === "notifications") {
+                            resolve(route);
+                        }
+                        if (get[2] === "privacy") {
+                            resolve(route);
+                        }
                         if (get[2] === "theme") {
                             const a = function(d) {
                                 const data = JSON.parse(d);
@@ -834,6 +840,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     theme = json.theme;
                                 }
                                 byId('form-my-account-theme').find('[data-before="' + theme + '"]').nextElementSibling.setAttribute('checked', true);
+                                resolve(route);
                             }
                             const jwt = await auth.getIdToken();
                             if (jwt) {
@@ -842,8 +849,9 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         }
                     }
+                } else {
+                    resolve(route);
                 }
-                resolve(route);
             } else if (root === "post") {
                 var vp = dom.body.find('pages[data-pages="' + getRoot() + '"]');
 
