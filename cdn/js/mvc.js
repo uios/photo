@@ -811,7 +811,8 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 }
                             }
                         }
-                        if (get[2] === "password") {}
+                        if (get[2] === "password") {
+                        }
                         if (get[2] === "notifications") {}
                         if (get[2] === "privacy") {}
                         if (get[2] === "theme") {

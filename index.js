@@ -138,23 +138,26 @@ function init() {
         const onAuthStateChanged = async function(user) {
             if (user) {
                 byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "<img onerror='model.error.image(this)' src='" + (cdn.endpoint + "/" + user.uid + "/avi.jpg") + "'>";
+                const a = function(d) {
+                    const data = JSON.parse(d);
+                    const settings = data.settings;
+                    if (settings) {
+                        const json = settings.json;
+                        const theme = json.theme;
+                        controller.system.theme(theme);
+                    }
+                    auth.change(user).then(authChange);
+                }
+                const jwt = await auth.getIdToken();
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
             } else {
                 byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
             }
-            const a = function(d) {
-                const data = JSON.parse(d);
-                const settings = data.settings;
-                if (settings) {
-                    const json = settings.json;
-                    const theme = json.theme;
-                    controller.system.theme(theme);
-                }
-                auth.change(user).then(authChange);
-            }
-            const jwt = await auth.getIdToken();
-            var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-            ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
-            go ? null : uri.router().then(go = true);
+            go ? null : uri.router().then(function() {
+                go = true;
+                authChange();
+            });
         }
         firebase.auth().onAuthStateChanged(onAuthStateChanged);
     } else {

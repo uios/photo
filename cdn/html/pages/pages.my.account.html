@@ -281,7 +281,7 @@
                 </section>
             </card>
         </form>
-        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/password/" id="form-my-account-password">
+        <form class="grid-gap-20px grid-template-columns-100pc margin-bottom-20px margin-right max-width-100pc mobile-width-100pc tablet-width-360px" data-columns="1" data-path="/my/account/password/" id="form-my-account-password" onsubmit="on.submit.account.password(event)">
             <card class="margin-bottom-30px margin-top-30px">
                 <section class="flex flex-direction-row">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0">
@@ -299,7 +299,7 @@
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-old-password">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -308,12 +308,12 @@
                     </box>
                     <box class="flex-basis-360px padding-right-60px -tablet-flex-0 tablet-padding-x-20px">
                         <column>
-                            <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-40px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" type="text">
+                            <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-40px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" type="password">
                         </column>
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-new-password">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -322,12 +322,12 @@
                     </box>
                     <box class="flex-basis-360px padding-right-60px -tablet-flex-0 tablet-padding-x-20px">
                         <column>
-                            <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-40px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" type="text">
+                            <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-40px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" type="password">
                         </column>
                     </box>
                 </section>
             </card>
-            <card>
+            <card id="edit-confirm-password">
                 <section class="flex flex-direction-row -tablet-flex-direction-column">
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0 tablet-padding-x-20px">
                         <section class="-tablet-text-align-unset text-align-right width-100pc">
@@ -336,7 +336,7 @@
                     </box>
                     <box class="flex-basis-360px padding-right-60px -tablet-flex-0 tablet-padding-x-20px">
                         <column>
-                            <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-40px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" type="text">
+                            <input class="box-sizing-border-box border-1px-solid border-color-db border-radius-5px font-size-16px height-40px margin-bottom-10px padding-left-10px padding-right-10px width-100pc" type="password">
                         </column>
                     </box>
                 </section>
@@ -357,7 +357,7 @@
                     <box class="box-sizing-border-box flex-0-0-200px margin-top-5px padding-left-30px padding-right-30px -tablet-flex-0"></box>
                     <box class="flex-basis-360px padding-right-60px -tablet-flex-0 tablet-padding-x-20px">
                         <section>
-                            <text class="bolder fg-b font-size-14px margin-top-20px">Forgot Password?</text>
+                            <text class="bolder fg-b font-size-14px margin-top-20px" data-tap="on.submit.account.reset()">Forgot Password?</text>
                             <input type="submit">
                         </section>
                     </box>

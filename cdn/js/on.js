@@ -645,7 +645,7 @@ window.on["submit"] = {
         edit: async(event)=>{
             event.preventDefault();
             alert("Account Edit");
-            if(auth.user()) {
+            if (auth.user()) {
                 const jwt = await auth.getIdToken();
                 const name = byId('edit-name').find('[placeholder="Name"]').value;
                 const username = byId('edit-username').find('[placeholder="Username"]').value;
@@ -667,15 +667,62 @@ window.on["submit"] = {
                 const a = function(d) {
                     const data = JSON.parse(d);
                     auth.user().reload();
-                    console.log({data});
+                    console.log({
+                        data
+                    });
                 }
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/account/edit/", {data, dataType: "POST"}).then(a);
+                ajax(endpoint + "/v1/account/edit/", {
+                    data,
+                    dataType: "POST"
+                }).then(a);
             }
         }
         ,
-        password: (event)=>{
+        reset: async()=>{
+            const user = auth.user();
+            if(user) {
+                firebase.auth().sendPasswordResetEmail(user.email).then(()=>{
+                    alert("Password email sent!");
+                }
+                ).catch((error)=>{
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                }
+                );
+            }
+        }
+        ,
+        password: async(event)=>{
             event.preventDefault();
+
+            var user = auth.user();
+            if (user) {
+
+                const oldPassword = byId('edit-old-password').find('input');
+                const newPassword = byId('edit-new-password').find('input');
+                const confirmPassword = byId('edit-confirm-password').find('input');
+
+                if (oldPassword.value && newPassword.value && confirmPassword.value) {
+                    if (newPassword.value === confirmPassword.value) {
+
+                        alert("authenticating: " + user.email + ":" + oldPassword.value);
+                        var credential = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword.value);
+
+                        user.reauthenticateWithCredential(credential).then(function() {
+                            firebase.auth().currentUser.updatePassword(confirmPassword.value);
+                            oldPassword.value = "";
+                            newPassword.value = "";
+                            confirmPassword.value = "";
+                            alert("Password Updated");
+                        }).catch(function(error) {
+                            alert("nonauthenticated");
+                        });
+
+                    }
+                }
+            }
         }
         ,
         notifications: (event)=>{
@@ -701,8 +748,9 @@ window.on["submit"] = {
                 alert("Authentication Failed");
             }
             );
-        },
-        gender: (event) => {
+        }
+        ,
+        gender: (event)=>{
             event.preventDefault();
             const form = event.target;
             const checked = form.find(':checked').nextElementSibling;
