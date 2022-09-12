@@ -812,6 +812,12 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         }
                         if (get[2] === "password") {
+                            const oldPassword = byId('edit-old-password').find('input');
+                            const newPassword = byId('edit-new-password').find('input');
+                            const confirmPassword = byId('edit-confirm-password').find('input');
+                            oldPassword.value = "";
+                            newPassword.value = "";
+                            confirmPassword.value = "";
                         }
                         if (get[2] === "notifications") {}
                         if (get[2] === "privacy") {}
