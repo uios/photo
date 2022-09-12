@@ -572,21 +572,23 @@
             <card class="padding-20px">
                 <column>
                     <text class="font-size-24px margin-bottom-20px width-100pc">Account Privacy</text>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc" id="form-my-private-account" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <label class="margin-bottom-5px">
-                                <input class="margin-right-5px" type="checkbox">
+                                <input class="margin-right-5px" onchange="on.change.my.privacy(event)" type="checkbox">
                                 <span class="bolder font-size-14px">Private Account</span>
+                                <input type="submit">
                             </label>
                             <text class="color-8e font-size-14px margin-top-10px">When your account is private, only people you approve can see your photos and videos on Instagram. Your existing followers won't be affected.</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-activity-status" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Activity Status</text>
                             <label class="margin-bottom-5px">
-                                <input checked class="border-radius-50pc margin-right-5px" type="checkbox">
+                                <input checked class="border-radius-50pc margin-right-5px" onchange="on.change.my.privacy(event)" type="checkbox">
                                 <span class="bolder font-size-14px">Show Activity Status</span>
+                                <input type="submit">
                             </label>
                             <text class="color-8e font-size-14px margin-top-10px">
                                 <span>Allow accounts you follow and anyone you message to see when you were last active or are currently active on Instagram apps. When this is turned off, you won't be able to see the activity status of other accounts.</span>
@@ -595,15 +597,15 @@
                             <text class="color-8e font-size-14px margin-top-10px">You can continue to use our services if active status is off.</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-your-photos" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Photos of You</text>
                             <label class="margin-bottom-5px">
-                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" type="radio">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" onchange="on.change.my.privacy(event)" type="radio">
                                 <span class="bolder font-size-14px">Add Automatically</span>
                             </label>
                             <label>
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" type="radio">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-photosofyou" onchange="on.change.my.privacy(event)" type="radio">
                                 <span class="bolder font-size-14px">Add Manually</span>
                             </label>
                             <text class="color-8e font-size-14px margin-top-10px">
@@ -611,58 +613,62 @@
                                 <rgb class="bolder fg-b">Learn more</rgb>
                                 <span>about Photos of You.</span>
                             </text>
+                            <input type="submit">
                         </column>
                     </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-allow-mentions" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Mentions</text>
                             <text class="bolder font-size-16px margin-bottom-30px">Allow @mentions from</text>
                             <label class="font-size-16px margin-bottom-5px">
-                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" type="radio">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" onchange="on.change.my.privacy(event)" type="radio">
                                 <span>Everyone</span>
                             </label>
                             <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" type="radio">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" onchange="on.change.my.privacy(event)" type="radio">
                                 <span>People You Follow</span>
                             </label>
                             <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" type="radio">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-mentions" onchange="on.change.my.privacy(event)" type="radio">
                                 <span>No One</span>
                             </label>
+                            <input type="submit">
                             <text class="color-8e font-size-12px margin-top-10px">Choose who can @mention you to link your account in their stories, comments, live videos, and captions. When people try to @mention you, they'll see if you don't allow @mentions.</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-posts-stats" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Posts</text>
                             <text class="bolder font-size-16px margin-bottom-5px">Likes and Views</text>
                             <row class="align-center padding-top-10px space-between width-100pc">
                                 <text class="font-size-16px">Hide Like and View Counts</text>
                                 <label class="align-center inline-flex space-between">
-                                    <input class="opacity-0 height-0 width-0" type="checkbox">
+                                    <input class="opacity-0 height-0 width-0" onchange="on.change.my.privacy(event)" type="checkbox">
                                     <row class="bg-db -checked-bg-0096c7 box-sizing-border-box border-radius-50px color-db height-30px padding-3px relative transition-1s width-60px">
                                         <flex class="bg-white border-radius-50px height-24px margin-3px transition-1s -checked-translateX-30px width-24px"></flex>
                                     </row>
                                 </label>
                             </row>
+                            <input type="submit">
                             <text class="color-8e font-size-12px margin-top-10px">You won't see the total number of likes and views on posts from other accounts. You can hide like counts on your own posts when you create them by going to Advanced Settings and turning on "Hide Like and View Counts on This Post".</text>
                         </column>
                     </form>
-                    <form class="box-sizing-border-box padding-y-20px width-100pc">
+                    <form class="box-sizing-border-box padding-y-20px width-100pc" id="form-my-allow-tags" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="bolder font-size-16px margin-bottom-30px">Allow tags from</text>
                             <label class="font-size-16px margin-bottom-5px">
-                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <input checked class="border-radius-50pc margin-right-5px" name="account-privacy-tags" onchange="on.change.my.privacy(event)" type="radio">
                                 <span>Everyone</span>
                             </label>
                             <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" onchange="on.change.my.privacy(event)" type="radio">
                                 <span>People You Follow</span>
                             </label>
                             <label class="font-size-16ox margin-bottom-5px">
-                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" type="radio">
+                                <input class="border-radius-50pc margin-right-5px" name="account-privacy-tags" onchange="on.change.my.privacy(event)" type="radio">
                                 <span>No One</span>
                             </label>
+                            <input type="submit">
                         </column>
                     </form>
                 </column>

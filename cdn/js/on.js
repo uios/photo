@@ -622,6 +622,11 @@ window.on["change"] = {
             );
         }
         ,
+        privacy: (event) => {
+            const target = event.target;
+            const form = target.closest('form');
+            form.find('[type="submit"]').click();
+        },
         theme: async(target)=>{
             const type = target.previousElementSibling.dataset.before;
             if (auth.user()) {
@@ -760,6 +765,37 @@ window.on["submit"] = {
             const gender = checked.textContent;
             byId('edit-gender').find('input').value = gender;
             modal.exit(form);
+        },
+        privacy: (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const id = form.id;
+            console.log(772,{form,id});
+            const data = new FormData();
+            if(id === "form-my-private-account") { 
+                const privateAccount = "";
+                data.append("private-account", privateAccount);
+            }
+            if(id === "form-my-activity-status") {
+                const activityStatus = ""
+                data.append("activity-status", activityStatus);
+            }
+            if(id === "form-my-your-photos") {
+                const yourPhotos = "";
+                data.append("your-photos", yourPhotos);        
+            }
+            if(id === "form-my-allow-mentions") {
+                const allowMentions = "";
+                data.append("allow-mentions", allowMentions);
+            }
+            if(id === "form-my-posts-stats") {
+                const postsStats = "";
+                data.append("posts-stats", postsStats);
+            }
+            if(id === "form-my-allow-tags") {
+                const allowTags ="";
+                data.append("allow-tags", allowTags);
+            }
         }
     },
 
