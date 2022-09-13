@@ -570,9 +570,9 @@
         </form>
         <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc" data-columns="1" data-path="/my/account/privacy/" id="form-my-account-privacy">
             <card class="padding-20px">
-                <column>
+                <form id="form-my-privacy" onsubmit="on.submit.my.privacy(event)">
                     <text class="font-size-24px margin-bottom-20px width-100pc">Account Privacy</text>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc" id="form-my-private-account" onsubmit="on.submit.my.privacy(event)">
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-bottom-20px width-100pc" id="form-my-private-account" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <label class="margin-bottom-5px">
                                 <input class="margin-right-5px" onchange="on.change.my.privacy(event)" type="checkbox">
@@ -581,8 +581,8 @@
                             </label>
                             <text class="color-8e font-size-14px margin-top-10px">When your account is private, only people you approve can see your photos and videos on Instagram. Your existing followers won't be affected.</text>
                         </column>
-                    </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-activity-status" onsubmit="on.submit.my.privacy(event)">
+                    </box>
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-activity-status" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Activity Status</text>
                             <label class="margin-bottom-5px">
@@ -596,8 +596,8 @@
                             </text>
                             <text class="color-8e font-size-14px margin-top-10px">You can continue to use our services if active status is off.</text>
                         </column>
-                    </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-your-photos" onsubmit="on.submit.my.privacy(event)">
+                    </box>
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-your-photos" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Photos of You</text>
                             <label class="margin-bottom-5px">
@@ -615,8 +615,8 @@
                             </text>
                             <input type="submit">
                         </column>
-                    </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-allow-mentions" onsubmit="on.submit.my.privacy(event)">
+                    </box>
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-allow-mentions" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Mentions</text>
                             <text class="bolder font-size-16px margin-bottom-30px">Allow @mentions from</text>
@@ -635,8 +635,8 @@
                             <input type="submit">
                             <text class="color-8e font-size-12px margin-top-10px">Choose who can @mention you to link your account in their stories, comments, live videos, and captions. When people try to @mention you, they'll see if you don't allow @mentions.</text>
                         </column>
-                    </form>
-                    <form class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-posts-stats" onsubmit="on.submit.my.privacy(event)">
+                    </box>
+                    <box class="box-sizing-border-box border-bottom-1px-solid border-color-db padding-y-20px width-100pc" id="form-my-posts-stats" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="font-size-24px margin-bottom-20px width-100pc">Posts</text>
                             <text class="bolder font-size-16px margin-bottom-5px">Likes and Views</text>
@@ -652,8 +652,8 @@
                             <input type="submit">
                             <text class="color-8e font-size-12px margin-top-10px">You won't see the total number of likes and views on posts from other accounts. You can hide like counts on your own posts when you create them by going to Advanced Settings and turning on "Hide Like and View Counts on This Post".</text>
                         </column>
-                    </form>
-                    <form class="box-sizing-border-box padding-y-20px width-100pc" id="form-my-allow-tags" onsubmit="on.submit.my.privacy(event)">
+                    </box>
+                    <box class="box-sizing-border-box padding-y-20px width-100pc" id="form-my-allow-tags" onsubmit="on.submit.my.privacy(event)">
                         <column>
                             <text class="bolder font-size-16px margin-bottom-30px">Allow tags from</text>
                             <label class="font-size-16px margin-bottom-5px">
@@ -670,8 +670,8 @@
                             </label>
                             <input type="submit">
                         </column>
-                    </form>
-                </column>
+                    </box>
+                </form>
             </card>
         </section>
         <section class="grid-gap-20px grid-template-columns-100pc margin-right width-100pc" data-columns="1" data-path="/my/account/theme/" id="form-my-account-theme">

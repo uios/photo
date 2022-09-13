@@ -805,9 +805,23 @@ window.on["submit"] = {
                     const allowTags = form.find('input:checked').value;
                     data.append("allow-tags", allowTags);
                 }
+                const privateAccount = byId('form-my-private-account').find('input').checked;
+                const activityStatus = byId('form-my-activity-status').find('input').checked;
+                const yourPhotos = byId('form-my-your-photos').find('input:checked').value;
+                const allowMentions = byId('form-my-allow-mentions').find('input:checked').value;
+                const postsStats = byId('form-my-posts-stats').find('input').checked;
+                const allowTags = byId('form-my-allow-tags').find('input:checked').value;
+                data.append("private-account", privateAccount);
+                data.append("activity-status", activityStatus);
+                data.append("your-photos", yourPhotos);
+                data.append("allow-mentions", allowMentions);
+                data.append("posts-stats", postsStats);
+                data.append("allow-tags", allowTags);
                 const a = function(d) {
                     const data = JSON.parse(d);
-                    console.log({data});
+                    console.log({
+                        data
+                    });
                 }
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                 ajax(endpoint + "/v1/account/privacy", {
