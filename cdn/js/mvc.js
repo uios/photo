@@ -32,7 +32,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
             return new Promise(async(resolve,reject)=>{
                 var feed = byId('feed-index-posts');
                 var lastFeedId = feed.innerHTML === "" ? 0 : parseInt(feed.firstElementChild.dataset.id);
-                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios." + window.globals.domains.tld : api
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios." + window.globals.domains.tld : api.endpoint;
                 const f = async(d)=>{
                     var data = JSON.parse(d);
                     var posts = data.posts;
