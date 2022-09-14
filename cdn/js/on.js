@@ -622,6 +622,12 @@ window.on["change"] = {
             );
         }
         ,
+        notifications: (event)=>{
+            const target = event.target;
+            const form = target.closest('form');
+            form.find('[type="submit"]').click();
+        }
+        ,
         privacy: (event)=>{
             const target = event.target;
             const form = target.closest('form');
@@ -768,6 +774,82 @@ window.on["submit"] = {
             modal.exit(form);
         }
         ,
+        notifications: async(event)=>{
+            event.preventDefault();
+            const user = auth.user();
+            if (user) {
+                const form = event.target;
+                const id = form.id;
+                console.log(772, {
+                    form,
+                    id
+                });
+                const data = new FormData();
+                const jwt = await auth.getIdToken();
+                data.append("jwt", jwt);
+
+                if (id === "form-my-pause-all") {
+                    const pauseAll = form.find('input').checked;
+                    data.append("pause-all", pauseAll);
+                }
+
+                if (id === "form-my-likes") {
+                    const likes = form.find('input:checked').value;
+                    data.append("likes", likes);
+                }
+                if (id === "form-my-comments-photos") {
+                    const commentsPhotos = form.find('input:checked').value;
+                    data.append("comments-photos", commentsPhotos);
+                }
+                if (id === "form-my-comments") {
+                    const comments = form.find('input:checked').value;
+                    data.append("comments", comments);
+                }
+                if (id === "form-my-comment-likes") {
+                    const commentLikes = form.find('input:checked').value;
+                    data.append("comment-likes", commentLikes);
+                }
+
+                if (id === "form-my-new-followers") {
+                    const newFollowers = form.find('input:checked').value;
+                    data.append("new-followers", newFollowers);
+                }
+                if (id === "form-my-accepted-requests") {
+                    const acceptedRequests = form.find('input:checked').value;
+                    data.append("accepted-requests", acceptedRequests);
+                }
+                if (id === "form-my-account-suggestions") {
+                    const accountSuggestions = form.find('input:checked').value;
+                    data.append("account-suggestions", accountSuggestions);
+                }
+
+                if (id === "form-my-message-requests") {
+                    const messageRequests = form.find('input:checked').value;
+                    data.append("message-requests", messageRequests);
+                }
+                if (id === "form-my-group-requests") {
+                    const groupRequests = form.find('input:checked').value;
+                    data.append("group-requests", groupRequests);
+                }
+                if (id === "form-my-messages") {
+                    const messages = form.find('input:checked').value;
+                    data.append("messages", messages);
+                }
+
+                const a = function(d) {
+                    const data = JSON.parse(d);
+                    console.log({
+                        data
+                    });
+                }
+                var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                ajax(endpoint + "/v1/account/notifications", {
+                    data,
+                    dataType: "POST"
+                }).then(a);
+            }
+        }
+        ,
         privacy: async(event)=>{
             event.preventDefault();
             const user = auth.user();
@@ -805,18 +887,7 @@ window.on["submit"] = {
                     const allowTags = form.find('input:checked').value;
                     data.append("allow-tags", allowTags);
                 }
-                const privateAccount = byId('form-my-private-account').find('input').checked;
-                const activityStatus = byId('form-my-activity-status').find('input').checked;
-                const yourPhotos = byId('form-my-your-photos').find('input:checked').value;
-                const allowMentions = byId('form-my-allow-mentions').find('input:checked').value;
-                const postsStats = byId('form-my-posts-stats').find('input').checked;
-                const allowTags = byId('form-my-allow-tags').find('input:checked').value;
-                //data.append("private-account", privateAccount);
-                //data.append("activity-status", activityStatus);
-                //data.append("your-photos", yourPhotos);
-                //data.append("allow-mentions", allowMentions);
-                //data.append("posts-stats", postsStats);
-                //data.append("allow-tags", allowTags);
+
                 const a = function(d) {
                     const data = JSON.parse(d);
                     console.log({

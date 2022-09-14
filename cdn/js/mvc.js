@@ -845,7 +845,71 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             }
                         }
                         if (get[2] === "notifications") {
-                            resolve(route);
+                            const u = auth.user();
+                            if (u) {
+                                const a = function(d) {
+                                    const data = JSON.parse(d);
+                                    console.log({
+                                        data
+                                    });
+                                    const notifications = data.notifications;
+                                    if (notifications) {
+                                        const pauseAll = notifications["pause_all"];
+                                        if (pauseAll) {
+                                            byId('form-my-pause-all').find('input').checked = pauseAll === "true";
+                                        }
+                                                
+                                        const likes = notifications["likes"];
+                                        if (likes) {
+                                            byId('form-my-likes').find('[value="'+likes+'"]').checked = true;
+                                        }
+                                        const commentsPhotos = notifications["comments_photos"];
+                                        if (commentsPhotos) {
+                                            byId('form-my-comments-photos').find('[value="'+commentsPhotos+'"]').checked = true;
+                                        }
+                                        const comments = notifications["comments"];
+                                        if (comments) {
+                                            byId('form-my-comments').find('[value="'+comments+'"]').checked = true;
+                                        }
+                                        const commentLikes = notifications["comment_likes"];
+                                        if (commentLikes) {
+                                            byId('form-my-comment-likes').find('[value="'+commentLikes+'"]').checked = true;
+                                        }
+                                                
+                                        const newFollowers = notifications["new_followers"];
+                                        if (newFollowers) {
+                                            byId('form-my-new-followers').find('[value="'+newFollowers+'"]').checked = true;
+                                        }
+                                        const acceptedRequests = notifications["accepted_requests"];
+                                        if (acceptedRequests) {
+                                            byId('form-my-accepted-requests').find('[value="'+acceptedRequests+'"]').checked = true;
+                                        }
+                                        const accountSuggestions = notifications["account_suggestions"];
+                                        if (accountSuggestions) {
+                                            byId('form-my-account-suggestions').find('[value="'+accountSuggestions+'"]').checked = true;
+                                        }
+                                                
+                                        const messageRequests = notifications["message_requests"];
+                                        if (messageRequests) {
+                                            byId('form-my-message-requests').find('[value="'+messageRequests+'"]').checked = true;
+                                        }
+                                        const groupRequests = notifications["group_requests"];
+                                        if (groupRequests) {
+                                            byId('form-my-group-requests').find('[value="'+groupRequests+'"]').checked = true;
+                                        }
+                                        const messages = notifications["messages"];
+                                        if (messages) {
+                                            byId('form-my-messages').find('[value="'+messages+'"]').checked = true;
+                                        }
+                                    }
+                                    resolve(route);
+                                }
+                                const jwt = await auth.getIdToken();
+                                if (jwt) {
+                                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                                    ajax(endpoint + "/v1/account/notifications?jwt=" + jwt).then(a);
+                                }
+                            }
                         }
                         if (get[2] === "privacy") {
                             const u = auth.user();
