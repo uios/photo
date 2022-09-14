@@ -850,8 +850,6 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         if (get[2] === "privacy") {
                             const u = auth.user();
                             if (u) {
-                                const email = byId('edit-email').find('[placeholder="Email"]');
-                                email.value = u.email;
                                 const a = function(d) {
                                     const data = JSON.parse(d);
                                     console.log({
