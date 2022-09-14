@@ -145,7 +145,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 lastFeedId > 0 ? obj.last = lastFeedId : null;
                 const params = new URLSearchParams(obj);
                 endpoint += '/v1/posts';
-                endpoint += '?' + params.toString();
+                if(obj.last) { endpoint += '?' + params.toString(); }
                 ajax(endpoint).then(f).catch(c);
             }
             );

@@ -811,12 +811,12 @@ window.on["submit"] = {
                 const allowMentions = byId('form-my-allow-mentions').find('input:checked').value;
                 const postsStats = byId('form-my-posts-stats').find('input').checked;
                 const allowTags = byId('form-my-allow-tags').find('input:checked').value;
-                data.append("private-account", privateAccount);
-                data.append("activity-status", activityStatus);
-                data.append("your-photos", yourPhotos);
-                data.append("allow-mentions", allowMentions);
-                data.append("posts-stats", postsStats);
-                data.append("allow-tags", allowTags);
+                //data.append("private-account", privateAccount);
+                //data.append("activity-status", activityStatus);
+                //data.append("your-photos", yourPhotos);
+                //data.append("allow-mentions", allowMentions);
+                //data.append("posts-stats", postsStats);
+                //data.append("allow-tags", allowTags);
                 const a = function(d) {
                     const data = JSON.parse(d);
                     console.log({
