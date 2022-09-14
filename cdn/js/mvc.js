@@ -145,7 +145,9 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 lastFeedId > 0 ? obj.last = lastFeedId : null;
                 const params = new URLSearchParams(obj);
                 endpoint += '/v1/posts';
-                if(obj.last) { endpoint += '?' + params.toString(); }
+                if (obj.last) {
+                    endpoint += '?' + params.toString();
+                }
                 ajax(endpoint).then(f).catch(c);
             }
             );
@@ -846,7 +848,50 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             resolve(route);
                         }
                         if (get[2] === "privacy") {
-                            resolve(route);
+                            const u = auth.user();
+                            if (u) {
+                                const email = byId('edit-email').find('[placeholder="Email"]');
+                                email.value = u.email;
+                                const a = function(d) {
+                                    const data = JSON.parse(d);
+                                    console.log({
+                                        data
+                                    });
+                                    const privacy = data.privacy;
+                                    if (privacy) {
+                                        const privateAccount = privacy["private_account"];
+                                        if (privateAccount) {
+                                            byId('form-my-private-account').find('input').checked = privateAccount === "true";
+                                        }
+                                        const activityStatus = privacy["activity_status"];
+                                        if (activityStatus) {
+                                            byId('form-my-activity-status').find('input').checked = activityStatus === "true";
+                                        }
+                                        const yourPhotos = privacy["your_photos"];
+                                        if (yourPhotos) {
+                                            byId('form-my-your-photos').find('[value="'+yourPhotos+'"]').checked = true;
+                                        }
+                                        const allowMentions = privacy["allow_mentions"];
+                                        if (allowMentions) {
+                                            byId('form-my-allow-mentions').find('[value="'+allowMentions+'"]').checked = true;
+                                        }
+                                        const postsStats = privacy["posts_stats"];
+                                        if (postsStats) {
+                                            byId('form-my-posts-stats').find('input').checked = postsStats === "true";
+                                        }
+                                        const allowTags = privacy["allow_tags"];
+                                        if (allowTags) {
+                                            byId('form-my-allow-tags').find('[value="'+allowTags+'"]').checked = true;
+                                        }
+                                    }
+                                    resolve(route);
+                                }
+                                const jwt = await auth.getIdToken();
+                                if (jwt) {
+                                    var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
+                                    ajax(endpoint + "/v1/account/privacy?jwt=" + jwt).then(a);
+                                }
+                            }
                         }
                         if (get[2] === "theme") {
                             const a = function(d) {
