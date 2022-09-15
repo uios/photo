@@ -858,48 +858,48 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         if (pauseAll) {
                                             byId('form-my-pause-all').find('input').checked = pauseAll === "true";
                                         }
-                                                
+
                                         const likes = notifications["likes"];
                                         if (likes) {
-                                            byId('form-my-likes').find('[value="'+likes+'"]').checked = true;
+                                            byId('form-my-likes').find('[value="' + likes + '"]').checked = true;
                                         }
                                         const commentsPhotos = notifications["comments_photos"];
                                         if (commentsPhotos) {
-                                            byId('form-my-comments-photos').find('[value="'+commentsPhotos+'"]').checked = true;
+                                            byId('form-my-comments-photos').find('[value="' + commentsPhotos + '"]').checked = true;
                                         }
                                         const comments = notifications["comments"];
                                         if (comments) {
-                                            byId('form-my-comments').find('[value="'+comments+'"]').checked = true;
+                                            byId('form-my-comments').find('[value="' + comments + '"]').checked = true;
                                         }
                                         const commentLikes = notifications["comment_likes"];
                                         if (commentLikes) {
-                                            byId('form-my-comment-likes').find('[value="'+commentLikes+'"]').checked = true;
+                                            byId('form-my-comment-likes').find('[value="' + commentLikes + '"]').checked = true;
                                         }
-                                                
+
                                         const newFollowers = notifications["new_followers"];
                                         if (newFollowers) {
-                                            byId('form-my-new-followers').find('[value="'+newFollowers+'"]').checked = true;
+                                            byId('form-my-new-followers').find('[value="' + newFollowers + '"]').checked = true;
                                         }
                                         const acceptedRequests = notifications["accepted_requests"];
                                         if (acceptedRequests) {
-                                            byId('form-my-accepted-requests').find('[value="'+acceptedRequests+'"]').checked = true;
+                                            byId('form-my-accepted-requests').find('[value="' + acceptedRequests + '"]').checked = true;
                                         }
                                         const accountSuggestions = notifications["account_suggestions"];
                                         if (accountSuggestions) {
-                                            byId('form-my-account-suggestions').find('[value="'+accountSuggestions+'"]').checked = true;
+                                            byId('form-my-account-suggestions').find('[value="' + accountSuggestions + '"]').checked = true;
                                         }
-                                                
+
                                         const messageRequests = notifications["message_requests"];
                                         if (messageRequests) {
-                                            byId('form-my-message-requests').find('[value="'+messageRequests+'"]').checked = true;
+                                            byId('form-my-message-requests').find('[value="' + messageRequests + '"]').checked = true;
                                         }
                                         const groupRequests = notifications["group_requests"];
                                         if (groupRequests) {
-                                            byId('form-my-group-requests').find('[value="'+groupRequests+'"]').checked = true;
+                                            byId('form-my-group-requests').find('[value="' + groupRequests + '"]').checked = true;
                                         }
                                         const messages = notifications["messages"];
                                         if (messages) {
-                                            byId('form-my-messages').find('[value="'+messages+'"]').checked = true;
+                                            byId('form-my-messages').find('[value="' + messages + '"]').checked = true;
                                         }
                                     }
                                     resolve(route);
@@ -931,11 +931,11 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         }
                                         const yourPhotos = privacy["your_photos"];
                                         if (yourPhotos) {
-                                            byId('form-my-your-photos').find('[value="'+yourPhotos+'"]').checked = true;
+                                            byId('form-my-your-photos').find('[value="' + yourPhotos + '"]').checked = true;
                                         }
                                         const allowMentions = privacy["allow_mentions"];
                                         if (allowMentions) {
-                                            byId('form-my-allow-mentions').find('[value="'+allowMentions+'"]').checked = true;
+                                            byId('form-my-allow-mentions').find('[value="' + allowMentions + '"]').checked = true;
                                         }
                                         const postsStats = privacy["posts_stats"];
                                         if (postsStats) {
@@ -943,7 +943,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         }
                                         const allowTags = privacy["allow_tags"];
                                         if (allowTags) {
-                                            byId('form-my-allow-tags').find('[value="'+allowTags+'"]').checked = true;
+                                            byId('form-my-allow-tags').find('[value="' + allowTags + '"]').checked = true;
                                         }
                                     }
                                     resolve(route);
@@ -1630,12 +1630,13 @@ window.mvc.c ? null : (window.mvc.c = controller = {
 
                     var vp = dom.body.find('pages[data-pages="/photo/*/"]');
                     const postComments = vp.find('[data-order="3"]').all('box')[0].find('column');
-                    var template = postComments.find('[data-columns]').firstElementChild;
+                    var template = postComments.find('template').content.firstElementChild;
                     var html = template.cloneNode(true);
                     html.classList.remove('hide');
+                    html.find('img').src = cdn.endpoint+"/"+data.user+'/avi.jpg';
                     html.all('text span')[0].textContent = comment.username;
                     html.all('text span')[1].textContent = comment.comment;
-                    postComments.find('[data-columns]').firstElementChild.insertAdjacentHTML('afterend', html.outerHTML);
+                    postComments.find('[data-columns]').insertAdjacentHTML('afterbegin', html.outerHTML);
                 };
                 const b = function(error) {
                     console.log(error);
