@@ -61,7 +61,7 @@ aside {
   /* -webkit-backdrop-filter: blur(3px); */
 }
 aside ~ main {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
 }
 

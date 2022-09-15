@@ -1640,7 +1640,7 @@ group.active ~ main .page-index {
 }
 
 aside ~ main {
-    position: fixed;
+    /* position: fixed; */
 }
 
 [data-nav]:not(.active) {
