@@ -518,7 +518,7 @@ function searchResults(keywords) {
             window.yield = new AbortController()
             window.signal = window.yield.signal
 
-            ajax(endpoint + '/v1/search?keywords=' + keywords, {
+            ajax(endpoint + '/photo/search?keywords=' + keywords, {
                 signal
             }).then(t).catch(c);
         }
@@ -600,7 +600,7 @@ window.on["change"] = {
                         var data = new FormData();
                         data.append('base64', result);
                         data.append('jwt', jwt);
-                        ajax(endpoint + "/v1/account/avatar", {
+                        ajax(endpoint + "/photo/account/avatar", {
                             data,
                             dataType: "POST"
                         }).then((d)=>{
@@ -639,7 +639,7 @@ window.on["change"] = {
             if (auth.user()) {
                 const jwt = await auth.getIdToken();
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/account/theme/" + type + "?jwt=" + jwt, {
+                ajax(endpoint + "/photo/account/theme/" + type + "?jwt=" + jwt, {
                     dataType: "PUT"
                 }).then(d=>{
                     const data = JSON.parse(d);
@@ -684,7 +684,7 @@ window.on["submit"] = {
                     });
                 }
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/account/edit/", {
+                ajax(endpoint + "/photo/account/edit/", {
                     data,
                     dataType: "POST"
                 }).then(a);
@@ -843,7 +843,7 @@ window.on["submit"] = {
                     });
                 }
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/account/notifications", {
+                ajax(endpoint + "/photo/account/notifications", {
                     data,
                     dataType: "POST"
                 }).then(a);
@@ -895,7 +895,7 @@ window.on["submit"] = {
                     });
                 }
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/account/privacy", {
+                ajax(endpoint + "/photo/account/privacy", {
                     data,
                     dataType: "POST"
                 }).then(a);

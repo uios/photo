@@ -134,7 +134,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                     resolve(route);
                 }
                 const c = (e)=>{
-                    console.log('mvc.v users user /v1/users/:user catch', {
+                    console.log('mvc.v users user /photo/users/:user catch', {
                         e
                     });
                     //model.error.code(e, v);
@@ -144,7 +144,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
                 jwt ? obj.jwt = jwt : null;
                 lastFeedId > 0 ? obj.last = lastFeedId : null;
                 const params = new URLSearchParams(obj);
-                endpoint += '/v1/posts';
+                endpoint += '/photo/posts';
                 if (obj.last) {
                     endpoint += '?' + params.toString();
                 }
@@ -182,7 +182,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
 
                 const uid = target.closest('card').dataset.uid;
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                const uri = endpoint + "/v1/activity";
+                const uri = endpoint + "/photo/activity";
                 console.log(uri, {
                     data
                 });
@@ -219,7 +219,7 @@ window.mvc.m ? null : (window.mvc.m = model = {
             if (jwt) {
                 const uid = target.closest('card').dataset.uid;
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                const uri = endpoint + "/v1/activity/follow/" + uid + "?app=" + window.global.app + "&jwt=" + jwt;
+                const uri = endpoint + "/photo/activity/follow/" + uid + "?app=" + window.global.app + "&jwt=" + jwt;
                 console.log(uri);
                 ajax(uri, {
                     dataType: "DELETE"
@@ -364,7 +364,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     const jwt = auth.user() ? await auth.getIdToken() : null;
                     if (jwt) {
                         var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                        const uri = endpoint + "/v1/activity/?jwt=" + jwt;
+                        const uri = endpoint + "/photo/activity/?jwt=" + jwt;
                         console.log(uri);
                         ajax(uri).then(a).catch(b);
                     }
@@ -468,7 +468,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     }
 
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    const uri = endpoint + "/v1/messages?jwt=" + jwt;
+                    const uri = endpoint + "/photo/messages?jwt=" + jwt;
                     console.log(uri);
                     ajax(uri).then(a).catch(b);
                 }
@@ -549,7 +549,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                                     var convo = GET;
                                     convo.splice(0, 2);
-                                    const uri = endpoint + "/v1/messages" + rout.ed.url(convo) + "?jwt=" + jwt;
+                                    const uri = endpoint + "/photo/messages" + rout.ed.url(convo) + "?jwt=" + jwt;
                                     ajax(uri).then(a).catch(b);
                                 } else {
                                     resolve(route);
@@ -579,7 +579,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                     const jwt = auth.user() ? await auth.getIdToken() : null;
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    endpoint += '/v1/posts/' + uid;
+                    endpoint += '/photo/posts/' + uid;
                     endpoint += (auth.user() ? '?jwt=' + jwt : '');
                     ajax(endpoint).then(async function(d) {
                         var data = JSON.parse(d);
@@ -685,7 +685,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         console.log(message);
                     }
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    const uri = endpoint + "/v1/search/posts" + (jwt ? "?jwt=" + jwt : "");
+                    const uri = endpoint + "/photo/search/posts" + (jwt ? "?jwt=" + jwt : "");
                     console.log({
                         uri
                     });
@@ -810,7 +810,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 const jwt = await auth.getIdToken();
                                 if (jwt) {
                                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                    ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                                    ajax(endpoint + "/photo/account?jwt=" + jwt).then(a);
                                 }
                             }
                         }
@@ -838,7 +838,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         resolve(route);
                                     }
                                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                    ajax(endpoint + "/v1/users/" + (user.uid) + "?jwt=" + jwt).then(a);
+                                    ajax(endpoint + "/photo/users/" + (user.uid) + "?jwt=" + jwt).then(a);
                                 }
                             } else {
                                 resolve(route);
@@ -907,7 +907,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 const jwt = await auth.getIdToken();
                                 if (jwt) {
                                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                    ajax(endpoint + "/v1/account/notifications?jwt=" + jwt).then(a);
+                                    ajax(endpoint + "/photo/account/notifications?jwt=" + jwt).then(a);
                                 }
                             }
                         }
@@ -951,7 +951,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 const jwt = await auth.getIdToken();
                                 if (jwt) {
                                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                    ajax(endpoint + "/v1/account/privacy?jwt=" + jwt).then(a);
+                                    ajax(endpoint + "/photo/account/privacy?jwt=" + jwt).then(a);
                                 }
                             }
                         }
@@ -973,7 +973,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             const jwt = await auth.getIdToken();
                             if (jwt) {
                                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                                ajax(endpoint + "/photo/account?jwt=" + jwt).then(a);
                             }
                         }
                     }
@@ -1030,7 +1030,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             cameraPermissions.className = "hide";
 
                             var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                            ajax(endpoint + "/v1/posts/" + uid).then(function(d) {
+                            ajax(endpoint + "/photo/posts/" + uid).then(function(d) {
                                 var data = JSON.parse(d);
                                 var post = data.post;
                                 var user = post.user;
@@ -1155,7 +1155,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         console.log(message);
                     }
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    const uri = endpoint + "/v1/search/posts" + ("?keywords=" + get[1]);
+                    const uri = endpoint + "/photo/search/posts" + ("?keywords=" + get[1]);
                     console.log({
                         uri
                     });
@@ -1169,7 +1169,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
                     const jwt = auth.user() ? await auth.getIdToken() : "";
                     var resource = rout.ed.url(rout.ed.dir(route.path)).replace(/\/+$/, '');
-                    const uri = endpoint + '/v1' + resource + (jwt ? "?jwt=" + jwt : "");
+                    const uri = endpoint + '/photo' + resource + (jwt ? "?jwt=" + jwt : "");
                     ajax(uri).then(async(user)=>{
                         var error = v.find('error');
                         error ? error.remove() : null;
@@ -1463,7 +1463,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                         }
                     }
                     ).catch((e)=>{
-                        console.log('mvc.v users user /v1/users/:user catch', {
+                        console.log('mvc.v users user /photo/users/:user catch', {
                             e
                         });
                         model.error.code(e, v);
@@ -1501,7 +1501,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     indexMyUser.find('[placeholder="username"]').textContent = json.user.username;
                     indexMyUser.find('[placeholder="Full Name"]').textContent = json.user.fullname;
                 }
-                ajax(endpoint + '/v1/users?filter=mine&jwt=' + jwt).then(mine);
+                ajax(endpoint + '/photo/users?filter=mine&jwt=' + jwt).then(mine);
                 indexMyUser.parentNode.classList.remove('hide');
             } else {
                 indexMyUser.parentNode.classList.add('hide');
@@ -1533,7 +1533,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (u < users.length);
                 }
             }
-            ajax(endpoint + '/v1/users?filter=active').then(active);
+            ajax(endpoint + '/photo/users?filter=active').then(active);
 
             var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
             const suggested = async(d)=>{
@@ -1560,7 +1560,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                     } while (u < users.length);
                 }
             }
-            ajax(endpoint + '/v1/users?filter=suggested' + (jwt ? '&jwt=' + jwt : '')).then(suggested);
+            ajax(endpoint + '/photo/users?filter=suggested' + (jwt ? '&jwt=' + jwt : '')).then(suggested);
 
             mvc.m.time.line();
             resolve(route);
@@ -1642,7 +1642,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     alert(error.message);
                 };
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/comments", {
+                ajax(endpoint + "/photo/comments", {
                     data,
                     dataType: "POST"
                 }).then(a).catch(b);
@@ -1752,7 +1752,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     window.signal = window.yield.signal
 
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/search/users/" + username, {
+                    ajax(endpoint + "/photo/search/users/" + username, {
                         signal
                     }).then(a).catch(b);
                 }
@@ -1842,7 +1842,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         alert(error.message);
                     };
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/messages" + rout.ed.url(convo), {
+                    ajax(endpoint + "/photo/messages" + rout.ed.url(convo), {
                         data,
                         dataType: "POST"
                     }).then(a).catch(b);
@@ -1873,7 +1873,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                             data
                         });
                     }
-                    ajax(endpoint + "/v1/account/avatar?jwt=" + jwt, {
+                    ajax(endpoint + "/photo/account/avatar?jwt=" + jwt, {
                         dataType: "DELETE"
                     }).then(a)
                 }
@@ -1966,7 +1966,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 }
 
                 const jwt = await auth.getIdToken();
-                ajax(endpoint + '/v1/posts/' + key + '?jwt=' + jwt, {
+                ajax(endpoint + '/photo/posts/' + key + '?jwt=' + jwt, {
                     dataType: "DELETE"
                 }).then(t).catch(c);
             }
@@ -1987,7 +1987,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         alert(error.message);
                     };
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/activity/like/" + post.dataset.uid + '?app=photo&jwt=' + jwt, {
+                    ajax(endpoint + "/photo/activity/like/" + post.dataset.uid + '?app=photo&jwt=' + jwt, {
                         dataType: "DELETE"
                     }).then(a).catch(b);
                 } else {
@@ -2005,7 +2005,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     data.append("ref", post.dataset.uid);
                     data.append("type", "like");
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/activity", {
+                    ajax(endpoint + "/photo/activity", {
                         data,
                         dataType: "POST"
                     }).then(a).catch(b);
@@ -2061,7 +2061,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         alert(error.message);
                     };
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/activity/save/" + post.dataset.uid + '?app=c829e5bc-f583-452b-8dbd-db3b0a6a5b07&jwt=' + jwt, {
+                    ajax(endpoint + "/photo/activity/save/" + post.dataset.uid + '?app=c829e5bc-f583-452b-8dbd-db3b0a6a5b07&jwt=' + jwt, {
                         dataType: "DELETE"
                     }).then(a).catch(b);
                 } else {
@@ -2079,7 +2079,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     data.append("ref", post.dataset.uid);
                     data.append("type", "save");
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/activity", {
+                    ajax(endpoint + "/photo/activity", {
                         data,
                         dataType: "POST"
                     }).then(a).catch(b);
@@ -2196,8 +2196,8 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                         data.append("jwt", await auth.getIdToken());
 
                         var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                        const url = endpoint + "/v1/posts";
-                        //const url = "https://api.uios.tld"+"/v1/posts";
+                        const url = endpoint + "/photo/posts";
+                        //const url = "https://api.uios.tld"+"/photo/posts";
                         var settings = {
                             data,
                             dataType: "POST"
@@ -2450,7 +2450,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     window.signal = window.yield.signal
 
                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                    ajax(endpoint + "/v1/search/users/" + username, {
+                    ajax(endpoint + "/photo/search/users/" + username, {
                         signal
                     }).then(a).catch(b);
                 }

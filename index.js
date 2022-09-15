@@ -12,7 +12,7 @@ window.api = {
 };
 
 window.cdn = {
-    endpoint: "https://cdn.uios.computer/file/share-uios"
+    endpoint: "https://cdn.uios.computer/file/photo-uios"
 };
 
 window.is = {
@@ -154,7 +154,7 @@ function init() {
                 }
                 const jwt = await auth.getIdToken();
                 var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                ajax(endpoint + "/v1/account?jwt=" + jwt).then(a);
+                ajax(endpoint + "/photo/account?jwt=" + jwt).then(a);
             } else {
                 byId("avi-header").innerHTML = byId("avi-footer").innerHTML = "";
                 go ? null : uri.router().then(function() {
