@@ -65,12 +65,13 @@
             </section>
         </box>
         <box class="border-top-1px-solid border-color-eee color-000 isauth tablet-hide" data-height="50px" data-width="100%">
-            <section>
+            <form class="align-items-center display-flex flex-direction-row justify-content-center">
                 <ico data-height="50px" data-width="50px">
                     <n class="gg-smile"></n>
                 </ico>
-                <text class="bolder fg-b line-height-50px margin-left opacity-50pc padding-x-20px">Post</text>
-            </section>
+                <textarea class="display-flex flex-1 line-height-18px" onkeydown="controller.comment.onkeydown(event)" onkeyup="controller.comment.onkeyup(event)" placeholder="Add a comment..." rows="1" style="height:18px"></textarea>
+                <input class="-disabled-opacity-50pct bolder fg-b font-size-16px line-height-50px margin-left padding-x-20px" disabled type="submit" value="Post">
+            </form>
         </box>
     </section>
 </card>
