@@ -132,7 +132,7 @@ window.auth = {
                 if (displayName && username && email && password) {
                     if (auth.isEmail(email)) {
                         var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
-                        ajax(endpoint + '/v1/users', {
+                        ajax(endpoint + '/photo/users', {
                             dataType: "POST",
                             data
                         }).then(e=>{
@@ -188,7 +188,7 @@ window.auth = {
                     jwt,
                     username
                 };
-                ajax(api.endpoint + "/v1/users/notes/update", {
+                ajax(api.endpoint + "/photo/users/notes/update", {
                     dataType: "PUT",
                     data
                 }).then((d,data=JSON.parse(d))=>{

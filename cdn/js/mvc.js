@@ -1930,10 +1930,10 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                 console.log('setup.then', d);
             }
             ).catch(e=>{
-                var message = e.message;
-                var error = message.error;
+                //var message = e.message;
+                //var error = message.error;
                 console.log('setup.catch', e);
-                alert(error);
+                //alert(error);
             }
             );
         }
