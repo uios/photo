@@ -131,7 +131,7 @@ window.auth = {
                 });
                 if (displayName && username && email && password) {
                     if (auth.isEmail(email)) {
-                        var endpoint = is.local(window.location.href) ? "http://api.uios.tld" : api.endpoint;
+                        var endpoint = is.local(window.location.href) ? window.location.protocol+"//api.uios.tld" : api.endpoint;
                         ajax(endpoint + '/photo/users', {
                             dataType: "POST",
                             data

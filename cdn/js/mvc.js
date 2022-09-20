@@ -728,6 +728,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                             menus.classList.remove('hide');
                             menus.classList.add('tablet-hide');
+                            resolve(route);
                         } else {
                             if (auth.user()) {
                                 vp.dataset.zIndex = 9;
@@ -756,6 +757,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
 
                             menus.classList.add('hide');
                             menus.classList.add('tablet-hide');
+                            resolve(route);
                         }
                         if (get[2] === "edit") {
                             const u = auth.user();
@@ -1633,7 +1635,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     var template = postComments.find('template').content.firstElementChild;
                     var html = template.cloneNode(true);
                     html.classList.remove('hide');
-                    html.find('img').src = cdn.endpoint+"/"+data.user+'/avi.jpg';
+                    html.find('img').src = cdn.endpoint + "/" + data.user + '/avi.jpg';
                     html.all('text span')[0].textContent = comment.username;
                     html.all('text span')[1].textContent = comment.comment;
                     postComments.find('[data-columns]').insertAdjacentHTML('afterbegin', html.outerHTML);
