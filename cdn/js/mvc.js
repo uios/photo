@@ -410,7 +410,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     do {
                                         if (u < 4) {
                                             popping[u] = people[u];
-                                            console.log(u, people, people[u]);
+                                            //console.log(u, people, people[u]);
                                         }
                                         u++;
                                     } while (u < people.length);
@@ -423,7 +423,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 } else {
                                     group = people[0]
                                 }
-                                console.log(row.convo, people, group, user);
+                                //console.log(row.convo, people, group, user);
 
                                 const template = byId('template-convo').content;
                                 var elem = template.firstElementChild.cloneNode(true);
@@ -464,7 +464,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     }
                                     //img.className = "absolute bottom-0 height-75pc invert width-75pc";
                                     img.src = cdn.endpoint + "/" + convo[0] + "/avi.jpg";
-                                    img.setAttribute("onerror", 'event.target.parentNode.remove()');
+                                    img.setAttribute("onerror", 'event.target.parentNode ? event.target.parentNode.remove() : null');
                                     pic.innerHTML = img.outerHTML;
                                     var avi = elem.find('picture');
                                     avi.insertAdjacentHTML('beforeend', pic.outerHTML);
@@ -541,10 +541,26 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                                     const row = messages[m];
                                                     const message = row.message;
                                                     const template = byId('template-message').content;
-                                                    var elem = template.firstElementChild;
+                                                    var elem = template.firstElementChild.cloneNode(true);
                                                     elem.find('text').textContent = message;
+                                                    const usr = row.user;
+                                                    const auu = auth.user().uid;
+                                                    console.log(549, {
+                                                        usr,
+                                                        auu,
+                                                        row
+                                                    });
+                                                    elem.dataset.user = usr;
+                                                    elem.dataset.uid = auu;
+                                                    const text = elem.find('text');
+                                                    if (usr === auu) {} else {
+                                                        text.classList.add('border-1px-solid');
+                                                        text.classList.add('border-color-db');
+                                                        text.classList.add('background-color-fff');
+                                                        text.classList.remove('margin-left');
+                                                    }
                                                     const html = elem.outerHTML;
-                                                    chatWithUs.insertAdjacentHTML('beforeend', html);
+                                                    chatWithUs.insertAdjacentHTML('afterbegin', html);
                                                     m++;
                                                 } while (m < messages.length);
                                             }
@@ -1829,12 +1845,12 @@ window.mvc.c ? null : (window.mvc.c = controller = {
             if (jwt) {
 
                 const form = event.target;
-                const convo = rout.ed.dir(window.location.pathname);
-                convo.splice(0, 2);
+                const convo = rout.ed.dir(document.body.dataset.path);
                 console.log('controller.message.onsubmit', {
                     convo,
                     jwt
                 });
+                convo.splice(0, 2);
 
                 if (convo.length > 0) {
 
@@ -1848,6 +1864,7 @@ window.mvc.c ? null : (window.mvc.c = controller = {
                     const html = elem.outerHTML;
                     const chatWithUs = byId('chat-with-us');
                     chatWithUs.insertAdjacentHTML('beforeend', html);
+                    chatWithUs.parentNode.scrollTop = chatWithUs.scrollHeight + chatWithUs.clientHeight;
                     const insert = chatWithUs.lastElementChild;
                     insert.classList.add('opacity-50pc');
 

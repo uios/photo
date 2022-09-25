@@ -33,7 +33,9 @@ String.prototype.router = async function(params) {
                 const hash = global.domains.domain === "github" ? "/#" : "";
                 var goto = window.global.domains.subdomain === "uios" ? '/' + document.head.querySelector('[name="application-shortname"]').content : '';
                 const link = hash.length > 0 ? goto + hash + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) + route.search : goto + route.path + route.search + route.hash;
+                document.body.dataset.path = path;
                 console.log({
+                    path,
                     hash,
                     route,
                     link
