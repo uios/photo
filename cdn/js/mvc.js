@@ -397,22 +397,24 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                             do {
                                 const row = messages[m];
                                 const message = row.message;
-                                const convo = JSON.parse(row.convo).filter(e=>e !== user.uid);
-                                const people = JSON.parse(row.people).filter((c,index)=>{
+                                const convo = JSON.parse(row.conversation).filter(e=>e !== user.uid);
+                                const people = row.people ? JSON.parse(row.people).filter((c,index)=>{
                                     return JSON.parse(row.people).indexOf(c) === index;
                                 }
-                                );
-                                const usernames = JSON.parse(row.usernames);
+                                ) : [];
+                                const usernames = row.usernames ? JSON.parse(row.usernames) : [];
                                 var popping = [];
 
-                                var u = 0;
-                                do {
-                                    if (u < 4) {
-                                        popping[u] = people[u];
-                                        console.log(u, people, people[u]);
-                                    }
-                                    u++;
-                                } while (u < people.length);
+                                if (people.length > 0) {
+                                    var u = 0;
+                                    do {
+                                        if (u < 4) {
+                                            popping[u] = people[u];
+                                            console.log(u, people, people[u]);
+                                        }
+                                        u++;
+                                    } while (u < people.length);
+                                }
 
                                 if (people.length > 1) {
                                     var popped = popping.pop();
@@ -426,8 +428,29 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 const template = byId('template-convo').content;
                                 var elem = template.firstElementChild.cloneNode(true);
 
-                                var c = 0;
-                                do {
+                                if (people.length > 1) {
+                                    var c = 0;
+                                    do {
+                                        var pic = document.createElement('picture');
+                                        var img = document.createElement('img');
+                                        if (people.length > 1 && c < 2) {
+                                            if (c > 0) {
+                                                pic.className = "background-color-db border-2px-solid border-radius-50pc bottom-0 color-fff height-36px position-absolute right-0 width-36px";
+                                            } else {
+                                                pic.className = "background-color-db border-radius-50pc height-36px left-0 position-absolute top-0 width-36px";
+                                            }
+                                        } else {
+                                            pic.className = "background-color-db border-radius-50pc height-50px width-50px";
+                                        }
+                                        img.src = cdn.endpoint + "/" + convo[c] + "/avi.jpg";
+                                        img.setAttribute("onerror", 'this.src = "cdn/svg/user.svg"; this.className = "absolute bottom-0 height-75pc invert width-75pc";');
+                                        pic.innerHTML = img.outerHTML;
+                                        var avi = elem.find('picture');
+                                        avi.insertAdjacentHTML('beforeend', pic.outerHTML);
+                                        //alert(c);
+                                        c++;
+                                    } while (c < people.length);
+                                } else {
                                     var pic = document.createElement('picture');
                                     var img = document.createElement('img');
                                     if (people.length > 1 && c < 2) {
@@ -439,15 +462,13 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                     } else {
                                         pic.className = "background-color-db border-radius-50pc height-50px width-50px";
                                     }
-                                    img.className = "absolute bottom-0 height-75pc invert width-75pc";
+                                    //img.className = "absolute bottom-0 height-75pc invert width-75pc";
                                     img.src = cdn.endpoint + "/" + convo[0] + "/avi.jpg";
-                                    img.setAttribute("onerror", 'this.src = "cdn/svg/user.svg"');
+                                    img.setAttribute("onerror", 'event.target.parentNode.remove()');
                                     pic.innerHTML = img.outerHTML;
                                     var avi = elem.find('picture');
                                     avi.insertAdjacentHTML('beforeend', pic.outerHTML);
-                                    //alert(c);
-                                    c++;
-                                } while (c < people.length);
+                                }
 
                                 elem.find('[placeholder="Full Name"]').textContent = group;
                                 elem.find('[placeholder="Lorem ipsum dolor"]').textContent = message;
