@@ -191,7 +191,7 @@ window.rout.ed.vars = async function(tabs) {
                     }
                 }
                 if (dir === "get") {
-                    var drc = rout.ed.dir(window.location.pathname);
+                    var drc = rout.ed.dir(dom.body.dataset.path);
                     if (drc[d]) {
                         dir = drc[d];
                         //alert(drc[d]);

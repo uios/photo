@@ -507,7 +507,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                 const jwt = auth.user() ? await auth.getIdToken() : null;
                                 if (jwt) {
                                     const a = async function(d) {
-                                        const data = JSON.parse(d);
+                                        const data = JSON.parse(d); console.log(510,{data});
                                         const users = data.users;
                                         if (users.length > 0) {
                                             var popping = [];
@@ -584,7 +584,7 @@ window.mvc.v ? null : (window.mvc.v = view = function(route) {
                                         console.log(message);
                                     }
                                     var endpoint = is.local(window.location.href) ? window.location.protocol + "//api.uios.tld" : api.endpoint;
-                                    var convo = GET;
+                                    var convo = rout.ed.dir(rout.ed.url(get));
                                     convo.splice(0, 2);
                                     const uri = endpoint + "/photo/messages" + rout.ed.url(convo) + "?jwt=" + jwt;
                                     ajax(uri).then(a).catch(b);
