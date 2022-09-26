@@ -22,10 +22,11 @@ String.prototype.router = async function(params) {
         //console.log('String.prototype.router', route);
         if (route) {
             var pop = params ? params.pop : null;
-            var path = route.path;
-            window.GET = rout.ed.dir(path);
 
             route = window.view ? await view(route).then(rout.ed.bang(route)) : await rout.ed.bang(route);
+            
+            var path = route.path;
+            window.GET = rout.ed.dir(path);
 
             lazyLoad(dom.body.all('[data-src]'), vp);
 
@@ -33,7 +34,14 @@ String.prototype.router = async function(params) {
                 const hash = global.domains.domain === "github" ? "/#" : "";
                 var goto = window.global.domains.subdomain === "uios" ? '/' + document.head.querySelector('[name="application-shortname"]').content : '';
                 const link = hash.length > 0 ? goto + hash + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) + route.search : goto + route.path + route.search + route.hash;
-                document.body.dataset.path = path;
+                if(window.self !== window.top) {
+                    const got = window.parent.GET.slice(0, 3);
+                    const gut = route.GOT;
+                    const bash = got.concat(gut);
+                    const goin = (window.globals.domains.domain === "github" ? '/#' : '')+rout.ed.url(bash);
+                    window.parent.history.pushState(goin, '', goin);
+                }
+                document.body.dataset.path = route.path;
                 console.log({
                     path,
                     hash,
