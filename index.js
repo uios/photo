@@ -47,8 +47,6 @@ window.onload = async()=>{
             tld: domains[domains.length - 1]
         }
     }
-
-    window.self !== window.top && (globals.domains.domain !== "github") ? document.domain = globals.domains.domain + '.' + globals.domains.tld : null;
     
     dom.body.dataset.load = "ing";
 
