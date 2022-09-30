@@ -5,11 +5,14 @@ String.prototype.router = async function(params) {
     var tabs = await rout.ed.vars(rout.ed.dir(url.hash ? url.hash.split('#')[1] : uri));
     var goto = rout.ed.url(tabs);
     var route = window.paths = window.route = rout.e(url.hash ? url.hash.split('#')[1] : goto + url.search + url.hash);
-    console.log(url,route,getRoot());
+    console.log(url, route, getRoot());
 
     var pages = dom.body.find('pages[data-root="' + getRoot() + '"]');
     var page = dom.body.find('page[data-page="' + route.page + '"]');
-    var vp = page ? page : pages; console.log({vp},'pages[data-pages="' + getRoot() + '"]');
+    var vp = page ? page : pages;
+    console.log({
+        vp
+    }, 'pages[data-pages="' + getRoot() + '"]');
 
     if (vp) {
         var goto = window.global.domains.subdomain === "uios" ? '/' + document.head.querySelector('[name="application-shortname"]').content : '';
@@ -24,7 +27,7 @@ String.prototype.router = async function(params) {
             var pop = params ? params.pop : null;
 
             route = window.view ? await view(route).then(rout.ed.bang(route)) : await rout.ed.bang(route);
-            
+
             var path = route.path;
             window.GET = rout.ed.dir(path);
 
@@ -34,12 +37,14 @@ String.prototype.router = async function(params) {
                 const hash = global.domains.domain === "github" ? "/#" : "";
                 var goto = window.global.domains.subdomain === "uios" ? '/' + document.head.querySelector('[name="application-shortname"]').content : '';
                 const link = hash.length > 0 ? goto + hash + (route.hash.length > 0 ? route.hash.split('#')[1] : route.path) + route.search : goto + route.path + route.search + route.hash;
-                if(window.self !== window.top && window.globals.domains.domain === "github") {
-                    const got = window.parent.GET.slice(0, 3);
-                    const gut = route.GOT;
-                    const bash = got.concat(gut);
-                    const goin = (window.globals.domains.domain === "github" ? '/#' : '')+rout.ed.url(bash);
-                    window.parent.history.pushState(goin, '', goin);
+                if (window.self !== window.top) {
+                    if (window.globals.domains.domain === "github") {
+                        const got = window.parent.GET.slice(0, 3);
+                        const gut = route.GOT;
+                        const bash = got.concat(gut);
+                        const goin = (window.globals.domains.domain === "github" ? '/#' : '') + rout.ed.url(bash);
+                        window.parent.history.pushState(goin, '', goin);
+                    }
                 }
                 document.body.dataset.path = route.path;
                 console.log({
@@ -98,9 +103,13 @@ window.rout.e = state=>{
 
 window.rout.ed = {};
 window.rout.ed.bang = async(route)=>{
-    var pages = dom.body.find('pages[data-pages="' + getRoot()+ '"]');
+    var pages = dom.body.find('pages[data-pages="' + getRoot() + '"]');
     var page = dom.body.find('page[data-page="' + route.page + '"]');
-    var vp = page ? page : pages; console.log({vp,route},getRoot());
+    var vp = page ? page : pages;
+    console.log({
+        vp,
+        route
+    }, getRoot());
 
     $('[data-hide]').attr("data-active", true);
     $(':not(pages)[data-pages]').removeAttr("data-active");
