@@ -48,7 +48,7 @@ window.onload = async()=>{
         }
     }
 
-    window.self !== window.top && (globals.domains.domain !== "github") ? document.domain = domains.domain + '.' + domains.tld : null;
+    window.self !== window.top && (globals.domains.domain !== "github") ? document.domain = globals.domains.domain + '.' + globals.domains.tld : null;
     
     dom.body.dataset.load = "ing";
 
